@@ -1,0 +1,17 @@
+/* Grand Beau-Rivage Interlaken · Farben · Le Livre, Oktober 2026 */
+:root{
+  --weiss:#fdf9f1;   /* Weiss: Blätter, Karten, Briefbogen */
+  --papier:#f7f0e3;   /* Papierton: Grundfläche der Seite */
+  --creme:#efe4cf;   /* Creme: zweite helle Fläche, Tapete hell */
+  --sand:#e2d2b5;   /* Sand: Kanten, Unterseite der Knöpfe */
+  --marine:#1b2033;   /* Marine: die dunkle Fläche, mit Tapete */
+  --blau:#2c334d;   /* Blau: Knöpfe auf hellem Grund */
+  --tinte:#1a1d28;   /* Tinte: Schrift auf Papier und Creme */
+  --gold:#e6d2a2;   /* Gold: Zeichen und Zeilen auf Marine */
+  --taupe:#b0934f;   /* Taupe: Linien, Zeichen auf Papier */
+  --akzent:#967d40;   /* Akzent: zweite Titelzeile auf Hell */
+  --taupe-tief:#826c35;   /* Taupe tief: kleine Goldschrift auf Hell */
+  --rot:#7a1f2b;   /* Bar-Rot: Bar «Le Vieux Rivage» */
+  --glanzgold-flaeche:linear-gradient(180deg,#f8eac6 0%,#ead09a 20%,#d6b679 52%,#c2a062 80%,#aa874f 100%);   /* Glanzgold Fläche: Goldband unter dem Kopf und am Ende jeder Seite, Knopf «Verfügbarkeit prüfen» im Kopf */
+  --glanzgold-zeichen:linear-gradient(180deg,#fff6dc 0%,#f1dcaa 32%,#dcbd7c 50%,#c4a062 60%,#e6cd95 78%,#f7e9c2 100%);   /* Glanzgold Zeichen: Zeichen des Hauses und Ortszeile im Kopf der Startseite */
+}

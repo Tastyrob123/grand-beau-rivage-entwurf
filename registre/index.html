@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de-CH">
+<head><!--demo-weiche--><script src="/_demo/karte.js"></script><script src="/_demo/shim.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Rahmen R03/R04 (Prüfung 1710, 17.10.2026): Fehler mitschreiben, bevor irgendetwas anderes läuft (wie Le Bureau, Meldung an dessen Protokoll), und die Startfehler-Tür mit «Prüfung öffnen». Netzfehler nie melden, höchstens 20 je Seite, eigener Fehlschlag nie erneut (Safari-Schleife 15.10.). */
+(function(){var zahl=0;function merk(t){t=String(t);if(++zahl>20||/Load failed|access control|abort|NetworkError|Failed to fetch/i.test(t))return;
+try{var a=JSON.parse(localStorage.getItem('registre-fehler')||'[]');a.push({zeit:new Date().toISOString(),text:t.slice(0,600)});localStorage.setItem('registre-fehler',JSON.stringify(a.slice(-30)))}catch(e){}
+try{fetch('../studio/api/fehler',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:'Le Registre · '+t.slice(0,580)}),keepalive:true}).catch(function(){})}catch(e){}}
+window.addEventListener('error',function(e){if(!e.message&&e.target&&e.target!==window)return;merk((e.message||'Fehler')+' · '+(e.filename||'').split('/').pop()+':'+(e.lineno||''))});
+window.addEventListener('unhandledrejection',function(e){merk('Versprechen: '+((e.reason&&e.reason.message)||e.reason))});window.werkzeugMerk=merk;
+window.werkzeugTuer=function(grund){if(document.getElementById('wz-tuer'))return;var d=document.createElement('div');d.id='wz-tuer';d.setAttribute('role','alert');
+d.style.cssText='position:fixed;inset:0;z-index:2147483000;visibility:visible;display:grid;place-items:center;padding:24px;background:rgba(17,20,31,.94);color:#f7f0e3;font-family:system-ui,sans-serif;text-align:center';
+d.innerHTML='<div style="max-width:520px"><p style="font-size:1.5rem;margin:0 0 10px">Le Registre startet nicht.</p><p id="wz-tuer-t" style="margin:0 0 22px;color:rgba(247,240,227,.75)"></p>'+
+'<a href="../studio/pruefung.html" style="display:inline-block;margin:0 6px;padding:12px 20px;border-radius:999px;background:#f0e3c2;color:#1b2033;text-decoration:none">Prüfung öffnen</a>'+
+'<button type="button" onclick="location.reload()" style="margin:0 6px;padding:12px 20px;border-radius:999px;border:1px solid rgba(240,227,194,.5);background:none;color:#f0e3c2;font:inherit;cursor:pointer">Neu laden</button></div>';
+d.querySelector('#wz-tuer-t').textContent=String(grund||'Das Werkzeug hat nicht geladen.').replace(/^[A-ZÄÖÜ]+ · /,'');(document.body||document.documentElement).appendChild(d);merk('Startfehler: '+grund)};
+})();</script>
+<title>Le Registre · Grand Beau-Rivage</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1b2033">
+<link rel="icon" href="../assets/logo/favicon.svg">
+<link rel="preload" href="../assets/fonts/cormorant-garamond-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/InstrumentSans-normal-400_600.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../studio/auftakt.js?v=3"></script>
+<link rel="stylesheet" href="../studio/studio.css?v=10">
+<link rel="stylesheet" href="registre.css?v=8">
+<link rel="stylesheet" href="../studio/hell.css?v=17">
+<script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body class="bu rg">
+<header class="kopf" id="kopf"></header>
+<aside class="rand" id="rand" aria-label="Bereiche von Le Registre"></aside>
+<main class="haupt" id="haupt">
+  <div class="start-tuer" id="tuer" hidden>
+    <h1>Le Registre startet nicht.</h1>
+    <p id="tuer-t">Die Verbindung zum Server-Teil fehlt.</p>
+    <p><a class="kn" href="../studio/pruefung.html">Prüfung öffnen</a></p>
+  </div>
+  <div id="ansicht"></div>
+</main>
+<footer class="leiste" id="leiste" aria-live="polite"></footer>
+<div class="meldung" id="meldung" aria-live="polite"></div>
+<script src="registre.js?v=10"></script>
+<script src="../assets/js/zur-werkbank.js?v=10" defer data-zw data-neben="#rand" data-luft="40" data-ueber="#leiste"></script>
+<script src="../studio/buehne.js?v=5" defer></script>
+<script src="../assets/js/rundgang.js?v=19" defer data-werkzeug="registre"></script>
+</body>
+</html>

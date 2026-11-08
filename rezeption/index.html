@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="de-CH">
+<head><!--demo-weiche--><script src="/_demo/karte.js"></script><script src="/_demo/shim.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rezeption im Chat · Grand Beau-Rivage Interlaken</title>
+<meta name="description" content="Was die KI-Rezeption des Grand Beau-Rivage Interlaken kann: Fragen der Gäste beantworten, im Gespräch buchen, Ausflüge nach Wetter, Antworten auf Anfragen.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#091127">
+<link rel="icon" href="../assets/logo/favicon.svg">
+<link rel="preload" href="../assets/fonts/cormorant-garamond-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/Cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/InstrumentSans-normal-400_600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/main.css?v=35">
+<link rel="stylesheet" href="../assets/css/rezeption.css?v=172">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="sp-css">
+.sprachwahl{position:relative;flex:none}
+.sprachwahl>button{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(210,191,152,.38);background:rgba(255,255,255,.04);color:#fff;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;cursor:pointer}
+.sprachwahl>button svg{width:10px;height:10px;transition:transform .3s}
+.sprachwahl.offen>button svg{transform:rotate(180deg)}
+.sprachwahl ul{position:absolute;top:calc(100% + 10px);right:0;margin:0;padding:8px;list-style:none;min-width:190px;border-radius:18px;background:#1b2033;border:1px solid rgba(210,191,152,.28);box-shadow:0 24px 50px -20px rgba(0,0,0,.55);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s;z-index:80}
+.sprachwahl.offen ul{opacity:1;transform:none;pointer-events:auto}
+.sprachwahl li a{display:flex;justify-content:space-between;gap:16px;padding:10px 12px;border-radius:12px;color:rgba(255,255,255,.82);font-family:var(--sans);font-size:14px;text-decoration:none}
+.sprachwahl li a small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#d2bf98}
+.sprachwahl li a:hover,.sprachwahl li a[aria-current]{background:rgba(210,191,152,.12);color:#fff}
+.insel{gap:clamp(10px,1.4vw,18px)}
+[dir=rtl] .sprachwahl ul{right:auto;left:0}
+@media(max-width:480px){.insel__m span{display:none}}
+.sp-frei{position:fixed;top:16px;right:16px;z-index:90}
+</style>
+<script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body class="rz rz--gbr kein-vorhang">
+<header class="rz-leiste"><a class="rz-leiste__marke" href="../index.html"><img class="" src="../assets/img/gast-emblem.png?v=5b84529a" width="160" height="152" alt=""><b>Grand Beau-Rivage</b></a>
+  <div class="sprachwahl" style="margin-inline-start:auto;margin-inline-end:12px"><button type="button" aria-haspopup="true" aria-expanded="false" aria-label="Sprache · Language">DE<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button><ul><li><a href="index.html" hreflang="de" lang="de" aria-current="true"><span>Deutsch</span><small>DE</small></a></li><li><a href="en/index.html" hreflang="en" lang="en"><span>English</span><small>EN</small></a></li><li><a href="fr/index.html" hreflang="fr" lang="fr"><span>Français</span><small>FR</small></a></li><li><a href="zh/index.html" hreflang="zh" lang="zh"><span>中文</span><small>中文</small></a></li><li><a href="ko/index.html" hreflang="ko" lang="ko"><span>한국어</span><small>한국어</small></a></li><li><a href="ar/index.html" hreflang="ar" lang="ar"><span>العربية</span><small>عربي</small></a></li></ul></div><button type="button" class="kn kn--klein" data-chat>Rezeption öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button></header>
+
+<section class="rz-auftakt">
+  <div class="in">
+    <img class="rz-auftakt__z" src="../assets/img/gast-emblem.png?v=5b84529a" width="160" height="152" alt="">
+    <h1 class="d1" data-r>Die Rezeption<br><em>im Chat.</em></h1>
+    <div class="lauf" data-r><p>Unten rechts auf jeder Seite sitzt die Rezeption des Grand Beau-Rivage. Gäste fragen dort nach dem Spa, der Tea Time oder dem Shuttle ab Interlaken Ost und bekommen die Antwort sofort, aus den Seiten und Karten des Hauses, in ihrer Sprache, auch spät am Abend.</p><p>Dahinter arbeitet eine KI. Was nicht in den Unterlagen steht, gibt sie an die Rezeption weiter.</p></div>
+    <div class="rz-kn" data-r><button type="button" class="kn kn--linie" data-chat>Jetzt ausprobieren<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button><a class="kn" href="../index.html">Zur Website<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a></div>
+  </div>
+</section>
+
+<div class="telefon-block rz-tel">
+<section class="s-telefon3d" id="s-telefon3d" data-basis="../" data-film="../assets/video/rezeption-schirm-3.mp4?v=f4" data-zeichen="../assets/3d/rezeption-zeichen.png?v=35" data-modell="../assets/3d/rezeption-phone.glb?v=1" data-dauer="28.4">
+ <div class="tel-pin">
+  <canvas id="cv-telefon3d"></canvas>
+  <div id="telefon3d-text">
+    <h2 class="d2">Schon gebucht, <em>noch zwei Wünsche.</em></h2>
+    <p class="tel-vor">Zwei Gäste haben gebucht und kommen am 20. November mit dem Zug. So läuft das Gespräch auf dem Handy:</p>
+    <ul class="tel-liste"><li>Die Rezeption nennt den Shuttle ab Interlaken Ost auf Anfrage und bietet an, den Tisch für den ersten Abend anzufragen.</li><li>Ankunftszeit, Uhrzeit, Personen und Name genügen; kein Formular, keine Warteschleife.</li><li>Beides liegt danach bei Ihrem Concierge in La Réception, mit einem Entwurf für die Antwort.</li><li>Das Haus meldet sich persönlich; reserviert wird wie heute in Ihrem aleno.</li></ul>
+  </div>
+  <figure class="m-telefon nur-mobil" id="m-telefon">
+    <div class="m-tel-rahmen"><video class="m-tel-film" id="m-tel-film" muted playsinline preload="none" width="360" height="778" poster="../assets/img/rezeption/schirm-start-3.webp?v=f4" aria-label="Zwei Gäste, die schon gebucht haben, fragen die Rezeption des Grand Beau-Rivage nach dem Shuttle und einem Tisch; die Anfrage geht an den Concierge">
+      <source src="../assets/video/rezeption-schirm-3-m.mp4?v=f4" type="video/mp4"></video></div>
+  </figure>
+  <div id="telefon3d-laden">Wird geladen</div>
+ </div>
+</section>
+</div>
+
+<section class="fl rz-fragen">
+  <div class="in">
+    <h2 class="d2" data-r>Was Gäste <em>wissen wollen.</em></h2>
+    <div class="lauf" data-r><p>Vier Gespräche mit der Rezeption vom 10. Oktober, die Antworten im Wortlaut. Steht etwas nicht in den Unterlagen, sagt sie das, statt zu raten.</p></div>
+    <div class="hg"><figure class="hg__h" data-r="schweb" style="--i:0"><div class="hg__zug"><div class="hg__box" style="aspect-ratio:956/1955"><img class="hg__schatten" src="../assets/img/rezeption/handy-schatten.webp?v=171" width="926" height="1425" alt="" loading="lazy" decoding="async"><img class="hg__geraet" src="../assets/img/rezeption/handy-tea.webp?v=171" width="956" height="1955" alt="Die Rezeption im Chat beantwortet auf dem Handy die Frage, wann es Tea Time gibt" loading="lazy" decoding="async"><img class="hg__dunkel" src="../assets/img/rezeption/handy-dunkel.webp?v=171" width="478" height="977" alt="" loading="lazy" decoding="async"></div></div></figure><figure class="hg__h" data-r="schweb" style="--i:1"><div class="hg__zug"><div class="hg__box" style="aspect-ratio:956/1955"><img class="hg__schatten" src="../assets/img/rezeption/handy-schatten.webp?v=171" width="926" height="1425" alt="" loading="lazy" decoding="async"><img class="hg__geraet" src="../assets/img/rezeption/handy-film.webp?v=171" width="956" height="1955" alt="Die Buchungsmaske im Chat auf dem Handy, mit Anreise am 12. und Abreise am 14. Dezember für zwei Personen" loading="lazy" decoding="async"><img class="hg__dunkel" src="../assets/img/rezeption/handy-dunkel.webp?v=171" width="478" height="977" alt="" loading="lazy" decoding="async"></div></div></figure><figure class="hg__h" data-r="schweb" style="--i:2"><div class="hg__zug"><div class="hg__box" style="aspect-ratio:956/1955"><img class="hg__schatten" src="../assets/img/rezeption/handy-schatten.webp?v=171" width="926" height="1425" alt="" loading="lazy" decoding="async"><img class="hg__geraet" src="../assets/img/rezeption/handy-shuttle.webp?v=171" width="956" height="1955" alt="Die Rezeption im Chat antwortet auf Englisch auf die Frage nach dem Shuttle ab Interlaken Ost" loading="lazy" decoding="async"><img class="hg__dunkel" src="../assets/img/rezeption/handy-dunkel.webp?v=171" width="478" height="977" alt="" loading="lazy" decoding="async"></div></div></figure><figure class="hg__h" data-r="schweb" style="--i:3"><div class="hg__zug"><div class="hg__box" style="aspect-ratio:956/1955"><img class="hg__schatten" src="../assets/img/rezeption/handy-schatten.webp?v=171" width="926" height="1425" alt="" loading="lazy" decoding="async"><img class="hg__geraet" src="../assets/img/rezeption/handy-hund.webp?v=171" width="956" height="1955" alt="Die Rezeption im Chat sagt offen, dass zum Hund nichts in den Unterlagen steht, und nennt Telefon und E-Mail der Rezeption" loading="lazy" decoding="async"><img class="hg__dunkel" src="../assets/img/rezeption/handy-dunkel.webp?v=171" width="478" height="977" alt="" loading="lazy" decoding="async"></div></div></figure></div>
+  </div>
+</section>
+
+<section class="fl hell rz-wert">
+  <div class="in rz-wert__in">
+    <figure class="rz-wert__b" data-r="schweb"><img class="" src="../assets/img/bar-teatime-l.webp?v=35" width="2000" height="1500" alt="Tea Time in der Bar des Grand Beau-Rivage" loading="lazy" decoding="async" sizes="(-webkit-min-device-pixel-ratio:1.5) and (max-width:900px) 69vw, (-webkit-min-device-pixel-ratio:1.5) 34.5vw, (max-width:900px) 92vw, 46vw" srcset="../assets/img/bar-teatime-l-600.webp?v=35 600w, ../assets/img/bar-teatime-l-1400.webp?v=35 1400w, ../assets/img/bar-teatime-l.webp?v=35 2000w"></figure>
+    <div>
+      <h2 class="d2" data-r>Ein grosses Haus, <em>viele Fragen.</em></h2>
+      <div class="lauf" data-r><p>Zwei Restaurants im Wechsel der Saison, eine Bar mit Tea Time, eine Terrasse an der Aare von Mai bis September, ein Spa mit eigenen Zeiten für Bad und Behandlungen, ein Shuttle ab Interlaken Ost auf Anfrage. Wer das vor der Anreise wissen will, schreibt heute eine Mail oder ruft an.</p><p>Die Rezeption im Chat antwortet aus jeder Seite der Website und aus den Karten von L’Ambiance, Le Vieux Rivage und La Petite Suisse, der Weinkarte und dem Treatment Menu. Am Telefon bleibt Zeit für den Gast, der etwas Besonderes vorhat.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="fl rz-buchen">
+  <div class="in">
+    <div class="rz-zwei">
+      <div>
+        <h2 class="d2" data-r>Buchen, ohne die Seite <em>zu verlassen.</em></h2>
+        <div class="lauf" data-r><p>Sobald ein Gast nach Daten fragt, legt die Rezeption die Buchungsmaske ins Gespräch. «Zur Buchung» öffnet SimpleBooking in einem grossen Fenster, mit den Daten des Gastes, den freien Zimmern und dem Preis des Tages. Bezahlt wird dort wie bisher.</p></div>
+      </div>
+      <p class="rz-notiz" data-r>Bildschirmfoto vom 10. Oktober 2026: zwei Nächte vom 12. bis 14. Dezember, so wie die Rezeption sie in die Maske gelegt hat.</p>
+    </div>
+    <figure class="rz-schirm" data-r="schweb"><img class="" src="../assets/img/rezeption/buchung.webp?v=35" width="1800" height="1125" alt="Die Website des Grand Beau-Rivage Interlaken mit dem Buchungssystem des Hauses im grossen Fenster" loading="lazy" decoding="async" sizes="(-webkit-min-device-pixel-ratio:1.5) and (max-width:1480px) 69vw, (-webkit-min-device-pixel-ratio:1.5) 1050px, (max-width:1480px) 92vw, 1400px" srcset="../assets/img/rezeption/buchung-600.webp?v=35 600w, ../assets/img/rezeption/buchung-1400.webp?v=35 1400w, ../assets/img/rezeption/buchung.webp?v=35 1800w"></figure>
+  </div>
+</section>
+
+<section class="fl hell rz-haus">
+  <div class="in rz-zwei rz-anfrage">
+    <div>
+      <h2 class="d2" data-r>Anfragen, <em>in Minuten beantwortet.</em></h2>
+      <div class="lauf" data-r><p>Derselbe Assistent schreibt Antwort-Entwürfe auf Anfragen für Hochzeiten, Bankette und Seminare: die Mail des Gastes hinein, ein Entwurf im Ton des Hauses heraus, mit Räumen, Grössen und Preisen aus Website und Unterlagen. Was das Haus entscheiden muss, steht in Klammern, darunter für das Team, was vor dem Senden offen ist. Verschickt wird erst, wenn jemand vom Team gelesen hat.</p></div>
+    </div>
+    <figure class="rz-brief" data-r="schweb"><span class="rz-brief__k">Entwurf · Hochzeit, rund 90 Gäste</span><p>Guten Tag Anna Keller</p><p>Herzlichen Dank für Ihre Anfrage und herzliche Gratulation zur bevorstehenden Hochzeit …</p><p>Für rund 90 Gäste hätten wir den Ballsaal «La Belle Epoque». Er hat 312 m², originale Stuck- und Spiegelelemente und bietet Platz für ein Bankett mit bis zu 160 Personen.</p><p>…</p><p>[VERFÜGBARKEIT PRÜFEN]</p></figure>
+  </div>
+</section>
+
+<section class="fl rz-tal">
+  <div class="in rz-tal__in">
+    <div>
+      <h2 class="d2" data-r>Und morgen, <em>bei dem Wetter?</em></h2>
+      <div class="lauf" data-r><p>Die Rezeption kennt die Vorhersage der nächsten drei Tage für Interlaken, den Harder Kulm und das Jungfraujoch, dazu die Seiten der Jungfraubahnen und von Interlaken Tourismus. Daraus stellt sie einen Tag zusammen: bei Regen eher Spa und Tea Time, bei klarem Himmel der Weg nach oben.</p><p>Betriebszeiten nennt sie mit der Quelle und dem Hinweis, sie vor der Fahrt nachzusehen.</p></div>
+    </div>
+    <figure class="rz-tal__b" data-r="schweb"><img class="" src="../assets/img/haus-fluss-berge-l.webp?v=35" width="2000" height="1500" alt="Das Grand Beau-Rivage an der Aare, dahinter die Berge" loading="lazy" decoding="async" sizes="(-webkit-min-device-pixel-ratio:1.5) and (max-width:900px) 69vw, (-webkit-min-device-pixel-ratio:1.5) 30vw, (max-width:900px) 92vw, 40vw" srcset="../assets/img/haus-fluss-berge-l-600.webp?v=35 600w, ../assets/img/haus-fluss-berge-l-1400.webp?v=35 1400w, ../assets/img/haus-fluss-berge-l.webp?v=35 2000w"></figure>
+  </div>
+</section>
+
+<section class="fl rz-zahlen">
+  <div class="in rz-zahlen__in"><div data-r><b>9</b><span>Seiten der Website im Wissen</span></div><div data-r><b>5</b><span>Karten und Unterlagen als PDF</span></div><div data-r><b>3</b><span>Sprachen</span></div><div data-r><b>24</b><span>Stunden am Tag</span></div></div>
+</section>
+
+<section class="fl hell rz-grenzen">
+  <div class="in rz-zwei">
+    <h2 class="d2" data-r>Was sie <em>nicht tut.</em></h2>
+    <ul class="rz-liste" data-r><li>Sie erfindet nichts. Steht etwas nicht in den Unterlagen, sagt sie das und nennt die Nummer der Rezeption.</li><li>Sie sagt keine Zimmer zu. Ob etwas frei ist, zeigt nur das Buchungssystem.</li><li>Karten- oder Passdaten nimmt sie nicht entgegen.</li><li>Fragen, die nichts mit dem Haus zu tun haben, lenkt sie freundlich zurück. Wer in kurzer Zeit sehr viel fragt, landet bei der Telefonnummer.</li><li>Die Datenschutzerklärung hat dafür einen eigenen <a href="../rechtliches.html#ki-assistent">Abschnitt</a>, als Entwurf zum Prüfen durch das Haus.</li></ul>
+  </div>
+</section>
+
+<section class="fl rz-schluss">
+  <div class="in">
+    <img class="rz-auftakt__z" src="../assets/img/gast-emblem.png?v=5b84529a" width="160" height="152" alt="">
+    <h2 class="d1" data-r>Fragen Sie <em>selbst.</em></h2>
+    <div class="rz-kn" data-r><button type="button" class="kn kn--linie" data-chat>Rezeption öffnen<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></button><a class="kn" href="../index.html">Zur Website<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i></a></div>
+    <p class="rz-studie">Designstudie von Tasty Studios, nicht die offizielle Website</p>
+  </div>
+</section>
+
+<script src="../assets/js/rezeption.js?v=36" defer></script>
+<script src="../assets/js/rezeption-galerie.js?v=171" defer></script>
+<script src="../assets/js/gast.js?v=35b1910" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../assets/js/zur-werkbank.js?v=11" defer data-zw></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="sp-js">
+(() => {
+  const w = document.querySelector('.sprachwahl'); if (!w) return;
+  const k = w.querySelector('button');
+  k.addEventListener('click', e => { e.stopPropagation(); const o = w.classList.toggle('offen'); k.setAttribute('aria-expanded', o); });
+  document.addEventListener('click', () => { w.classList.remove('offen'); k.setAttribute('aria-expanded', false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') w.classList.remove('offen'); });
+  // Beim Umschalten an derselben Stelle der Seite bleiben
+  w.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    try { sessionStorage.setItem('druck-stelle', String(scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight))); } catch (x) {}
+  }));
+  try { const s = sessionStorage.getItem('druck-stelle'); if (s !== null) { sessionStorage.removeItem('druck-stelle'); addEventListener('load', () => scrollTo(0, parseFloat(s) * (document.documentElement.scrollHeight - innerHeight))); } } catch (x) {}
+})();
+</script>
+</body>
+</html>

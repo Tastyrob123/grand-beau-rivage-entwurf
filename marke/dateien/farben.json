@@ -1,0 +1,147 @@
+[
+ {
+  "name": "Weiss",
+  "hex": "#FDF9F1",
+  "rgb": [
+   253,
+   249,
+   241
+  ],
+  "rolle": "Blätter, Karten, Briefbogen"
+ },
+ {
+  "name": "Papierton",
+  "hex": "#F7F0E3",
+  "rgb": [
+   247,
+   240,
+   227
+  ],
+  "rolle": "Grundfläche der Seite"
+ },
+ {
+  "name": "Creme",
+  "hex": "#EFE4CF",
+  "rgb": [
+   239,
+   228,
+   207
+  ],
+  "rolle": "zweite helle Fläche, Tapete hell"
+ },
+ {
+  "name": "Sand",
+  "hex": "#E2D2B5",
+  "rgb": [
+   226,
+   210,
+   181
+  ],
+  "rolle": "Kanten, Unterseite der Knöpfe"
+ },
+ {
+  "name": "Marine",
+  "hex": "#1B2033",
+  "rgb": [
+   27,
+   32,
+   51
+  ],
+  "rolle": "die dunkle Fläche, mit Tapete"
+ },
+ {
+  "name": "Blau",
+  "hex": "#2C334D",
+  "rgb": [
+   44,
+   51,
+   77
+  ],
+  "rolle": "Knöpfe auf hellem Grund"
+ },
+ {
+  "name": "Tinte",
+  "hex": "#1A1D28",
+  "rgb": [
+   26,
+   29,
+   40
+  ],
+  "rolle": "Schrift auf Papier und Creme"
+ },
+ {
+  "name": "Gold",
+  "hex": "#E6D2A2",
+  "rgb": [
+   230,
+   210,
+   162
+  ],
+  "rolle": "Zeichen und Zeilen auf Marine"
+ },
+ {
+  "name": "Taupe",
+  "hex": "#B0934F",
+  "rgb": [
+   176,
+   147,
+   79
+  ],
+  "rolle": "Linien, Zeichen auf Papier"
+ },
+ {
+  "name": "Akzent",
+  "hex": "#967D40",
+  "rgb": [
+   150,
+   125,
+   64
+  ],
+  "rolle": "zweite Titelzeile auf Hell"
+ },
+ {
+  "name": "Taupe tief",
+  "hex": "#826C35",
+  "rgb": [
+   130,
+   108,
+   53
+  ],
+  "rolle": "kleine Goldschrift auf Hell"
+ },
+ {
+  "name": "Bar-Rot",
+  "hex": "#7A1F2B",
+  "rgb": [
+   122,
+   31,
+   43
+  ],
+  "rolle": "Bar «Le Vieux Rivage»"
+ },
+ {
+  "name": "Glanzgold Fläche",
+  "verlauf": "linear-gradient(180deg,#f8eac6 0%,#ead09a 20%,#d6b679 52%,#c2a062 80%,#aa874f 100%)",
+  "stopps": [
+   "#F8EAC6",
+   "#EAD09A",
+   "#D6B679",
+   "#C2A062",
+   "#AA874F"
+  ],
+  "rolle": "Goldband unter dem Kopf und am Ende jeder Seite, Knopf «Verfügbarkeit prüfen» im Kopf"
+ },
+ {
+  "name": "Glanzgold Zeichen",
+  "verlauf": "linear-gradient(180deg,#fff6dc 0%,#f1dcaa 32%,#dcbd7c 50%,#c4a062 60%,#e6cd95 78%,#f7e9c2 100%)",
+  "stopps": [
+   "#FFF6DC",
+   "#F1DCAA",
+   "#DCBD7C",
+   "#C4A062",
+   "#E6CD95",
+   "#F7E9C2"
+  ],
+  "rolle": "Zeichen des Hauses und Ortszeile im Kopf der Startseite"
+ }
+]

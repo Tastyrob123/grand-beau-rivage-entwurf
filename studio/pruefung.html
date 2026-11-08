@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de-CH">
+<head><!--demo-weiche--><script src="/_demo/karte.js"></script><script src="/_demo/shim.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prüfung · Le Bureau · Grand Beau-Rivage</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1b2033">
+<link rel="icon" href="../assets/logo/favicon.svg">
+<link rel="stylesheet" href="pruefung.css?v=2">
+<script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body>
+<header class="pk">
+  <div class="pk__in">
+    <a class="pk__z" href="./"><img src="../assets/logo/zeichen-gold.webp?v=e569b74bn2" width="784" height="777" alt=""><span>Le Bureau</span></a>
+    <span class="mono">Prüfung · läuft auch, wenn das Bureau nicht will</span>
+    <h1>Ist alles <em>in Ordnung?</em></h1>
+    <p>Die Prüfung schaut von drei Seiten: aus dem Browser, im Server-Teil des Bureau und auf jeder Seite der Website. Rote und gelbe Punkte erklären sich, wo es geht mit einem Knopf, der es behebt. Unten das Lexikon mit jeder bekannten Fehlerquelle.</p>
+    <div class="pk__kn"><button class="kn" type="button" id="neu">Noch einmal prüfen</button><button class="kn kn--linie" type="button" id="bericht">Bericht kopieren</button><a class="kn kn--linie" href="./">Zum Bureau</a></div>
+  </div>
+</header>
+<main class="pm">
+  <section class="ampel" id="ampel" aria-live="polite"><b>Prüfung läuft …</b><span></span></section>
+  <section id="punkte"></section>
+  <section class="reparaturen">
+    <h2>Reparaturen</h2>
+    <p class="leise">Jeder Knopf will zweimal gedrückt werden. Danach läuft die Prüfung von selbst noch einmal.</p>
+    <div class="rp" id="rp"></div>
+  </section>
+  <section class="lexikon" id="lexikon">
+    <h2>Lexikon</h2>
+    <p class="leise">Jede Meldung im Bureau beginnt mit einem Stichwort. «Was tun?» in der Meldung führt direkt hierher.</p>
+    <input type="search" id="lx-q" placeholder="Suchen: Vorschau weiss, Foto, Telefon, Sprache …" autocomplete="off">
+    <div id="lx"></div>
+  </section>
+  <section class="proto">
+    <h2>Protokoll</h2>
+    <div class="zwei"><div><h3>Was zuletzt geschah</h3><ol id="pr-l"></ol></div><div><h3>Fehler</h3><ol id="pr-f"></ol></div></div>
+  </section>
+</main>
+<script src="pruefung.js?v=1"></script>
+<script src="../assets/js/zur-werkbank.js?v=11" defer data-zw data-neben="#rand" data-luft="40" data-ueber="#leiste"></script>
+</body>
+</html>

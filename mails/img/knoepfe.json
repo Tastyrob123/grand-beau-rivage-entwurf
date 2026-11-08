@@ -1,0 +1,482 @@
+{
+ "kn-vor-ihrer-anreise.png": [
+  227,
+  78
+ ],
+ "kn-ihre-wuensche-angeben.png": [
+  250,
+  78
+ ],
+ "kn-speisekarte.png": [
+  181,
+  78
+ ],
+ "kn-alle-behandlungen.png": [
+  227,
+  78
+ ],
+ "kn-bewertung-schreiben.png": [
+  243,
+  78
+ ],
+ "kn-zimmer-und-suiten.png": [
+  212,
+  78
+ ],
+ "kn-feiern-und-tagen.png": [
+  204,
+  78
+ ],
+ "kn-jetzt-buchen.png": [
+  189,
+  78
+ ],
+ "kn-weihnachten-buchen.png": [
+  235,
+  78
+ ],
+ "kn-neues-datum-waehlen.png": [
+  235,
+  78
+ ],
+ "kl-buchung-verwalten.png": [
+  227,
+  78
+ ],
+ "kl-anreise-und-kontakt.png": [
+  227,
+  78
+ ],
+ "kl-reservation-aendern.png": [
+  235,
+  78
+ ],
+ "kl-termin-aendern.png": [
+  197,
+  78
+ ],
+ "kl-wieder-buchen.png": [
+  197,
+  78
+ ],
+ "kl-la-vall-e-spa.png": [
+  197,
+  78
+ ],
+ "kl-rezeption-anrufen.png": [
+  227,
+  78
+ ],
+ "kl-alle-angebote.png": [
+  197,
+  78
+ ],
+ "kl-silvester-buchen.png": [
+  220,
+  78
+ ],
+ "kl-gutschein-schenken.png": [
+  235,
+  78
+ ],
+ "kn-vor-ihrer-anreise-en.png": [
+  243,
+  78
+ ],
+ "kn-ihre-wuensche-angeben-en.png": [
+  243,
+  78
+ ],
+ "kn-speisekarte-en.png": [
+  128,
+  78
+ ],
+ "kn-alle-behandlungen-en.png": [
+  204,
+  78
+ ],
+ "kn-bewertung-schreiben-en.png": [
+  204,
+  78
+ ],
+ "kn-zimmer-und-suiten-en.png": [
+  204,
+  78
+ ],
+ "kn-feiern-und-tagen-en.png": [
+  273,
+  78
+ ],
+ "kn-jetzt-buchen-en.png": [
+  158,
+  78
+ ],
+ "kn-weihnachten-buchen-en.png": [
+  204,
+  78
+ ],
+ "kn-neues-datum-waehlen-en.png": [
+  227,
+  78
+ ],
+ "kl-buchung-verwalten-en.png": [
+  204,
+  78
+ ],
+ "kl-anreise-und-kontakt-en.png": [
+  266,
+  78
+ ],
+ "kl-reservation-aendern-en.png": [
+  235,
+  78
+ ],
+ "kl-termin-aendern-en.png": [
+  235,
+  78
+ ],
+ "kl-wieder-buchen-en.png": [
+  174,
+  78
+ ],
+ "kl-la-vall-e-spa-en.png": [
+  197,
+  78
+ ],
+ "kl-rezeption-anrufen-en.png": [
+  204,
+  78
+ ],
+ "kl-alle-angebote-en.png": [
+  174,
+  78
+ ],
+ "kl-silvester-buchen-en.png": [
+  243,
+  78
+ ],
+ "kl-gutschein-schenken-en.png": [
+  204,
+  78
+ ],
+ "kn-vor-ihrer-anreise-fr.png": [
+  243,
+  78
+ ],
+ "kn-ihre-wuensche-angeben-fr.png": [
+  258,
+  78
+ ],
+ "kn-speisekarte-fr.png": [
+  135,
+  78
+ ],
+ "kn-alle-behandlungen-fr.png": [
+  204,
+  78
+ ],
+ "kn-bewertung-schreiben-fr.png": [
+  204,
+  78
+ ],
+ "kn-zimmer-und-suiten-fr.png": [
+  227,
+  78
+ ],
+ "kn-feiern-und-tagen-fr.png": [
+  235,
+  78
+ ],
+ "kn-jetzt-buchen-fr.png": [
+  243,
+  78
+ ],
+ "kn-weihnachten-buchen-fr.png": [
+  197,
+  78
+ ],
+ "kn-neues-datum-waehlen-fr.png": [
+  289,
+  78
+ ],
+ "kl-buchung-verwalten-fr.png": [
+  250,
+  78
+ ],
+ "kl-anreise-und-kontakt-fr.png": [
+  212,
+  78
+ ],
+ "kl-reservation-aendern-fr.png": [
+  273,
+  78
+ ],
+ "kl-termin-aendern-fr.png": [
+  273,
+  78
+ ],
+ "kl-wieder-buchen-fr.png": [
+  235,
+  78
+ ],
+ "kl-la-vall-e-spa-fr.png": [
+  197,
+  78
+ ],
+ "kl-rezeption-anrufen-fr.png": [
+  250,
+  78
+ ],
+ "kl-alle-angebote-fr.png": [
+  227,
+  78
+ ],
+ "kl-silvester-buchen-fr.png": [
+  304,
+  78
+ ],
+ "kl-gutschein-schenken-fr.png": [
+  197,
+  78
+ ],
+ "kn-vor-ihrer-anreise-zh.png": [
+  149,
+  78
+ ],
+ "kn-ihre-wuensche-angeben-zh.png": [
+  201,
+  78
+ ],
+ "kn-speisekarte-zh.png": [
+  123,
+  78
+ ],
+ "kn-alle-behandlungen-zh.png": [
+  149,
+  78
+ ],
+ "kn-bewertung-schreiben-zh.png": [
+  149,
+  78
+ ],
+ "kn-zimmer-und-suiten-zh.png": [
+  162,
+  78
+ ],
+ "kn-feiern-und-tagen-zh.png": [
+  162,
+  78
+ ],
+ "kn-jetzt-buchen-zh.png": [
+  149,
+  78
+ ],
+ "kn-weihnachten-buchen-zh.png": [
+  162,
+  78
+ ],
+ "kn-neues-datum-waehlen-zh.png": [
+  162,
+  78
+ ],
+ "kl-buchung-verwalten-zh.png": [
+  149,
+  78
+ ],
+ "kl-anreise-und-kontakt-zh.png": [
+  162,
+  78
+ ],
+ "kl-reservation-aendern-zh.png": [
+  149,
+  78
+ ],
+ "kl-termin-aendern-zh.png": [
+  149,
+  78
+ ],
+ "kl-wieder-buchen-zh.png": [
+  149,
+  78
+ ],
+ "kl-la-vall-e-spa-zh.png": [
+  193,
+  78
+ ],
+ "kl-rezeption-anrufen-zh.png": [
+  149,
+  78
+ ],
+ "kl-alle-angebote-zh.png": [
+  149,
+  78
+ ],
+ "kl-silvester-buchen-zh.png": [
+  162,
+  78
+ ],
+ "kl-gutschein-schenken-zh.png": [
+  162,
+  78
+ ],
+ "kn-vor-ihrer-anreise-ko.png": [
+  149,
+  78
+ ],
+ "kn-ihre-wuensche-angeben-ko.png": [
+  204,
+  78
+ ],
+ "kn-speisekarte-ko.png": [
+  121,
+  78
+ ],
+ "kn-alle-behandlungen-ko.png": [
+  185,
+  78
+ ],
+ "kn-bewertung-schreiben-ko.png": [
+  149,
+  78
+ ],
+ "kn-zimmer-und-suiten-ko.png": [
+  173,
+  78
+ ],
+ "kn-feiern-und-tagen-ko.png": [
+  161,
+  78
+ ],
+ "kn-jetzt-buchen-ko.png": [
+  149,
+  78
+ ],
+ "kn-weihnachten-buchen-ko.png": [
+  185,
+  78
+ ],
+ "kn-neues-datum-waehlen-ko.png": [
+  164,
+  78
+ ],
+ "kl-buchung-verwalten-ko.png": [
+  149,
+  78
+ ],
+ "kl-anreise-und-kontakt-ko.png": [
+  200,
+  78
+ ],
+ "kl-reservation-aendern-ko.png": [
+  149,
+  78
+ ],
+ "kl-termin-aendern-ko.png": [
+  149,
+  78
+ ],
+ "kl-wieder-buchen-ko.png": [
+  149,
+  78
+ ],
+ "kl-la-vall-e-spa-ko.png": [
+  193,
+  78
+ ],
+ "kl-rezeption-anrufen-ko.png": [
+  197,
+  78
+ ],
+ "kl-alle-angebote-ko.png": [
+  161,
+  78
+ ],
+ "kl-silvester-buchen-ko.png": [
+  176,
+  78
+ ],
+ "kl-gutschein-schenken-ko.png": [
+  212,
+  78
+ ],
+ "kn-vor-ihrer-anreise-ar.png": [
+  164,
+  78
+ ],
+ "kn-ihre-wuensche-angeben-ar.png": [
+  179,
+  78
+ ],
+ "kn-speisekarte-ar.png": [
+  163,
+  78
+ ],
+ "kn-alle-behandlungen-ar.png": [
+  164,
+  78
+ ],
+ "kn-bewertung-schreiben-ar.png": [
+  155,
+  78
+ ],
+ "kn-zimmer-und-suiten-ar.png": [
+  178,
+  78
+ ],
+ "kn-feiern-und-tagen-ar.png": [
+  219,
+  78
+ ],
+ "kn-jetzt-buchen-ar.png": [
+  156,
+  78
+ ],
+ "kn-weihnachten-buchen-ar.png": [
+  193,
+  78
+ ],
+ "kn-neues-datum-waehlen-ar.png": [
+  187,
+  78
+ ],
+ "kl-buchung-verwalten-ar.png": [
+  153,
+  78
+ ],
+ "kl-anreise-und-kontakt-ar.png": [
+  190,
+  78
+ ],
+ "kl-reservation-aendern-ar.png": [
+  163,
+  78
+ ],
+ "kl-termin-aendern-ar.png": [
+  169,
+  78
+ ],
+ "kl-wieder-buchen-ar.png": [
+  168,
+  78
+ ],
+ "kl-la-vall-e-spa-ar.png": [
+  181,
+  78
+ ],
+ "kl-rezeption-anrufen-ar.png": [
+  199,
+  78
+ ],
+ "kl-alle-angebote-ar.png": [
+  159,
+  78
+ ],
+ "kl-silvester-buchen-ar.png": [
+  218,
+  78
+ ],
+ "kl-gutschein-schenken-ar.png": [
+  166,
+  78
+ ]
+}

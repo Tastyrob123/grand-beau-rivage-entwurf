@@ -1,0 +1,161 @@
+/* La Carte, Fassung 3: im Stil von Le Bureau (Robert 12.10.2026: alle Werkzeuge «mit diesen blauen und den Buttons» wie Le Bureau).
+   Liegt über mc.css (Fassung 1 und 2 bleiben darunter, diese Datei entfernen = vorheriger Stand). Raum Marine mit Tapete, Kopfleiste als Insel
+   mit Goldkante, Seitenleiste als Papierplatte, Arbeitskarten als Papierplatten mit Tiefe, Knöpfe mit Goldknauf, Leiste als schwebende Insel.
+   Bewegung nur über transform und opacity; über der Vorschau bewegt sich nichts. Funktion und Daten unverändert (mc.js zeichnet nur zusätzlich #oben). */
+:root{--b-platte:linear-gradient(180deg,#fdf9f1,#f7f0e3 55%,#f0e6d2);
+  --b-platte-s:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(159,137,111,.18),0 1.5px 0 rgba(120,100,70,.35),0 40px 60px -34px rgba(0,0,0,.75),0 14px 26px -16px rgba(0,0,0,.45);
+  --b-kuhle:linear-gradient(180deg,#e8ddc6,#efe6d3 40%,#f2eadb);
+  --b-kuhle-s:inset 0 3px 6px -1px rgba(26,29,40,.16),inset 0 1px 0 rgba(26,29,40,.08),inset 0 0 0 1px rgba(159,137,111,.14),0 1px 0 #fff;
+  --b-insel:radial-gradient(120% 160% at 50% -50%,rgba(150,166,214,.22),rgba(150,166,214,0) 60%),linear-gradient(180deg,#323a58 0%,#232a43 30%,#1b2033 66%,#141827 100%);
+  --b-insel-s:inset 0 1px 0 rgba(255,255,255,.18),inset 0 10px 16px -12px rgba(255,255,255,.14),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(210,191,152,.42),0 26px 40px -20px rgba(0,0,0,.8),0 8px 14px -8px rgba(0,0,0,.5);
+  --b-karte-s:inset 0 0 0 1px rgba(152,115,60,.35),inset 0 0 0 6px rgba(253,249,241,.9),inset 0 0 0 7px rgba(152,115,60,.18),0 40px 80px -30px rgba(0,0,0,.85);
+  --b-gold:#d2bf98;--b-goldhell:#f0e3c2;--b-messing:#b7a27a;--b-taupe:#9f896f;--b-ttief:#7d6a4f;--b-leise:rgba(26,29,40,.6);
+  --b-e1:cubic-bezier(.16,1,.3,1);--b-e2:cubic-bezier(.32,.72,0,1);
+  --oben:72px;--rand:300px}
+html,body,html body{background:#1b2033 url('../assets/img/tapete-dunkel.webp?v=08c86b19') 0 0/340px auto!important}
+body.mc{color:var(--tinte)}
+@keyframes b-runter{from{transform:translateY(-100%)}to{opacity:1;transform:none}}
+@keyframes b-auf{from{transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes b-edel{from{transform:translate3d(46px,0,0) scale(.975)}to{opacity:1;transform:none}}
+
+/* ---------- Kopfleiste: Insel mit Tapete und Goldkante ---------- */
+.oben{position:fixed;inset:0 0 auto 0;height:var(--oben);display:flex;align-items:center;gap:20px;padding:0 18px 0 22px;z-index:40;color:#f7f0e3;isolation:isolate;
+  background:var(--b-insel);box-shadow:inset 0 -1px 0 rgba(210,191,152,.45),0 18px 34px -20px rgba(0,0,0,.9);animation:b-runter .7s var(--b-e1) both}
+.oben::after{content:'';position:absolute;inset:0;z-index:-1;background:url('../assets/img/tapete-dunkel.webp?v=08c86b19') 0 0/340px auto;opacity:.45;pointer-events:none}
+.oben__marke{display:flex;align-items:center;gap:13px;min-width:calc(var(--rand) - 22px);text-decoration:none;color:inherit}
+.oben__marke .oben__z{display:block;width:42px;color:#CDAA5C;filter:drop-shadow(0 1px 0 rgba(61,42,16,.9)) drop-shadow(0 3px 8px rgba(0,0,0,.55))}
+.oben__marke .oben__z svg{display:block;width:100%;height:auto}
+.oben__marke b{display:block;font:400 15px/1.1 var(--caps);letter-spacing:.24em;text-transform:uppercase;
+  background:linear-gradient(180deg,#fbf0cf 0%,#ead39c 34%,#c9a764 52%,#9c7b43 62%,#dcc189 80%,#f3e3b6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
+.oben__marke small{display:block;margin-top:6px;font:9.5px/1 var(--mono);letter-spacing:.26em;text-transform:uppercase;color:rgba(240,227,194,.7)}
+.oben__mitte{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center}
+.oben__titel{font:500 23px/1.15 var(--serif);color:#fbf4e4;text-shadow:0 1px 1px rgba(0,0,0,.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.oben__stand{margin-top:3px;font:9px var(--mono);letter-spacing:.26em;text-transform:uppercase;color:var(--b-gold);opacity:.85}
+.oben__werk{display:flex;align-items:center;gap:10px}
+.oben__trenn{width:1px;height:30px;margin:0 4px;background:linear-gradient(180deg,rgba(210,191,152,0),rgba(210,191,152,.55),rgba(210,191,152,0))}
+.mc .oben .rund{position:relative;width:38px;height:38px;color:var(--b-goldhell);text-decoration:none;
+  background:linear-gradient(180deg,#3e4870,#262d48 50%,#12162a);box-shadow:inset 0 1px 0 rgba(190,206,255,.3),inset 0 -2px 0 rgba(0,0,0,.45),0 0 0 1px rgba(210,191,152,.4),0 10px 16px -10px rgba(0,0,0,.75)}
+.mc .oben .rund svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.oben .rund[data-tip]::after{content:attr(data-tip);position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,-4px);padding:6px 10px;border-radius:10px;white-space:nowrap;font:9.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:#1b2033;background:linear-gradient(180deg,#fdf9f1,#f0e6d2);box-shadow:0 0 0 1px rgba(152,115,60,.3),0 10px 20px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .3s,transform .45s var(--b-e1)}
+.oben .rund[data-tip]:hover::after{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Seitenleiste: Platte aus Papier ---------- */
+.mc .rand{top:calc(var(--oben) + 14px);bottom:14px;left:14px;width:var(--rand);gap:20px;padding:18px 14px 20px;border-radius:24px;color:var(--tinte);
+  background:var(--b-platte);box-shadow:var(--b-platte-s);animation:b-auf .8s var(--b-e1) .05s both;scrollbar-width:thin;scrollbar-color:rgba(159,137,111,.4) transparent}
+.mc .rand::after{display:none}
+.mc .rand .marke{display:none}
+.mc .rand .kap{margin:2px 6px 8px;font:9.5px var(--mono);letter-spacing:.22em;color:var(--b-ttief)}
+.mc .rand .kap::before{display:none}
+.mc .rand .kap::after{background:linear-gradient(90deg,rgba(159,137,111,.4),rgba(159,137,111,0))}
+.mc .kw{background:none;box-shadow:none;border-radius:16px;padding:8px 10px 8px 8px}
+.mc .kw:hover{background:rgba(152,115,60,.08);transform:none}
+.mc .kw b{color:var(--tinte);font-size:20px}
+.mc .kw small{color:var(--b-leise)}
+.mc .kw__f{box-shadow:0 0 0 1px rgba(159,137,111,.3),0 8px 14px -10px rgba(26,29,40,.5)}
+.mc .kw i{color:#1b2033;background:linear-gradient(180deg,#f6e8c2,#c9ab6c);box-shadow:inset 0 1px 0 #fffbe9,inset 0 -1px 0 rgba(92,66,24,.4)}
+.mc .kw[aria-current="true"]{background:linear-gradient(180deg,#2a3150,#1b2033);box-shadow:inset 0 1px 0 rgba(190,206,255,.25),inset 0 0 0 1px rgba(210,191,152,.5),0 10px 18px -10px rgba(17,20,31,.7)}
+.mc .kw[aria-current="true"] b{color:#fbf4e4}
+.mc .kw[aria-current="true"] small{color:rgba(240,227,194,.72)}
+.mc .kw[aria-current="true"] .kw__f{box-shadow:0 0 0 1px rgba(210,191,152,.7),0 8px 14px -8px rgba(0,0,0,.8)}
+.mc .modus{padding:4px;border-radius:16px;background:var(--b-kuhle);box-shadow:var(--b-kuhle-s)}
+.mc .modus button{padding:10px 8px;border-radius:12px;font:10.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--b-leise)}
+.mc .modus button[aria-pressed="true"]{color:#1b2033;font-weight:400;background:linear-gradient(180deg,#fffdf8,#f4ead6);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(152,115,60,.32),0 6px 12px -6px rgba(26,29,40,.35)}
+.mc .modus__t{margin:-10px 6px 0;color:var(--b-leise);text-align:left}
+.mc .wege{margin-top:auto;padding-top:10px;border-top:1px solid rgba(159,137,111,.26)}
+.mc .wege a,.mc .wege button{padding:9px 8px;border-radius:11px;border-bottom:0;font-size:16px;color:var(--tinte)}
+.mc .wege a:hover,.mc .wege button:hover{background:rgba(152,115,60,.08);color:#1b2033}
+.mc .wege a span,.mc .wege button span{color:#f6e8c2;background:linear-gradient(180deg,#3e4870,#12162a);box-shadow:inset 0 1px 0 rgba(190,206,255,.3),0 0 0 1px rgba(210,191,152,.45)}
+
+/* ---------- Raum ---------- */
+.mc .haupt{margin-left:0;padding:calc(var(--oben) + 30px) clamp(22px,2.6vw,46px) calc(var(--leiste) + 50px) calc(var(--rand) + 14px + clamp(26px,2.8vw,50px))}
+.mc .kopf{animation:none;background:linear-gradient(90deg,transparent,rgba(210,191,152,.5) 30%,rgba(210,191,152,.5) 70%,transparent) 50% 100%/100% 1px no-repeat}
+.mc .kopf .kopf__z{color:#CDAA5C;filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
+.mc .kopf h1{color:#fbf4e4;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.mc .kopf h1 em{color:var(--b-gold)}
+.mc .kopf__u{color:rgba(240,227,194,.75)}
+.mc .kopf p.satz{color:rgba(247,240,227,.78)}
+.mc .arbeit{animation:none}
+.mc .liste{animation:none}
+.mc .teil{background:var(--b-platte);box-shadow:var(--b-platte-s)}
+.mc .teil:has(.r--deckel){box-shadow:var(--b-insel-s)}
+.mc .r:not(.r--rubrik):not(.r--deckel) .r__k{background:linear-gradient(90deg,rgba(250,244,233,0),#faf4e9 26px)}
+
+/* Bühne: Karte und Website schweben auf der Tapete, Werkzeugleiste als Insel */
+.mc .vorschau{background:none;box-shadow:none;border-radius:0;overflow:visible}
+.mc .vorschau::before{display:none}
+.mc .vorschau__k{align-self:center;margin:0 auto 14px;padding:7px 8px 7px 16px;border-radius:999px;background:var(--b-insel);box-shadow:var(--b-insel-s)}
+.mc .ansicht{padding:4px;border-radius:14px;background:linear-gradient(180deg,#0e1222,#151a2c);box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 0 0 1px rgba(210,191,152,.22)}
+.mc .ansicht button{border-radius:10px;font:10.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:rgba(240,227,194,.7)}
+.mc .ansicht button[aria-pressed="true"]{color:#1b2033;font-weight:400;background:linear-gradient(180deg,#fdf6e6,#ecdcb8);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(255,240,205,.4),0 6px 12px -6px rgba(0,0,0,.6)}
+.mc .vorschau__z .rund{color:var(--b-goldhell);background:linear-gradient(180deg,#3e4870,#262d48 50%,#12162a);box-shadow:inset 0 1px 0 rgba(190,206,255,.3),inset 0 -2px 0 rgba(0,0,0,.45),0 0 0 1px rgba(210,191,152,.4)}
+/* die Seiten liegen auf einer hellen Platte: marineblaue Deckblätter verschwinden sonst im Blau des Raums */
+.mc .seiten{border-radius:24px;background:var(--b-platte);box-shadow:var(--b-platte-s)}
+.mc .seiten .blatt{box-shadow:0 1px 0 rgba(0,0,0,.12),0 26px 40px -22px rgba(26,29,40,.6),0 8px 16px -10px rgba(26,29,40,.35)}
+.mc .seiten .nr{color:var(--b-ttief)}
+.mc .web{border-radius:24px;background:var(--b-platte);box-shadow:var(--b-platte-s)}
+.mc .web__rahmen{border-radius:16px;box-shadow:0 0 0 1px rgba(210,191,152,.35),0 0 0 7px rgba(17,20,31,.55),0 0 0 8px rgba(210,191,152,.22),0 50px 80px -40px rgba(0,0,0,.95)}
+
+/* ---------- Knöpfe wie in Le Bureau: Pille mit Lichtkante, runder Knauf, Lichtstreif ---------- */
+.mc .kn{--o:#fdf9f1;--m:#f1e6d1;--u:#dccaa6;--t:#1a1d28;--licht:#fff;--kante:rgba(130,108,53,.32);--tf:rgba(20,26,46,.35);--ko:#3b4466;--ku:#141829;--kt:#f0e3c2;--klicht:rgba(190,206,255,.35);
+  position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:12px;height:46px;padding:0 6px 0 20px;border:0;border-radius:999px;text-decoration:none;
+  font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:var(--t)!important;
+  background:linear-gradient(180deg,var(--o) 0%,var(--m) 46%,var(--u) 100%);
+  box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(150,125,64,.36),0 1px 1px rgba(20,26,46,.14),0 16px 26px -14px var(--tf);
+  transition:transform .55s var(--b-e2),box-shadow .55s var(--b-e2),opacity .3s}
+.mc .kn::after{content:'';position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.85) 50%,transparent);transform:translateX(-180%) skewX(-18deg)}
+.mc .kn i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--ko),var(--ku));color:var(--kt);font-style:normal;
+  box-shadow:inset 0 1px 0 var(--klicht),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(210,191,152,.45),0 6px 12px -6px rgba(9,17,39,.55);transition:transform .6s var(--b-e2)}
+.mc .kn i svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media (hover:hover){.mc .kn:hover:not(:disabled){transform:translateY(-2px)}.mc .kn:hover:not(:disabled)::after{transform:translateX(360%) skewX(-18deg);transition:transform 1.1s var(--b-e1)}.mc .kn:hover:not(:disabled) i{transform:translateX(2px) scale(1.06)}}
+.mc .kn:active:not(:disabled){transform:translateY(1px) scale(.985)}
+.mc .kn:disabled{opacity:.42;cursor:default}
+.mc .kn--klein{height:38px;padding:0 5px 0 15px;gap:9px;font-size:10px}.mc .kn--klein i{width:28px;height:28px}
+.mc .kn--ohne{padding-right:16px}
+.mc .kn:not(.kn--linie):not(.sp):not(.kn--gold){--o:#3e4870;--m:#262d48;--u:#12162a;--t:#f7efdd;--licht:rgba(190,206,255,.34);--kante:rgba(0,0,0,.5);--tf:rgba(0,0,0,.55);
+  --ko:#f6e8c2;--ku:#b8975a;--kt:#1b2033;--klicht:rgba(255,250,232,.95);text-shadow:0 1px 1px rgba(0,0,0,.35);
+  box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(210,191,152,.6),0 0 0 1px rgba(0,0,0,.25),0 18px 30px -14px var(--tf)}
+.mc .kn:not(.kn--linie):not(.sp):not(.kn--gold)::after{background:linear-gradient(100deg,transparent,rgba(222,232,255,.3) 50%,transparent)}
+.mc .kn--gold,.mc .sp.gelb{--o:#f7e9c6;--m:#e3cd98;--u:#b99a5c;--t:#1b2033;--licht:rgba(255,252,240,.95);--kante:rgba(92,66,24,.5);--ko:#3e4870;--ku:#12162a;--kt:#f6e8c2;--klicht:rgba(190,206,255,.4);
+  text-shadow:0 1px 0 rgba(255,250,235,.5);box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(255,240,205,.6),0 0 0 1px rgba(0,0,0,.35),0 18px 30px -14px rgba(0,0,0,.7)}
+.mc .sp.gruen{--o:#a8c9ae;--m:#6f9a79;--u:#3d6b4f;--t:#fff;--licht:rgba(255,255,255,.5);--kante:rgba(0,0,0,.25);--ko:#fdf9f1;--ku:#d9cbaa;--kt:#3d6b4f}
+.mc .sp.grau{opacity:.86}
+@property --ga{syntax:"<angle>";initial-value:0deg;inherits:false}
+.mc .glanz-kn::before{content:'';position:absolute;inset:0;z-index:-2;border-radius:inherit;padding:1.4px;pointer-events:none;
+  background:conic-gradient(from var(--ga),transparent 0 60%,rgba(210,191,152,.25) 70%,#fff3d2 80%,var(--b-gold) 86%,transparent 95%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:b-ga 4.2s linear infinite}
+@keyframes b-ga{to{--ga:360deg}}
+
+/* ---------- Leiste: schwebende Insel unten ---------- */
+.mc .leiste{left:calc(var(--rand) + 14px + clamp(26px,2.8vw,50px));right:clamp(22px,2.6vw,46px);bottom:18px;min-height:68px;padding:10px 10px 10px 26px;border-radius:999px;isolation:isolate;
+  background:var(--b-insel);box-shadow:var(--b-insel-s);animation:b-auf .8s var(--b-e1) .1s both}
+.mc .leiste::after{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:url('../assets/img/tapete-dunkel.webp?v=08c86b19') 0 0/300px auto;opacity:.35;pointer-events:none}
+.mc .leiste__t b{font:500 20px/1.15 var(--serif);color:#fbf4e4}
+.mc .leiste__t span{font-size:12px;color:rgba(247,240,227,.66)}
+.mc .leiste .link{color:var(--b-gold)}
+.mc .leiste .sp.grau{background:linear-gradient(180deg,var(--o) 0%,var(--m) 46%,var(--u) 100%);color:var(--t)!important;box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(150,125,64,.36),0 16px 26px -14px var(--tf)}
+.mc .leiste .sp.grau i{background:linear-gradient(180deg,var(--ko),var(--ku));color:var(--kt)}
+.mc .leiste [data-akt="veroeffentlichen"]{--o:#f7e9c6;--m:#e3cd98;--u:#b99a5c;--t:#1b2033;--licht:rgba(255,252,240,.95);--kante:rgba(92,66,24,.5);--ko:#3e4870;--ku:#12162a;--kt:#f6e8c2;text-shadow:0 1px 0 rgba(255,250,235,.5);
+  box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(255,240,205,.6),0 0 0 1px rgba(0,0,0,.35),0 18px 30px -14px rgba(0,0,0,.7)}
+.mc .leiste [data-akt="veroeffentlichen"] i{background:linear-gradient(180deg,#3e4870,#12162a);color:#f6e8c2}
+.mc .meldung{left:calc(var(--rand) + 14px + clamp(26px,2.8vw,50px));bottom:calc(18px + 68px + 16px)}
+
+/* ---------- Fenster und Quittung wie in Le Bureau ---------- */
+.mc .fenster{background:rgba(10,12,22,.62);backdrop-filter:none;-webkit-backdrop-filter:none}
+.mc .fenster__k{border-radius:28px;background:linear-gradient(180deg,#fdf9f1,#f4ecdc);box-shadow:var(--b-karte-s);animation:b-auf .5s var(--b-e1)}
+.mc .fenster__k::before{display:none}
+.mc .fenster h2{color:#1b2033}
+.mc .fenster h2 em{color:var(--b-ttief)}
+.mc .feld input,.mc .feld textarea,.mc .feld select{background:var(--b-kuhle);box-shadow:var(--b-kuhle-s)}
+.mc .quit{border-radius:22px;background:var(--b-insel);box-shadow:var(--b-insel-s);animation:b-edel 1s var(--b-e1)}
+.mc .quit b{color:var(--b-goldhell)}
+
+@media (max-width:860px){
+  :root{--rand:0px;--oben:64px}
+  .oben{gap:10px;padding:0 12px}.oben__marke{min-width:0}.oben__marke small,.oben__mitte,.oben__trenn{display:none}.oben__werk{margin-left:auto}
+  .mc .rand{position:relative;top:auto;bottom:auto;left:auto;width:auto;margin:calc(var(--oben) + 12px) 12px 0}
+  .mc .haupt{padding:26px 14px 240px}
+  .mc .leiste{left:10px;right:10px;bottom:10px;border-radius:26px;padding:12px}
+  .mc .meldung{left:12px;right:12px;bottom:222px}
+}
+@media (max-width:520px){.oben__werk .kn--klein{height:34px;padding:0 3px;gap:0;font-size:0;letter-spacing:0}.oben__werk .kn--klein i{width:28px;height:28px}}

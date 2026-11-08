@@ -1,0 +1,46 @@
+/* Anfrage-Fenster (16.10.2026), Quelle inhalt/anfrage_fenster.py. Briefbogen wie «Vor Ihrer Anreise» (Regeln aus feiern.css, hier unter .anfr wiederholt,
+   damit die Seite feiern.css nicht laden muss). Auftritt nur transform, deckend; der Hintergrund darf abdunkeln. */
+.anfr__hinter{position:fixed;inset:0;z-index:1000;background:rgba(6,11,28,.82)}
+.anfr__hinter[hidden]{display:none}
+dialog.anfr{position:fixed;inset:0;z-index:1001;margin:auto;width:min(640px,calc(100% - 28px));max-height:calc(100dvh - 28px);padding:0;border:0;background:none;overflow:auto;overscroll-behavior:contain;color:var(--tinte)}
+dialog.anfr[open]{display:block;animation:anfrAuf .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes anfrAuf{from{transform:translate3d(0,60px,0) scale(.96)}to{transform:none}}
+.anfr .anf__brief{position:relative;padding:12px;border-radius:8px;background:linear-gradient(180deg,#fcf7ee,#f4ecdc 70%,#ede2cc);color:var(--tinte);box-shadow:0 1px 0 #fff inset,0 40px 80px -24px rgba(0,0,0,.85),0 8px 18px -8px rgba(0,0,0,.5)}
+.anfr .anf__rand{position:relative;overflow:hidden;border:1px solid rgba(159,137,111,.7);outline:1px solid rgba(159,137,111,.45);outline-offset:-7px;padding:clamp(28px,3vw,44px) clamp(22px,3vw,44px)}
+.anfr .anf__wz{position:absolute;left:50%;top:50%;width:70%;translate:-50% -50%;opacity:.06;pointer-events:none}
+.anfr .anf__wz svg{display:block;width:100%;height:auto;color:var(--akzent)}
+.anfr .anf__marke{position:relative;text-align:center;font-family:var(--caps);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe-tief);margin:0}
+.anfr .anf__titel{position:relative;margin:8px 0 0;text-align:center;font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,3.2vw,3rem);line-height:1.05;color:var(--tinte)}
+.anfr .anf__titel em{font-style:normal;color:var(--taupe)}
+.anfr__satz{position:relative;max-width:30em;margin:12px auto 0;text-align:center;font-size:16px;line-height:1.55;color:rgba(20,26,46,.78)}
+.anfr .anf__felder{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-top:clamp(18px,2vw,26px)}
+.anfr .anf__f{display:block;margin:0}.anfr .anf__f--ganz{grid-column:1/-1}
+.anfr .anf__f span{display:block;font-family:var(--caps);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-tief)}
+.anfr .anf__f :is(input,select,textarea){display:block;width:100%;margin-top:2px;padding:5px 0 7px;border:0;border-bottom:1px solid rgba(124,106,82,.45);border-radius:0;background:none;
+  font-family:var(--serif);font-weight:500;font-size:1.2rem;color:var(--tinte);outline:0;-webkit-appearance:none;appearance:none}
+.anfr .anf__f textarea{resize:vertical;min-height:58px}
+.anfr .anf__f select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%2398733c' stroke-width='1.5'/%3E%3C/svg%3E") right 2px center/14px no-repeat;padding-right:22px;text-overflow:ellipsis}
+.anfr .anf__f :is(input,select,textarea):focus{border-bottom-color:var(--akzent)}
+.anfr .anf__f.falsch :is(input,select){border-bottom-color:#a2392b}
+.anfr__fang{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.anfr .anf__kn{position:relative;display:flex;justify-content:center;margin-top:clamp(20px,2.2vw,30px)}
+.anfr .anf__fuss{position:relative;margin:12px 0 0;text-align:center;font-size:13px;line-height:1.5;color:rgba(26,29,40,.6)}
+.anfr .anf__fuss a{color:inherit;box-shadow:inset 0 -1px 0 currentColor}
+.anfr__meldung{position:relative;margin:16px 0 0;text-align:center;font-size:14px;line-height:1.5;color:#8a2f23}
+.anfr__zu{position:absolute;top:22px;right:22px;z-index:2;display:grid;place-items:center;width:40px;height:40px;padding:0;border:0;border-radius:50%;cursor:pointer;
+  background:linear-gradient(180deg,#fff,#efe5d1);box-shadow:0 1px 0 #fff inset,0 4px 10px -4px rgba(60,44,20,.45),0 0 0 1px rgba(159,137,111,.35)}
+.anfr__zu svg{width:14px;height:14px;fill:none;stroke:var(--tinte);stroke-width:1.5}
+.anfr__zettel{position:relative;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;max-width:420px;margin:22px auto 0;padding:16px 0 0;border-top:1px solid rgba(159,137,111,.45);font-size:15px;line-height:1.45}
+.anfr__zettel dt{font-family:var(--caps);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-tief);padding-top:3px}
+.anfr__zettel dd{margin:0;font-family:var(--serif);font-weight:500;font-size:1.1rem}
+.anfr__seite[hidden]{display:none}
+.anfr .kn[disabled]{opacity:1;cursor:progress}
+@media (max-width:600px){.anfr .anf__felder{grid-template-columns:1fr}.anfr__zu{top:16px;right:16px}}
+@media (prefers-reduced-motion:reduce){dialog.anfr[open]{animation:none}}
+/* Datum und Uhrzeit in der Schrift der übrigen Felder (die Datumszeile aus main.js übernimmt sonst die Schrift, bevor dieses Blatt geladen ist) */
+.anfr .anf__f .dt-anz{font-family:var(--serif)!important;font-weight:500!important;font-size:1.2rem!important;letter-spacing:0!important}
+.anfr .anf__f input::-webkit-datetime-edit{font-family:var(--serif);font-weight:500}
+@media (max-width:600px){.anfr .anf__marke{padding:0 40px;font-size:.62rem;letter-spacing:.22em}}
+@media (max-width:600px){.anfr__haus{display:none}}
+
+.anfr [hidden]{display:none!important}

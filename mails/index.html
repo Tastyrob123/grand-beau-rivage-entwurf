@@ -1,0 +1,109 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ihre Mails · Grand Beau-Rivage</title><meta name="robots" content="noindex"><link rel="icon" href="../assets/logo/favicon.svg">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-weight:500;src:url(fonts/cormorant-garamond-500-latin.woff2) format('woff2')}
+@font-face{font-family:'Cinzel';src:url(fonts/Cinzel-latin.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;src:url(fonts/InstrumentSans-normal-400_600.woff2) format('woff2')}
+@font-face{font-family:'DM Mono';src:url(fonts/DMMono-normal-400.woff2) format('woff2')}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:130px}
+body{margin:0;background:#f7f0e3 url(../assets/img/tapete-hell.webp) 50% 0/340px auto;color:#141a2e;font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.kopf{background:#11141f url(../assets/img/tapete-dunkel.webp) 50% 0/340px auto;color:#fdf9f1;text-align:center;padding:72px 16px 60px}
+.kopf img{width:62px}.kopf .ort{font-family:Cinzel;letter-spacing:.3em;font-size:11px;color:#E6D2A2;margin:16px 0 0}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(2.6rem,6vw,5.2rem);line-height:1.02;margin:18px 0 0}h1 em{font-style:normal;color:#E6D2A2}
+.kopf .satz{font-size:16.5px;line-height:1.7;color:rgba(253,249,241,.78);max-width:40em;margin:24px auto 0}
+.leiste{position:sticky;top:0;z-index:5;background:#11141f;border-top:1px solid rgba(230,210,162,.18);box-shadow:0 14px 30px -20px rgba(0,0,0,.6)}
+.sprachen{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:12px 16px 4px}
+.sprachen button{font:500 13px/1 'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;padding:10px 16px;border-radius:99px;border:0;cursor:pointer;color:#fdf9f1;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(230,210,162,.22)}
+.sprachen button[aria-pressed=true]{color:#141a2e;background:linear-gradient(180deg,#fcf7ee,#f2e8d5 50%,#e2d2b5);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(130,108,53,.26)}
+nav{display:flex;gap:6px;overflow-x:auto;padding:8px 16px 12px;justify-content:safe center;scrollbar-width:none}
+nav a{flex:none;display:flex;align-items:center;gap:8px;padding:8px 13px;border-radius:99px;color:rgba(253,249,241,.82);text-decoration:none;font-size:12.5px}
+nav a:hover{background:rgba(230,210,162,.12)}nav span{font-family:'DM Mono',monospace;font-size:10.5px;color:#E6D2A2}
+main{max-width:1180px;margin:0 auto;padding:64px 16px 40px}
+.mail{display:grid;grid-template-columns:minmax(0,1fr) 640px;gap:56px;align-items:start;padding:0 0 76px;margin:0 0 76px;border-bottom:1px solid rgba(150,125,64,.3)}
+.mail:last-child{border:0;margin:0}
+.mail header{position:sticky;top:150px}
+.nr{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;color:#967D40}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:42px;line-height:1.05;margin:10px 0 16px}
+.wann{font-size:16px;line-height:1.7;color:rgba(20,26,46,.82);margin:0 0 22px;max-width:30em}
+.bt{margin:0 0 20px;padding:16px 0 0;border-top:1px solid rgba(150,125,64,.3)}.bt span{display:block;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#967D40;margin:0 0 6px}
+.bt b{font-weight:500;font-size:15.5px;line-height:1.5;display:block}
+.lk a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#141a2e;text-decoration:none;border-bottom:1px solid currentColor}
+.rahmen{width:640px;border-radius:16px;overflow:hidden;background:#11141f;box-shadow:0 40px 60px -40px rgba(20,26,46,.7),0 2px 8px rgba(20,26,46,.15)}
+iframe{display:block;width:640px;height:2400px;border:0}
+.fuss{margin:0;background:#11141f;color:rgba(253,249,241,.6);text-align:center;font-size:13.5px;line-height:1.7;padding:44px 16px 56px}
+@media (max-width:1000px){.mail{grid-template-columns:1fr;gap:24px}.mail header{position:static}.rahmen{width:100%}iframe{width:100%}nav{justify-content:flex-start}}
+</style><script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head><body>
+<header class="kopf"><img src="../assets/logo/zeichen-gold.webp?v=e569b74bn2" alt="Grand Beau-Rivage"><p class="ort">GRAND BEAU-RIVAGE · INTERLAKEN</p>
+<h1>Zehn Mails,<br><em>im Ton Ihres Hauses.</em></h1>
+<p class="satz">Jede Nachricht, die ein Gast von Ihnen bekommt, sieht aus wie die neue Website. Zehn Fälle, jeder in den sechs Sprachen der Seite. Oben wählen Sie die Sprache, darunter steht jede Mail in voller Länge.</p></header>
+<div class="leiste"><div class="sprachen" role="group" aria-label="Sprache der Mails"><button type="button" data-l="de" aria-pressed="true">Deutsch</button><button type="button" data-l="en" aria-pressed="false">English</button><button type="button" data-l="fr" aria-pressed="false">Français</button><button type="button" data-l="zh" aria-pressed="false">中文</button><button type="button" data-l="ko" aria-pressed="false">한국어</button><button type="button" data-l="ar" aria-pressed="false">العربية</button></div><nav><a href="#m01"><span>01</span>Buchungsbestätigung</a><a href="#m02"><span>02</span>Vor Ihrer Anreise</a><a href="#m03"><span>03</span>Tischreservierung</a><a href="#m04"><span>04</span>Termin im La Vallée SPA</a><a href="#m05"><span>05</span>Nach dem Aufenthalt</a><a href="#m06"><span>06</span>Gutschein erhalten</a><a href="#m07"><span>07</span>Anfrage Feiern & Tagen</a><a href="#m08"><span>08</span>Angebot der Saison</a><a href="#m09"><span>09</span>Festtage im Haus</a><a href="#m10"><span>10</span>Annullation bestätigt</a></nav></div>
+<main><section class="mail" id="m01">
+  <header><span class="nr">01</span><h2>Buchungsbestätigung</h2><p class="wann">Kommt direkt nach der Buchung: alle Angaben zum Aufenthalt auf einen Blick und der Weg zu «Vor Ihrer Anreise».</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Ihre Buchung ist bestätigt · GBR-48217&quot;, &quot;en&quot;: &quot;Your booking is confirmed · GBR-48217&quot;, &quot;fr&quot;: &quot;Votre réservation est confirmée · GBR-48217&quot;, &quot;zh&quot;: &quot;您的预订已确认 · GBR-48217&quot;, &quot;ko&quot;: &quot;예약이 확정되었습니다 · GBR-48217&quot;, &quot;ar&quot;: &quot;تم تأكيد حجزكم · GBR-48217&quot;}">Ihre Buchung ist bestätigt · GBR-48217</b></p>
+  <p class="lk"><a data-o="01-buchung" href="de/01-buchung/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="01-buchung" src="de/01-buchung/index.html" title="Buchungsbestätigung" scrolling="no" loading="eager"></iframe></div>
+</section><section class="mail" id="m02">
+  <header><span class="nr">02</span><h2>Vor Ihrer Anreise</h2><p class="wann">Eine Woche vor der Anreise. Shuttle, Parkplatz, ein Termin im Spa oder ein Tisch am ersten Abend lassen sich mit einer Nachricht wünschen.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Bald in Interlaken · Ihre Wünsche für den Fr, 6. November 2026&quot;, &quot;en&quot;: &quot;Soon in Interlaken · Your wishes for Fri, 6 November 2026&quot;, &quot;fr&quot;: &quot;Bientôt à Interlaken · Vos souhaits pour le ven. 6 novembre 2026&quot;, &quot;zh&quot;: &quot;即将来到因特拉肯 · 您对 2026 年 11 月 6 日（周五） 的心愿&quot;, &quot;ko&quot;: &quot;곧 인터라켄에서 · 2026년 11월 6일(금) 요청 사항&quot;, &quot;ar&quot;: &quot;قريبًا في إنترلاكن · رغباتكم ليوم الجمعة 6 نوفمبر 2026&quot;}">Bald in Interlaken · Ihre Wünsche für den Fr, 6. November 2026</b></p>
+  <p class="lk"><a data-o="02-vor-der-anreise" href="de/02-vor-der-anreise/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="02-vor-der-anreise" src="de/02-vor-der-anreise/index.html" title="Vor Ihrer Anreise" scrolling="no" loading="eager"></iframe></div>
+</section><section class="mail" id="m03">
+  <header><span class="nr">03</span><h2>Tischreservierung</h2><p class="wann">Bestätigt den Tisch im Restaurant, mit Uhrzeit, Personen und Anlass.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Ihr Tisch im «L’Ambiance» · Sa, 7. November 2026, 19.30 Uhr&quot;, &quot;en&quot;: &quot;Your table at «L’Ambiance» · Sat, 7 November 2026, 7.30 pm&quot;, &quot;fr&quot;: &quot;Votre table au « L’Ambiance » · sam. 7 novembre 2026, 19 h 30&quot;, &quot;zh&quot;: &quot;您在“L’Ambiance”的餐桌 · 2026 年 11 月 7 日（周六） 19:30&quot;, &quot;ko&quot;: &quot;«L’Ambiance» 테이블 · 2026년 11월 7일(토) 19:30&quot;, &quot;ar&quot;: &quot;طاولتكم في «L’Ambiance» · السبت 7 نوفمبر 2026، 19:30&quot;}">Ihr Tisch im «L’Ambiance» · Sa, 7. November 2026, 19.30 Uhr</b></p>
+  <p class="lk"><a data-o="03-tisch" href="de/03-tisch/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="03-tisch" src="de/03-tisch/index.html" title="Tischreservierung" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m04">
+  <header><span class="nr">04</span><h2>Termin im La Vallée SPA</h2><p class="wann">Bestätigt die Behandlung im La Vallée SPA, mit Dauer und Preis.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Ihr Termin im La Vallée SPA · Sa, 7. November 2026, 19.30 Uhr&quot;, &quot;en&quot;: &quot;Your appointment in La Vallée SPA · Sat, 7 November 2026, 7.30 pm&quot;, &quot;fr&quot;: &quot;Votre rendez-vous au La Vallée SPA · sam. 7 novembre 2026, 19 h 30&quot;, &quot;zh&quot;: &quot;您在 La Vallée SPA 的预约 · 2026 年 11 月 7 日（周六） 19:30&quot;, &quot;ko&quot;: &quot;La Vallée SPA 예약 · 2026년 11월 7일(토) 19:30&quot;, &quot;ar&quot;: &quot;موعدكم في La Vallée SPA · السبت 7 نوفمبر 2026، 19:30&quot;}">Ihr Termin im La Vallée SPA · Sa, 7. November 2026, 19.30 Uhr</b></p>
+  <p class="lk"><a data-o="04-spa-termin" href="de/04-spa-termin/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="04-spa-termin" src="de/04-spa-termin/index.html" title="Termin im La Vallée SPA" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m05">
+  <header><span class="nr">05</span><h2>Nach dem Aufenthalt</h2><p class="wann">Ein, zwei Tage nach der Abreise: ein Dank und die Bitte um eine Bewertung.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Auf Wiedersehen in Interlaken&quot;, &quot;en&quot;: &quot;Goodbye from Interlaken&quot;, &quot;fr&quot;: &quot;Au revoir depuis Interlaken&quot;, &quot;zh&quot;: &quot;因特拉肯，期待再会&quot;, &quot;ko&quot;: &quot;인터라켄에서 다시 만나요&quot;, &quot;ar&quot;: &quot;إلى اللقاء من إنترلاكن&quot;}">Auf Wiedersehen in Interlaken</b></p>
+  <p class="lk"><a data-o="05-nach-dem-aufenthalt" href="de/05-nach-dem-aufenthalt/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="05-nach-dem-aufenthalt" src="de/05-nach-dem-aufenthalt/index.html" title="Nach dem Aufenthalt" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m06">
+  <header><span class="nr">06</span><h2>Gutschein erhalten</h2><p class="wann">Geht an die beschenkte Person, mit Wert, Code und den Zeilen dessen, der schenkt.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Ein Geschenk für Sie, von Thomas&quot;, &quot;en&quot;: &quot;A gift for you, from Thomas&quot;, &quot;fr&quot;: &quot;Un cadeau pour vous, de la part de Thomas&quot;, &quot;zh&quot;: &quot;送给您的一份礼物，来自 Thomas&quot;, &quot;ko&quot;: &quot;Thomas 님이 보낸 선물&quot;, &quot;ar&quot;: &quot;هدية لكم من Thomas&quot;}">Ein Geschenk für Sie, von Thomas</b></p>
+  <p class="lk"><a data-o="06-gutschein" href="de/06-gutschein/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="06-gutschein" src="de/06-gutschein/index.html" title="Gutschein erhalten" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m07">
+  <header><span class="nr">07</span><h2>Anfrage Feiern & Tagen</h2><p class="wann">Bestätigt eine Anfrage für Tagung, Bankett oder Hochzeit und zeigt noch einmal, was angefragt wurde.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Ihre Anfrage ist bei uns · Tagung am Do, 21. Januar 2027&quot;, &quot;en&quot;: &quot;Your enquiry has reached us · Seminar on Thu, 21 January 2027&quot;, &quot;fr&quot;: &quot;Votre demande nous est parvenue · Séminaire le jeu. 21 janvier 2027&quot;, &quot;zh&quot;: &quot;我们已收到您的询问 · 2027 年 1 月 21 日（周四） 研讨会&quot;, &quot;ko&quot;: &quot;문의가 접수되었습니다 · 2027년 1월 21일(목) 세미나&quot;, &quot;ar&quot;: &quot;وصلنا طلبكم · ندوة في الخميس 21 يناير 2027&quot;}">Ihre Anfrage ist bei uns · Tagung am Do, 21. Januar 2027</b></p>
+  <p class="lk"><a data-o="07-anfrage-feiern-tagen" href="de/07-anfrage-feiern-tagen/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="07-anfrage-feiern-tagen" src="de/07-anfrage-feiern-tagen/index.html" title="Anfrage Feiern & Tagen" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m08">
+  <header><span class="nr">08</span><h2>Angebot der Saison</h2><p class="wann">Für Gäste, die Neuigkeiten abonniert haben. Hier mit den Wohlfühlmomenten von Oktober bis März.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Wohlfühlmomente im Grand Beau-Rivage&quot;, &quot;en&quot;: &quot;Moments of well-being at the Grand Beau-Rivage&quot;, &quot;fr&quot;: &quot;Moments de bien-être au Grand Beau-Rivage&quot;, &quot;zh&quot;: &quot;Grand Beau-Rivage 的惬意时光&quot;, &quot;ko&quot;: &quot;Grand Beau-Rivage의 웰빙의 순간&quot;, &quot;ar&quot;: &quot;لحظات راحة في Grand Beau-Rivage&quot;}">Wohlfühlmomente im Grand Beau-Rivage</b></p>
+  <p class="lk"><a data-o="08-angebot-der-saison" href="de/08-angebot-der-saison/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="08-angebot-der-saison" src="de/08-angebot-der-saison/index.html" title="Angebot der Saison" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m09">
+  <header><span class="nr">09</span><h2>Festtage im Haus</h2><p class="wann">Die Einladung zu Weihnachten und Silvester, im Herbst verschickt.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Weihnachten und Silvester im Grand Beau-Rivage&quot;, &quot;en&quot;: &quot;Christmas and New Year’s Eve at the Grand Beau-Rivage&quot;, &quot;fr&quot;: &quot;Noël et Saint-Sylvestre au Grand Beau-Rivage&quot;, &quot;zh&quot;: &quot;在 Grand Beau-Rivage 过圣诞和跨年夜&quot;, &quot;ko&quot;: &quot;Grand Beau-Rivage에서 보내는 크리스마스와 새해 전야&quot;, &quot;ar&quot;: &quot;عيد الميلاد ورأس السنة في Grand Beau-Rivage&quot;}">Weihnachten und Silvester im Grand Beau-Rivage</b></p>
+  <p class="lk"><a data-o="09-festtage" href="de/09-festtage/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="09-festtage" src="de/09-festtage/index.html" title="Festtage im Haus" scrolling="no" loading="lazy"></iframe></div>
+</section><section class="mail" id="m10">
+  <header><span class="nr">10</span><h2>Annullation bestätigt</h2><p class="wann">Bestätigt eine Annullation und lädt zu einem neuen Datum ein.</p>
+  <p class="bt"><span>Betreff</span><b data-betreff="{&quot;de&quot;: &quot;Ihre Annullation ist bestätigt · GBR-48217&quot;, &quot;en&quot;: &quot;Your cancellation is confirmed · GBR-48217&quot;, &quot;fr&quot;: &quot;Votre annulation est confirmée · GBR-48217&quot;, &quot;zh&quot;: &quot;您的取消已确认 · GBR-48217&quot;, &quot;ko&quot;: &quot;취소가 확정되었습니다 · GBR-48217&quot;, &quot;ar&quot;: &quot;تم تأكيد الإلغاء · GBR-48217&quot;}">Ihre Annullation ist bestätigt · GBR-48217</b></p>
+  <p class="lk"><a data-o="10-annullation" href="de/10-annullation/index.html" target="_blank">Einzeln öffnen</a></p></header>
+  <div class="rahmen"><iframe data-o="10-annullation" src="de/10-annullation/index.html" title="Annullation bestätigt" scrolling="no" loading="lazy"></iframe></div>
+</section></main>
+<p class="fuss">Namen, Nummern und Beträge in den Mails sind Beispiele. Zeiten, Preise und Angebote stammen von Ihrer Website.</p>
+<script>
+const hoch=f=>{try{const d=f.contentDocument;d.getAnimations&&d.getAnimations().forEach(a=>{try{a.finish()}catch(e){}});f.style.height=Math.ceil(d.querySelector('table').getBoundingClientRect().height)+'px'}catch(e){}};
+document.querySelectorAll('iframe').forEach(f=>f.addEventListener('load',()=>{hoch(f);setTimeout(()=>hoch(f),400);setTimeout(()=>hoch(f),1500)}));
+addEventListener('resize',()=>document.querySelectorAll('iframe').forEach(hoch));
+function sprache(l){
+  document.querySelectorAll('.sprachen button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===l));
+  document.querySelectorAll('iframe[data-o]').forEach(f=>{const u=l+'/'+f.dataset.o+'/index.html';if(!f.src.endsWith(u))f.src=u});
+  document.querySelectorAll('.lk a[data-o]').forEach(a=>a.href=l+'/'+a.dataset.o+'/index.html');
+  document.querySelectorAll('[data-betreff]').forEach(b=>{const t=JSON.parse(b.dataset.betreff);b.textContent=t[l]||t.de;b.dir=l==='ar'?'rtl':'ltr'});
+  try{localStorage.setItem('gbr-mails-sprache',l)}catch(e){}
+}
+document.querySelectorAll('.sprachen button').forEach(b=>b.addEventListener('click',()=>sprache(b.dataset.l)));
+let start='de';try{start=new URLSearchParams(location.search).get('sprache')||localStorage.getItem('gbr-mails-sprache')||'de'}catch(e){}
+if(start!=='de')sprache(start);
+</script>
+<script src="../assets/js/zur-werkbank.js?v=11" defer data-zw></script>
+<script src="../assets/js/begleiter.js?v=4" defer data-begleiter></script>
+</body></html>

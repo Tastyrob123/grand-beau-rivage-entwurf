@@ -1,0 +1,73 @@
+/* La Carte · Freie Anordnung (anordnen.js, 15.10.2026). Auswahl und Griffe wie in L’Imprimerie: Goldrahmen, runde Griffe, rote Hilfslinien. */
+.mc.anr-an .seiten [data-k]{cursor:inherit}
+.mc.anr-an .seiten [data-k]:hover{outline-color:transparent;background:none}
+.mc.anr-an .seiten [data-l]{cursor:move}
+.anr-h{position:absolute;z-index:24;pointer-events:none;outline:1px dashed rgba(176,147,79,.85);outline-offset:0;border-radius:2px}
+.anr-h[hidden]{display:none}
+.mc.anr-an .seiten [contenteditable="true"]{cursor:text;outline:2px solid #B0934F;background:rgba(230,210,162,.28)}
+.anr{position:absolute;z-index:25;pointer-events:none;outline:1.5px solid #c9a764;outline-offset:1px;box-shadow:0 0 0 1px rgba(17,20,31,.25)}
+.anr[hidden]{display:none}
+.anr__g{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;pointer-events:auto;background:linear-gradient(180deg,#fff,#efe3c8);box-shadow:0 0 0 1.5px #c9a764,0 2px 5px rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.16,1,.3,1);touch-action:none}
+.anr__g:hover{transform:scale(1.35)}
+.anr__g--nw{left:0;top:0;cursor:nwse-resize}.anr__g--ne{left:100%;top:0;cursor:nesw-resize}
+.anr__g--se{left:100%;top:100%;cursor:nwse-resize}.anr__g--sw{left:0;top:100%;cursor:nesw-resize}
+.anr__m{position:absolute;left:50%;top:0;transform:translate(-50%,-150%);background:linear-gradient(180deg,#2a3150,#1b2033);color:#e6d2a2;font:500 10.5px/1 'DM Mono',Menlo,monospace;letter-spacing:.06em;padding:5px 9px;border-radius:8px;white-space:nowrap;box-shadow:0 0 0 1px rgba(210,191,152,.4),0 6px 12px -6px rgba(0,0,0,.6)}
+.anr__m[hidden]{display:none}
+.anr-hl{position:absolute;z-index:24;pointer-events:none;background:#b4413a;box-shadow:0 0 5px rgba(180,65,58,.55)}
+.mc .seiten .anr-zu{border:0;background:none;padding:2px 0;font-family:var(--mono,'DM Mono',monospace);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:inherit;opacity:.85;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.mc .seiten .anr-zu:hover{opacity:1}
+.mc .seiten .sw:has(.anr-zu) .nr{margin-bottom:-4px}
+.mc .seiten .anr-zu{color:var(--b-ttief,rgba(247,240,227,.9))}
+/* Linien: Griffe nur an den Enden, unsichtbarer Griffbereich rund um den Strich */
+.anr__g--w{left:0;top:50%;cursor:ew-resize}.anr__g--e{left:100%;top:50%;cursor:ew-resize}
+.anr:not(.anr--lin) .anr__g--w,.anr:not(.anr--lin) .anr__g--e,.anr--lin .anr__g--nw,.anr--lin .anr__g--ne,.anr--lin .anr__g--se,.anr--lin .anr__g--sw{display:none}
+.mc.anr-an .seiten .lin::before{content:'';position:absolute;inset:-1.6mm 0}
+
+/* Seitenleiste «Gestalten» (16.10.2026), Aussehen wie die Leiste in L’Imprimerie: helle Platte, Goldlinien zwischen den Gruppen,
+   Schriften als Knöpfe in der eigenen Schrift, Grösse mit − / Feld / +, Hausfarben als runde Knöpfe. Liegt neben der Karte, nie darüber. */
+.mc.gst-offen .haupt{padding-right:calc(316px + clamp(22px,2.6vw,46px))}
+.gst{position:fixed;z-index:35;right:14px;top:calc(var(--oben,72px) + 14px);bottom:calc(var(--leiste) + 14px);width:296px;overflow:auto;overscroll-behavior:contain;
+  padding:6px 20px 18px;border-radius:22px;background:#fdf9f1;color:var(--tinte);
+  box-shadow:inset 1px 0 0 rgba(183,162,122,.45),inset 0 0 0 1px rgba(130,108,53,.14),0 30px 46px -30px rgba(26,29,40,.5);font-family:var(--sans)}
+.gst[hidden]{display:none}
+.gst-kopf{position:sticky;top:-6px;z-index:1;display:flex;align-items:center;justify-content:space-between;margin:0 -20px;padding:14px 20px 10px;background:linear-gradient(180deg,#fdf9f1 70%,rgba(253,249,241,0))}
+.gst-kopf b{font:400 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--tief)}
+.gst-name{margin:0 0 4px;font:500 22px/1.15 var(--serif);color:var(--marine)}
+.mc .gst .gst-zu{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:50%;background:#fff;color:var(--tinte);cursor:pointer;box-shadow:0 0 0 1px rgba(176,147,79,.35),0 4px 10px -6px rgba(17,20,31,.4)}
+.mc .gst .gst-zu svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.gst-was{margin:0 0 4px;font:11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--tief)}
+.gst-leer,.gst-tipp{margin:8px 0 0;font-size:13px;line-height:1.5;color:rgba(26,29,40,.7)}
+.gst-tipp{font-size:12px;margin-top:14px}
+.gst-gruppe{position:relative;padding:14px 0}
+.gst-gruppe+.gst-gruppe::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(159,137,111,0),rgba(159,137,111,.38) 20%,rgba(159,137,111,.38) 80%,rgba(159,137,111,0))}
+.gst-gruppe>label{display:block;margin-bottom:9px;font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--tief)}
+.gst-seg{display:flex;gap:4px;padding:4px;border-radius:14px;background:rgba(130,108,53,.1);box-shadow:inset 0 1px 2px rgba(26,29,40,.12)}
+.mc .gst .gst-seg button{flex:1;min-width:0;height:34px;border:0;border-radius:10px;background:none;color:var(--tinte);font:500 11px var(--sans);cursor:pointer;transition:background .25s,box-shadow .25s}
+.mc .gst .gst-seg button:hover{background:rgba(255,255,255,.6)}
+.mc .gst .gst-seg button.an{background:#fff;box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(176,147,79,.45),0 4px 8px -5px rgba(26,29,40,.45)}
+.gst-seg--schrift{flex-wrap:wrap}
+.mc .gst .gst-seg--schrift button{flex:1 1 45%;height:38px;font-size:15px;font-weight:400}
+.gst-gr{display:flex;align-items:center;gap:8px}
+.gst-gr input{flex:1;min-width:0;width:40px;height:38px;border:0;border-radius:12px;padding:0 8px;text-align:center;font:500 18px var(--serif);color:var(--tinte);background:#fff;box-shadow:inset 0 1px 3px rgba(26,29,40,.15),0 0 0 1px rgba(176,147,79,.3);outline:0}
+.gst-gr input:focus{box-shadow:inset 0 1px 3px rgba(26,29,40,.15),0 0 0 2px #B0934F}
+.gst-gr span{font:10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tief);min-width:18px}
+.mc .gst .gst-gr button{flex:none;display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;font:400 20px/1 var(--sans);color:#e6d2a2;cursor:pointer;background:linear-gradient(180deg,#3e4870,#262d48 50%,#12162a);box-shadow:inset 0 1px 0 rgba(190,206,255,.3),inset 0 -2px 0 rgba(0,0,0,.45),0 0 0 1px rgba(210,191,152,.4)}
+.mc .gst .gst-gr button:active{transform:translateY(1px)}
+.gst-zwei{display:grid;gap:8px}
+.gst-farben{display:flex;flex-wrap:wrap;gap:9px}
+.mc .gst .gst-farben button{width:28px;height:28px;border-radius:50%;border:0;padding:0;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 3px rgba(0,0,0,.2),0 0 0 1px rgba(26,29,40,.18),0 4px 8px -4px rgba(26,29,40,.45);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.mc .gst .gst-farben button:hover{transform:translateY(-2px) scale(1.08)}
+.mc .gst .gst-farben button.an{box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 0 2px #fbf6ec,0 0 0 3.5px #B0934F,0 6px 10px -4px rgba(26,29,40,.5)}
+.gst-fuss{display:flex;gap:8px;margin-top:6px;padding-top:14px;border-top:1px solid rgba(159,137,111,.3)}
+.mc .gst .gst-kn{flex:1;height:38px;padding:0 10px;white-space:nowrap;border:0;border-radius:999px;background:#fff;color:var(--tinte);font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 0 1px rgba(176,147,79,.4),0 4px 10px -6px rgba(17,20,31,.4)}
+.mc .gst .gst-kn:hover{background:var(--papier)}
+@media (max-width:860px){.gst{left:10px;right:10px;width:auto;top:auto;max-height:52vh}.mc.gst-offen .haupt{padding-right:14px}}
+
+/* Auftritt der Kartenseiten beim Öffnen einer Karte (anordnen.js auftritt), Feder wie ../studio/schweben.css */
+@keyframes kt-auf{from{translate:0 80px;scale:.95}}
+.seiten.kt-auf>.sw{animation:kt-auf 1.6s var(--sw-feder,cubic-bezier(.3,1.26,.4,1)) backwards;animation-delay:calc(var(--i,0) * 90ms)}
+@media (prefers-reduced-motion:reduce){.seiten.kt-auf>.sw{animation:none}}
+
+/* Mittagsmenü, Modus Einfach: das Feld, zu dem ein Klick in der Karte springt (wie .r.gewaehlt / .r.blitz der anderen Karten) */
+.mc #liste label.feld.mw-an .mw-t{box-shadow:inset 0 0 0 2px #B0934F,0 0 0 3px rgba(230,210,162,.35)}
+.mc #liste label.feld.mw-blitz{animation:blitz 1.8s ease;border-radius:12px}

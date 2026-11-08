@@ -1,0 +1,114 @@
+/* Grand Beau-Rivage Interlaken: Billett und Ausflugs-Block im Aufbau «Harder Kulm» (12.10.2026).
+   Geladen von region.html (Harder Kulm) und index.html («Berge, Seen und Täler», Robert 12.10.2026: «genauso bitte auf der Landingpage»).
+   Teil 1: das Billett .rg-tk. Teil 2: .abf--2, der Ausflugs-Block der Startseite im selben Aufbau; Technik, Wechsel und Rastpunkt
+   bleiben aus _gbr.css/main.js (Block «Ausflüge»), hier steht nur die neue Gestalt. Bewegung nur über transform und opacity. */
+
+/* ---------- Zeichen des Hauses in Gold (Datei wie im Auftakt der Startseite) ---------- */
+.raum--nur.rg-z{margin:0 auto clamp(20px,2.2vw,32px)}
+.raum--nur.rg-z img{display:block;width:clamp(84px,7.6vw,120px);height:auto;filter:brightness(.8) saturate(1.5) contrast(1.16) drop-shadow(0 2px 3px rgba(70,48,12,.34))}
+.dunkel .raum--nur.rg-z img{filter:drop-shadow(0 2px 5px rgba(0,0,0,.55))}
+.kopfzeile .raum--nur.rg-z{margin:0 auto}
+
+/* ---------- Teil 1: Billett ---------- */
+/* Billett: Hauptteil mit Kopfzeile und drei Angaben, Perforation, Abriss mit dem Rabatt der Gästekarte.
+   Die Halbkreise der Perforation haben die Farbe der Fläche dahinter, der feine Innenrahmen liegt darunter. */
+.rg-tk{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(124px,21%,150px);margin-top:clamp(30px,3.2vw,48px);border-radius:18px;color:var(--tinte);text-align:left;
+  background:linear-gradient(180deg,#fdf9f1,#f6eedd 60%,#efe4cf);
+  box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(150,125,64,.22),0 2px 0 #d8c7a4,0 34px 46px -30px rgba(20,26,46,.55),0 12px 18px -14px rgba(20,26,46,.3)}
+.rg-tk::after{content:'';position:absolute;inset:8px;border-radius:11px;box-shadow:inset 0 0 0 1px rgba(150,125,64,.36);pointer-events:none}
+.rg-tk__haupt{padding:clamp(20px,2vw,28px) clamp(16px,1.6vw,24px) clamp(22px,2.2vw,30px) clamp(18px,1.9vw,28px)}
+.rg-tk__kopf{display:flex;justify-content:space-between;gap:16px;margin:0;padding-bottom:12px;border-bottom:1px solid rgba(150,125,64,.28);font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#967D40}
+.rg-tk__drei{display:grid;grid-template-columns:1.34fr .86fr 1.06fr;margin:clamp(16px,1.7vw,22px) 0 0}
+.rg-tk__drei>div{padding:2px clamp(6px,.6vw,10px);text-align:center;border-inline-start:1px solid rgba(150,125,64,.28)}
+.rg-tk__drei>div:first-child{border-inline-start:0;padding-inline-start:0}.rg-tk__drei>div:last-child{padding-inline-end:0}
+.rg-tk__drei dt{font-family:var(--caps);font-weight:600;font-size:clamp(.62rem,.7vw,.74rem);letter-spacing:.26em;text-transform:uppercase;color:#967D40}
+.rg-tk__drei dd{margin:10px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(1.1rem,1.34vw,1.42rem);line-height:1.12;font-variant-numeric:lining-nums;text-wrap:balance}
+.rg-tk__abriss{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:clamp(16px,1.6vw,22px) 12px;text-align:center;text-decoration:none;color:inherit;
+  border-inline-start:2px dashed rgba(150,125,64,.42);border-start-end-radius:18px;border-end-end-radius:18px;background:linear-gradient(180deg,rgba(226,210,172,0),rgba(214,194,150,.34))}
+.rg-tk__abriss::before,.rg-tk__abriss::after{content:'';position:absolute;inset-inline-start:-15px;width:28px;height:28px;border-radius:50%;background:var(--kf,var(--papier));z-index:2}
+.rg-tk__abriss::before{top:-14px;box-shadow:inset 0 -2px 3px -1px rgba(20,26,46,.22)}
+.rg-tk__abriss::after{bottom:-14px;box-shadow:inset 0 2px 3px -1px rgba(20,26,46,.14)}
+.rg-tk__abriss img{width:clamp(38px,3.2vw,48px);height:auto;filter:brightness(.82) saturate(1.45) contrast(1.14) drop-shadow(0 1px 2px rgba(60,40,10,.3))}
+.rg-tk__abriss b{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,2.7vw,2.9rem);line-height:1;font-variant-numeric:lining-nums;white-space:nowrap}
+.rg-tk__abriss b small{font-size:50%;letter-spacing:.02em}
+.rg-tk__abriss span{font-family:var(--caps);font-weight:600;font-size:clamp(.58rem,.64vw,.68rem);letter-spacing:.22em;line-height:1.5;text-transform:uppercase;color:#967D40}
+@media (max-width:560px){
+  .rg-tk{grid-template-columns:minmax(0,1fr)}
+  .rg-tk__abriss{flex-direction:row;gap:14px;border-inline-start:0;border-top:2px dashed rgba(150,125,64,.42);border-radius:0 0 18px 18px}
+  .rg-tk__abriss::before,.rg-tk__abriss::after{top:-15px;bottom:auto;inset-inline:auto}.rg-tk__abriss::before{left:-14px}.rg-tk__abriss::after{right:-14px}
+  .rg-tk__drei{grid-template-columns:minmax(0,1fr)}
+  .rg-tk__drei>div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-inline-start:0;border-top:1px solid rgba(150,125,64,.24);text-align:end}
+  .rg-tk__drei>div:first-child{border-top:0;padding-top:0}
+  .rg-tk__drei dd{margin:0}
+}
+.rg-tk__drei--frei{display:flex;align-items:stretch}
+.rg-tk__drei--frei>div{flex:1 1 auto;min-width:0}
+.rg-tk__kopf span:first-child{white-space:nowrap}.rg-tk__kopf span:last-child{text-align:end}
+@media (max-width:560px){.rg-tk__drei--frei{display:grid;grid-template-columns:minmax(0,1fr)}.rg-tk__kopf{font-size:9.5px;letter-spacing:.14em}}
+/* Angaben als Zeilen (Kontakt): Bezeichnung links, Wert rechts, Haarlinien dazwischen */
+.rg-tk__drei--zeilen{display:block}
+.rg-tk__drei--zeilen>div,.rg-tk__drei--zeilen>div:first-child,.rg-tk__drei--zeilen>div:last-child{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:clamp(9px,.9vw,12px) 0;border-inline-start:0;border-top:1px solid rgba(150,125,64,.24);text-align:end}
+.rg-tk__drei--zeilen>div:first-child{border-top:0;padding-top:0}.rg-tk__drei--zeilen>div:last-child{padding-bottom:0}
+.rg-tk__drei--zeilen dt{white-space:nowrap}
+.rg-tk__drei--zeilen dd{margin:0;overflow-wrap:anywhere}
+.rg-tk dd a{color:inherit;text-decoration:none}
+@media (max-width:560px){.rg-tk__drei--zeilen dd{font-size:1rem}.rg-tk__drei--zeilen dt{letter-spacing:.16em}.rg-tk__drei--zeilen>div{gap:10px}}
+.rg-tk dd a:hover{color:var(--akzent,#967D40)}
+[dir="rtl"] .rg-tk__abriss b,[dir="rtl"] .rg-tk__drei dd{direction:ltr;unicode-bidi:isolate}
+
+/* ---------- Teil 2: «Berge, Seen und Täler» auf der Startseite ---------- */
+#region .pano-kopf img.pano-kopf__z{filter:brightness(.8) saturate(1.5) contrast(1.16) drop-shadow(0 2px 3px rgba(70,48,12,.34))}
+@media (min-width:861px){
+  .abf--2.abf{grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);gap:clamp(32px,4vw,72px)}
+  .abf--2 .abf__index{margin-top:auto}
+}
+/* links wie bei Harder Kulm: ein grosses Foto mit dem Namen in der Ecke, darunter die kleinen */
+.abf--2 .abf__gruppe--oben{grid-template-rows:minmax(0,2.25fr) minmax(0,1fr)}
+.abf--2 .abf__k1 .abf__kerbe{position:absolute!important;width:auto!important;height:auto!important;margin:0!important;padding:11px 20px 9px 16px!important;overflow:visible!important;clip-path:none!important;white-space:nowrap!important;background:var(--f)!important}
+.abf--2 .abf__k1 .abf__kerbe::before,.abf--2 .abf__k1 .abf__kerbe::after{content:''!important}
+@media (max-width:860px){.abf--2 .abf__k1 .abf__kerbe{padding:7px 12px 5px 10px!important}}
+/* rechts: Name zweizeilig mittig, zweite Zeile in Sandgold; Text ruhig in der Grotesk; die Angaben als Billett */
+.abf--2 .abf__blatt h3{text-align:center;font-size:clamp(2.2rem,3.5vw,3.9rem);line-height:1.05}
+.abf--2 .abf__blatt h3 span,.abf--2 .abf__blatt h3 em{display:block;font-style:normal}
+.abf--2 .abf__blatt h3 em{color:var(--akzent)}
+.abf--2 .abf__lauf{max-width:none;margin-top:clamp(16px,1.7vw,24px);font-family:var(--sans);font-weight:400;font-size:clamp(.98rem,1.06vw,1.08rem);line-height:1.66;color:rgba(20,26,46,.8)}
+.abf--2 .abf__lauf::first-letter{float:none;margin:0;font:inherit;color:inherit}
+.abf--2 .rg-tk{margin-top:clamp(20px,2vw,30px)}
+.abf--2 .rg-tk__drei dd{font-size:clamp(1.05rem,1.24vw,1.34rem)}
+.abf--2 .rg-tk__abriss b{font-size:clamp(1.9rem,2.5vw,2.7rem)}
+.abf--2 .abf__nachweis{margin-top:14px;text-align:center}
+@media (max-width:860px){.abf--2 .abf__blatt h3{font-size:2.3rem}}
+
+/* ---------- Echte Einkerbungen (Robert 12.10.2026: «Über den Einkerbungen liegen noch Kreise, nur die Einkerbungen sehen») ----------
+   Keine Kreise mehr über der Kante: Hauptteil und Abriss sind zwei Flächen, an der Naht ist aus jeder ein Viertelkreis herausgeschnitten
+   (Maske), zusammen ergibt das oben und unten eine halbrunde Kerbe, durch die der Grund zu sehen ist. Fläche, Lichtkante und Innenrahmen
+   liegen deshalb auf den beiden Teilen statt auf dem ganzen Billett; der Schatten bleibt am Billett. */
+.rg-tk{--kr:14px;--m:#0000 98%,#000;background:none;box-shadow:none;isolation:isolate}
+/* Der Schatten kommt von einer Fläche hinter dem Billett, die über der unteren Kerbe endet: so fällt er auch in die Kerbe.
+   Ein Schatten am Billett selbst wird innerhalb seiner Fläche nie gezeichnet, die Kerbe blieb dann hell (Robert 12.10.2026: «weisser Halbkreis»). */
+.rg-tk::before{content:'';position:absolute;z-index:-1;inset:0 0 calc(var(--kr) + 2px) 0;border-radius:18px;pointer-events:none;
+  box-shadow:0 calc(34px + var(--kr) + 2px) 46px -30px rgba(20,26,46,.55),0 calc(12px + var(--kr) + 2px) 18px -14px rgba(20,26,46,.3)}
+.rg-tk::after{content:none}
+.rg-tk__haupt,.rg-tk__abriss{position:relative;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 #d8c7a4}
+.rg-tk__haupt{background:linear-gradient(180deg,#fdf9f1,#f6eedd 60%,#efe4cf);border-start-start-radius:18px;border-end-start-radius:18px;
+  -webkit-mask:radial-gradient(circle var(--kr) at 100% 0,var(--m)) top/100% 51% no-repeat,radial-gradient(circle var(--kr) at 100% 100%,var(--m)) bottom/100% 51% no-repeat;
+          mask:radial-gradient(circle var(--kr) at 100% 0,var(--m)) top/100% 51% no-repeat,radial-gradient(circle var(--kr) at 100% 100%,var(--m)) bottom/100% 51% no-repeat}
+.rg-tk__abriss{background:linear-gradient(180deg,rgba(226,210,172,0),rgba(214,194,150,.34)),linear-gradient(180deg,#fdf9f1,#f6eedd 60%,#efe4cf);
+  -webkit-mask:radial-gradient(circle var(--kr) at 0 0,var(--m)) top/100% 51% no-repeat,radial-gradient(circle var(--kr) at 0 100%,var(--m)) bottom/100% 51% no-repeat;
+          mask:radial-gradient(circle var(--kr) at 0 0,var(--m)) top/100% 51% no-repeat,radial-gradient(circle var(--kr) at 0 100%,var(--m)) bottom/100% 51% no-repeat}
+[dir="rtl"] .rg-tk__haupt{-webkit-mask-image:radial-gradient(circle var(--kr) at 0 0,var(--m)),radial-gradient(circle var(--kr) at 0 100%,var(--m));mask-image:radial-gradient(circle var(--kr) at 0 0,var(--m)),radial-gradient(circle var(--kr) at 0 100%,var(--m))}
+[dir="rtl"] .rg-tk__abriss{-webkit-mask-image:radial-gradient(circle var(--kr) at 100% 0,var(--m)),radial-gradient(circle var(--kr) at 100% 100%,var(--m));mask-image:radial-gradient(circle var(--kr) at 100% 0,var(--m)),radial-gradient(circle var(--kr) at 100% 100%,var(--m))}
+/* feiner Innenrahmen, zur Naht hin offen */
+.rg-tk__haupt::after,.rg-tk__abriss::before{content:'';position:absolute;inset-block:8px;width:auto;height:auto;border:1px solid rgba(150,125,64,.36);border-radius:0;background:none;box-shadow:none;pointer-events:none;z-index:0}
+.rg-tk__haupt::after{inset-inline:8px 0;border-inline-end:0;border-start-start-radius:11px;border-end-start-radius:11px}
+.rg-tk__abriss::before{inset-inline:0 8px;border-inline-start:0;border-start-end-radius:11px;border-end-end-radius:11px}
+.rg-tk__abriss::after{content:none}
+@media (max-width:560px){
+  .rg-tk__haupt{border-radius:18px 18px 0 0}
+  .rg-tk__haupt,[dir="rtl"] .rg-tk__haupt{-webkit-mask:radial-gradient(circle var(--kr) at 0 100%,var(--m)) left/51% 100% no-repeat,radial-gradient(circle var(--kr) at 100% 100%,var(--m)) right/51% 100% no-repeat;mask:radial-gradient(circle var(--kr) at 0 100%,var(--m)) left/51% 100% no-repeat,radial-gradient(circle var(--kr) at 100% 100%,var(--m)) right/51% 100% no-repeat}
+  .rg-tk__abriss,[dir="rtl"] .rg-tk__abriss{-webkit-mask:radial-gradient(circle var(--kr) at 0 0,var(--m)) left/51% 100% no-repeat,radial-gradient(circle var(--kr) at 100% 0,var(--m)) right/51% 100% no-repeat;mask:radial-gradient(circle var(--kr) at 0 0,var(--m)) left/51% 100% no-repeat,radial-gradient(circle var(--kr) at 100% 0,var(--m)) right/51% 100% no-repeat}
+  .rg-tk__haupt{box-shadow:inset 0 1px 0 #fff}
+  .rg-tk__abriss{box-shadow:inset 0 -2px 0 #d8c7a4}
+  .rg-tk__haupt::after{inset:8px 8px 0 8px;border:1px solid rgba(150,125,64,.36);border-bottom:0;border-radius:11px 11px 0 0}
+  .rg-tk__abriss::before{inset:0 8px 8px 8px;top:0;bottom:8px;left:8px;right:8px;border:1px solid rgba(150,125,64,.36);border-top:0;border-radius:0 0 11px 11px}
+}

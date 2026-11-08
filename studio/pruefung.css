@@ -1,0 +1,61 @@
+/* Prüfung des Bureau: eigene Datei, braucht nichts vom Bureau (studio.css/studio.js), nur die Schriften der Website (fallen sonst auf Systemschriften zurück). */
+@font-face{font-family:'Cormorant Garamond';font-weight:500;font-display:swap;src:url('../assets/fonts/cormorant-garamond-500-latin.woff2') format('woff2')}
+@font-face{font-family:'Cinzel';font-weight:400 700;font-display:swap;src:url('../assets/fonts/Cinzel-latin.woff2') format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-display:swap;src:url('../assets/fonts/InstrumentSans-normal-400_600.woff2') format('woff2')}
+@font-face{font-family:'DM Mono';font-weight:400;font-display:swap;src:url('../assets/fonts/DMMono-normal-400.woff2') format('woff2')}
+:root{--marine:#1b2033;--papier:#f7f0e3;--gold:#E6D2A2;--taupe:#B0934F;--tief:#826C35;--tinte:#1a1d28;--weiss:#fffdf8;--gruen:#3d6b4f;--gelb:#b8892a;--rot:#8f2f2a;
+  --serif:'Cormorant Garamond',Georgia,serif;--caps:'Cinzel',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'DM Mono',Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--papier);color:var(--tinte);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(230,210,162,.8)}
+.leise{color:rgba(26,29,40,.62);font-size:14px}
+.pk{background:var(--marine) url('../assets/img/tapete-dunkel.webp?v=08c86b19') 50% 0/340px auto;color:var(--papier);padding:46px 20px 52px}
+.pk__in,.pm{max-width:1080px;margin:0 auto}
+.pk__z{display:inline-flex;align-items:center;gap:12px;color:var(--gold);text-decoration:none;font-family:var(--caps);letter-spacing:.24em;text-transform:uppercase;font-size:15px;margin-bottom:26px}
+.pk__z img{width:44px;height:auto}
+.pk h1{margin:10px 0 12px;font-family:var(--serif);font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1.02}
+.pk h1 em{color:var(--gold)}
+.pk p{max-width:66ch;color:rgba(247,240,227,.82);margin:0}
+.pk__kn{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.kn{display:inline-flex;align-items:center;height:44px;padding:0 20px;border:0;border-radius:999px;cursor:pointer;text-decoration:none;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  background:linear-gradient(180deg,#363d59,#1b2033 55%,#11141f);color:#fbf5e9;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 -3px 0 rgba(0,0,0,.45),0 0 0 1px rgba(230,210,162,.35)}
+.kn--linie{background:linear-gradient(180deg,#fffcf5,#f2e8d5 60%,#e9dcc4);color:var(--tinte);box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(130,108,53,.26),0 0 0 1px rgba(130,108,53,.3)}
+.kn--scharf{background:linear-gradient(180deg,#e9c46a,#cf9f3a 60%,#b8892a);color:#2a1d05}
+.kn:disabled{opacity:.4;cursor:default}
+.pm{padding:34px 20px 80px}
+.ampel{display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:var(--weiss);box-shadow:0 0 0 1px rgba(176,147,79,.3);margin-bottom:22px}
+.ampel::before{content:'';flex:none;width:18px;height:18px;border-radius:50%;background:#d8d0c0}
+.ampel.gut::before{background:var(--gruen)}.ampel.gelb::before{background:var(--gelb)}.ampel.rot::before{background:var(--rot)}
+.ampel b{font-family:var(--serif);font-weight:500;font-size:26px}
+.ampel span{color:rgba(26,29,40,.65);font-size:14px}
+.gruppe{margin-bottom:18px;border-radius:18px;background:var(--weiss);box-shadow:0 0 0 1px rgba(176,147,79,.22);overflow:hidden}
+.gruppe h2{margin:0;padding:12px 20px;font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--tief);background:#f4ebd9}
+.pt{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:4px 14px;align-items:baseline;padding:12px 20px;border-top:1px solid rgba(176,147,79,.14)}
+.pt::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--gruen);transform:translateY(1px)}
+.pt.gelb::before{background:var(--gelb)}.pt.rot::before{background:var(--rot)}
+.pt b{font-weight:600}
+.pt span{grid-column:2;color:rgba(26,29,40,.68);font-size:14px}
+.pt a{font-size:13px;color:var(--tief)}
+h2{font-family:var(--serif);font-weight:500;font-size:34px;margin:40px 0 6px}
+h3{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--tief)}
+.rp{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:14px}
+.rp div{padding:16px 18px;border-radius:16px;background:var(--weiss);box-shadow:0 0 0 1px rgba(176,147,79,.22)}
+.rp b{display:block;font-family:var(--serif);font-weight:500;font-size:20px}
+.rp p{margin:4px 0 12px;font-size:13.5px;color:rgba(26,29,40,.65)}
+#lx-q{width:100%;height:46px;margin:14px 0 16px;padding:0 18px;border:0;border-radius:999px;background:var(--weiss);font:inherit;box-shadow:inset 0 0 0 1px rgba(176,147,79,.4)}
+.lx{padding:16px 20px;margin-bottom:10px;border-radius:16px;background:var(--weiss);box-shadow:0 0 0 1px rgba(176,147,79,.22);scroll-margin-top:30px}
+.lx.ziel{box-shadow:0 0 0 2px var(--taupe),0 18px 30px -20px rgba(17,20,31,.5)}
+.lx header{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.lx header code{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;padding:3px 8px;border-radius:999px;background:var(--marine);color:var(--gold)}
+.lx header b{font-family:var(--serif);font-weight:500;font-size:21px}
+.lx dl{display:grid;grid-template-columns:80px minmax(0,1fr);gap:6px 14px;margin:10px 0 0;font-size:14px}
+.lx dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--tief);padding-top:3px}
+.lx dd{margin:0}
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.proto ol{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:11.5px;line-height:1.6;color:rgba(26,29,40,.75)}
+.proto li{padding:5px 0;border-top:1px solid rgba(176,147,79,.14);word-break:break-word}
+@media(max-width:760px){.zwei{grid-template-columns:1fr}.lx dl{grid-template-columns:1fr}}
+.pk .mono{display:block}
+
+/* 14.10.2026: Die Punkte kommen erst nach der Prüfung (rund 6 s, 2 494 px); bis dahin hält der leere Abschnitt den Platz, damit Reparaturen und Lexikon nicht springen (Sprung vorher 0,24). */
+#punkte:empty{min-height:2494px}

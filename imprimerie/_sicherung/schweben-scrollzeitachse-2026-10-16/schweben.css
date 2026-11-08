@@ -1,0 +1,31 @@
+/* Kopie von Grand Beau-Rivage/website/studio/schweben.css (16.10.2026), für L’Imprimerie des Hauses. Bei Änderungen dort hier nachziehen.
+   Hier mit !important an den Auftritten, weil studio.css die Teile der Übersicht mit eigenen (ausblendenden) Auftritten belegt. */
+/* Schweben, Pulsieren, Zoom für die Werkzeuge (Gefühl der Carlton-Seiten, wie in Le Registre). Gehört zu schweben.js.
+   Jedes Blatt trägt data-sw. Wo der Browser Scroll-Zeitachsen kann, wird es am Scrollen aus der Tiefe hochgeführt (sw-zug, gebunden an den Einzug
+   entry 0% bis 100%, nichts bleibt am Seitenende hängen); im Bild (.sw-da) federt es zusätzlich nach der Uhr in seine Grösse (sw-puls).
+   Viele gleiche Zeilen (data-sw="z") blenden nur sanft ein. Nur translate, scale, opacity. Muss nach studio.css geladen werden. */
+:root{--sw-feder:cubic-bezier(.3,1.26,.4,1)}
+@keyframes sw-zug{from{translate:0 var(--weg,100px)}}
+@keyframes sw-puls{from{scale:var(--kl,.93)}}
+@keyframes sw-zoom{from{scale:1.18}}
+[data-sw]{--weg:clamp(60px,7vw,110px)}
+h2[data-sw],[data-sw="k"]{--weg:clamp(30px,3.2vw,48px);--kl:.97}
+@supports (animation-timeline:view()){
+  [data-sw]{animation:sw-zug linear both!important;animation-timeline:view()!important;animation-range:entry 0% entry 100%!important}
+  [data-sw].sw-da{animation:sw-zug linear both,sw-puls 2.7s var(--sw-feder) backwards!important;animation-timeline:view(),auto!important;animation-range:entry 0% entry 100%,normal!important;animation-duration:auto,2.7s!important;animation-delay:0s,calc(var(--i,0) * 90ms)!important}
+}
+@supports not (animation-timeline:view()){
+  [data-sw]{animation:none!important}
+  [data-sw]{transition:translate 1.5s var(--sw-feder),scale 1.5s var(--sw-feder),opacity .8s var(--e1);transition-delay:calc(var(--i,0) * 90ms)}
+  [data-sw]:not(.sw-da){translate:0 var(--weg);scale:var(--kl,.93)}
+}
+/* Zahlen zoomen aus einer Vergrösserung herein; schmale Box, damit nichts seitlich überläuft */
+[data-swz]{width:fit-content;max-width:100%;transform-origin:0 70%}
+[data-swz].sw-da{animation:sw-zoom 1.7s var(--sw-feder) backwards!important;animation-delay:calc(var(--i,0) * 90ms + 120ms)!important}
+/* Viele gleiche Zeilen: nur sanft einblenden, kein Weg, keine Feder */
+[data-sw="z"],[data-sw="z"].sw-da{animation:none!important;translate:none;--weg:0px}
+[data-sw="z"]{scale:.985;transition:opacity 1s var(--e1),scale 1.2s var(--e1);transition-delay:calc(var(--i,0) * 30ms)}
+[data-sw="z"].sw-da{opacity:1;scale:1}
+/* Später dazugekommene Teile (Eingabe, Neuzeichnen): sofort ruhig an ihrem Platz */
+.sw-ruhig,.sw-ruhig.sw-da{animation:none!important;transition:none!important;translate:none!important;scale:none!important;opacity:1!important}
+@media (prefers-reduced-motion:reduce){[data-sw],[data-swz]{animation:none!important;transition:none!important;translate:none!important;scale:none!important;opacity:1!important}}

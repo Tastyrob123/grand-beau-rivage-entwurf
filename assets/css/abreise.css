@@ -1,0 +1,200 @@
+/* Grand Beau-Rivage Interlaken, Seite «Ihr Abreisetag» (abreise.html), Fassung 2 vom 12.10.2026.
+   Robert: «die Abschnitte grundsätzlich überarbeiten … Stil der Seite … richtig geil animiert mit Bildern».
+   Aufbau wie die Region-Seite vom selben Tag: Zeichen in Gold und Titel mittig, Wünsche als 3D-Foto-Kacheln zum Antippen (statt Ja/Nein-Schalter
+   in einem dunklen Kasten), der gewählte Zug als Billett (.rg-tk aus ausfluege.css), das Bad als Bühne mit heller Tafel, der Abschluss als Karte des Hauses.
+   Nur diese Seite lädt die Datei (funktionen.abreise()). Bewegung nur über transform und opacity. Zurück: Sicherung _sicherung/2026-10-12-abreise-abschnitte/. */
+
+/* ---------- gemeinsam: Zeichen in Gold, Abstände, Fragezeile ---------- */
+.abr.fl{padding-top:clamp(70px,7.4vw,124px);padding-bottom:clamp(70px,7.4vw,124px)}
+.abr .raum--nur.rg-z{margin:0 auto}
+.abr .raum--nur.rg-z img{display:block;width:clamp(84px,7.6vw,120px);height:auto;filter:brightness(.8) saturate(1.5) contrast(1.16) drop-shadow(0 2px 3px rgba(70,48,12,.34))}
+.abr.dunkel .raum--nur.rg-z img{filter:drop-shadow(0 2px 5px rgba(0,0,0,.55))}
+.abr .kopfzeile{margin-bottom:clamp(36px,4vw,64px)}
+.abr .kopfzeile .lauf{max-width:60ch}
+.abr-frage{justify-content:center;margin:0 0 clamp(24px,2.6vw,40px);text-align:center;color:var(--taupe-tief)}
+.abr-frage span{font-style:italic;font-size:clamp(1.3rem,1.8vw,1.9rem)}
+.abr-mitte{justify-content:center;margin-top:clamp(34px,3.6vw,56px)}
+
+/* ---------- Ihr Zug: Foto links, Tafel rechts ---------- */
+.abr-zug{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:clamp(34px,5vw,96px);align-items:center}
+.abr-zug>.k3{margin:0}
+.abr-zug>.k3 .kachel__b{aspect-ratio:4/5}
+.abr-zug>.k3 .kachel__n b{color:#fcf7ee}
+.abr-zug .ab__tafel{max-width:none;margin:0}
+.abr-zuege .ab__bf{gap:12px;margin-bottom:clamp(20px,2.2vw,30px)}
+.abr-zuege .ab__bf .tab{min-height:50px;padding:0 28px;transition:background .4s,color .4s,transform .5s var(--e2)}
+.abr-zuege .ab__bf .tab[aria-pressed="true"]{box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -2px 0 rgba(92,66,24,.4),0 14px 22px -12px rgba(0,0,0,.7)}
+.abr-zuege .ab__liste{border-top-color:rgba(230,210,162,.36)}
+.abr-zuege .ab-z{position:relative;grid-template-columns:clamp(92px,8.4vw,128px) minmax(0,1fr) auto auto;padding:clamp(13px,1.3vw,19px) clamp(8px,1vw,16px);border-bottom-color:rgba(230,210,162,.24);border-radius:0;transition:transform .6s var(--e2)}
+.abr-zuege .ab-z::before{content:'';position:absolute;inset:0;border-radius:14px;background:linear-gradient(90deg,rgba(230,210,162,.16),rgba(230,210,162,.04));opacity:0;transition:opacity .45s ease;pointer-events:none}
+.abr-zuege .ab-z>*{position:relative}
+.abr-zuege .ab-z__zeit{font-size:clamp(1.7rem,2.3vw,2.5rem);font-variant-numeric:lining-nums tabular-nums;transition:color .4s}
+.abr-zuege .ab-z__gleis b{font-variant-numeric:lining-nums}
+.abr-zuege .ab-z__ziel b{font-size:clamp(1.2rem,1.5vw,1.6rem)}
+.abr-zuege .ab-z__ziel small{margin-top:7px;font-size:.62rem}
+.abr-zuege .ab-z__gleis{justify-content:center;width:58px;height:58px;min-width:0;padding:0;border-radius:50%;background:rgba(9,13,28,.5);box-shadow:inset 0 0 0 1px rgba(230,210,162,.42),inset 0 2px 5px rgba(0,0,0,.5)}
+.abr-zuege .ab-z__gleis small{font-size:.44rem;letter-spacing:.18em}
+.abr-zuege .ab-z__gleis b{margin-top:2px;font-size:1.25rem}
+.abr-zuege .ab-z__nehmen{display:flex;align-items:center;gap:14px;font-size:.64rem;letter-spacing:.22em}
+.abr-zuege .ab-z__nehmen i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;color:#121c3c;background:linear-gradient(180deg,#f9edc9,#d6ba7c);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 0 rgba(92,66,24,.45),0 0 0 1px rgba(255,236,190,.3),0 8px 14px -8px rgba(0,0,0,.7);transition:transform .6s var(--e2)}
+.abr-zuege .ab-z__nehmen svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.abr-zuege .ab-z__nehmen .ab-hk{display:none}
+.abr-zuege .ab-z.ab-z--gewaehlt{background:none}
+.abr-zuege .ab-z.ab-z--gewaehlt::before{opacity:1}
+.abr-zuege .ab-z.ab-z--gewaehlt .ab-z__nehmen .ab-pf{display:none}
+.abr-zuege .ab-z.ab-z--gewaehlt .ab-z__nehmen .ab-hk{display:block}
+@media (hover:hover) and (pointer:fine){
+  .abr-zuege .ab-z:hover::before{opacity:.6}
+  .abr-zuege .ab-z:hover .ab-z__zeit{color:var(--gold)}
+  .abr-zuege .ab-z:hover .ab-z__nehmen i{transform:translateX(4px)}
+}
+/* Auftritt der Zeilen: nur beim ersten Laden und beim Wechsel des Bahnhofs (Klasse .neu setzt funktionen.js), nicht bei der Auffrischung jede Minute */
+.abr-zuege .ab__liste.neu>li{animation:abrZeile 1s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes abrZeile{from{opacity:0;transform:translate3d(0,30px,0)}to{opacity:1;transform:none}}
+.abr-zuege .ab__stand{margin-top:18px}
+@media (max-width:900px){
+  .abr-zug{grid-template-columns:minmax(0,1fr)}
+  .abr-zug>.k3{width:min(440px,100%);margin:0 auto}
+  .abr-zug>.k3 .kachel__b{aspect-ratio:4/3}
+  .abr-zuege .ab__bf{justify-content:center}
+}
+@media (max-width:640px){
+  .abr-zuege .ab-z{grid-template-columns:72px minmax(0,1fr) auto}
+  .abr-zuege .ab-z__nehmen{display:none}
+  .abr-zuege .ab-z__gleis{width:50px;height:50px}
+  .abr-zuege .ab__bf .tab{flex:1 1 0;padding:0 10px;font-size:.66rem}
+}
+
+/* ---------- Das Billett des gewählten Zugs (.rg-tk aus ausfluege.css) ---------- */
+.abr-billett{display:flex;flex-direction:column;align-items:center;gap:16px;width:min(760px,100%);margin:0 auto clamp(40px,4.4vw,68px)}
+.abr-billett[hidden]{display:none}
+.abr-billett .rg-tk{width:100%;margin-top:0;transform-origin:50% 100%}
+@media (min-width:561px){.abr-billett .rg-tk__drei{grid-template-columns:.9fr 1.5fr .9fr}}
+.abr-billett .rg-tk__drei dd{font-size:clamp(1.3rem,1.7vw,1.8rem)}
+.abr-billett button{font-family:var(--caps);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-tief);box-shadow:inset 0 -1px 0 currentColor;padding-bottom:3px}
+.abr-billett--neu .rg-tk{animation:abrBillett 1.5s cubic-bezier(.28,1.42,.42,1) backwards}
+.abr-billett--neu button{animation:abrZeile .9s cubic-bezier(.16,1,.3,1) .5s backwards}
+/* deckend: das Billett blendet nicht ein, es schwebt nur an seinen Platz (Robert 12.10.2026) */
+@keyframes abrBillett{from{transform:translate3d(0,clamp(60px,7vw,110px),0) scale(.93)}to{transform:none}}
+
+/* ---------- Wünsche als Foto-Kacheln zum Antippen: gewählt steht das Foto hell und bekommt den Knauf mit Haken, sonst tritt es zurück ---------- */
+.abr-wahl.k3reihe{margin-top:0}
+.abr-wahl--zwei.k3reihe{grid-template-columns:repeat(2,minmax(0,1fr));width:min(940px,100%);margin-inline:auto}
+.abr .k3[data-wunsch]{position:relative;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.abr .k3[data-wunsch] .kachel__b{transition:opacity .55s ease,transform .8s var(--e2),box-shadow .7s var(--e2)}
+.abr .k3.kipp[data-wunsch] .kachel__b{transition:opacity .55s ease,transform .2s ease-out,box-shadow .7s var(--e2)}
+/* Robert 12.10.2026: «mit der Maus überlichte ich die Bilder». Kein Lichtschein unter der Maus, kein Durchscheinen: das Foto bleibt immer deckend.
+   Was nicht gewählt ist, liegt unter einem dunklen Schleier (wie auf den dunklen Seiten), statt milchig auf dem hellen Grund zu stehen. */
+.abr .k3 .kachel__b::after,.abr .k3 .kachel__b:hover::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:#0d1430;opacity:0;transform:none;transition:opacity .55s ease}
+.abr .k3[data-wunsch]:not([aria-pressed="true"]) .kachel__b::after,.abr .k3[data-wunsch]:not([aria-pressed="true"]) .kachel__b:hover::after{opacity:.5}
+.abr .k3[data-wunsch] .kachel__n b,.abr .k3[data-wunsch] .kachel__n small{transition:color .45s ease,opacity .45s ease}
+.abr .k3[data-wunsch]:not([aria-pressed="true"]) .kachel__n b{color:rgba(20,26,46,.54)}
+.abr .k3[data-wunsch]:not([aria-pressed="true"]) .kachel__n small{opacity:.6}
+.abr .k3[data-wunsch]::after{content:'';position:absolute;z-index:3;top:clamp(12px,1.2vw,18px);inset-inline-end:clamp(12px,1.2vw,18px);width:48px;height:48px;border-radius:50%;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23121c3c' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.6 8.5l2.9 2.9 5.9-6.6'/%3E%3C/svg%3E") center/20px no-repeat,linear-gradient(180deg,#f9edc9,#d6ba7c);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 0 rgba(92,66,24,.45),0 0 0 1px rgba(255,236,190,.4),0 12px 18px -8px rgba(9,17,39,.65);
+  opacity:0;transform:scale(.3);transition:transform .7s cubic-bezier(.28,1.5,.42,1),opacity .25s ease}
+.abr .k3[data-wunsch][aria-pressed="true"]::after{opacity:1;transform:none}
+.abr .k3[data-wunsch]:focus-visible{outline:0}
+.abr .k3[data-wunsch]:focus-visible .kachel__b{box-shadow:0 0 0 2px var(--taupe)}
+@media (max-width:860px){.abr-wahl--zwei.k3reihe{grid-template-columns:minmax(0,1fr)}.abr-wahl.k3reihe{gap:34px}.abr-wahl .k3 .kachel__b{aspect-ratio:16/10}.abr-wahl .k3 .kachel__n{margin-top:14px}}
+
+/* ---------- Leiste mit Tag und Zeiten (weisse Pille wie beim Pass-Berater) ---------- */
+.abr-leiste{display:flex;width:min(1000px,100%);margin-top:clamp(44px,4.8vw,76px);padding:12px 40px}
+.abr-leiste[hidden],.abr-leiste label[hidden]{display:none}
+.abr-leiste label{flex:1 1 0}
+.abr-leiste span{font-size:.72rem;letter-spacing:.17em;white-space:nowrap}
+.abr-leiste input{color-scheme:light;min-height:1.6em;font:500 clamp(1.3rem,1.5vw,1.55rem)/1.3 var(--serif)!important;letter-spacing:0;color:var(--tinte)}
+.abr-leiste input{font-variant-numeric:lining-nums!important}
+/* Datumsanzeige der Seite (main.js legt sie über jedes Datumsfeld): hier in derselben Zelle wie das Feld statt auf festen Pixeln, damit sie mitwandert, wenn das Taxi-Feld dazukommt */
+.abr-leiste label.dt-feld{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.abr-leiste label.dt-feld>input,.abr-leiste label.dt-feld>.dt-anz{grid-row:2;grid-column:1}
+.abr-leiste .dt-anz{position:static!important;width:auto!important;height:auto!important;padding:0!important;justify-content:flex-start!important;font:500 clamp(1.3rem,1.5vw,1.55rem)/1.3 var(--serif)!important;font-variant-numeric:lining-nums;letter-spacing:0!important;color:var(--tinte)!important}
+[dir="rtl"] .abr-leiste .dt-anz{justify-content:flex-end!important}
+.abr-leiste--eins{width:min(560px,100%);margin-top:clamp(30px,3.2vw,48px)}
+.abr-leiste--eins label{border-left:0;padding-left:0}
+@media (max-width:900px){.abr-leiste{flex-direction:column;border-radius:26px;padding:8px 22px 12px}.abr-leiste label{padding:14px 0;border-left:0;border-top:1px solid var(--linie)}.abr-leiste label:first-child{border-top:0}}
+
+/* ---------- Noch einmal eintauchen: das Bad als Bühne, darauf die helle Tafel mit den Zeiten ---------- */
+.abr-buehne{position:relative;max-width:1320px;margin:0 auto clamp(46px,5vw,84px)}
+.abr-buehne__b{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:2.35/1;box-shadow:0 0 0 1px rgba(130,108,53,.08),0 36px 48px -28px rgba(20,26,46,.6),0 12px 20px -12px rgba(20,26,46,.32)}
+.abr-buehne__b[data-r]{opacity:0;transform:translateY(clamp(70px,9vw,140px)) scale(.95);transform-origin:50% 100%;transition:opacity .9s var(--e2),transform 1.45s var(--e3)}
+.abr-buehne__b[data-r].da{opacity:1;transform:none}
+.abr-buehne__b img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+/* Die Zeiten als Billett (Robert 12.10.2026: «das soll ein Ticket werden und nicht transparent sein … bleibt immer gleich»): .rg-tk mit echten Kerben
+   (Maske, damit über dem Foto nichts in Flächenfarbe steht), der Schatten liegt in der Hülle. Es schwebt deckend herein, ohne Einblenden. */
+.abr-badtk{position:relative;z-index:2;width:min(1040px,90%);margin:calc(-1*clamp(42px,4.4vw,70px)) auto 0}
+.abr-badtk[data-r]{opacity:1;transform:translateY(clamp(50px,6vw,96px));transition:transform 1.3s cubic-bezier(.2,.8,.3,1)}
+.abr-badtk[data-r].da{transform:none}
+/* Steigt mit dem Scrollen herauf statt zu warten (Robert 12.10.2026: «Es wartet so, bis ich komme, und dann schiebt es sich hoch …
+   dass das flüssig hochgeht»): die Bewegung hängt am Scrollen, sobald die Oberkante ins Bild kommt, und läuft weich aus. Rechnet der
+   Browser selbst (ohne Skript), nur transform; ältere Browser behalten das Hochfahren per Klasse, ohne Wartezeit. */
+@supports (animation-timeline: view()){
+  .abr-badtk[data-r],.abr-badtk[data-r].da{transition:none;animation:badtkHoch cubic-bezier(.3,.25,.4,1) both;animation-timeline:view();animation-range:entry 0% cover 48%}
+  @keyframes badtkHoch{from{transform:translate3d(0,clamp(70px,8vw,120px),0)}to{transform:none}}
+}
+/* Kerben und Schatten kommen unverändert vom Baustein (.rg-tk in ausfluege.css, Abschnitt «Echte Einkerbungen»): zwei Flächen mit je einem
+   Viertelkreis an der Naht, der Schatten liegt hinter dem Billett und fällt auch in die untere Kerbe. Vorher lagen hier eine zweite Maske
+   über dem ganzen Billett, ein Rahmen quer über die Kerbe und der Schatten an der Hülle; in der unteren Kerbe blieb davon ein heller
+   Halbkreis mit Rand stehen (Robert 12.10.2026: «bei der Einkerbung ist noch so irgendwas drunter»). */
+.abr-badtk .rg-tk{margin-top:0;grid-template-columns:minmax(0,1fr) clamp(250px,32%,340px)}
+.abr-badtk .rg-tk__drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.abr-badtk .rg-tk__drei>div{display:block;padding:clamp(8px,1vw,14px) 6px;text-align:center}
+.abr-badtk .rg-tk__drei dd{margin:0;font-size:clamp(1.25rem,1.6vw,1.7rem)}
+.abr-badtk .rg-tk__abriss b{font-size:clamp(1.8rem,2.5vw,2.7rem)}
+.abr-badtk .rg-tk__abriss img{width:clamp(34px,2.8vw,42px)}
+@media (max-width:560px){
+  .abr-badtk{width:94%}
+  .abr-badtk .rg-tk{grid-template-columns:minmax(0,1fr)}
+  .abr-badtk .rg-tk__drei>div{padding:4px 2px;border-top:0;border-inline-start:1px solid rgba(150,125,64,.28)}
+  .abr-badtk .rg-tk__drei>div:first-child{border-inline-start:0}
+  .abr-badtk .rg-tk__drei dd{font-size:1.02rem}
+  .abr-badtk .rg-tk__abriss{flex-direction:column;gap:8px}
+}
+@media (max-width:860px){
+  .abr-buehne__b{aspect-ratio:4/3}
+      }
+
+/* ---------- An die Rezeption: Karte des Hauses auf der Tapete (hell, doppelte Goldlinie), links was gewünscht ist, rechts die Zeilen zum Ausfüllen ---------- */
+.abr-senden.fl{padding-top:clamp(70px,7.4vw,124px)}
+.abr-karte{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);max-width:1180px;margin:0 auto;border-radius:24px;overflow:hidden;isolation:isolate;color:var(--tinte);
+  background:linear-gradient(180deg,#fdf9f1,#f6eedd 60%,#efe4cf);
+  box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(150,125,64,.22),0 2px 0 #b9a47a,0 54px 64px -34px rgba(0,0,0,.85),0 18px 26px -14px rgba(0,0,0,.5)}
+.abr-karte::before{content:'';position:absolute;z-index:1;inset:10px;border-radius:16px;border:1px solid rgba(150,125,64,.5);pointer-events:none}
+.abr-karte::after{content:'';position:absolute;z-index:1;inset:14px;border-radius:12px;border:1px solid rgba(150,125,64,.22);pointer-events:none}
+.abr-karte[data-r]{opacity:0;transform:translateY(clamp(70px,9vw,140px)) scale(.95);transform-origin:50% 100%;transition:opacity .9s var(--e2),transform 1.45s var(--e3)}
+.abr-karte[data-r].da{opacity:1;transform:none}
+.abr-karte__glanz{position:absolute;z-index:2;left:-45%;top:-30%;width:34%;height:160%;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.3) 42%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.3) 58%,transparent 100%);transform:translate3d(0,0,0) rotate(14deg)}
+.abr-karte.da .abr-karte__glanz{animation:abrGlanz 1.9s cubic-bezier(.4,0,.2,1) 1.2s both}
+@keyframes abrGlanz{0%{opacity:1;transform:translate3d(0,0,0) rotate(14deg)}99%{opacity:1}100%{opacity:0;transform:translate3d(460%,0,0) rotate(14deg)}}
+.abr-karte__l,.abr-karte__r{position:relative;z-index:1;display:flex;flex-direction:column;padding:clamp(40px,4.4vw,70px) clamp(30px,3.8vw,62px)}
+.abr-karte__l{align-items:center;text-align:center;border-inline-end:1px solid rgba(150,125,64,.3);background:linear-gradient(180deg,rgba(214,194,150,.1),rgba(214,194,150,.28))}
+.abr-karte__l img{width:clamp(64px,5.6vw,88px);height:auto;filter:brightness(.82) saturate(1.45) contrast(1.14) drop-shadow(0 1px 2px rgba(60,40,10,.3))}
+.abr-karte__titel{font-family:var(--caps);font-weight:600;font-size:clamp(.92rem,1.1vw,1.16rem);letter-spacing:.24em;text-transform:uppercase;color:#8a7238}
+.abr-karte__l .abr-karte__titel{margin-top:clamp(14px,1.5vw,20px)}
+.abr-karte ul{list-style:none;align-self:stretch;margin:clamp(20px,2.2vw,32px) 0 0;padding:0;text-align:start}
+.abr-karte li{padding:clamp(11px,1.1vw,15px) 0;border-top:1px solid rgba(130,108,53,.26);font-family:var(--serif);font-weight:500;font-size:clamp(1.1rem,1.3vw,1.36rem);line-height:1.3;font-variant-numeric:lining-nums}
+.abr-karte li:last-child{border-bottom:1px solid rgba(130,108,53,.26)}
+.abr-felder{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,2.4vw,34px) clamp(20px,2.2vw,34px);margin-top:clamp(24px,2.6vw,38px)}
+.abr-f{display:flex;flex-direction:column;gap:9px;min-width:0;padding-bottom:9px;border-bottom:1px solid rgba(130,108,53,.55);transition:border-color .4s}
+.abr-f--ganz{grid-column:1/-1}
+.abr-f span{font-family:var(--caps);font-weight:600;font-size:clamp(.6rem,.68vw,.72rem);letter-spacing:.24em;text-transform:uppercase;color:#8a7238}
+.abr-f :is(input,textarea){font-variant-numeric:lining-nums;width:100%;min-width:0;padding:0;border:0;outline:0;background:none;resize:none;font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,1.5vw,1.6rem);line-height:1.3;color:var(--tinte);color-scheme:light}
+.abr-f ::placeholder{color:rgba(20,26,46,.38);font-style:italic}
+.abr-f:focus-within{border-bottom-color:var(--tinte)}
+.abr-karte__klein{margin:clamp(22px,2.4vw,34px) 0 0;font-size:.95rem;line-height:1.6;color:rgba(20,26,46,.72)}
+.abr-karte .kn{align-self:flex-start;margin-top:clamp(20px,2.2vw,30px)}
+@media (max-width:900px){
+  .abr-karte{grid-template-columns:minmax(0,1fr)}
+  .abr-karte__l{border-inline-end:0;border-bottom:1px solid rgba(150,125,64,.3)}
+}
+@media (max-width:560px){.abr-felder{grid-template-columns:minmax(0,1fr)}.abr-karte .kn{align-self:stretch;justify-content:space-between}}
+
+@media (prefers-reduced-motion:reduce){
+  .abr-zuege .ab__liste.neu>li,.abr-billett--neu .rg-tk,.abr-billett--neu button{animation:none!important}
+  .abr-karte__glanz{display:none}
+  .abr .k3[data-wunsch]::after{transition:none}
+  .abr-buehne__b[data-r],.abr-karte[data-r],.abr-badtk[data-r]{opacity:1;transform:none;transition:none;animation:none}
+}

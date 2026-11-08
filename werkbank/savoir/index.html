@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Le Savoir · Grand Beau-Rivage</title>
+<link rel="preload" href="a/halle-sessel-l.webp?v=e661bf7c" as="image">
+<style>
+@font-face{font-family:'Cinzel';font-weight:400 700;font-display:swap;src:url('a/Cinzel-latin.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-weight:400;font-display:swap;src:url('a/cormorant-garamond-400-latin.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-weight:500;font-display:swap;src:url('a/cormorant-garamond-500-latin.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-weight:600;font-display:swap;src:url('a/cormorant-garamond-600-latin.woff2') format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-display:swap;src:url('a/InstrumentSans-normal-400_600.woff2') format('woff2')}
+@font-face{font-family:'DM Mono';font-weight:400;font-display:swap;src:url('a/DMMono-normal-400.woff2') format('woff2')}
+:root{
+  --marine:#1b2033;--tinte:#141a2e;
+  --gold:#E6D2A2;--goldhell:#F0E3C2;--goldtief:#b99a5c;--taupe:#9f896f;--taupe-tief:#7d6a52;
+  --raum:#f4efe5;--papier:#fffdf9;--leise:#6f6656;
+  --haar:rgba(159,137,111,.28);
+  --serif:'Cormorant Garamond',Georgia,serif;--caps:'Cinzel',Georgia,serif;--sans:'Instrument Sans',system-ui,-apple-system,sans-serif;--mono:'DM Mono',ui-monospace,Menlo,monospace;
+  --e1:cubic-bezier(.16,1,.3,1);--e2:cubic-bezier(.34,1.3,.5,1);
+  --platte:linear-gradient(180deg,#fffdf9,#fbf7ef 60%,#f7f1e5);
+  --platte-s:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(159,137,111,.22),0 1px 0 rgba(120,100,70,.14),0 28px 50px -34px rgba(27,32,51,.38),0 10px 22px -16px rgba(27,32,51,.2);
+  --blau-k:radial-gradient(120% 90% at 50% 0%,rgba(150,166,214,.26),transparent 58%),linear-gradient(165deg,#323b5e 0%,#232a45 46%,#141827 100%);
+  --blau-s:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(210,191,152,.42),inset 0 -3px 0 rgba(0,0,0,.35),0 2px 2px rgba(20,24,39,.12),0 28px 40px -24px rgba(20,24,39,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--raum);color:var(--tinte);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+img{display:block}
+
+/* Kopfleiste: Marine mit Tapete */
+.kopf{position:sticky;top:0;z-index:20;height:72px;display:flex;align-items:center;gap:24px;padding:0 28px;color:var(--goldhell);
+  background:linear-gradient(rgba(27,32,51,.82),rgba(27,32,51,.82)),url('a/tapete-dunkel.webp') 0 0/300px auto,var(--marine);
+  box-shadow:inset 0 -1px 0 rgba(210,191,152,.32),0 10px 30px -18px rgba(20,24,39,.7)}
+.kopf__marke{width:236px;flex:none}
+.kopf__marke img{width:100%;height:auto}
+.kopf__werk{font-family:var(--caps);font-size:12px;letter-spacing:.34em;color:var(--gold);padding-left:24px;border-left:1px solid rgba(210,191,152,.3);white-space:nowrap}
+.kopf__werk span{font-family:var(--serif);font-size:16px;letter-spacing:.02em;color:rgba(240,227,194,.62);margin-left:12px;font-style:italic}
+.kopf__rechts{margin-left:auto;display:flex;align-items:center;gap:16px}
+.ich{display:flex;align-items:center;gap:12px;text-align:right}
+.ich__n{font-size:14px;color:#fbf4e4;line-height:1.2}
+.ich__r{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(230,210,162,.7)}
+.ich__b{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--caps);font-size:13px;color:var(--marine);
+  background:linear-gradient(180deg,#f7e9c6,#e3cd98 55%,#b99a5c);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -2px 0 rgba(92,66,24,.4),0 4px 10px rgba(0,0,0,.35)}
+.menu{display:none;width:40px;height:40px;border-radius:12px;border:1px solid rgba(210,191,152,.35);place-items:center;flex:none}
+
+.gerust{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 72px)}
+
+/* Seitenleiste: weiss */
+.leiste{position:sticky;top:72px;height:calc(100vh - 72px);overflow:auto;background:linear-gradient(180deg,#fffefb,#fbf7ef);box-shadow:inset -1px 0 0 var(--haar);padding:24px 18px 22px;display:flex;flex-direction:column;gap:6px}
+.leiste>*{flex-shrink:0}
+.leiste{padding-bottom:96px}   /* Platz für «Zur Werkbank» unten links */
+.kopfwahl{display:flex;align-items:center;gap:12px;margin-right:10px;padding-right:22px;border-right:1px solid rgba(210,191,152,.3)}
+.kopfwahl>span:first-child{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(230,210,162,.7)}
+.kopfwahl .wahl select{height:42px;font-size:17px;padding:0 48px 0 18px;min-width:190px}
+.kopfwahl .wahl::after{top:4px;right:4px;width:34px;height:34px}
+@media (min-width:901px){.vorf{display:none}}
+@media (max-width:900px){.kopfwahl{display:none}}
+@media (min-width:901px) and (max-height:780px){.leiste h4:nth-of-type(2),.verlauf{display:none}}   /* Laptop-Höhe: unten links frei für «Zur Werkbank» */
+.leiste h4{font-family:var(--caps);font-weight:400;font-size:11px;letter-spacing:.26em;color:var(--taupe-tief);margin:22px 10px 8px}
+
+/* Knöpfe mit Tiefe und rundem Knauf */
+.kn{--o:#2e3f78;--m:#1f2d5a;--u:#091127;--licht:rgba(255,255,255,.26);--kante:rgba(0,0,0,.55);--tief:rgba(9,17,39,.6);
+  position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;justify-content:space-between;gap:14px;height:52px;padding:0 6px 0 22px;border-radius:999px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:#fff;
+  background:linear-gradient(180deg,var(--o) 0%,var(--m) 46%,var(--u) 100%);
+  box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),0 1px 1px rgba(0,0,0,.3),0 16px 26px -14px var(--tief);transition:transform .55s var(--e2)}
+.kn:hover{transform:translateY(-2px)}
+.kn:active{transform:translateY(1px) scale(.985)}
+.kn::after{content:'';position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:38%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22) 50%,transparent);transform:translateX(-180%) skewX(-18deg)}
+.kn:hover::after{transform:translateX(360%) skewX(-18deg);transition:transform 1s var(--e1)}
+.kn i{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#f7e9c6,#b99a5c);color:var(--marine);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.25),0 3px 6px rgba(0,0,0,.35);transition:transform .6s var(--e2)}
+.kn:hover i{transform:scale(1.06)}
+.kn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.4}
+.leiste .kn{width:100%}
+
+.verlauf button{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:10px;font-size:14px;color:#3d3a34;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .25s}
+.verlauf button:hover{background:rgba(159,137,111,.1)}
+.verlauf small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe)}
+
+.bereiche{display:flex;flex-direction:column;gap:8px}
+.ber{display:flex;align-items:center;gap:12px;padding:8px;border-radius:14px;background:var(--platte);box-shadow:var(--platte-s)}
+.ber img{width:46px;height:46px;border-radius:10px;object-fit:cover;flex:none}
+.ber b{display:block;font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.1;color:var(--marine)}
+.ber span{font-size:12px;color:var(--leise)}
+.ber--zu{opacity:.5}
+.ber--zu img{filter:grayscale(.8)}
+
+.vorf{margin-top:auto;padding-top:22px}
+.vorf p{font-size:12px;color:var(--leise);margin:0 4px 10px;line-height:1.45}
+.wahl{position:relative}
+.wahl select{width:100%;appearance:none;-webkit-appearance:none;height:50px;padding:0 50px 0 20px;border:0;border-radius:999px;cursor:pointer;
+  font-family:var(--serif);font-size:19px;color:var(--marine);background:var(--platte);box-shadow:var(--platte-s)}
+.wahl::after{content:'';position:absolute;right:5px;top:5px;width:40px;height:40px;border-radius:50%;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23F0E3C2' stroke-width='1.4'/%3E%3C/svg%3E") center no-repeat,linear-gradient(180deg,#2e3f78,#091127);box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 3px 6px rgba(0,0,0,.3)}
+
+/* Raum */
+.raum{min-width:0;padding:32px clamp(20px,3vw,44px) 0;display:flex;flex-direction:column}
+
+/* Bühne */
+.buehne{position:relative;isolation:isolate;overflow:hidden;border-radius:28px;color:#fbf4e4;padding:clamp(34px,4vw,60px);min-height:clamp(320px,30vw,420px);display:flex;flex-direction:column;justify-content:center;
+  background:radial-gradient(90% 120% at 0% 0%,rgba(150,166,214,.18),transparent 55%),linear-gradient(rgba(27,32,51,.62),rgba(27,32,51,.62)),url('a/tapete-dunkel.webp') 0 0/340px auto,var(--marine);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 1px rgba(210,191,152,.45),0 36px 60px -36px rgba(27,32,51,.75),0 12px 24px -16px rgba(27,32,51,.35)}
+.buehne::before{content:'';position:absolute;inset:8px;border-radius:21px;border:1px solid rgba(210,191,152,.34);pointer-events:none;z-index:2;animation:rahmen 1.4s var(--e1) .25s both}
+.buehne__foto{position:absolute;top:0;right:0;bottom:0;width:min(56%,820px);z-index:-1;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44%);mask-image:linear-gradient(90deg,transparent 0,#000 44%)}
+.buehne__foto img{width:100%;height:100%;object-fit:cover;animation:fotoAuf 2.4s var(--e1) both}
+.buehne__foto::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,24,39,.5),transparent 50%),linear-gradient(90deg,rgba(27,32,51,.35),transparent 60%)}
+.buehne__inhalt{position:relative;z-index:1;max-width:min(62%,720px)}
+.buehne__inhalt>*{animation:auf .9s var(--e1) both}
+.buehne__inhalt>*:nth-child(2){animation-delay:.08s}.buehne__inhalt>*:nth-child(3){animation-delay:.16s}.buehne__inhalt>*:nth-child(4){animation-delay:.24s}
+.zier{display:flex;align-items:center;gap:14px;font-family:var(--caps);font-size:11.5px;letter-spacing:.32em;color:var(--gold)}
+.zier img{width:30px;height:auto}
+.zier i{display:block;width:110px;height:1px;background:linear-gradient(90deg,rgba(210,191,152,.7),rgba(210,191,152,0))}
+.buehne h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,4.6vw,72px);line-height:1.04;margin-top:18px;text-shadow:0 2px 26px rgba(0,0,0,.4)}
+.buehne h1 em{font-style:italic;color:var(--gold)}
+.buehne p{margin-top:14px;max-width:52ch;font-size:16px;color:rgba(251,244,228,.84);text-shadow:0 1px 14px rgba(0,0,0,.45)}
+
+/* Eingabe: Porzellan-Platte mit Goldknauf */
+.feld{margin-top:30px;display:flex;align-items:flex-end;gap:12px;padding:9px 9px 9px 24px;border-radius:30px;background:linear-gradient(180deg,#fffdf9,#f6efe1);
+  box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(159,137,111,.3),inset 0 -2px 0 rgba(159,137,111,.18),0 26px 46px -22px rgba(0,0,0,.65),0 0 0 6px rgba(230,210,162,.1);transition:box-shadow .4s}
+.feld:focus-within{box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(185,154,92,.6),inset 0 -2px 0 rgba(159,137,111,.18),0 26px 46px -22px rgba(0,0,0,.65),0 0 0 6px rgba(230,210,162,.24)}
+.feld textarea{flex:1;border:0;outline:0;background:none;resize:none;color:var(--tinte);font-family:var(--serif);font-size:21px;line-height:1.4;padding:12px 0;max-height:150px}
+.feld textarea::placeholder{color:#a0947f;font-style:italic}
+.knauf{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--marine);
+  background:linear-gradient(180deg,#f7e9c6,#e3cd98 55%,#b99a5c);box-shadow:inset 0 1px 0 rgba(255,252,240,.95),inset 0 -3px 0 rgba(92,66,24,.45),0 2px 2px rgba(0,0,0,.2),0 12px 20px -10px rgba(20,24,39,.7);transition:transform .5s var(--e2),opacity .3s}
+.knauf:hover:not(:disabled){transform:translateY(-2px)}
+.knauf:disabled{opacity:.5;cursor:default}
+.knauf svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.feld__fuss{margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(230,210,162,.66)}
+
+/* Werte: grosse Zahlen auf blauen Kacheln */
+h2.zw{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.6vw,38px);line-height:1.12;color:var(--marine);margin:52px 0 6px}
+h2.zw em{font-style:italic;color:var(--taupe-tief)}
+.zw-satz{color:var(--leise);margin-bottom:22px;max-width:62ch}
+.werte{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.wert{position:relative;overflow:hidden;border-radius:20px;padding:24px 22px 22px;color:#fbf4e4;background:var(--blau-k);box-shadow:var(--blau-s)}
+.wert::before{content:'';position:absolute;inset:6px;border-radius:15px;border:1px solid rgba(210,191,152,.2);pointer-events:none}
+.wert b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(46px,3.8vw,60px);line-height:1;color:var(--goldhell)}
+.wert b sup{font-size:.42em;vertical-align:top;margin-left:3px;color:var(--gold)}
+.wert span{display:block;margin-top:10px;font-size:13.5px;line-height:1.4;color:rgba(251,244,228,.82)}
+.wert small{display:block;margin-top:14px;padding-top:12px;border-top:1px solid rgba(210,191,152,.22);font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(230,210,162,.7)}
+
+/* Häufig gefragt: Fotokacheln */
+.fragen{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:60px}
+.fk{position:relative;text-align:left;border-radius:22px;overflow:hidden;background:var(--platte);box-shadow:var(--platte-s);transition:transform .6s var(--e2)}
+.fk:hover{transform:translateY(-4px)}
+.fk__bild{position:relative;height:150px;overflow:hidden}
+.fk__bild img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--e1)}
+.fk:hover .fk__bild img{transform:scale(1.04)}
+.fk__bild::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(27,32,51,.5),transparent 60%)}
+.fk__art{position:absolute;left:18px;bottom:12px;z-index:1;font-family:var(--caps);font-size:11px;letter-spacing:.26em;color:var(--goldhell)}
+.fk__text{padding:18px 20px 22px;font-family:var(--serif);font-size:21px;line-height:1.25;color:var(--marine)}
+.fk--zu .fk__bild img{filter:grayscale(.75) brightness(.8)}
+
+/* Gespräch */
+.gespraech{display:none;width:min(820px,100%);margin:0 auto;padding:30px 0 20px}
+.im-chat .gespraech{display:block}
+.im-chat .start-teil{display:none}
+.im-chat .buehne{min-height:0;padding:24px clamp(24px,3vw,40px)}
+.im-chat .buehne h1{font-size:clamp(28px,2.4vw,36px);margin-top:10px}
+.im-chat .buehne p,.im-chat .buehne .feld,.im-chat .buehne .feld__fuss{display:none}
+.frage{display:flex;justify-content:flex-end;margin:26px 0;animation:auf .6s var(--e1) both}
+.frage div{max-width:74%;padding:14px 22px;border-radius:22px 22px 6px 22px;color:#fbf4e4;font-family:var(--serif);font-size:20px;line-height:1.35;background:var(--blau-k);box-shadow:var(--blau-s)}
+.antwort{display:flex;gap:16px;margin:26px 0}
+.antwort__z{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--blau-k);box-shadow:var(--blau-s)}
+.antwort__z img{width:24px;height:auto}
+.blatt{flex:1;min-width:0;position:relative;border-radius:6px 22px 22px 22px;padding:26px 30px 24px;background:var(--platte);box-shadow:var(--platte-s);animation:auf .7s var(--e1) both}
+.blatt h3{font-family:var(--serif);font-weight:500;font-size:29px;line-height:1.12;color:var(--marine);margin-bottom:12px}
+.blatt p{margin-bottom:12px;color:#2b2a27}
+.blatt strong{font-weight:600;color:var(--marine)}
+/* Ablauf als Goldfaden */
+.faden{position:relative;margin:6px 0 14px;padding-left:30px}
+.faden::before{content:'';position:absolute;left:6px;top:10px;bottom:14px;width:1px;background:linear-gradient(180deg,var(--goldtief),rgba(185,154,92,.18));transform-origin:top;animation:zieh 1.3s var(--e1) both}
+.faden div{position:relative;padding:3px 0 11px;animation:auf .6s var(--e1) both}
+.faden div::before{content:'';position:absolute;left:-24px;top:13px;width:12px;height:1px;background:var(--goldtief)}
+.faden div:nth-child(2){animation-delay:.14s}.faden div:nth-child(3){animation-delay:.28s}.faden div:nth-child(4){animation-delay:.42s}
+.denkt{display:flex;gap:7px;padding:16px 4px}
+.denkt i{width:7px;height:7px;border-radius:50%;background:var(--goldtief);opacity:.25;animation:puls 1.1s infinite}
+.denkt i:nth-child(2){animation-delay:.15s}.denkt i:nth-child(3){animation-delay:.3s}
+
+/* Quelle als Billett mit Kerben */
+.billett{position:relative;margin-top:18px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:14px 22px;border-radius:12px;color:#fbf4e4;background:var(--blau-k);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(210,191,152,.4);animation:auf .6s var(--e1) .5s both}
+.billett::before,.billett::after{content:'';position:absolute;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:#faf5ec;box-shadow:inset 0 0 0 1px rgba(210,191,152,.35)}
+.billett::before{left:-9px}.billett::after{right:-9px}
+.billett__z{width:30px;height:auto}
+.billett__t b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.2;color:var(--goldhell)}
+.billett__t span{font-size:12.5px;color:rgba(251,244,228,.72)}
+.billett__s{padding-left:18px;border-left:1px dashed rgba(210,191,152,.45);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(230,210,162,.78);text-align:right;line-height:1.55}
+.billett--zu{background:linear-gradient(165deg,#5b4c40,#372d26)}
+
+.mehr{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.mehr button{padding:10px 18px;border-radius:999px;font-family:var(--serif);font-size:17px;color:var(--marine);background:var(--papier);box-shadow:inset 0 0 0 1px var(--haar),0 8px 16px -12px rgba(27,32,51,.45);transition:transform .4s var(--e2)}
+.mehr button:hover{transform:translateY(-2px)}
+
+/* Eingabe unten */
+.unten{display:none;position:sticky;bottom:0;padding:18px 0 22px;background:linear-gradient(0deg,var(--raum) 72%,rgba(244,239,229,0))}
+.im-chat .unten{display:block}
+.unten .feld{margin:0 auto;width:min(820px,100%);background:var(--platte);box-shadow:var(--platte-s)}
+.unten .feld textarea{font-size:19px}
+.unten__fuss{width:min(820px,100%);margin:10px auto 0;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
+
+@keyframes auf{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rahmen{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+@keyframes fotoAuf{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+@keyframes zieh{from{transform:scaleY(0)}to{transform:none}}
+@keyframes puls{50%{opacity:1;transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media (max-width:1180px){.werte{grid-template-columns:repeat(2,1fr)}.fragen{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){
+  .kopf{padding:0 16px;gap:14px;height:64px}
+  .kopf__marke{width:170px}
+  .kopf__werk,.ich__n,.ich__r{display:none}
+  .menu{display:grid}
+  .gerust{grid-template-columns:1fr;min-height:calc(100vh - 64px)}
+  .leiste{position:fixed;top:64px;left:0;bottom:0;height:auto;width:300px;z-index:15;transform:translateX(-102%);transition:transform .5s var(--e1);box-shadow:20px 0 50px -20px rgba(20,24,39,.5)}
+  .leiste-auf .leiste{transform:none}
+  .raum{padding:16px 16px 0}
+  .buehne{padding:0 0 26px;min-height:0;border-radius:22px}
+  .buehne::before{inset:6px;border-radius:17px}
+  .buehne__foto{position:relative;width:100%;height:170px;z-index:0;-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 55%);mask-image:linear-gradient(0deg,transparent 0,#000 55%)}
+  .buehne__inhalt{max-width:none;margin:-10px 20px 0}
+  .buehne h1{font-size:clamp(36px,10vw,46px)}
+  .feld{padding-left:18px}.feld textarea{font-size:18px}
+  .im-chat .buehne{padding:0 0 18px}.im-chat .buehne__foto{height:80px}
+  h2.zw{margin-top:40px}
+  .werte{gap:12px}.wert{padding:20px 16px}.wert span{font-size:13px}
+  .fragen{grid-template-columns:1fr}
+  .frage div{max-width:88%;font-size:18px}
+  .antwort{gap:10px}.antwort__z{width:34px;height:34px}.antwort__z img{width:18px}
+  .blatt{padding:20px 20px 18px}.blatt h3{font-size:25px}
+  .billett{grid-template-columns:auto 1fr;gap:12px}.billett__s{grid-column:1/-1;border-left:0;border-top:1px dashed rgba(210,191,152,.45);padding:10px 0 0;text-align:left}
+}
+</style>
+<script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body>
+<header class="kopf">
+  <button class="menu" id="menu" aria-label="Menü"><svg width="16" height="12" viewBox="0 0 16 12"><path d="M0 1h16M0 6h16M0 11h16" stroke="#E6D2A2" stroke-width="1.3"/></svg></button>
+  <div class="kopf__marke"><img src="a/wortmarke-gold.png?v=4d093e7a" alt="Grand Beau-Rivage Interlaken"></div>
+  <div class="kopf__werk">LE SAVOIR<span>das Wissen des Hauses</span></div>
+  <div class="kopf__rechts"><label class="kopfwahl"><span>Ansicht als</span><span class="wahl"><select id="wahl2" aria-label="Zugang wählen"><option value="rezeption">Rezeption</option><option value="kueche">Küche</option><option value="spa">Spa</option><option value="technik">Haustechnik</option><option value="direktion">Direktion</option></select></span></label><div class="ich"><div><div class="ich__n" id="pname"></div><div class="ich__r" id="prolle"></div></div><div class="ich__b" id="kuerzel"></div></div></div>
+</header>
+
+<div class="gerust" id="app">
+  <aside class="leiste">
+    <button class="kn" id="neu">Neue Frage<i><svg viewBox="0 0 14 14"><path d="M7 2v10M2 7h10"/></svg></i></button>
+    <h4>Ihre Bereiche</h4>
+    <div class="bereiche" id="bereiche"></div>
+    <h4>Zuletzt gefragt</h4>
+    <nav class="verlauf" id="verlauf"></nav>
+    <div class="vorf">
+      <p>Vorführung: So sieht das Hausbuch mit einem anderen Zugang aus.</p>
+      <div class="wahl"><select id="wahl" aria-label="Zugang wählen">
+        <option value="rezeption">Rezeption</option><option value="kueche">Küche</option><option value="spa">Spa</option><option value="technik">Haustechnik</option><option value="direktion">Direktion</option>
+      </select></div>
+    </div>
+  </aside>
+
+  <main class="raum">
+    <section class="buehne">
+      <div class="buehne__foto"><img id="bfoto" src="a/halle-sessel-l.webp?v=e661bf7c" alt=""></div>
+      <div class="buehne__inhalt">
+        <div class="zier"><img src="a/zeichen-gold-240.webp?v=954397f2" alt="">LE SAVOIR<i></i></div>
+        <h1 id="gruss"></h1>
+        <p id="bsatz"></p>
+        <form class="feld"><textarea rows="1" placeholder="Fragen Sie das Haus …"></textarea><button class="knauf" type="submit" disabled aria-label="Fragen"><svg viewBox="0 0 18 18"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5"/></svg></button></form>
+        <div class="feld__fuss" id="bfuss"></div>
+      </div>
+    </section>
+
+    <div class="start-teil">
+      <h2 class="zw" id="wtitel"></h2>
+      <p class="zw-satz">Beispielwerte: So sähe das Hausbuch nach den ersten Wochen aus.</p>
+      <div class="werte" id="werte"></div>
+      <h2 class="zw">Häufig gefragt <em>in Ihrem Bereich</em></h2>
+      <p class="zw-satz">Ein Klick genügt. Jede Antwort nennt die Karte, aus der sie stammt.</p>
+      <div class="fragen" id="fragen"></div>
+    </div>
+
+    <div class="gespraech" id="gespraech"></div>
+    <div class="unten">
+      <form class="feld"><textarea rows="1" placeholder="Weitere Frage an das Haus …"></textarea><button class="knauf" type="submit" disabled aria-label="Fragen"><svg viewBox="0 0 18 18"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5"/></svg></button></form>
+      <div class="unten__fuss">Antwortet nur aus den Karten Ihres Bereichs · Entwurf mit Beispielinhalten</div>
+    </div>
+  </main>
+</div>
+
+<script>
+const Z='a/zeichen-gold-240.webp';
+const ALLE=[['rezeption','Rezeption','halle-sessel-m'],['kueche','Küche','food-teller-m'],['spa','Spa','spa-massage-m'],['technik','Haustechnik','hk-treppenhaus-m'],['direktion','Direktion','haus-vorfahrt-m']];
+const B={
+ rezeption:{name:'Lena Meier',k:'LM',rolle:'Rezeption · Spätdienst',vor:'Lena',foto:'halle-sessel-l',darf:['rezeption','spa'],
+  satz:'Alles, was die Rezeption über das Haus wissen muss. Von der späten Anreise bis zum Brandfall.',
+  werte:[['248','Karten für die Rezeption','12 neu im Oktober'],['31','Fragen heute im Team','meist zwischen 18 und 22 Uhr'],['96','von 100 Fragen beantwortet','die übrigen gehen an die Leitung','%'],['4','Minuten bis zur Antwort','statt Rückfrage beim Chef']],
+  fragen:[
+   {art:'Ablauf',bild:'halle-sessel-m',f:'Ein Gast kommt nach 23 Uhr an. Was mache ich?',h:'Späte Anreise nach 23 Uhr',p:'Das Zimmer bleibt bis 2 Uhr gehalten, auch ohne Garantie. So gehen Sie vor:',faden:['Im Buchungssystem prüfen, ob die <strong>Anreise garantiert</strong> ist.','Schlüsselkarte und Willkommensmappe am Nachtschalter bereitlegen, Name auf dem Umschlag.','Ab 23 Uhr übernimmt der Nachtportier. Kurz im Übergabebuch vermerken.','Hat der Gast Hunger: kleine Karte der Bar bis Mitternacht, danach die Box vom Zimmerservice.'],karte:'Späte Anreise',ber:'Rezeption',stand:'Geprüft 12.10.<br>F. Keller',mehr:['Und wenn die Buchung nicht garantiert ist?','Wer ist heute Nachtportier?']},
+   {art:'Spa',bild:'spa-massage-m',f:'Wie buche ich einen Spa-Termin für einen Gast?',h:'Spa-Termin für einen Hausgast',p:'Die Rezeption bucht direkt im Spa-Kalender, Reiter <strong>Anwendungen</strong>. Hausgäste haben bis 18 Uhr am Vortag Vorrang.',faden:['Vor jeder Massage nach Schwangerschaft und Allergien fragen und im Termin vermerken.','Absage kostenlos bis 24 Stunden vorher, danach die Hälfte auf die Zimmerrechnung.'],karte:'Spa-Termine buchen',ber:'Rezeption und Spa',stand:'Geprüft 03.10.<br>S. Lehmann'},
+   {art:'Notfall',bild:'hk-treppenhaus-m',f:'Feueralarm in der Nacht. Was ist meine Aufgabe?',h:'Brandfall im Nachtdienst',p:'Ruhig bleiben. An der Rezeption läuft alles zusammen.',faden:['Alarmtafel ablesen, betroffene Etage notieren.','<strong>118</strong> anrufen, falls die Meldung nicht automatisch hinausgeht.','Belegungsliste mitnehmen. Sammelplatz ist der Vorplatz zur Aare.','Gäste mit eingeschränkter Mobilität stehen auf der Liste markiert.'],karte:'Brandfall Nacht',ber:'alle Bereiche',stand:'Geprüft 01.10.<br>Direktion'},
+   {art:'Bar',bild:'bar-teatime-m',f:'Ab wann gibt es Tea Time in der Bar?',h:'Tea Time in der Bar',p:'Täglich am Nachmittag, für Hausgäste ohne Reservation. Für Gruppen ab sechs Personen bitte einen Tisch eintragen.',karte:'Tea Time',ber:'Rezeption und Bar',stand:'Geprüft 09.10.<br>Bar'},
+   {art:'Frühstück',bild:'fruehstueck-buffet-m',f:'Kann ein Gast das Frühstück aufs Zimmer bestellen?',h:'Frühstück auf dem Zimmer',p:'Ja, mit Bestellung bis 22 Uhr am Vorabend über die Karte an der Zimmertür oder telefonisch an der Rezeption.',karte:'Frühstück aufs Zimmer',ber:'Rezeption und Küche',stand:'Geprüft 30.09.<br>Küche'},
+   {art:'Kein Zugang',bild:'haus-vorfahrt-m',zu:1,f:'Wie hoch war der Umsatz im September?',h:'Diese Karte ist für Sie nicht freigegeben',p:'Zahlen zum Umsatz sieht nur die Direktion. Brauchen Sie etwas für einen Gast, fragen Sie gern nach dem Preis einer bestimmten Leistung.',karte:'Nicht freigegeben',ber:'liegt im Bereich Direktion',stand:'Zugang<br>Rezeption'}]},
+ kueche:{name:'Marco Bianchi',k:'MB',rolle:'Küche · Sous-Chef',vor:'Marco',foto:'food-teller-m',darf:['kueche'],
+  satz:'Rezepturen, Allergene, Hygiene und Abläufe. So, wie sie in dieser Küche gelten.',
+  werte:[['186','Rezepturen im Hausbuch','mit Fotos vom Anrichten'],['14','Allergene je Gericht gepflegt','geprüft im September'],['22','Fragen heute aus der Küche','meist zu Allergenen'],['3','neue Kollegen diesen Monat','Saisonbeginn']],
+  fragen:[
+   {art:'Rezeptur',bild:'food-teller-m',f:'Wie geht die Rösti nach Haus-Art?',h:'Rösti nach Haus-Art',p:'Für zehn Portionen: 2 kg festkochende Kartoffeln vom Vortag, in der Schale gekocht, 120 g Butterschmalz, Salz, Muskat.',faden:['Kartoffeln schälen und grob reiben.','In der Pfanne bei mittlerer Hitze zwölf Minuten je Seite. Nicht drücken.','Mit Spiegelei und Bergkäse anrichten.'],karte:'Rösti',ber:'Küche',stand:'Rezeptur<br>Chef de Cuisine'},
+   {art:'Allergene',bild:'fruehstueck-buffet-m',f:'Welche Allergene stecken im Frühstücksbuffet?',h:'Allergene am Frühstücksbuffet',p:'Gekennzeichnet nach den 14 Hauptallergenen. Am häufigsten gefragt: das Birchermüesli mit <strong>Nüssen, Milch und Gluten</strong>, der Zopf mit <strong>Gluten, Ei und Milch</strong>, der Lachs mit <strong>Fisch</strong>.',karte:'Allergene Frühstück',ber:'Küche und Service',stand:'Geprüft 28.09.<br>Küche'},
+   {art:'Hygiene',bild:'hk-treppenhaus-m',f:'Welche Temperatur muss das Kühlhaus haben?',h:'Temperatur im Kühlhaus',p:'Kühlhaus <strong>0 bis 4 °C</strong>, Tiefkühler <strong>−18 °C</strong> oder kälter. Zweimal täglich eintragen, um 7 und um 15 Uhr. Weicht ein Wert mehr als zwei Grad ab, sofort zum Küchenchef.',karte:'Temperaturkontrolle',ber:'Küche',stand:'Geprüft 01.10.<br>Küche'},
+   {art:'Kein Zugang',bild:'haus-vorfahrt-m',zu:1,f:'Was verdient der neue Commis?',h:'Das steht nicht im Hausbuch',p:'Lohnangaben liegen nicht im Hausbuch. Dazu gibt die Personalabteilung direkt Auskunft.',karte:'Nicht im Hausbuch',ber:'Personaldaten',stand:'Grundsatz<br>des Hauses'}]},
+ spa:{name:'Sara Lehmann',k:'SL',rolle:'Spa · Therapeutin',vor:'Sara',foto:'spa-massage-m',darf:['spa'],
+  satz:'Anwendungen, Gegenanzeigen, Pflege der Räume. Damit jede Behandlung gleich gut ist.',
+  werte:[['64','Karten für das Spa','alle Anwendungen beschrieben'],['9','Fragen heute','meist zu Gegenanzeigen'],['100','von 100 Fragen beantwortet','diese Woche','%'],['2','Karten zur Prüfung fällig','bis Ende Oktober']],
+  fragen:[
+   {art:'Anwendung',bild:'spa-massage-m',f:'Wann darf ich keine Hot-Stone-Massage geben?',h:'Hot Stone: wann nicht',p:'Nicht bei Schwangerschaft, Venenleiden oder Thrombose, Fieber, frischen Verletzungen und bei hohem Blutdruck ohne ärztliche Freigabe. Im Zweifel eine klassische Massage anbieten.',karte:'Hot Stone',ber:'Spa',stand:'Geprüft 02.10.<br>S. Lehmann'},
+   {art:'Pflege',bild:'hk-treppenhaus-m',f:'Wie reinige ich die Sauna am Abend?',h:'Sauna am Abend',p:'Sauna ausschalten und zwanzig Minuten auslüften lassen.',faden:['Bänke mit Saunareiniger abwischen, nie mit Chlor.','Kübel leeren, Duftöle wegräumen.'],karte:'Sauna Abendreinigung',ber:'Spa',stand:'Geprüft 25.09.<br>Spa'},
+   {art:'Kein Zugang',bild:'halle-sessel-m',zu:1,f:'Welche Zimmer sind heute belegt?',h:'Diese Karte ist für Sie nicht freigegeben',p:'Die Belegung sieht nur die Rezeption. Für eine Buchung reicht die Zimmernummer, die der Gast nennt.',karte:'Nicht freigegeben',ber:'liegt im Bereich Rezeption',stand:'Zugang<br>Spa'}]},
+ technik:{name:'Thomas Wyss',k:'TW',rolle:'Haustechnik',vor:'Thomas',foto:'hk-treppenhaus-m',darf:['technik'],
+  satz:'Anlagen, Wartung, Störungen. Mit den Nummern, die man nachts um drei braucht.',
+  werte:[['117','Karten der Haustechnik','mit Plänen und Fotos'],['5','Störungen diese Woche','alle mit Karte gelöst'],['12','Wartungen im Oktober','zwei überfällig'],['1','neue Karte gewünscht','«Wasserenthärter Keller»']],
+  fragen:[
+   {art:'Notfall',bild:'hk-treppenhaus-m',f:'Der Lift steckt fest. Was tun?',h:'Lift steckt fest',p:'Nie selbst öffnen. So geht es:',faden:['Über die Gegensprechanlage mit den Gästen sprechen und beruhigen.','Notdienst des Liftanbieters anrufen, die Nummer hängt am Maschinenraum.','Rezeption informieren und die Uhrzeit notieren.'],karte:'Lift Störung',ber:'Haustechnik',stand:'Geprüft 05.10.<br>T. Wyss'},
+   {art:'Wartung',bild:'haus-vorfahrt-m',f:'Wie teste ich das Notstromaggregat?',h:'Notstrom, Monatstest',p:'Jeden ersten Montag im Monat um 10 Uhr, fünfzehn Minuten unter Last. Ergebnis ins Wartungsbuch, Abweichungen an die Direktion.',karte:'Notstrom Monatstest',ber:'Haustechnik',stand:'Geprüft 06.10.<br>T. Wyss'},
+   {art:'Kein Zugang',bild:'halle-sessel-m',zu:1,f:'Was steht im Vertrag mit dem Liftanbieter?',h:'Diese Karte ist für Sie nicht freigegeben',p:'Verträge liegen bei der Direktion. Für einen Einsatz reicht die Nummer aus der Karte «Lift Störung».',karte:'Nicht freigegeben',ber:'liegt im Bereich Direktion',stand:'Zugang<br>Haustechnik'}]},
+ direktion:{name:'Claudia Frey',k:'CF',rolle:'Direktion',vor:'Claudia',foto:'haus-vorfahrt-m',darf:['rezeption','kueche','spa','technik','direktion'],
+  satz:'Das ganze Haus auf einen Blick. Was gefragt wird, was fehlt, was veraltet ist.',
+  werte:[['615','Karten im ganzen Haus','in fünf Bereichen'],['94','von 100 Fragen beantwortet','diese Woche, alle Bereiche','%'],['11','Lücken diese Woche','Fragen ohne passende Karte'],['7','Karten älter als ein Jahr','zur Prüfung fällig']],
+  fragen:[
+   {art:'Lücken',bild:'halle-sessel-m',f:'Welche Fragen hatten diese Woche keine Antwort?',h:'Lücken dieser Woche',p:'Elf Fragen fanden keine Karte. Die drei häufigsten:',faden:['«Wie lange ist der Parkplatz am Sonntag offen?», dreimal gefragt.','«Gibt es glutenfreies Brot am Abend?», zweimal.','«Wer hat den Schlüssel zum Weinkeller?», einmal.'],karte:'Auswertung Lücken',ber:'alle Bereiche, ohne Namen',stand:'Stand heute<br>automatisch',mehr:['Welche Karten sind älter als ein Jahr?']},
+   {art:'Pflege',bild:'hk-treppenhaus-m',f:'Welche Karten sind älter als ein Jahr?',h:'Fällig zur Prüfung',p:'Sieben Karten wurden seit über einem Jahr nicht geprüft, vier davon in der Haustechnik. Die Bereichsleitungen bekommen eine Erinnerung.',karte:'Auswertung Alter',ber:'alle Bereiche',stand:'Stand heute<br>automatisch'},
+   {art:'Schutz',bild:'haus-vorfahrt-m',zu:1,f:'Zeig mir alle Fragen von Lena.',h:'Fragen bleiben ohne Namen',p:'Das Hausbuch speichert nicht, wer was gefragt hat. Ausgewertet wird nur, was gefragt wird, damit niemand zögert zu fragen.',karte:'So eingestellt',ber:'Schutz des Teams',stand:'Grundsatz<br>des Hauses'}]}
+};
+
+const app=document.getElementById('app'),g=document.getElementById('gespraech'),$=id=>document.getElementById(id);
+let akt='rezeption';
+function gruss(v){const h=new Date().getHours();return (h>=5&&h<11?'Guten Morgen, ':h>=11&&h<18?'Guten Tag, ':'Guten Abend, ')+'<em>'+v+'</em>.'}
+function setze(k){
+  akt=k;const b=B[k];
+  $('pname').textContent=b.name;$('prolle').textContent=b.rolle;$('kuerzel').textContent=b.k;
+  $('gruss').innerHTML=gruss(b.vor);$('bsatz').textContent=b.satz;$('bfoto').src='a/'+b.foto+'.webp';
+  $('bfuss').textContent='Ihr Zugang: '+b.darf.map(d=>ALLE.find(a=>a[0]===d)[1]).join(' · ');
+  $('wtitel').innerHTML=k==='direktion'?'Das Haus <em>diese Woche</em>':'Ihr Bereich <em>in Zahlen</em>';
+  $('werte').innerHTML=b.werte.map((w,i)=>`<div class="wert" style="animation:auf .8s var(--e1) ${.06*i}s both"><b>${w[0]}${w[3]?'<sup>'+w[3]+'</sup>':''}</b><span>${w[1]}</span><small>${w[2]}</small></div>`).join('');
+  $('fragen').innerHTML='';b.fragen.forEach((f,i)=>{const x=document.createElement('button');x.className='fk'+(f.zu?' fk--zu':'');x.style.animation=`auf .8s var(--e1) ${.06*i}s both`;
+    x.innerHTML=`<div class="fk__bild"><img src="a/${f.bild}.webp" alt="" loading="lazy"><span class="fk__art">${f.art}</span></div><div class="fk__text">${f.f}</div>`;x.onclick=()=>frage(f.f);$('fragen').appendChild(x)});
+  $('bereiche').innerHTML=ALLE.map(a=>{const ok=b.darf.includes(a[0]);return `<div class="ber${ok?'':' ber--zu'}"><img src="a/${a[2]}.webp" alt=""><div><b>${a[1]}</b><span>${ok?'freigegeben':'nicht freigegeben'}</span></div></div>`}).join('');
+  $('verlauf').innerHTML='';b.fragen.filter(f=>!f.zu).slice(0,4).forEach(f=>{const x=document.createElement('button');x.innerHTML=`<small>${f.art}</small>${f.h}`;x.onclick=()=>{zurueck();frage(f.f)};$('verlauf').appendChild(x)});
+  zurueck();
+}
+function zurueck(){app.classList.remove('im-chat');g.innerHTML='';document.querySelectorAll('textarea').forEach(t=>{t.value='';pruef(t)});scrollTo({top:0})}
+function finde(q){
+  const b=B[akt],l=q.toLowerCase(),w=l.match(/[a-zäöüss]{4,}/g)||[];let best=null,pt=0;
+  for(const x of b.fragen){if(x.f.toLowerCase()===l)return x;const s=(x.f+' '+x.h+' '+x.p).toLowerCase();const p=w.filter(t=>s.includes(t)).length;if(p>pt){pt=p;best=x}}
+  if(best&&pt>1)return best;
+  if(/umsatz|lohn|gehalt|verdien|vertrag|personal/.test(l))return {zu:1,h:'Diese Karte ist für Sie nicht freigegeben',p:'Diese Angaben sieht nur die Direktion.',karte:'Nicht freigegeben',ber:'liegt im Bereich Direktion',stand:'Zugang<br>'+b.rolle.split(' · ')[0]};
+  return {lucke:1,h:'Dazu gibt es noch keine Karte',p:'Ihre Frage geht ohne Namen an die Leitung Ihres Bereichs, damit eine Karte entsteht. Bis dahin weiss es am schnellsten die Kollegin oder der Kollege im Dienst.',karte:'Als Lücke gemeldet',ber:'an die Bereichsleitung',stand:'Heute<br>'+new Date().toLocaleTimeString('de-CH',{hour:'2-digit',minute:'2-digit'})};
+}
+function frage(q){
+  q=q.trim();if(!q)return;
+  const erst=!app.classList.contains('im-chat');app.classList.add('im-chat');document.body.classList.remove('leiste-auf');
+  const fr=document.createElement('div');fr.className='frage';fr.innerHTML='<div></div>';fr.firstChild.textContent=q;g.appendChild(fr);
+  const an=document.createElement('div');an.className='antwort';an.innerHTML=`<div class="antwort__z"><img src="${Z}" alt=""></div><div class="denkt"><i></i><i></i><i></i></div>`;g.appendChild(an);
+  document.querySelectorAll('textarea').forEach(t=>{t.value='';pruef(t)});
+  if(erst)scrollTo({top:0});runter();
+  const r=finde(q);
+  setTimeout(()=>{
+    an.querySelector('.denkt').remove();
+    const bl=document.createElement('div');bl.className='blatt';const frei=!(r.zu||r.lucke);
+    bl.innerHTML=`<h3>${r.h}</h3><p>${r.p}</p>`+(r.faden?`<div class="faden">${r.faden.map(s=>`<div>${s}</div>`).join('')}</div>`:'')+
+      `<div class="billett${frei?'':' billett--zu'}"><img class="billett__z" src="${Z}" alt=""><div class="billett__t"><b>${frei?'Karte «'+r.karte+'»':r.karte}</b><span>${r.ber}</span></div><div class="billett__s">${r.stand}</div></div>`+
+      (r.mehr?`<div class="mehr">${r.mehr.map(m=>`<button>${m}</button>`).join('')}</div>`:'');
+    an.appendChild(bl);bl.querySelectorAll('.mehr button').forEach(x=>x.onclick=()=>frage(x.textContent));runter();
+  },1100);
+}
+function runter(){requestAnimationFrame(()=>scrollTo({top:document.body.scrollHeight,behavior:'smooth'}))}
+function pruef(t){t.form.querySelector('.knauf').disabled=!t.value.trim();t.style.height='auto';t.style.height=Math.min(t.scrollHeight,150)+'px'}
+document.querySelectorAll('textarea').forEach(t=>{
+  t.addEventListener('input',()=>pruef(t));
+  t.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();frage(t.value)}});
+  t.form.addEventListener('submit',e=>{e.preventDefault();frage(t.value)});
+});
+$('neu').onclick=()=>{zurueck();document.body.classList.remove('leiste-auf')};
+$('menu').onclick=()=>document.body.classList.toggle('leiste-auf');
+['wahl','wahl2'].forEach(id=>$(id).onchange=e=>{$('wahl').value=$('wahl2').value=e.target.value;setze(e.target.value);document.body.classList.remove('leiste-auf')});
+setze('rezeption');
+</script>
+<script src="../../assets/js/zur-werkbank.js?v=11" defer data-zw></script>
+<script src="../../assets/js/begleiter.js?v=4" defer data-begleiter></script>
+</body>
+</html>

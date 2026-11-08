@@ -1,0 +1,1698 @@
+{
+ "ziel": "weinkarte",
+ "name": "Weinkarte",
+ "gruppe": "Wein",
+ "quelle": "assets/pdf/Wine-List-Summer-2026-v2.pdf",
+ "format": [
+  210,
+  297
+ ],
+ "kl": "wein",
+ "fuss": "Alle Preise in CHF inkl. MwST. · All prices in CHF incl. VAT./ Tous les prix sont en CHF, TVA comprise",
+ "pruef": {
+  "dazu": "Valdobbiadene Valdobbiadene Côtes de Provence Mourvèdre Grande Arvine – Humagne Blanc Waadt / Vaud Gewürztraminer Vallée du Rhône Vallée du Rhône Vallée du Rhône Tempranillo, 2018",
+  "fehlt": "Valdobbiane Valdobbiane Cotes de Provence Mouvèdre Grande Arvigne – Humagner Blanc Waat / Vaud Gewüztraminer Valee du Rhone Valee du Rhone Valee du Rhone Tempranillo,2018 Weine im Offenausschank / Wine by the Glass Schaumweine / Sparkling Schaumweine / Sparkling Frankreich / France Weiss / White Schweiz / Switzerland Deutschschweiz / German Speaking Switzerland Weiss / White Schweiz / Switzerland Weiss / White Schweiz / Switzerland Weiss / White Weiss / White Weiss / White Frankreich / France Rot / Red Schweiz / Switzerland Rot / Red Schweiz / Switzerland Rot / Red Rot / Red Italien / Italy Rot / Red Rot / Red Frankreich / France Vallée du Rhône Rot / Red Rot / Red",
+  "fuss_n": 22
+ },
+ "berichtigt": [
+  [
+   "Valdobbiane",
+   "Valdobbiadene",
+   "B/W · Herkunft heisst Valdobbiadene, dreimal"
+  ],
+  [
+   "Mouvèdre",
+   "Mourvèdre",
+   "W · Tippfehler (sonst überall «Mourvèdre»)"
+  ],
+  [
+   "Gewüztraminer",
+   "Gewürztraminer",
+   "W · Tippfehler"
+  ],
+  [
+   "Waat / Vaud",
+   "Waadt / Vaud",
+   "W · Tippfehler (Rotweine: «Waadt / Vaud»)"
+  ],
+  [
+   "Valee du Rhone",
+   "Vallée du Rhône",
+   "W · Akzente, dreimal"
+  ],
+  [
+   "Cotes de Provence",
+   "Côtes de Provence",
+   "W · Akzent (Weinname darunter: «Côte de Provence»)"
+  ],
+  [
+   "Grande Arvigne – Humagner Blanc",
+   "Grande Arvine – Humagne Blanc",
+   "W · zwei Rebsorten falsch geschrieben"
+  ],
+  [
+   "Tempranillo,2018",
+   "Tempranillo, 2018",
+   "W · Leerzeichen"
+  ]
+ ],
+ "teile": [
+  {
+   "art": "deckel",
+   "s": 1,
+   "titel": "Weinkarte",
+   "unter": "Wine List",
+   "zeilen": [
+    "Alle Preise in CHF inkl. MwST. · All prices in CHF incl. VAT./ Tous les prix sont en CHF, TVA comprise"
+   ]
+  },
+  {
+   "art": "inhalt",
+   "posten": [
+    {
+     "t": "rubrik",
+     "titel": "Weine im Offenausschank / Wine by the Glass",
+     "en": "",
+     "s": 2
+    },
+    {
+     "t": "land",
+     "text": "Schweiz / Switzerland",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Weiss / White",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "8247 Weinbau, Kräutergarten Blanc “Krü”",
+     "zeilen": [
+      {
+       "text": "Zürich, Kerner-Johanniter-Solaris-Müller-Thurgau, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 12.00"
+     ],
+     "s": 2,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "zw",
+     "text": "Rot / Red",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Nadine Saxer, Tete de Pinot",
+     "zeilen": [
+      {
+       "text": "Zürich, Pinot Noir, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 14.00"
+     ],
+     "s": 2,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "land",
+     "text": "Italien / Italy",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Schaumweine / Sparkling",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Astoria Wines, Casa Vittorino Brut",
+     "zeilen": [
+      {
+       "text": "Valdobbiadene Prosecco Superiore DOCG, Glera, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 9.00"
+     ],
+     "s": 2,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "zw",
+     "text": "Weiss / White",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Terenzi, Balbino",
+     "zeilen": [
+      {
+       "text": "Maremma Toscana DOC, Vermentino, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 13.00"
+     ],
+     "s": 2,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "zw",
+     "text": "Rot / Red",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Jerzu Antichi Poderi, Josto Miglior, Riserva",
+     "zeilen": [
+      {
+       "text": "Cannonau di Sardegna DOC, Cannonau, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 15.00"
+     ],
+     "s": 2,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "land",
+     "text": "Frankreich / France",
+     "s": 3
+    },
+    {
+     "t": "zw",
+     "text": "Schaumweine / Sparkling",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Louis Roederer, Collection 246",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Chardonnay – Pinot Noir – Meunier, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 18.00"
+     ],
+     "s": 3,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot RICH",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Meunier – Chardonnay",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 17.00"
+     ],
+     "s": 3,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot RICH ROSÉ",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Meunier – Chardonnay",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 20.00"
+     ],
+     "s": 3,
+     "zusatz": "1 dl."
+    },
+    {
+     "t": "zw",
+     "text": "Rosé",
+     "s": 3
+    },
+    {
+     "t": "gericht",
+     "name": "Clos Sainte Magdeleine, Cassis Rosé Côte de Provence 1 dl.",
+     "zeilen": [
+      {
+       "text": "AOC Cassis, Grenache – Cinsault – Mourvèdre – Syrah, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 12.00"
+     ],
+     "s": 3
+    },
+    {
+     "t": "rubrik",
+     "titel": "Schaumweine / Sparkling",
+     "en": "",
+     "s": 4
+    },
+    {
+     "t": "land",
+     "text": "Schweiz / Switzerland",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Spiezer, Jubilé",
+     "zeilen": [
+      {
+       "text": "Thunersee AOC, Blauburgunder, 2019",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 140.00"
+     ],
+     "s": 4
+    },
+    {
+     "t": "land",
+     "text": "Italien / Italy",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Astoria Wines, Casa Vittorino Brut",
+     "zeilen": [
+      {
+       "text": "Valdobbiadene Prosecco Superiore DOCG, Glera, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 4
+    },
+    {
+     "t": "gericht",
+     "name": "Antica Fratta, Cuvée Real Brut",
+     "zeilen": [
+      {
+       "text": "Franciacorta DOCG, Chardonnay – Pinot Nero, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 82.00"
+     ],
+     "s": 4
+    },
+    {
+     "t": "land",
+     "text": "Frankreich / France",
+     "s": 3
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot Brut",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Chardonnay – Meunier",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 135.00"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot RICH",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Meunier – Chardonnay",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 135.00"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot RICH ROSÉ",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Meunier – Chardonnay",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 155.00"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot Demi Sec",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Meunier – Chardonnay",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 175.00"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Veuve Clicquot Rosé",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir – Chardonnay – Meunier",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 175.00"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Louis Roederer, Collection 246",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Chardonnay – Pinot Noir – Meunier, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 135.00"
+     ],
+     "s": 6
+    },
+    {
+     "t": "gericht",
+     "name": "Louis Roederer, Rosé Vintage",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir-Chardonnay, 2017",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 230.00"
+     ],
+     "s": 6
+    },
+    {
+     "t": "gericht",
+     "name": "Louis Roederer, Cristal",
+     "zeilen": [
+      {
+       "text": "AOC Champagne, Pinot Noir-Chardonnay, 2016",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 440.00"
+     ],
+     "s": 6
+    },
+    {
+     "t": "rubrik",
+     "titel": "Rosé",
+     "en": "",
+     "s": 7
+    },
+    {
+     "t": "land",
+     "text": "Schweiz / Switzerland",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Drei Seen / Three Lake Region",
+     "s": 7
+    },
+    {
+     "t": "gericht",
+     "name": "Château D’Auvernier, L’œil De Perdrix",
+     "zeilen": [
+      {
+       "text": "AOC Neuchâtel, Pinot Noir, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 7
+    },
+    {
+     "t": "land",
+     "text": "Frankreich / France",
+     "s": 3
+    },
+    {
+     "t": "zw",
+     "text": "Côtes de Provence",
+     "s": 7
+    },
+    {
+     "t": "gericht",
+     "name": "Clos Sainte Magdeleine, Cassis Rosé “Côte de Provence”",
+     "zeilen": [
+      {
+       "text": "AOC Cassis, Grenache-Cinsault-Mourvèdre-Syrah, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 65.00"
+     ],
+     "s": 7
+    },
+    {
+     "t": "rubrik",
+     "titel": "Weiss / White",
+     "en": "",
+     "s": 8
+    },
+    {
+     "t": "land",
+     "text": "Schweiz / Switzerland",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Deutschschweiz / German Speaking Switzerland",
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Spiezer, Blanc de Noir",
+     "zeilen": [
+      {
+       "text": "AOC Thunersee, Blauburgunder, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Spiezer, Souvignier Gris",
+     "zeilen": [
+      {
+       "text": "AOC Thunersee, Souvignier Gris, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Spiezer, Sauvignac",
+     "zeilen": [
+      {
+       "text": "AOC Thunersee, Sauvignac, 2023, 50 cl",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Nadine Saxer, Sylvie",
+     "zeilen": [
+      {
+       "text": "Zürich, Riesling-Silvaner, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Nadine Saxer, Sauvignon Blanc",
+     "zeilen": [
+      {
+       "text": "Zürich, Sauvignon Blanc, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 59.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Nadine Saxer, Chardonnay",
+     "zeilen": [
+      {
+       "text": "Zürich, Chardonnay, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 59.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "8247 Weinbau, Kräutergarten Blanc “Krü”",
+     "zeilen": [
+      {
+       "text": "Zürich, Kerner-Johanniter-Solaris-Müller-Thurgau, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 59.00"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Schlossgut Bachtobel Müller-Thurgau",
+     "zeilen": [
+      {
+       "text": "Thurgau, Müller-Thurgau, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 9
+    },
+    {
+     "t": "gericht",
+     "name": "Nauer Weine, Granit",
+     "zeilen": [
+      {
+       "text": "AOC Aargau, Räuschling, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 9
+    },
+    {
+     "t": "gericht",
+     "name": "Jann Marugg, Grüner Veltliner",
+     "zeilen": [
+      {
+       "text": "AOC Graubünden, Grüner Veltliner, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 95.00"
+     ],
+     "s": 9
+    },
+    {
+     "t": "gericht",
+     "name": "Donatsch, Completer",
+     "zeilen": [
+      {
+       "text": "AOC Graubünden, Completer, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 235.00"
+     ],
+     "s": 9
+    },
+    {
+     "t": "zw",
+     "text": "Wallis / Valais",
+     "s": 10
+    },
+    {
+     "t": "gericht",
+     "name": "Imesch, Soleil D’Or",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Petite Arvine, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 10
+    },
+    {
+     "t": "gericht",
+     "name": "Adrian & Diego Mathier, Heida Les Pyramides",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Savagnin, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 62.00"
+     ],
+     "s": 10
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Chappaz, Fendant La Liaudisaz",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Chasselas, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 95.00"
+     ],
+     "s": 10
+    },
+    {
+     "t": "gericht",
+     "name": "Oliver Pittet, Les Temps Passés",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Grande Arvine – Humagne Blanc – Rèze, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 135.00"
+     ],
+     "s": 10
+    },
+    {
+     "t": "zw",
+     "text": "Waadt / Vaud",
+     "s": 11
+    },
+    {
+     "t": "gericht",
+     "name": "Paccot Domaine La Colombe, Brez Grand Cru",
+     "zeilen": [
+      {
+       "text": "Fechy AOC La Côte, Chasselas, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 58.00"
+     ],
+     "s": 11
+    },
+    {
+     "t": "gericht",
+     "name": "Henri Cruchon, Altesse",
+     "zeilen": [
+      {
+       "text": "Vaud, Altesse, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 11
+    },
+    {
+     "t": "zw",
+     "text": "Drei Seen / Three Lakes Region",
+     "s": 11
+    },
+    {
+     "t": "gericht",
+     "name": "Cru De L’Hôpital, Traminer de Fichillien",
+     "zeilen": [
+      {
+       "text": "AOC Vully, Gewürztraminer, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 135.00"
+     ],
+     "s": 11
+    },
+    {
+     "t": "zw",
+     "text": "Genf / Genève",
+     "s": 11
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Les Hutins, Viognier de Dardagny",
+     "zeilen": [
+      {
+       "text": "AOC Genève, Viognier, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 73.00"
+     ],
+     "s": 11
+    },
+    {
+     "t": "land",
+     "text": "Italien / Italy",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Nordost / North East",
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Venica & Venica, Primarul",
+     "zeilen": [
+      {
+       "text": "Collio DOC, Friulano, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 65.00"
+     ],
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Tenutae Lageder, Porer",
+     "zeilen": [
+      {
+       "text": "Alto Adige DOC, Pinot Grigio, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 12
+    },
+    {
+     "t": "zw",
+     "text": "Nordwest / North West",
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Monchiero Carbone, Recit",
+     "zeilen": [
+      {
+       "text": "Roero DOCG, Arneis, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 12
+    },
+    {
+     "t": "zw",
+     "text": "Zentral / Central",
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Mormoraia, Suavis",
+     "zeilen": [
+      {
+       "text": "Vernaccia di San Gimignano DOCG, Vernaccia, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 50.00"
+     ],
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Terenzi, Balbino",
+     "zeilen": [
+      {
+       "text": "Maremma Toscana DOC, Vermentino, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 60.00"
+     ],
+     "s": 12
+    },
+    {
+     "t": "land",
+     "text": "Frankreich / France",
+     "s": 3
+    },
+    {
+     "t": "zw",
+     "text": "Bourgogne",
+     "s": 13
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Jean Collet & Fils",
+     "zeilen": [
+      {
+       "text": "AOC Chablis, Chardonnay, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 13
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Jean-Marc Boillot, Macon Chardonnay",
+     "zeilen": [
+      {
+       "text": "AOC Macon, Chardonnay, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 92.00"
+     ],
+     "s": 13
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Jean-Marc Boillot, Puligny Montrachet",
+     "zeilen": [
+      {
+       "text": "AOC Puligny Montrachet, Chardonnay, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 190.00"
+     ],
+     "s": 13
+    },
+    {
+     "t": "zw",
+     "text": "Vallée du Rhône",
+     "s": 13
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Piaugier, Sablet Blanc",
+     "zeilen": [
+      {
+       "text": "AOC Côtes du Rhône Villages, Grenache-Viognier-Marsanne-Roussanne, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 59.00"
+     ],
+     "s": 13
+    },
+    {
+     "t": "zw",
+     "text": "Val de Loire",
+     "s": 14
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Serge Dagueneau & Filles, Tradition",
+     "zeilen": [
+      {
+       "text": "AOC Pouilly Fume, Sauvignon Blanc, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 14
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Serge Laloue, Sancerre",
+     "zeilen": [
+      {
+       "text": "AOC Sancerre, Sauvignon Blanc, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 78.00"
+     ],
+     "s": 14
+    },
+    {
+     "t": "land",
+     "text": "Kalifornien / California",
+     "s": 14
+    },
+    {
+     "t": "gericht",
+     "name": "Francis Ford Coppola, Diamond Collection",
+     "zeilen": [
+      {
+       "text": "California, Chardonnay, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 14
+    },
+    {
+     "t": "land",
+     "text": "Argentinien / Argentina",
+     "s": 14
+    },
+    {
+     "t": "gericht",
+     "name": "Terrazas de Los Andes, Reserva Chardonnay",
+     "zeilen": [
+      {
+       "text": "Mendoza, Chardonnay, 2025",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 50.00"
+     ],
+     "s": 14
+    },
+    {
+     "t": "rubrik",
+     "titel": "Rot / Red",
+     "en": "",
+     "s": 15
+    },
+    {
+     "t": "land",
+     "text": "Schweiz / Switzerland",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Deutschschweiz / German Speaking Switzerland",
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Frauenkopf, Pinot Noir / Malbec",
+     "zeilen": [
+      {
+       "text": "AOC Bielersee, Pinot Noir – Malbec, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 65.00"
+     ],
+     "s": 15
+    },
+    {
+     "t": "gericht",
+     "name": "Nadine Saxer, Tete de Pinot",
+     "zeilen": [
+      {
+       "text": "Zürich, Pinot Noir 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 15
+    },
+    {
+     "t": "gericht",
+     "name": "Tom Litwan, Herznach Chraibel",
+     "zeilen": [
+      {
+       "text": "AOC Aargau, Pinot Noir, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 115.00"
+     ],
+     "s": 15
+    },
+    {
+     "t": "gericht",
+     "name": "Donatsch, Pinot Noir Passion",
+     "zeilen": [
+      {
+       "text": "AOC Graubünden, Pinot Noir, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 145.00"
+     ],
+     "s": 15
+    },
+    {
+     "t": "zw",
+     "text": "Waadt / Vaud",
+     "s": 11
+    },
+    {
+     "t": "gericht",
+     "name": "Henri Cruchon, Ultimo",
+     "zeilen": [
+      {
+       "text": "Vaud, Gamay, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 15
+    },
+    {
+     "t": "zw",
+     "text": "Wallis / Valais",
+     "s": 10
+    },
+    {
+     "t": "gericht",
+     "name": "Imesch, Soleil D’Or",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Cornalin, 2024",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 55.00"
+     ],
+     "s": 16
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Chappaz, Dôle La Liaudisaz",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Gamay-Pinot Noir 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 98.00"
+     ],
+     "s": 16
+    },
+    {
+     "t": "gericht",
+     "name": "Olivier Pittet, Durize",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Durize, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 115.00"
+     ],
+     "s": 16
+    },
+    {
+     "t": "gericht",
+     "name": "Mathier, L’Ambassadeur de Diego Mathier",
+     "zeilen": [
+      {
+       "text": "AOC Valais, Pinot Noir 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 120.00"
+     ],
+     "s": 16
+    },
+    {
+     "t": "zw",
+     "text": "Tessin / Ticino",
+     "s": 17
+    },
+    {
+     "t": "gericht",
+     "name": "Cantina il Cavaliere, Artù Merlot",
+     "zeilen": [
+      {
+       "text": "AOC Ticino, Merlot, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 69.00"
+     ],
+     "s": 17
+    },
+    {
+     "t": "gericht",
+     "name": "Agriloro, Sottobosco Rosso del Ticino",
+     "zeilen": [
+      {
+       "text": "AOC Ticino, Merlot-Cabernet Sauvignon-Cabernet Franc-Petit Verdot, 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 95.00"
+     ],
+     "s": 17
+    },
+    {
+     "t": "zw",
+     "text": "Genf / Genève",
+     "s": 11
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Les Hutins, Gamay de Dardagny La Briva",
+     "zeilen": [
+      {
+       "text": "AOC Genève, Gamay, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 50.00"
+     ],
+     "s": 17
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Les Hutins, L’Esprit de Genève",
+     "zeilen": [
+      {
+       "text": "AOC Genève, Gamay – Gamaret – Merlot, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 73.00"
+     ],
+     "s": 17
+    },
+    {
+     "t": "land",
+     "text": "Italien / Italy",
+     "s": 2
+    },
+    {
+     "t": "zw",
+     "text": "Nordost / North East",
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Buglioni, Il Lussurioso Amarone della Valpolicella",
+     "zeilen": [
+      {
+       "text": "Amarone della Valpolicella Classico DOCG, Corvina-Corvinone – Rondinella – Croatina –",
+       "en": true
+      },
+      {
+       "text": "Oseleta, 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 125.00"
+     ],
+     "s": 18
+    },
+    {
+     "t": "zw",
+     "text": "Nordwest / North West",
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Fratelli Giacosa, Barolo Scarrone “Vigna Mandorlo” Riserva",
+     "zeilen": [
+      {
+       "text": "Barolo DOCG, Nebbiolo, 2015",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 135.00"
+     ],
+     "s": 18
+    },
+    {
+     "t": "gericht",
+     "name": "Moccagatta, Barbaresco",
+     "zeilen": [
+      {
+       "text": "Barbaresco DOCG, Nebbiolo, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 115.00"
+     ],
+     "s": 18
+    },
+    {
+     "t": "zw",
+     "text": "Zentral / Central",
+     "s": 12
+    },
+    {
+     "t": "gericht",
+     "name": "Le Macchiole, Bolgheri Rosso",
+     "zeilen": [
+      {
+       "text": "Rosso Bolgheri DOC, Merlot – Cabernet Franc – Cabernet Sauvignon – Syrah, 2023",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 19
+    },
+    {
+     "t": "gericht",
+     "name": "Tenuta Il Poggione, Brunello di Montalcino",
+     "zeilen": [
+      {
+       "text": "Brunello di Montalcino DOCG, Sangiovese, 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 125.00"
+     ],
+     "s": 19
+    },
+    {
+     "t": "gericht",
+     "name": "Ornellaia, Ornellaia, Superiore Rosso",
+     "zeilen": [
+      {
+       "text": "Bolgheri DOC, Cabernet Sauvignon – Merlot – Cabernet Franc – Petit Verdot, 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 300.00"
+     ],
+     "s": 19
+    },
+    {
+     "t": "gericht",
+     "name": "Tenuta San Guido, Sassicaia",
+     "zeilen": [
+      {
+       "text": "Bolgheri Sassicaia DOC, Cabernet Sauvignon – Cabernet Franc, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 350.00"
+     ],
+     "s": 19
+    },
+    {
+     "t": "zw",
+     "text": "Süden / South",
+     "s": 19
+    },
+    {
+     "t": "gericht",
+     "name": "Jerzu Antichi Poderi, Josto Miglior, Riserva",
+     "zeilen": [
+      {
+       "text": "Cannonau di Sardegna DOC, Cannonau, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 95.00"
+     ],
+     "s": 19
+    },
+    {
+     "t": "land",
+     "text": "Frankreich / France",
+     "s": 3
+    },
+    {
+     "t": "zw",
+     "text": "Bordeaux",
+     "s": 20
+    },
+    {
+     "t": "gericht",
+     "name": "Château de Camensac",
+     "zeilen": [
+      {
+       "text": "AOC Haut-Médoc, Cabernet Sauvignon – Merlot, 2016",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 115.00"
+     ],
+     "s": 20
+    },
+    {
+     "t": "gericht",
+     "name": "Château La Gaffelière",
+     "zeilen": [
+      {
+       "text": "AOC Saint-Émilion 1er Grand Cru Classé, Merlot-Cabernet Franc, 2016",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 198.00"
+     ],
+     "s": 20
+    },
+    {
+     "t": "zw",
+     "text": "Bourgogne",
+     "s": 13
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Sérafin, Gevrey-Chambertin",
+     "zeilen": [
+      {
+       "text": "AOC Gevrey-Chambertin, Pinot Noir, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 155.00"
+     ],
+     "s": 20
+    },
+    {
+     "t": "zw",
+     "text": "Vallée du Rhône",
+     "s": 13
+    },
+    {
+     "t": "gericht",
+     "name": "Ferraton Père & Fils, Les Miaux",
+     "zeilen": [
+      {
+       "text": "AC Hermitage, Syrah, 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 175.00"
+     ],
+     "s": 20
+    },
+    {
+     "t": "gericht",
+     "name": "Ferraton Père & Fils, Le Méal",
+     "zeilen": [
+      {
+       "text": "AC Ermitage, Syrah, 2018",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 195.00"
+     ],
+     "s": 20
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Raspail-Ay, Gigondas",
+     "zeilen": [
+      {
+       "text": "AOC Gigondas, Grenache – Mourvèdre – Syrah, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 85.00"
+     ],
+     "s": 21
+    },
+    {
+     "t": "gericht",
+     "name": "Domaine Du Pégau, Cuvée Réservée Rouge",
+     "zeilen": [
+      {
+       "text": "AOC Châteauneuf-du-Pape, Grenache-Syrah-Mourvèdre-Autres cépages, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 155.00"
+     ],
+     "s": 21
+    },
+    {
+     "t": "land",
+     "text": "Spanien / Spain",
+     "s": 21
+    },
+    {
+     "t": "gericht",
+     "name": "Celler Ardevol, Anjoli",
+     "zeilen": [
+      {
+       "text": "DO Priorat, Cabernet Sauvignon-Grenache-Merlot-Syrah, 2018",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 65.00"
+     ],
+     "s": 21
+    },
+    {
+     "t": "gericht",
+     "name": "Bodegas Altanza, Edulis Reserva",
+     "zeilen": [
+      {
+       "text": "DO Rioja, Tempranillo, 2017",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 73.00"
+     ],
+     "s": 21
+    },
+    {
+     "t": "gericht",
+     "name": "Lui & William, Fighting Bulls Reserva",
+     "zeilen": [
+      {
+       "text": "DO Toro, Tempranillo, 2018",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 90.00"
+     ],
+     "s": 21
+    },
+    {
+     "t": "gericht",
+     "name": "Tempos Vega Sicilia, Vega Sicilia Unico",
+     "zeilen": [
+      {
+       "text": "DO Ribera del Duero, Tempranillo – Cabernet Sauvignon, 2012/2013",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 650.00"
+     ],
+     "s": 21
+    },
+    {
+     "t": "land",
+     "text": "Portugal",
+     "s": 22
+    },
+    {
+     "t": "gericht",
+     "name": "Rui Roboredo Madeira, Beyra Vinhas Velhas",
+     "zeilen": [
+      {
+       "text": "DOC Beira Interior, Tinta Roriz-Mourisco-Borrao-Rufete-Tinta Amarela, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 75.00"
+     ],
+     "s": 22
+    },
+    {
+     "t": "gericht",
+     "name": "Quinta do Couquinho, Touriga Nacional Reserva",
+     "zeilen": [
+      {
+       "text": "DOC Douro, Touriga Nacional, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 95.00"
+     ],
+     "s": 22
+    },
+    {
+     "t": "land",
+     "text": "Deutschland / Germany",
+     "s": 22
+    },
+    {
+     "t": "gericht",
+     "name": "Adeneuer, Kleine Kammer",
+     "zeilen": [
+      {
+       "text": "Ahr, Spätburgunder, 2020",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 97.00"
+     ],
+     "s": 22
+    },
+    {
+     "t": "land",
+     "text": "Chile",
+     "s": 23
+    },
+    {
+     "t": "gericht",
+     "name": "Viña Almaviva, Almaviva",
+     "zeilen": [
+      {
+       "text": "DO Puente Alto, Cabernet Sauvignon – Carmenere – Cabernet Franc, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 300.00"
+     ],
+     "s": 23
+    },
+    {
+     "t": "gericht",
+     "name": "Viña VIK, Millahue",
+     "zeilen": [
+      {
+       "text": "Valle del Cachapoal, Cabernet Franc – Cabernet Sauvignon, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 300.00"
+     ],
+     "s": 23
+    },
+    {
+     "t": "land",
+     "text": "Argentinien / Argentina",
+     "s": 14
+    },
+    {
+     "t": "gericht",
+     "name": "Catena Zapata, Angelica Zapata",
+     "zeilen": [
+      {
+       "text": "Valle de Uco – Mendoza, Malbec, 2021",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 98.00"
+     ],
+     "s": 23
+    },
+    {
+     "t": "gericht",
+     "name": "Terrazas de Los Andes, Grand Malbec",
+     "zeilen": [
+      {
+       "text": "Mendoza, Malbec, 2022",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 125.00"
+     ],
+     "s": 23
+    },
+    {
+     "t": "gericht",
+     "name": "Enemigo Wines, Gran Enemigo El Cepillo Single Vineyard",
+     "zeilen": [
+      {
+       "text": "San Carlos – Mendoza, Cabernet Franc, 2019",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 175.00"
+     ],
+     "s": 23
+    }
+   ]
+  }
+ ]
+}

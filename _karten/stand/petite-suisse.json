@@ -1,0 +1,547 @@
+{
+ "ziel": "petite-suisse",
+ "name": "Karte «La Petite Suisse»",
+ "gruppe": "Restaurants",
+ "quelle": "assets/pdf/la-petite-suisse-speisekarte.pdf",
+ "format": [
+  210,
+  297
+ ],
+ "kl": "",
+ "fuss": "Alle Preise in CHF inkl. MwST. · All prices in CHF incl. VAT./ Tous les prix sont en CHF, TVA comprise",
+ "pruef": {
+  "dazu": "Potatoes Rösti Raclette Dessert Lemon – Swiss Free-Range Eggs",
+  "fehlt": "Potaoes Rösti | Rösti Raclette | Raclette Dessert | Dessert Lemon – Fried Swiss Free-Range Eggs Vorspeisen  Starters",
+  "fuss_n": 8
+ },
+ "berichtigt": [
+  [
+   "Potaoes",
+   "Potatoes",
+   "S · Tippfehler"
+  ],
+  [
+   "Lemon – Fried Swiss Free-Range Eggs",
+   "Lemon – Swiss Free-Range Eggs",
+   "S · «Fried» aus der Rösti-Zeile übernommen; die deutsche Zeile sagt «Schweizer Freilandeier»"
+  ]
+ ],
+ "teile": [
+  {
+   "art": "deckel",
+   "s": 1,
+   "titel": "La Petite Suisse",
+   "unter": "Menü · Menu",
+   "zeilen": [
+    "Alle Preise in CHF inkl. MwST. · All prices in CHF incl. VAT./ Tous les prix sont en CHF, TVA comprise"
+   ]
+  },
+  {
+   "art": "inhalt",
+   "posten": [
+    {
+     "t": "rubrik",
+     "titel": "Vorspeisen",
+     "en": "Starters",
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Nüssler Salat",
+     "zeilen": [
+      {
+       "text": "Nüssler Salat – French Dressing – Speck – Ei – Croutons"
+      },
+      {
+       "text": "Nüssler Lettuce – French Dressing – Bacon – Hard Boiled Eggs – Croutons",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 17"
+     ],
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Bunter Salatteller",
+     "zeilen": [
+      {
+       "text": "Bunter Salat – Croutons – Geröstete Kerne – French Dressing"
+      },
+      {
+       "text": "Colorful Leaves – Croutons – Roasted Seeds – French Dressing",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 12"
+     ],
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Schweizer Wurst und Käse Salat",
+     "zeilen": [
+      {
+       "text": "Cervelatwurst – Alpkäse – Vinaigrette"
+      },
+      {
+       "text": "Cervelat Sausage – Alpine Cheese – Vinaigrette",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 12"
+     ],
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Salat mit Eglifilets",
+     "zeilen": [
+      {
+       "text": "Gebratene Eglifilets – Bunter Salat – Crudité"
+      },
+      {
+       "text": "Fried Perch – Colorful Salad – Crudité",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 22"
+     ],
+     "s": 2
+    },
+    {
+     "t": "gericht",
+     "name": "Zvieri Platte",
+     "zeilen": [
+      {
+       "text": "Trockenfleisch – Ballenbergwurst – Harder Schinken –"
+      },
+      {
+       "text": "«Buurespeck» – 3 verschiedene Käsesorten – Brot – Eingelegtes Gemüse"
+      },
+      {
+       "text": "Dried Meat – Ballenberg Sausage – Harder Ham –"
+      },
+      {
+       "text": "«Buurespeck» Bacon – 3 different Cheese varieties – Bread – Mixed Pickles",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 30"
+     ],
+     "s": 3
+    },
+    {
+     "t": "rubrik",
+     "titel": "Suppen",
+     "en": "Soups",
+     "s": 3
+    },
+    {
+     "t": "gericht",
+     "name": "Kartoffelsuppe",
+     "zeilen": [
+      {
+       "text": "Brottasse – Kartoffel – Gruyère – Paprika"
+      },
+      {
+       "text": "Bread Cup – Potatoes – Gruyère Cheese – Bell Pepper",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 14"
+     ],
+     "s": 3
+    },
+    {
+     "t": "gericht",
+     "name": "Berner Märitsuppe",
+     "zeilen": [
+      {
+       "text": "Gelberbsen – Rüebli – Zwiebeln – Lauch – Butter"
+      },
+      {
+       "text": "Yellow Peas – Carrots – Onions – Leek – Butter",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 12"
+     ],
+     "s": 3
+    },
+    {
+     "t": "rubrik",
+     "titel": "Rösti",
+     "en": "",
+     "s": 4
+    },
+    {
+     "t": "gericht",
+     "name": "Oberländer Rösti",
+     "zeilen": [
+      {
+       "text": "Raclettekäse – Speck – Schweizer Freilandeier – Rösti"
+      },
+      {
+       "text": "Raclette Cheese – Bacon – Swiss Free-Range Eggs – Rösti",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 27"
+     ],
+     "s": 4
+    },
+    {
+     "t": "gericht",
+     "name": "Vacherin Fribourgeois Rösti",
+     "zeilen": [
+      {
+       "text": "Vacherin Fribourgeois AOP Käse – Zwiebeln – Gurken – Rösti"
+      },
+      {
+       "text": "Vacherin Fribourgeois AOP Cheese – Red Onion – Cucumber – Rösti",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 25"
+     ],
+     "s": 4
+    },
+    {
+     "t": "gericht",
+     "name": "Spiegelei Rösti",
+     "zeilen": [
+      {
+       "text": "Schweizer Freilandeier – Butter – Rösti"
+      },
+      {
+       "text": "Fried Swiss Free-Range Eggs – Butter – Rösti",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 22"
+     ],
+     "s": 4
+    },
+    {
+     "t": "rubrik",
+     "titel": "Raclette",
+     "en": "",
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Käseschnitten",
+     "zeilen": [
+      {
+       "text": "Raclettekäse – Zwiebeln – Schinken – Ruchbrot"
+      },
+      {
+       "text": "Raclette Cheese – Red Onions – Ham – Rye Bread",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 16"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Optional mit Spiegelei",
+     "zeilen": [
+      {
+       "text": "Optional with Fried Egg",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 3"
+     ],
+     "s": 5
+    },
+    {
+     "t": "gericht",
+     "name": "Portion Raclette",
+     "zeilen": [
+      {
+       "text": "Raclettekäse – Kartoffel – Essiggurken – Perlzwiebeln"
+      },
+      {
+       "text": "Raclette Cheese – Potatoes – Cucumber Pickles – Pearl Onions",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 14"
+     ],
+     "s": 5
+    },
+    {
+     "t": "rubrik",
+     "titel": "Käsefondue",
+     "en": "Cheese Fondue",
+     "s": 6
+    },
+    {
+     "t": "gericht",
+     "name": "Käsefondue",
+     "zeilen": [
+      {
+       "text": "Käse Hausmischung – Kleine Kartoffeln – Essiggurken – Perlzwiebeln – Ruchbrot"
+      },
+      {
+       "text": "Cheese House Mix – Small Potatoes – Pickles – Pearl Onions – Brown Bread",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 30"
+     ],
+     "s": 6
+    },
+    {
+     "t": "gericht",
+     "name": "«La Petite Suisse» Fondue",
+     "zeilen": [
+      {
+       "text": "Käse Hausmischung – Steinpilze – Birne – Äpfel –"
+      },
+      {
+       "text": "Kleine Kartoffeln – Essiggurken – Perlzwiebeln – Ruchbrot"
+      },
+      {
+       "text": "Cheese House Mix – Porcini Mushrooms – Pears – Apples –",
+       "en": true
+      },
+      {
+       "text": "Small Potatoes – Pickles – Pearl Onions – Brown Bread",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 34"
+     ],
+     "s": 6
+    },
+    {
+     "t": "gericht",
+     "name": "Optional dazu Plättli aus der Region",
+     "zeilen": [
+      {
+       "text": "Optional Plate of Regionally Sourced Meat",
+       "en": true
+      },
+      {
+       "text": "Trockenfleisch – Bündner Coppa – Rohspeck – Zungenwurst"
+      },
+      {
+       "text": "Dried meat – Dried Pork-Neck Meat – Raw Bacon – Tongue Sausage",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 12"
+     ],
+     "s": 6
+    },
+    {
+     "t": "rubrik",
+     "titel": "Hauptgänge",
+     "en": "Main Courses",
+     "s": 7
+    },
+    {
+     "t": "gericht",
+     "name": "Kalbsgeschnetzeltes",
+     "zeilen": [
+      {
+       "text": "Kalbsgeschnetzeltes – Morchel – Rösti – Buntes Gemüse"
+      },
+      {
+       "text": "Calf Meat – Morels – Rösti – Steamed Vegetables",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 46"
+     ],
+     "s": 7
+    },
+    {
+     "t": "gericht",
+     "name": "Bratwurst mit Zwiebelsauce",
+     "zeilen": [
+      {
+       "text": "St. Galler Kalbsbratwurst – Zwiebelsauce – Rösti"
+      },
+      {
+       "text": "St. Galler Calf Sausage – Onion Sauce – Rösti",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 27"
+     ],
+     "s": 7
+    },
+    {
+     "t": "gericht",
+     "name": "Älplermagronen",
+     "zeilen": [
+      {
+       "text": "Älplermagronen – Kartoffel – Vollrahm – Gruyère – Zwiebeln – Apfelmus"
+      },
+      {
+       "text": "Älplermagronen – Potatoes – Cream – Gruyère Cheese –",
+       "en": true
+      },
+      {
+       "text": "Crispy Onions – Apple Sauce",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 25"
+     ],
+     "s": 7
+    },
+    {
+     "t": "gericht",
+     "name": "Entrecôte 200 g",
+     "zeilen": [
+      {
+       "text": "Rinds Entrecôte 200 g – Butter – Beilage nach Wahl"
+      },
+      {
+       "text": "Bärner Frites / Rösti / Bunter Salat"
+      },
+      {
+       "text": "Beef Entrecôte 200 g – Butter – Choice of Side Dish",
+       "en": true
+      },
+      {
+       "text": "Berner Fries / Rösti / Colorful Salad",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 50"
+     ],
+     "s": 7
+    },
+    {
+     "t": "rubrik",
+     "titel": "Dessert",
+     "en": "",
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "«Thurgauer» Apfelkuchen",
+     "zeilen": [
+      {
+       "text": "Äpfel – Butter – Zitrone – Schweizer Freilandeier"
+      },
+      {
+       "text": "Apples – Butter – Lemon – Swiss Free-Range Eggs",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 10"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Brönnti Crème",
+     "zeilen": [
+      {
+       "text": "Milch – Eigelb – Karamell – Sahne – Vanille – Brätzeli"
+      },
+      {
+       "text": "Milk – Egg Yolks – Caramel – Cream – Vanilla – Brätzeli",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 10"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Karamell Köpfli",
+     "zeilen": [
+      {
+       "text": "Milch – Eigelb – Karamell – Sahne"
+      },
+      {
+       "text": "Milk – Egg Yolks – Caramel – Cream",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 10"
+     ],
+     "s": 8
+    },
+    {
+     "t": "gericht",
+     "name": "Eiskaffee",
+     "zeilen": [
+      {
+       "text": "Kaffeeeis – Frisch gebrühter Kaffee"
+      },
+      {
+       "text": "Coffee Ice Cream – Fresh Brewed Coffee",
+       "en": true
+      }
+     ],
+     "preise": [
+      "CHF 10"
+     ],
+     "s": 8
+    },
+    {
+     "t": "frei",
+     "zeilen": [
+      {
+       "text": "Liebe Gäste"
+      },
+      {
+       "text": "Bei Fragen zu Unverträglichkeiten oder Allergien wenden Sie sich bitte an unser"
+      },
+      {
+       "text": "Personal. Unsere Mitarbeitenden stehen Ihnen jederzeit gerne zur Verfügung."
+      },
+      {
+       "text": "Dear guests,",
+       "en": true
+      },
+      {
+       "text": "If you have any questions about intolerances or allergies, please contact our staff.",
+       "en": true
+      },
+      {
+       "text": "Our staff is happy to assist you at any time.",
+       "en": true
+      }
+     ],
+     "s": 9
+    }
+   ]
+  }
+ ]
+}

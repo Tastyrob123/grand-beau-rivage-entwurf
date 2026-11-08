@@ -1,0 +1,110 @@
+/* Kopf Feiern & Tagen (Robert 11.10.2026): Fassung 02, die Anfrage-Leiste sitzt höher, der Text rückt mit nach oben. Handy: wie auf der Vergleichsseite. */
+@media (min-width:861px){
+  .fk-kopf .sk__in{padding-bottom:clamp(230px,29vh,290px)}
+  /* mittig ohne transform, sonst überschreibt die Einblendung das Zentrieren und die Leiste springt (Robert 11.10.2026) */
+  .fk-kopf .fh-leiste{bottom:clamp(120px,15vh,160px);left:0;right:0;margin:0 auto;transform:none}
+}
+
+/* ===== Umbau 11.10.2026 abends ===== */
+/* Kopf → Räume (zweiter Umbau): ein heller Abschnitt mit Intro links/rechts, Reihe der Räume als 3D-Kacheln, Ballsaal wie ein Zimmer der Zimmerseite */
+.fk-ent{padding-top:clamp(90px,8vw,140px);padding-bottom:clamp(90px,8vw,140px)}
+.fk-intro{display:grid;grid-template-columns:1.1fr 1fr;align-items:end;gap:clamp(30px,5vw,90px);margin-bottom:clamp(50px,5vw,80px)}
+.fk-intro .raum--nur{justify-content:flex-start;margin:0 0 clamp(18px,1.8vw,26px)}
+.fk-intro .fk-titel{text-align:left}
+.fk-intro .lauf{max-width:56ch;text-align:left;padding-bottom:.6em}
+.fk-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,32px)}
+.fk-reihe .kachel__n b{font-size:clamp(1.25rem,1.6vw,1.7rem)}
+.fk-trenner{margin:clamp(70px,7vw,120px) 0}
+.fk-saal{align-items:center}
+@media (max-width:860px){.fk-intro{grid-template-columns:minmax(0,1fr)}.fk-reihe{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Raumfinder mit Überschrift */
+.fk-finder{margin-bottom:clamp(40px,4vw,64px)}
+.fk-finder .lauf{max-width:58ch}
+.fk-titel{font-size:clamp(2.6rem,6.4vw,7rem)!important;line-height:1}
+/* Offerte als Karte des Hauses, mittig */
+.tpkontakt{display:none}
+.fk-offerte{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;margin:clamp(70px,6vw,110px) auto 0;
+  padding:clamp(40px,4vw,64px) clamp(26px,4vw,70px) clamp(36px,3.6vw,56px);border-radius:26px;background:linear-gradient(160deg,#303650,#22273e 48%,#161a2a);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 0 #0d1019,0 60px 80px -46px rgba(0,0,0,.85)}
+.fk-offerte::before{content:'';position:absolute;inset:12px;border-radius:17px;box-shadow:inset 0 0 0 1px rgba(210,191,152,.5),inset 0 0 0 6px rgba(17,20,31,.35),inset 0 0 0 7px rgba(210,191,152,.2);pointer-events:none;z-index:-1}
+.fk-offerte__em{width:clamp(60px,5vw,78px);height:auto;color:var(--gold)}
+.fk-caps{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:clamp(16px,1.6vw,22px);font-family:var(--caps);font-weight:600;font-size:clamp(.82rem,.95vw,1rem);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.fk-caps i{display:block;width:clamp(36px,3.6vw,56px);height:1px;background:rgba(210,191,152,.6)}
+.fk-offerte__satz{margin-top:clamp(16px,1.6vw,22px);max-width:26ch;font:500 clamp(1.7rem,2.8vw,2.7rem)/1.22 var(--serif);color:#fcf7ee;text-wrap:balance}
+.fk-orn{display:block;width:clamp(150px,13vw,200px);height:auto;margin:clamp(20px,2vw,28px) auto 0;fill:none;stroke:var(--gold);stroke-width:1}.fk-orn path:last-child{fill:var(--gold);stroke:none}
+.fk-offerte__wege{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(18px,2.6vw,40px);margin-top:clamp(22px,2.2vw,30px)}
+.fk-offerte__wege a{display:flex;flex-direction:column;align-items:center;gap:6px}
+.fk-offerte__wege small{font-family:var(--caps);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(210,191,152,.85)}
+.fk-offerte__wege b{font:500 clamp(1.2rem,1.5vw,1.5rem)/1.2 var(--serif);color:#fcf7ee;transition:color .3s}
+.fk-offerte__wege a:hover b{color:var(--gold)}
+.fk-offerte__wege>i{width:1px;height:46px;background:rgba(210,191,152,.45)}
+.fk-offerte .kn-reihe{justify-content:center;margin-top:clamp(26px,2.6vw,36px)}
+/* Anfrage: Titel grösser, ohne Zeichen; Kontakt als edle Karte */
+#anfrage .anf__t .d2{font-size:clamp(3rem,6vw,6.6rem)!important;line-height:1}
+#anfrage .anf__kontakt{display:grid!important;grid-template-columns:1fr 1fr;gap:0;margin-top:clamp(30px,3vw,46px);padding:clamp(22px,2.2vw,30px) 0;border:0!important;border-radius:22px;
+  background:linear-gradient(160deg,rgba(48,54,80,.92),rgba(22,26,42,.94));box-shadow:inset 0 0 0 1px rgba(210,191,152,.45),inset 0 0 0 6px rgba(17,20,31,.3),inset 0 0 0 7px rgba(210,191,152,.18),0 40px 60px -36px rgba(0,0,0,.8);max-width:640px}
+#anfrage .anf__kontakt a{display:flex!important;flex-direction:column;align-items:center;gap:8px;padding:6px clamp(14px,2vw,28px)!important;border:0!important;text-align:center}
+#anfrage .anf__kontakt a+a{border-left:1px solid rgba(210,191,152,.35)!important}
+#anfrage .anf__kontakt small{display:flex;align-items:center;gap:12px;font-family:var(--caps);font-weight:600;font-size:clamp(.8rem,.9vw,.94rem);letter-spacing:.26em;text-transform:uppercase;color:var(--goldhell,#e6d3a3)}   /* Robert 12.10.2026: besser lesbar */
+#anfrage .anf__kontakt small::before,#anfrage .anf__kontakt small::after{content:'';width:18px;height:1px;background:rgba(210,191,152,.55)}
+#anfrage .anf__kontakt b{font:500 clamp(1.25rem,1.6vw,1.6rem)/1.2 var(--serif)!important;color:#fcf7ee;word-break:break-word}
+#anfrage .anf__kontakt a:hover b{color:var(--gold)}
+@media (max-width:860px){
+  .fk-ent__kopf .d2,.fk-titel{font-size:clamp(2.4rem,11vw,3.6rem)!important}
+  .fk-offerte__wege{grid-template-columns:minmax(0,1fr)}.fk-offerte__wege>i{width:46px;height:1px;margin:0 auto}
+  #anfrage .anf__kontakt{grid-template-columns:minmax(0,1fr)}#anfrage .anf__kontakt a+a{border-left:0!important;border-top:1px solid rgba(210,191,152,.35)!important;padding-top:16px!important;margin-top:10px}
+}
+#anfrage .anf__kontakt{max-width:700px}
+#anfrage .anf__kontakt b{white-space:nowrap;font-size:clamp(1.35rem,1.7vw,1.8rem)!important;color:#fff}   /* Robert 12.10.2026: besser lesbar */
+.fk-collage .ag-g:first-child .foto figcaption{top:clamp(12px,1.2vw,18px);bottom:auto;right:clamp(12px,1.2vw,18px);left:auto}
+@media (max-width:860px){#anfrage .anf__kontakt b{white-space:normal}}
+.fk-saal .gz__name{font-size:clamp(2.2rem,3.2vw,3.4rem)}.fk-saal .gz__name .z{white-space:nowrap}
+.fk-trenner{margin:clamp(80px,7vw,120px) 0 clamp(100px,8vw,150px)!important}
+.fk-ent .fk-saal{margin-top:clamp(90px,8vw,140px)!important;padding-top:0!important}
+.fk-ent .fk-saal{margin-top:clamp(130px,11vw,190px)!important}
+/* Raumfinder während des Tauschs: die Bühne lässt die Fotos hinaus (eigene runde Ecken je Foto), keine eigene Überblendung */
+.fk-tausch .sbuehne__b{overflow:visible!important;z-index:5}
+.fk-tausch .sbuehne__bild{transition:none!important;transform:none;border-radius:inherit;overflow:hidden;will-change:transform}
+.fk-tausch .sbuehne__bild:not(.an){opacity:0}
+.fk-tausch .sbuehne__b{background:transparent!important}
+/* Offerte als breites, schmales goldenes Billett (wie karriere.html .kr-quer) */
+.fk-offerte{display:none}
+.fk-ticket{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr) 0 minmax(0,.8fr);align-items:stretch;margin-top:clamp(70px,6vw,110px);
+  border-radius:24px;color:#1b1608;background:linear-gradient(115deg,#f6e7bd 0%,#dcc07e 26%,#c9a560 46%,#e8d39b 68%,#b99558 100%);
+  box-shadow:inset 0 1px 0 rgba(255,250,230,.8),inset 0 -2px 0 rgba(120,88,36,.45),0 2px 0 #6e5225,0 50px 70px -40px rgba(0,0,0,.85)}
+.fk-ticket::before{content:'';position:absolute;inset:9px;border-radius:17px;box-shadow:inset 0 0 0 1px rgba(91,66,25,.38);pointer-events:none;z-index:2}
+.fk-ticket__b{position:relative;margin:9px 0 9px 9px;border-radius:17px 0 0 17px;overflow:hidden;min-height:clamp(190px,15vw,240px)}
+.fk-ticket__b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fk-ticket__haupt{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(24px,2.4vw,36px) clamp(20px,3vw,48px)}
+.fk-ticket .fk-caps{margin:0;color:#4a3712}.fk-ticket .fk-caps i{background:rgba(74,55,18,.5)}
+.fk-ticket__satz{margin-top:clamp(10px,1vw,14px);max-width:30ch;font:500 clamp(1.3rem,1.9vw,1.9rem)/1.25 var(--serif);color:#1b1608;text-wrap:balance}
+.fk-ticket .kn-reihe{justify-content:center;margin-top:clamp(14px,1.4vw,20px)}
+.fk-ticket .kn.kn.kn.kn{--o:#3f4767;--m:#2c334d;--u:#181c2d;--t:#fff;--licht:rgba(255,255,255,.26);--kante:rgba(0,0,0,.45);--tief:rgba(27,32,51,.5);--ko:#f9f1e1;--ku:#e2d2b5;--kt:var(--tinte);--klicht:rgba(255,255,255,.9)}
+.fk-ticket__riss{position:relative;border-left:2px dashed rgba(74,55,18,.4);margin:22px 0}
+.fk-ticket__riss::before,.fk-ticket__riss::after{content:'';position:absolute;left:-19px;width:36px;height:36px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 2px 5px rgba(0,0,0,.55)}
+.fk-ticket__riss::before{top:-41px}.fk-ticket__riss::after{bottom:-41px}
+.fk-ticket__stub{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:clamp(18px,1.8vw,28px) clamp(14px,1.6vw,26px)}
+.fk-ticket__em{width:clamp(56px,4.6vw,72px);height:auto;margin-bottom:8px;color:#5a4317}
+.fk-ticket__stub b{font-family:var(--caps);font-weight:600;font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:#4a3712}
+.fk-ticket__stub a{font-size:.98rem;color:#1b1608}.fk-ticket__stub a:hover{box-shadow:inset 0 -1px 0 currentColor}
+@media (max-width:960px){
+  .fk-ticket{grid-template-columns:minmax(0,1fr)}
+  .fk-ticket__b{margin:9px 9px 0;border-radius:17px 17px 0 0;min-height:0;aspect-ratio:16/8}
+  .fk-ticket__riss{border-left:0;border-top:2px dashed rgba(74,55,18,.4);margin:0 22px;height:0}
+  .fk-ticket__riss::before,.fk-ticket__riss::after{top:-19px;bottom:auto}.fk-ticket__riss::before{left:-41px}.fk-ticket__riss::after{left:auto;right:-41px}
+}
+@media (max-width:960px){.fk-ticket__b{height:clamp(150px,40vw,240px);aspect-ratio:auto}}
+/* Billett in Creme wie die Raumkarte (Robert 11.10.2026): helle Platte, doppelte Goldkante, Knopf wie auf der Karte */
+.fk-ticket{background:linear-gradient(180deg,#fcf7ee,#f4ecdc 60%,#ebe0cb);color:var(--tinte);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(124,106,82,.14),0 1.5px 0 #d6c7a8,0 50px 70px -40px rgba(0,0,0,.75)}
+.fk-ticket::before{inset:10px;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(159,137,111,.6),inset 0 0 0 5px rgba(252,247,238,.9),inset 0 0 0 6px rgba(159,137,111,.35)}
+.fk-ticket__b{margin:10px 0 10px 10px;border-radius:16px 0 0 16px}
+.fk-ticket .fk-caps{color:var(--akzent)}.fk-ticket .fk-caps i{background:rgba(152,115,60,.5)}
+.fk-ticket__satz{color:var(--tinte)}
+.fk-ticket .kn.kn.kn.kn{--o:#fdf9f1;--m:#f1e6d1;--u:#dccaa6;--t:#1b2033;--licht:#fff;--kante:rgba(124,106,82,.32);--tief:rgba(26,29,40,.32);--ko:#475177;--ku:#141826;--kt:#f7efdd;--klicht:rgba(255,249,238,.4)}
+.fk-ticket__riss{border-color:rgba(159,137,111,.55)!important}
+/* Kerben liegen über dem Innenrahmen: keine Linien quer durch die Einkerbung (Robert 12.10.2026) */
+.fk-ticket__riss{z-index:3}
+.fk-ticket__em{color:var(--akzent)}
+.fk-ticket__stub b{color:var(--taupe-tief)}
+.fk-ticket__stub a{color:var(--tinte)}
+@media (max-width:960px){.fk-ticket__b{margin:10px 10px 0;border-radius:16px 16px 0 0}}

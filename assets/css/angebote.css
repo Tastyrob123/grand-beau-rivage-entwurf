@@ -1,0 +1,541 @@
+/* Angebote & Packages, neu erzählt im Stil der Startseite (Robert 11.10.2026). Nur auf angebote.html und angebote-hero-NN.html geladen.
+   Inhalt: inhalt/f_angebote.py, Köpfe: angebote_koepfe.py. Bewegung nur über transform und opacity, Abdunklung ins Bild gerechnet. */
+
+/* ================= Köpfe ================= */
+.ag-k{--ag-top:clamp(130px,16vh,180px)}
+.ag-k .sk__in{position:relative;z-index:2}
+.ag-k .d1{font-size:clamp(3rem,7vw,7.4rem);line-height:.98}
+.ag-k .sk__satz{color:#fffaf0;max-width:40ch;text-wrap:balance}
+.ag-k .sk__in,.ag-links{text-shadow:0 1px 2px rgba(7,8,12,.55),0 4px 18px rgba(7,8,12,.45)}
+.ag-k .sk__em--gold{margin-bottom:clamp(16px,2vw,28px)}
+.ag-tapete{background:var(--nacht) url(../img/tapete-dunkel.webp?v=08c86b19) 50% 0/340px auto}
+/* die erste Fläche schiebt sich als Platte über den Kopf, wie auf den anderen Unterseiten */
+.sk.ag-k+section.fl{position:relative;z-index:4;margin-top:calc(-1*clamp(26px,3.6vw,56px));border-radius:clamp(26px,3.6vw,56px) clamp(26px,3.6vw,56px) 0 0;
+  box-shadow:inset 0 1px 0 rgba(214,186,128,.85),inset 0 2px 0 rgba(255,255,255,.55),0 -22px 60px -14px rgba(9,10,16,.6)}
+.ag-k .ag-auf,.ag-k .sk__caps{animation:skAuf 1.3s cubic-bezier(.16,1,.3,1) .5s backwards}
+
+/* mittige Köpfe: 01, 09 */
+.ag01,.ag09{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ag01 .sk__in,.ag09 .sk__in{display:flex;flex-direction:column;align-items:center;padding:var(--ag-top) var(--rand) clamp(80px,10vh,120px)}
+.ag01 .d1 .z,.ag09 .d1 .z,.ag04 .d1 .z{display:inline-block}.ag01 .d1 .z+.z,.ag09 .d1 .z+.z,.ag04 .d1 .z+.z{margin-left:.22em}
+.ag01 .kn-reihe,.ag09 .kn-reihe{justify-content:center}
+.ag-zeile{margin-top:clamp(26px,3vw,40px);padding:12px 4px;border-top:1px solid rgba(210,191,152,.55);border-bottom:1px solid rgba(210,191,152,.55);color:#fffaf0!important;letter-spacing:.2em!important;font-size:.8rem!important}
+.ag-zeile a{transition:color .3s}.ag-zeile a:hover{color:var(--gold)}
+
+/* 02 Fächer und 10 rundes Fenster: zwei Spalten auf der Tapete */
+.ag-zwei{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:clamp(30px,5vw,90px);min-height:100svh;padding:var(--ag-top) var(--rand) clamp(80px,10vh,120px);max-width:1640px;margin:0 auto}
+.ag-zwei .d1{font-size:clamp(3rem,6vw,6.6rem)}
+.ag-faecher{position:relative;height:min(62vh,600px)}
+.ag-f{position:absolute;top:50%;left:50%;width:clamp(170px,15vw,250px);padding:10px 10px 16px;border-radius:14px;background:linear-gradient(180deg,#fcf7ee,#f1e7d4);color:var(--tinte);text-align:center;
+  box-shadow:0 1px 0 #fff inset,0 30px 50px -22px rgba(0,0,0,.8),0 8px 16px -8px rgba(0,0,0,.5);
+  --r:0deg;--x:0px;--y:0px;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r));animation:agFach 1.5s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(.25s + var(--i)*.12s)}
+.ag-f0{--r:-14deg;--x:-210%;--y:6%}.ag-f1{--r:-5deg;--x:-72%;--y:-4%}.ag-f2{--r:5deg;--x:72%;--y:-4%}.ag-f3{--r:14deg;--x:210%;--y:6%}
+.ag-f0{--x:calc(-1*clamp(190px,17vw,300px));--y:30px}.ag-f1{--x:calc(-1*clamp(64px,5.6vw,100px));--y:-10px}.ag-f2{--x:clamp(64px,5.6vw,100px);--y:-10px}.ag-f3{--x:clamp(190px,17vw,300px);--y:30px}
+.ag-f__b{display:block;aspect-ratio:4/5;border-radius:8px;overflow:hidden}
+.ag-f__b img{width:100%;height:100%;object-fit:cover}
+.ag-f b{display:block;margin-top:12px;font:500 clamp(1.15rem,1.4vw,1.45rem)/1.1 var(--serif)}
+.ag-f small{display:block;margin-top:6px;font-family:var(--caps);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe-tief)}
+@keyframes agFach{from{opacity:0;transform:translate(-50%,calc(-50% + 120px)) rotate(0deg)}}
+
+/* 03 Karte der Auszeiten */
+.ag03{display:grid;place-items:center;padding:var(--ag-top) var(--rand) clamp(90px,11vh,130px)}
+.ag-karte{position:relative;z-index:2;width:min(780px,100%);padding:12px;border-radius:6px;background:linear-gradient(180deg,#fcf7ee,#f4ecdc 70%,#ede2cc);color:var(--tinte);text-align:center;
+  box-shadow:0 1px 0 #fff inset,0 30px 70px -20px rgba(0,0,0,.75),0 8px 18px -8px rgba(0,0,0,.5);animation:skAuf 1.5s cubic-bezier(.16,1,.3,1) .15s backwards}
+.ag-karte__in{border:1px solid rgba(159,137,111,.7);outline:1px solid rgba(159,137,111,.45);outline-offset:-7px;padding:clamp(24px,3vh,40px) clamp(22px,4vw,60px)}
+.ag-karte__em{width:54px;height:auto;color:var(--akzent);margin:0 auto 12px}
+.ag-karte__haus{font-family:var(--caps);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe-tief)}
+.ag03 .ag-karte .d1{margin-top:10px;font-size:clamp(2.6rem,4.6vw,4.6rem);color:var(--tinte);text-shadow:none}
+.ag03 .ag-karte .d1 .z{display:inline-block}.ag03 .ag-karte .d1 .z+.z{margin-left:.22em}
+.ag03 .ag-karte .d1 em{color:var(--akzent)}
+.ag-karte__satz{margin:12px auto 0;max-width:42ch;font:italic 500 1.12rem/1.45 var(--serif);color:rgba(26,29,40,.72)}
+.ag-kt{margin:clamp(16px,2.4vh,26px) auto 0;max-width:560px;text-align:left}
+.ag-kt li{padding:clamp(6px,.9vh,10px) 0;border-top:1px solid rgba(159,137,111,.28)}
+.ag-kt li:last-child{border-bottom:1px solid rgba(159,137,111,.28)}
+.ag-kt a{display:flex;align-items:baseline;gap:12px}
+.ag-kt__n{font:500 clamp(1.15rem,1.5vw,1.45rem)/1.15 var(--serif)}
+.ag-kt i{flex:1;border-bottom:1px dotted rgba(124,106,82,.6);transform:translateY(-4px)}
+.ag-kt__p{font-family:var(--caps);font-size:.86rem;letter-spacing:.08em;color:var(--akzent);white-space:nowrap}
+.ag-kt small{display:block;font-size:.84rem;color:rgba(26,29,40,.6)}
+.ag-kt a:hover .ag-kt__n{color:var(--akzent)}
+.ag03 .kn-reihe{justify-content:center;margin-top:clamp(16px,2.4vh,26px)}
+.ag03 .kn--linie,.ag08 .kn--linie,.ag-wand__karte .kn--linie{--o:#fcf7ee;--m:#f2e8d5;--u:#e2d2b5;--t:var(--tinte);--licht:rgba(255,255,255,.92);--kante:rgba(124,106,82,.38);--tief:rgba(26,29,40,.35);--ko:#3f4767;--ku:#11141f;--kt:#fff;--klicht:rgba(255,255,255,.24)}
+
+/* 04 Sommer | Winter: Bausteine von sk--halb */
+.ag04 .sk__h{position:relative;overflow:hidden}
+.ag04 .sk__h img{position:absolute;inset:0}
+
+/* 05 Bilderwand */
+.ag05{padding:var(--ag-top) var(--rand) clamp(80px,10vh,120px)}
+.ag-wand{display:grid;grid-template-columns:1fr 1fr 1.5fr 1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(10px,1vw,16px);height:calc(100svh - var(--ag-top) - clamp(80px,10vh,120px));min-height:520px;max-width:1700px;margin:0 auto}
+.ag-w{position:relative;border-radius:var(--r-l);overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 40px -24px rgba(0,0,0,.7);animation:skAuf 1.3s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(.1s + var(--i)*.07s)}
+.ag-w img{width:100%;height:100%;object-fit:cover}
+.ag-w0{grid-column:1/3;grid-row:1}.ag-w1{grid-column:1;grid-row:2}.ag-w2{grid-column:2;grid-row:2}
+.ag-w3{grid-column:4/6;grid-row:1}.ag-w4{grid-column:4;grid-row:2}.ag-w5{grid-column:5;grid-row:2}
+.ag-w6,.ag-w7{display:none}
+.ag-wand__karte{grid-column:3;grid-row:1/3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(20px,2.4vw,40px);border-radius:var(--r-xl);
+  background:var(--platte-h);box-shadow:var(--platte-h-s);color:var(--tinte);animation:skAuf 1.4s cubic-bezier(.16,1,.3,1) .2s backwards}
+.ag-wand__em{width:52px;height:auto;color:var(--akzent);margin-bottom:14px}
+.ag05 .ag-wand__karte .d1{font-size:clamp(2.4rem,3.6vw,4.2rem);color:var(--tinte);text-shadow:none}
+.ag05 .ag-wand__karte .d1 em{color:var(--akzent)}
+.ag-wand__satz{margin-top:14px;font-size:1rem;line-height:1.6;color:rgba(26,29,40,.78)}
+.ag-wand__karte .kn-reihe{justify-content:center;margin-top:20px}
+
+/* 06 Kalender */
+.ag06{display:flex;flex-direction:column;justify-content:flex-end;padding:var(--ag-top) var(--rand) clamp(80px,10vh,110px)}
+.ag-links{position:relative;z-index:2;max-width:760px}
+.ag-links .d1 .z{display:inline-block}.ag-links .d1 .z+.z{margin-left:.22em}
+.ag-kal{position:relative;z-index:2;margin-top:clamp(30px,5vh,56px);padding:clamp(18px,2vw,28px) clamp(18px,2.4vw,36px) clamp(14px,1.6vw,22px);border-radius:var(--r-xl);
+  background:rgba(17,20,31,.78);box-shadow:inset 0 0 0 1px rgba(210,191,152,.3),0 30px 60px -30px #000;animation:skAuf 1.3s cubic-bezier(.16,1,.3,1) .7s backwards}
+.ag-kal__mon{position:relative;height:22px;border-bottom:1px solid rgba(210,191,152,.45)}
+.ag-kal__mon span{position:absolute;left:calc(var(--x)*100%);top:0;padding-left:8px;border-left:1px solid rgba(210,191,152,.45);font-family:var(--caps);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);line-height:22px}
+.ag-kal__feld{position:relative;padding:12px 0 6px}
+.ag-bahn{position:relative;display:flex;align-items:baseline;gap:12px;margin:0 0 6px calc(var(--a)*100%);width:calc((var(--b) - var(--a))*100%);min-height:34px;padding:6px 12px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(210,191,152,.32),rgba(210,191,152,.14));box-shadow:inset 0 0 0 1px rgba(210,191,152,.5);white-space:nowrap;overflow:hidden;transition:background .3s}
+.ag-bahn:hover{background:linear-gradient(90deg,rgba(210,191,152,.5),rgba(210,191,152,.24))}
+.ag-bahn b{font:500 1.05rem/1.2 var(--serif);color:#fffaf0}
+.ag-bahn small{font-size:.78rem;color:rgba(255,250,240,.7);overflow:hidden;text-overflow:ellipsis}
+.ag-punkt{position:absolute;left:calc(var(--x)*100%);top:-30px;bottom:0;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
+.ag-punkt i{width:12px;height:12px;rotate:45deg;background:var(--gold);box-shadow:0 0 0 4px rgba(17,20,31,.9)}
+.ag-punkt b{position:absolute;bottom:-26px;font:500 1rem/1 var(--serif);color:var(--gold);white-space:nowrap}
+.ag-punkt small{display:none}
+.ag-punkt:first-of-type b{transform:translateX(-60%)}.ag-punkt:last-of-type b{transform:translateX(60%)}
+.ag-kal__feld{padding-bottom:30px}
+.ag-kal__heute{position:absolute;left:calc(var(--x)*100%);top:-34px;bottom:0;width:1px;background:#fffaf0}
+.ag-kal__heute em{position:absolute;top:-2px;left:6px;font-family:var(--caps);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#fffaf0}
+
+/* 07 Abzüge: Bausteine von sk--abzuege */
+.ag07 .sk__t{position:relative;z-index:2}
+
+/* 08 Preisleiter */
+.ag08{display:grid;grid-template-columns:.92fr 1.08fr;background:var(--papier) url(../img/tapete-hell.webp?v=fcea1245) 50% 0/340px auto;color:var(--tinte)}
+.ag-pl__b{position:relative;overflow:hidden}
+.ag-pl__b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:skBild 2.8s cubic-bezier(.16,1,.3,1) backwards}
+.ag-pl__t{display:flex;flex-direction:column;justify-content:center;padding:var(--ag-top) clamp(28px,5vw,96px) clamp(80px,10vh,110px)}
+.ag-pl__em{width:56px;height:auto;color:var(--akzent);margin-bottom:16px}
+.ag08 .d1{color:var(--tinte)}.ag08 .d1 em{color:var(--akzent)}
+.ag08 .sk__satz{color:rgba(26,29,40,.78)}
+.ag-leiter{margin-top:clamp(18px,2.6vh,30px);border-top:1px solid var(--linie)}
+.ag-leiter a{display:grid;grid-template-columns:minmax(150px,auto) 1fr;align-items:baseline;gap:22px;padding:clamp(8px,1.3vh,14px) 0;border-bottom:1px solid var(--linie);animation:skAuf 1.2s cubic-bezier(.16,1,.3,1) backwards}
+.ag-leiter a:nth-child(1){animation-delay:.5s}.ag-leiter a:nth-child(2){animation-delay:.6s}.ag-leiter a:nth-child(3){animation-delay:.7s}.ag-leiter a:nth-child(4){animation-delay:.8s}
+.ag-leiter b{font:500 clamp(1.8rem,2.8vw,2.9rem)/1 var(--serif);color:var(--akzent);white-space:nowrap}
+.ag-leiter span{font:500 clamp(1.1rem,1.3vw,1.35rem)/1.2 var(--serif)}
+.ag-leiter small{display:block;margin-top:2px;font-family:var(--caps);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-tief)}
+.ag-leiter a:hover span{color:var(--akzent)}
+
+/* 09 Überblendung: nur opacity, steht still, wenn der Kopf nicht sichtbar ist */
+.ag-ub{position:absolute;inset:0;z-index:0}
+.ag-ub__f{position:absolute;inset:0;opacity:0;animation:agUb 30s linear infinite;animation-delay:calc(var(--i)*6s - 1.6s)}
+.ag-ub__f:first-child{animation-name:agUb0}
+.ag-ub__f img{width:100%;height:100%;object-fit:cover}
+@keyframes agUb{0%{opacity:0}5.4%,20%{opacity:1}25.4%,100%{opacity:0}}
+@keyframes agUb0{0%,20%{opacity:1}25.4%,94.6%{opacity:0}100%{opacity:1}}
+.ag-ub__f:first-child{animation-delay:0s}
+.ag-ub__zeilen{position:relative;height:3.6em;margin-top:clamp(18px,2.4vh,28px);width:min(560px,90vw)}
+.ag-ub__z{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;animation:agUbZ 30s linear infinite;animation-delay:calc(var(--i)*6s)}
+.ag-ub__z:first-child{animation-name:agUbZ0;animation-delay:0s}
+.ag-ub__z b{font-family:var(--caps);font-weight:400;font-size:.86rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.ag-ub__z span{margin-top:4px;font:500 1.25rem/1.2 var(--serif);color:#fffaf0}
+@keyframes agUbZ{0%,1%{opacity:0;transform:translateY(10px)}5%,18%{opacity:1;transform:none}21%,100%{opacity:0;transform:translateY(-10px)}}
+@keyframes agUbZ0{0%,18%{opacity:1;transform:none}21%,99%{opacity:0;transform:translateY(-10px)}100%{opacity:1}}
+.ag-ub__z{pointer-events:none}.ag-ub__z:hover b{color:#fffaf0}
+.ag-steht .ag-ub__f,.ag-steht .ag-ub__z{animation-play-state:paused}
+.ag09 .sk__in{padding-top:calc(var(--ag-top) + 10px)}
+@media (prefers-reduced-motion:reduce){.ag-ub__f,.ag-ub__z{animation:none}.ag-ub__f:first-child,.ag-ub__z:first-child{opacity:1}}
+
+/* 10 rundes Fenster */
+.ag-rund{position:relative;width:min(100%,62vh,640px);aspect-ratio:1;margin:0 auto;animation:skAuf 1.5s cubic-bezier(.16,1,.3,1) .3s backwards}
+.ag-rund img{position:absolute;inset:4%;width:92%;height:92%;object-fit:cover;border-radius:50%;box-shadow:0 40px 70px -30px rgba(0,0,0,.85)}
+.ag-rund svg{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:var(--gold);stroke-width:.6}
+.ag-rund figcaption{position:absolute;right:-2%;bottom:6%;display:flex;flex-direction:column;align-items:center;justify-content:center;width:31%;aspect-ratio:1;border-radius:50%;
+  background:var(--platte-h);box-shadow:var(--platte-h-s);color:var(--tinte);text-align:center;font:500 clamp(1rem,1.3vw,1.3rem)/1.1 var(--serif)}
+.ag-rund small{display:block;margin-top:6px;max-width:12ch;font-family:var(--caps);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.5;color:var(--taupe-tief)}
+
+/* ================= Seite ================= */
+.ag-titel{font-size:clamp(2.6rem,6.4vw,7rem)!important;line-height:1}
+.ag-titel .z{padding:.06em 0 .1em;margin:-.06em 0 -.1em}
+/* Auswahl */
+.ag-vier{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.6vw,26px)}
+.ag-wahl .kachel__n small span+span::before{content:' · '}
+/* Bühnen */
+.ag-pk .kopfzeile .lauf{max-width:56ch}
+.fl--nacht.ag-pk .lauf{color:rgba(255,255,255,.84)}
+.ag-buehne{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:clamp(30px,4.6vw,90px)}
+.ag-buehne--um .ag-bilder{order:2}
+.ag-bilder{position:relative;aspect-ratio:1/1.02;min-width:0}
+.ag-b{position:absolute}
+.ag-b .foto{border-radius:var(--r-xl);overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.09),0 34px 48px -24px rgba(0,0,0,.6),0 12px 18px -10px rgba(0,0,0,.35)}
+.ag-b .foto img{width:100%;height:100%;object-fit:cover}
+.ag-b--a{left:8%;top:0;width:62%}.ag-b--a .foto{aspect-ratio:4/5}
+.ag-b--b{right:0;top:9%;width:36%}.ag-b--b .foto{aspect-ratio:3/4}
+.ag-b--c{left:0;bottom:2%;width:34%}.ag-b--c .foto{aspect-ratio:1/1}
+.ag-b--d{right:4%;bottom:0;width:44%}.ag-b--d .foto{aspect-ratio:4/3}
+.ag-buehne--um .ag-b--a{left:auto;right:8%}.ag-buehne--um .ag-b--b{right:auto;left:0}.ag-buehne--um .ag-b--c{left:auto;right:0}.ag-buehne--um .ag-b--d{right:auto;left:4%}
+.ag-b--a{z-index:1}.ag-b--b{z-index:2}.ag-b--c{z-index:3}.ag-b--d{z-index:2}
+.ag-b .foto figcaption{position:absolute;left:0;bottom:0;padding:11px 20px 10px 18px;border-top-right-radius:18px;background:var(--papier);color:var(--tinte);font:500 1.05rem/1.2 var(--serif)}
+.fl--creme .ag-b .foto figcaption{background:var(--creme)}
+/* Karte des Hauses: hell auf Nacht, Marine auf Creme */
+.ag-pk__karte{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(30px,3.4vw,58px) clamp(22px,3vw,52px);border-radius:var(--r-xl);
+  background:var(--platte-h);box-shadow:var(--platte-h-s);color:var(--tinte)}
+.ag-pk__karte::before{content:'';position:absolute;inset:clamp(10px,1vw,14px);border-radius:16px;border:1px solid rgba(159,137,111,.42);pointer-events:none;z-index:-1}
+.fl--creme .ag-pk__karte{background:var(--platte-d);box-shadow:var(--platte-d-s);color:#fff}
+.fl--creme .ag-pk__karte::before{border-color:rgba(210,191,152,.32)}
+.ag-art{display:flex;align-items:center;gap:14px;font-family:var(--caps);font-weight:600;font-size:clamp(.72rem,.84vw,.88rem);letter-spacing:.34em;text-transform:uppercase;color:var(--akzent)}
+.ag-art span{padding-left:.34em}
+.ag-art i{display:block;width:clamp(34px,3.4vw,56px);height:1px;background:linear-gradient(90deg,transparent,currentColor)}
+.ag-art i:last-child{background:linear-gradient(90deg,currentColor,transparent)}
+.dunkel .ag-art,.fl--creme .ag-pk__karte .ag-art{color:var(--gold)}
+.fl--nacht .ag-pk__karte .ag-art{color:var(--akzent)}
+.ag-preis{margin-top:clamp(14px,1.6vw,22px);font:500 clamp(2.8rem,4.6vw,4.8rem)/1 var(--serif);letter-spacing:-.01em}
+.ag-preis small{display:block;margin-top:10px;font-family:var(--sans);font-size:.9rem;line-height:1.4;letter-spacing:0;color:rgba(26,29,40,.66)}
+.fl--creme .ag-preis{color:#fffaf0}.fl--creme .ag-preis small{color:rgba(255,255,255,.66)}
+.ag-zeit{margin-top:12px;font-family:var(--caps);font-size:clamp(.66rem,.74vw,.78rem);letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-tief)}
+.fl--creme .ag-zeit{color:rgba(210,191,152,.9)}
+.ag-orn{display:block;width:clamp(150px,13vw,210px);height:auto;margin:clamp(16px,1.6vw,24px) auto 0;fill:none;stroke:var(--taupe);stroke-width:1}
+.ag-orn path:last-child{fill:var(--taupe);stroke:none}
+.fl--creme .ag-orn,.ag-festtage .ag-orn{stroke:var(--gold)}.fl--creme .ag-orn path:last-child{fill:var(--gold)}
+.ag-inkl__k{margin-top:clamp(14px,1.6vw,22px);font-family:var(--caps);font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe-tief)}
+.fl--creme .ag-inkl__k{color:rgba(210,191,152,.85)}
+.ag-inkl{width:min(100%,460px);margin:6px auto 0}
+.ag-inkl li{position:relative;padding:clamp(8px,.8vw,11px) 6px;font:500 clamp(1.02rem,1.18vw,1.22rem)/1.32 var(--serif)}
+.ag-inkl li+li::before{content:'';position:absolute;left:50%;top:0;width:56px;height:1px;margin-left:-28px;background:rgba(159,137,111,.45)}
+.fl--creme .ag-inkl li{color:rgba(252,247,238,.92)}.fl--creme .ag-inkl li+li::before{background:rgba(210,191,152,.4)}
+.ag-pk__karte .kn-reihe{justify-content:center;margin-top:clamp(18px,2vw,28px)}
+.fl--nacht .ag-pk__karte .kn--linie{--o:#fcf7ee;--m:#f2e8d5;--u:#e2d2b5;--t:var(--tinte);--licht:rgba(255,255,255,.92);--kante:rgba(124,106,82,.38);--tief:rgba(26,29,40,.35);--ko:#3f4767;--ku:#11141f;--kt:#fff;--klicht:rgba(255,255,255,.24)}
+/* Teile der Karte erscheinen nacheinander */
+.ag-pk__karte .ag-art,.ag-pk__karte .ag-preis,.ag-pk__karte .ag-zeit,.ag-pk__karte .ag-inkl__k,.ag-pk__karte li,.ag-pk__karte .kn-reihe{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
+.ag-pk__karte .ag-orn{transform:scaleX(0);transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+.ag-pk__karte.da :is(.ag-art,.ag-preis,.ag-zeit,.ag-inkl__k,li,.kn-reihe){opacity:1;transform:none}.ag-pk__karte.da .ag-orn{transform:none}
+.ag-pk__karte.da .ag-preis{transition-delay:.12s}.ag-pk__karte.da .ag-zeit{transition-delay:.22s}.ag-pk__karte.da .ag-orn{transition-delay:.3s}.ag-pk__karte.da .ag-inkl__k{transition-delay:.38s}
+.ag-pk__karte.da li{transition-delay:calc(.45s + var(--j,0)*.07s)}.ag-pk__karte.da .kn-reihe{transition-delay:.8s}
+
+/* Festtage: zwei Einladungen */
+.ag-fest-zwei{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,40px);align-items:start}
+.ag-fest{border-radius:var(--r-xl);background:var(--platte-d);box-shadow:var(--platte-d-s);overflow:hidden}
+.ag-fest__b{position:relative;aspect-ratio:16/10;overflow:hidden}
+.ag-fest__b img{width:100%;height:100%;object-fit:cover}
+.ag-fest__datum{position:absolute;left:clamp(16px,2vw,28px);bottom:clamp(-1px,0px,0px);display:flex;align-items:flex-end;gap:14px;padding:16px 26px 12px 22px;border-radius:20px 20px 0 0;background:#232940;box-shadow:inset 0 1px 0 rgba(210,191,152,.4)}
+.ag-fest__datum b{font:500 clamp(3.4rem,5vw,5.2rem)/.82 var(--serif);color:var(--gold)}
+.ag-fest__datum span{padding-bottom:6px;font-family:var(--caps);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#fffaf0;max-width:14ch;line-height:1.5}
+.ag-fest__t{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(22px,2.6vw,40px) clamp(20px,2.6vw,44px) clamp(26px,3vw,46px)}
+.ag-fest__satz{margin-top:16px;max-width:30ch;font:500 clamp(1.35rem,1.9vw,1.95rem)/1.3 var(--serif);color:#fffaf0;text-wrap:balance}
+.ag-festtage .ag-inkl{margin-top:16px}.ag-festtage .ag-inkl li{color:rgba(252,247,238,.86);font-size:clamp(1rem,1.1vw,1.14rem)}.ag-festtage .ag-inkl li+li::before{background:rgba(210,191,152,.36)}
+.ag-fest__noch{margin-top:18px;font-family:var(--caps);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.ag-fest__noch b{font:500 1.6rem/1 var(--serif);letter-spacing:0;color:#fffaf0;margin:0 .2em}
+.ag-fest .kn-reihe{justify-content:center;margin-top:20px}
+/* Anlässe: Band wie die Ausflüge der Startseite */
+.ag-anlaesse .gang__kopf{flex-direction:column;align-items:center;text-align:center}
+.ag-anlaesse .gang__kopf .lauf{max-width:50ch;margin-inline:auto}
+.ag-anlaesse .band>.karte{flex:none;width:clamp(260px,28vw,400px)}
+.ag-anlaesse .karte__t{font-size:.98rem;line-height:1.6;color:rgba(26,29,40,.78)}
+/* Gutschein als Geschenkkarte */
+.ag-geschenk{position:relative;padding:clamp(120px,14vw,220px) var(--rand);overflow:hidden;background:var(--nacht)}
+.ag-geschenk__bild{position:absolute;inset:0;margin:0}
+.ag-geschenk__bild img{width:100%;height:100%;object-fit:cover;filter:none}
+.ag-geschenk__bild::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,20,31,.25),rgba(17,20,31,.5))}
+.ag-geschenk .in{position:relative;display:flex;justify-content:center}
+.ag-geschenk__karte{width:min(680px,100%);padding:12px;border-radius:8px;background:linear-gradient(180deg,#fcf7ee,#f4ecdc 70%,#ede2cc);color:var(--tinte);text-align:center;box-shadow:0 1px 0 #fff inset,0 40px 80px -24px rgba(0,0,0,.8)}
+.ag-geschenk__karte>*{position:relative}
+.ag-geschenk__karte{outline:1px solid rgba(159,137,111,.6);outline-offset:-12px;padding:clamp(34px,4vw,60px) clamp(24px,4vw,64px)}
+.ag-geschenk__em{width:56px;height:auto;color:var(--akzent);margin:0 auto 14px}
+.ag-geschenk .ag-art{justify-content:center;color:var(--akzent)}
+.ag-geschenk .d2{margin-top:12px;color:var(--tinte)}.ag-geschenk .d2 em{color:var(--akzent)}
+.ag-geschenk__satz{margin:16px auto 0;max-width:46ch;color:rgba(26,29,40,.8)}
+.ag-geschenk__liste{width:min(100%,420px);margin:22px auto 0;border-top:1px solid var(--linie)}
+.ag-geschenk__liste div{display:flex;justify-content:space-between;gap:20px;padding:10px 4px;border-bottom:1px solid var(--linie);font:500 1.15rem/1.3 var(--serif)}
+.ag-geschenk__liste dd{font-family:var(--caps);font-size:.86rem;letter-spacing:.08em;color:var(--akzent)}
+.ag-geschenk .kn-reihe{justify-content:center;margin-top:24px}
+.ag-geschenk__fuss{margin-top:16px;font-family:var(--caps);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-tief)}
+.ag-geschenk .kn--linie{--o:#fcf7ee;--m:#f2e8d5;--u:#e2d2b5;--t:var(--tinte);--licht:rgba(255,255,255,.92);--kante:rgba(124,106,82,.38);--tief:rgba(26,29,40,.35);--ko:#3f4767;--ku:#11141f;--kt:#fff;--klicht:rgba(255,255,255,.24)}
+
+/* ================= Handy und schmale Schirme ================= */
+@media (max-width:1100px){
+  .ag-vier{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ag-wand{grid-template-columns:1fr 1.6fr 1fr}.ag-w0{grid-column:1;grid-row:1}.ag-w1{grid-column:1;grid-row:2}.ag-w3{grid-column:3;grid-row:1}.ag-w4{grid-column:3;grid-row:2}.ag-w2,.ag-w5{display:none}.ag-wand__karte{grid-column:2}
+}
+@media (max-width:860px){
+  .ag-buehne{grid-template-columns:minmax(0,1fr)}.ag-buehne--um .ag-bilder{order:0}
+  .ag-bilder{aspect-ratio:1/1.05}
+  .ag-fest-zwei{grid-template-columns:minmax(0,1fr)}
+  .ag-zwei{grid-template-columns:minmax(0,1fr);min-height:0;gap:40px}
+  .ag-faecher{height:340px}.ag-f{width:150px}.ag-f0{--x:-130px}.ag-f1{--x:-44px}.ag-f2{--x:44px}.ag-f3{--x:130px}
+  .ag-wand{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto;min-height:0}
+  .ag-wand__karte{grid-column:1/3;grid-row:1}.ag-w0{grid-column:1;grid-row:2;aspect-ratio:1}.ag-w3{grid-column:2;grid-row:2;aspect-ratio:1}.ag-w1,.ag-w4{display:none}
+  .ag08{grid-template-columns:minmax(0,1fr)}.ag-pl__b{height:46svh}.ag-pl__t{padding-top:50px}
+  .ag-kal__mon span{font-size:.56rem;letter-spacing:.08em;padding-left:4px}
+  .ag-bahn small{display:none}.ag-bahn b{font-size:.92rem}
+  .ag-rund{width:min(100%,80vw)}
+  .ag-ub__zeilen{height:4.4em}
+}
+@media (max-width:560px){
+  .ag-vier{gap:10px}
+  .ag-kt__p{font-size:.74rem}
+  .ag-f{width:120px;padding:6px 6px 10px}.ag-f small{display:none}.ag-f0{--x:-104px}.ag-f1{--x:-36px}.ag-f2{--x:36px}.ag-f3{--x:104px}
+  .ag-fest__datum{padding:12px 18px 8px 16px}
+}
+/* Bildname oben links, damit das kleine Foto unten ihn nicht verdeckt */
+.ag-b .foto figcaption{top:0;bottom:auto;border-radius:0 0 18px 0;padding:9px 20px 11px 18px}
+/* Blätter-Schild der Vergleichsseiten angebote-hero-NN.html (aus fassungen.css), unten mittig */
+.schild{position:fixed;z-index:80;left:16px;bottom:16px;display:flex;align-items:center;gap:4px;height:50px;padding:5px;border-radius:999px;background:var(--nacht);color:#fff;box-shadow:inset 0 0 0 1px rgba(210,191,152,.35),0 18px 30px -16px rgba(0,0,0,.8)}
+.schild>a:not(.schild__m){display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font-size:22px;line-height:1;color:var(--gold);background:rgba(255,255,255,.06)}
+.schild>a:not(.schild__m):hover{background:rgba(255,255,255,.14)}
+.schild__m{display:flex;align-items:center;gap:10px;padding:0 10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.schild__m b{font-family:var(--caps);font-weight:400;font-size:15px;color:var(--gold)}
+@media (max-width:700px){.schild__m span{display:none}}
+.schild{left:50%;transform:translateX(-50%)}
+
+/* ---- Feinschliff nach der ersten Sichtung ---- */
+.ag04 .sk__in{position:absolute}
+.ag04 .sk__cap{z-index:2}
+/* 02 Fächer weiter auseinander, Namen frei */
+.ag-f{width:clamp(160px,13.6vw,214px)}
+.ag-f0{--x:calc(-1*clamp(200px,16.6vw,262px));--y:34px}.ag-f1{--x:calc(-1*clamp(68px,5.6vw,88px));--y:-8px}.ag-f2{--x:clamp(68px,5.6vw,88px);--y:-8px}.ag-f3{--x:clamp(200px,16.6vw,262px);--y:34px}
+/* 03 Karte breiter und flacher, Angebote in zwei Spalten */
+.ag-karte{width:min(980px,100%)}
+.ag-karte__in{padding:clamp(20px,2.6vh,34px) clamp(22px,3.6vw,56px)}
+.ag-karte__em{width:44px;margin-bottom:8px}
+.ag-kt{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,3vw,48px);max-width:none}
+.ag-kt li:nth-last-child(2){border-bottom:1px solid rgba(159,137,111,.28)}
+/* 06 Kalender im ersten Blick */
+.ag06 .sk__em--gold{width:clamp(52px,4.6vw,70px);margin-bottom:12px}
+.ag06 .d1{font-size:clamp(2.8rem,5.4vw,5.6rem)}
+.ag06 .sk__satz{margin-top:12px}
+.ag06 .kn-reihe{margin-top:18px}
+.ag-kal{margin-top:clamp(22px,3.4vh,40px)}
+/* 08 Preisleiter kompakter */
+.ag08 .d1{font-size:clamp(2.6rem,4.8vw,5.2rem)}
+.ag-pl__em{width:46px;margin-bottom:10px}
+.ag-leiter b{font-size:clamp(1.6rem,2.3vw,2.4rem)}
+.ag-leiter a{padding:clamp(6px,1vh,11px) 0}
+.ag08 .kn-reihe{margin-top:clamp(16px,2.4vh,26px)}
+/* 10 Medaillon lesbar */
+.ag-rund figcaption{width:34%;padding:0 8px}
+.ag-rund small{max-width:none;font-size:.52rem;letter-spacing:.1em}
+/* 06 Punkte und Heute innerhalb des Feldes */
+.ag-kal__feld{padding-bottom:38px}
+.ag-punkt{top:0;bottom:0;width:0;border-left:1px dashed rgba(210,191,152,.7);transform:none}
+.ag-punkt i{position:absolute;top:-6px;left:-6px}
+.ag-punkt b{bottom:6px;left:0;font-size:1rem}
+.ag-punkt:first-of-type b{transform:translateX(calc(-100% - 10px))}.ag-punkt:last-of-type b{transform:translateX(10px)}
+.ag-kal__heute{top:0}
+.ag-kal__heute em{top:auto;bottom:8px;left:8px}
+.ag-punkt:first-of-type b,.ag-punkt:last-of-type b{transform:none}
+.ag-punkt0 b{transform:translateX(calc(-100% - 10px))!important}.ag-punkt1 b{transform:translateX(10px)!important}
+/* Handy-Feinschliff */
+.ag03{grid-template-columns:minmax(0,1fr)}
+@media (max-width:700px){
+  .ag-kt{grid-template-columns:minmax(0,1fr)}.ag-kt li:nth-last-child(2){border-bottom:0}
+  .ag-karte__haus{letter-spacing:.18em;font-size:.62rem}
+  .ag-leiter a{grid-template-columns:minmax(0,1fr);gap:2px}
+  .ag-punkt b,.ag-kal__heute em{display:none}
+}
+@media (max-width:560px){
+  .ag-vier .kachel__n b{font-size:1.02rem;line-height:1.15;hyphens:none;overflow-wrap:normal}
+  .ag-vier .kachel__n small span+span{display:none}
+}
+
+/* ---- Fotos je Package: Mischung aus Collage und Gefüge (Robert 11.10.2026: «vorher besser, aber strukturierter und geordneter»).
+   Raster 12 × 12: ein grosses Foto, drei kleine; jedes kleine greift genau eine Rasterzelle über das grosse, Abstände gleich,
+   Kanten fluchten. Ein Ring in der Farbe des Abschnitts trennt die Überlappung. Je Package gespiegelt oder gekippt. ---- */
+.ag-buehne{align-items:center}
+.ag-buehne--um .ag-gf{order:2}
+.ag-gf{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(12,minmax(0,1fr));aspect-ratio:1/1;min-width:0;--ring:var(--nacht)}
+.fl--creme .ag-gf{--ring:var(--creme)}
+.ag-g{position:relative;min-width:0;min-height:0;z-index:2}
+.ag-g:first-child{z-index:1}
+/* Tiefe wie in der ersten Fassung (Robert: «3D-Kacheleffekt wie vorher», keine Rahmen) */
+.ag-g .foto{width:100%;height:100%;border-radius:22px;overflow:hidden;background:var(--blau);box-shadow:0 0 0 1px rgba(255,255,255,.09),0 34px 48px -24px rgba(0,0,0,.6),0 12px 18px -10px rgba(0,0,0,.35)}
+.ag-g:first-child .foto{border-radius:28px}
+.fl--creme .ag-g .foto{box-shadow:0 0 0 1px rgba(255,255,255,.4),0 34px 48px -24px rgba(26,29,40,.5),0 12px 18px -10px rgba(26,29,40,.28)}
+.ag-g .foto img{width:100%;height:100%;object-fit:cover}
+/* gross links oben */
+/* Viertes Bild bündig mit der Aussenkante des grossen Bildes (Robert 11.10.2026: «weiter nach links, sonst ungeordnet») */
+.ag-gf--links .ag-g:nth-child(1){grid-column:1/9;grid-row:1/10}
+.ag-gf--links .ag-g:nth-child(2){grid-column:8/13;grid-row:2/6}
+.ag-gf--links .ag-g:nth-child(3){grid-column:8/13;grid-row:7/11}
+.ag-gf--links .ag-g:nth-child(4){grid-column:1/6;grid-row:9/13}
+/* gross rechts oben (gespiegelt) */
+.ag-gf--rechts .ag-g:nth-child(1){grid-column:5/13;grid-row:1/10}
+.ag-gf--rechts .ag-g:nth-child(2){grid-column:1/6;grid-row:2/6}
+.ag-gf--rechts .ag-g:nth-child(3){grid-column:1/6;grid-row:7/11}
+.ag-gf--rechts .ag-g:nth-child(4){grid-column:8/13;grid-row:9/13}
+/* gross links unten (gekippt) */
+.ag-gf--oben .ag-g:nth-child(1){grid-column:1/9;grid-row:4/13}
+.ag-gf--oben .ag-g:nth-child(2){grid-column:8/13;grid-row:3/7}
+.ag-gf--oben .ag-g:nth-child(3){grid-column:8/13;grid-row:8/12}
+.ag-gf--oben .ag-g:nth-child(4){grid-column:1/6;grid-row:1/5}
+/* gross rechts unten (gespiegelt und gekippt) */
+.ag-gf--unten .ag-g:nth-child(1){grid-column:5/13;grid-row:4/13}
+.ag-gf--unten .ag-g:nth-child(2){grid-column:1/6;grid-row:3/7}
+.ag-gf--unten .ag-g:nth-child(3){grid-column:1/6;grid-row:8/12}
+.ag-gf--unten .ag-g:nth-child(4){grid-column:8/13;grid-row:1/5}
+/* Bildnamen als Einkerbung statt Schrift im Bild (Robert 11.10.2026: «mit Einkerbungen arbeiten statt mit Texten in den Bildern»).
+   Baustein «Einkerbung» aus _gbr.css (.foto figcaption, Farbe der Fläche über --kf); hier nur die Ecke je Gefüge: immer die freie Ecke
+   des grossen Bildes, bei den kleinen unten links. */
+.ag-g .foto figcaption{--e:16px;z-index:2;pointer-events:none;font-size:clamp(.95rem,1.05vw,1.12rem)}
+.ag-g:not(:first-child) .foto figcaption{--e:12px;padding:7px 12px 5px 10px;font-size:clamp(.8rem,.85vw,.92rem)}
+.ag-gf--links .ag-g:first-child .foto figcaption{bottom:auto;top:-1px;border-radius:0 0 var(--e) 0}
+.ag-gf--links .ag-g:first-child .foto figcaption::before{bottom:auto;top:100%;background:radial-gradient(circle at 100% 100%,transparent calc(var(--e) - .5px),var(--kf,var(--papier)) var(--e))}
+.ag-gf--links .ag-g:first-child .foto figcaption::after{bottom:auto;top:0;background:radial-gradient(circle at 100% 100%,transparent calc(var(--e) - .5px),var(--kf,var(--papier)) var(--e))}
+.ag-gf--rechts .ag-g:first-child .foto figcaption{left:auto;right:-1px;bottom:auto;top:-1px;border-radius:0 0 0 var(--e);padding:10px 15px 8px 18px}
+.ag-gf--rechts .ag-g:first-child .foto figcaption::before{left:auto;right:0;bottom:auto;top:100%;background:radial-gradient(circle at 0 100%,transparent calc(var(--e) - .5px),var(--kf,var(--papier)) var(--e))}
+.ag-gf--rechts .ag-g:first-child .foto figcaption::after{left:auto;right:100%;bottom:auto;top:0;background:radial-gradient(circle at 0 100%,transparent calc(var(--e) - .5px),var(--kf,var(--papier)) var(--e))}
+.ag-gf--unten .ag-g:first-child .foto figcaption{left:auto;right:-1px;border-radius:var(--e) 0 0 0;padding:10px 15px 8px 18px}
+.ag-gf--unten .ag-g:first-child .foto figcaption::before{left:auto;right:0;background:radial-gradient(circle at 0 0,transparent calc(var(--e) - .5px),var(--kf,var(--papier)) var(--e))}
+.ag-gf--unten .ag-g:first-child .foto figcaption::after{left:auto;right:100%;background:radial-gradient(circle at 0 0,transparent calc(var(--e) - .5px),var(--kf,var(--papier)) var(--e))}
+/* Gefüge im Wechsel (Robert 11.10.2026, aus paket-varianten.html Fassung 1 und 2): «wand» = grosses Bild links, drei kleine rechts
+   übereinander; «reihe» = breites Bild oben, drei kleine darunter. Keine Überlappung, alle Kanten bündig, gleiche Abstände. */
+.ag-gf--wand,.ag-gf--reihe{--g:clamp(10px,1.1vw,16px);gap:var(--g)}
+.ag-gf--wand{grid-template-columns:2fr 1fr;grid-template-rows:repeat(3,minmax(0,1fr));aspect-ratio:1/1}
+.ag-gf--wand .ag-g:nth-child(1){grid-column:1;grid-row:1/4}
+.ag-gf--wand .ag-g:nth-child(n+2){grid-column:2}
+.ag-gf--reihe{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1.9fr 1fr;aspect-ratio:1/.92}
+.ag-gf--reihe .ag-g:nth-child(1){grid-column:1/4;grid-row:1}
+.ag-gf--reihe .ag-g:nth-child(n+2){grid-row:2}
+/* Bilder genau so hoch wie die Tafel daneben, oben und unten bündig (Robert 11.10.2026) */
+@media (min-width:861px){.ag-buehne:has(.ag-gf--wand,.ag-gf--reihe){align-items:stretch}.ag-buehne:has(.ag-gf--wand,.ag-gf--reihe)>.ag-pk__karte{align-self:stretch}.ag-gf--wand,.ag-gf--reihe{aspect-ratio:auto;height:auto;min-height:0}}
+#spa .ag-gf--wand .ag-g:first-child img{object-position:64% 50%}   /* hohes Bild: Gesicht statt weisser Wand */
+/* Tafel etwas grösser (Robert 11.10.2026: «die Kachel noch ein bisschen grösser»), die Bilder wachsen mit */
+@media (min-width:861px){.ag-buehne:has(.ag-gf--wand,.ag-gf--reihe){grid-template-columns:1.05fr 1fr}.ag-buehne:has(.ag-gf--wand,.ag-gf--reihe)>.ag-pk__karte{justify-content:center;min-height:clamp(560px,48vw,800px);padding-block:clamp(44px,4.4vw,76px)}}
+/* Viertes Bild steht über die Aussenkante des grossen Bildes hinaus (Robert 11.10.2026: «ein bisschen über den Bildrand, dass es übersteht») */
+@media (min-width:861px){
+  :is(.ag-gf--links,.ag-gf--oben) .ag-g:nth-child(4){margin-left:calc(-1*clamp(22px,3vw,48px));margin-right:clamp(22px,3vw,48px)}
+  :is(.ag-gf--rechts,.ag-gf--unten) .ag-g:nth-child(4){margin-right:calc(-1*clamp(22px,3vw,48px));margin-left:clamp(22px,3vw,48px)}
+}
+@media (max-width:860px){.ag-buehne--um .ag-gf{order:0}.ag-g .foto{border-radius:14px}.ag-g:first-child .foto{border-radius:18px}.ag-g:not(:first-child) figcaption{display:none}}
+
+/* Weniger Leerraum zwischen den Abschnitten (Robert 11.10.2026) */
+.ag-wahl,.ag-pk,.ag-festtage,.ag-anlaesse{padding-top:clamp(56px,5.6vw,96px);padding-bottom:clamp(56px,5.6vw,96px)}
+.ag-pk .kopfzeile,.ag-festtage .kopfzeile,.ag-wahl .kopfzeile{margin-bottom:clamp(26px,2.8vw,44px)}
+.ag-pk .raum--nur,.ag-festtage .raum--nur,.ag-wahl .raum--nur,.ag-anlaesse .raum--nur{margin-bottom:clamp(12px,1.4vw,20px)}
+.ag-pk .raum--nur svg,.ag-festtage .raum--nur svg,.ag-anlaesse .raum--nur svg{width:clamp(60px,5.4vw,84px);height:clamp(60px,5.4vw,84px)}
+.ag-geschenk{padding-top:clamp(90px,10vw,160px);padding-bottom:clamp(90px,10vw,160px)}
+.ag-geschenk .ag-geschenk__satz{color:rgba(26,29,40,.8)}
+/* Abstände edel statt gedrängt (Robert 11.10.2026: «luxuriöse, edle Abstände»): zwischen der ersten Fassung (~145 px) und der engen (~85 px) */
+.ag-wahl,.ag-pk,.ag-festtage,.ag-anlaesse{padding-top:clamp(80px,7.8vw,132px);padding-bottom:clamp(80px,7.8vw,132px)}
+.ag-pk .kopfzeile,.ag-festtage .kopfzeile,.ag-wahl .kopfzeile{margin-bottom:clamp(44px,4.4vw,72px);gap:clamp(20px,2vw,30px)}
+.ag-pk .raum--nur,.ag-festtage .raum--nur,.ag-wahl .raum--nur,.ag-anlaesse .raum--nur{margin-bottom:clamp(20px,2vw,30px)}
+.ag-buehne{gap:clamp(44px,5.8vw,112px)}
+.ag-fest-zwei{gap:clamp(24px,3vw,48px)}
+.ag-geschenk{padding-top:clamp(110px,12vw,190px);padding-bottom:clamp(110px,12vw,190px)}
+/* Abstand Preis ↔ Zeile darunter (Unterlängen) */
+.ag-preis small{margin-top:clamp(14px,1.3vw,18px)}
+
+/* ===== Anlässe als Hauszeitschrift (Robert 11.10.2026) ===== */
+.hz .ag-titel{text-align:center}
+.hz-kopf{max-width:1100px;margin:0 auto clamp(40px,4vw,64px);text-align:center}
+.hz-kopf__zeile{display:flex;justify-content:space-between;gap:20px;padding:10px 2px;border-top:1px solid rgba(152,115,60,.55);border-bottom:1px solid rgba(152,115,60,.25);font-family:var(--caps);font-size:clamp(.62rem,.72vw,.74rem);letter-spacing:.26em;text-transform:uppercase;color:var(--taupe-tief)}
+.hz-kopf__zeile--unten{border-top:1px solid rgba(152,115,60,.25);border-bottom:3px double rgba(152,115,60,.6)}
+.hz-kopf__name{padding:clamp(10px,1vw,16px) 0;font:500 clamp(3rem,7.4vw,7.6rem)/1 var(--serif);letter-spacing:.01em;color:var(--tinte)}
+.hz-schlag{margin-top:clamp(10px,1vw,16px)}
+.hz-vorspann{max-width:52ch;margin:clamp(14px,1.4vw,20px) auto 0;text-align:center}
+.hz-m .hz-b{margin:0}
+.hz-m .k3 .kachel__b{aspect-ratio:3/2}
+.hz-rubrik{display:inline-flex;align-items:center;gap:12px;font-family:var(--caps);font-weight:600;font-size:clamp(.66rem,.76vw,.78rem);letter-spacing:.3em;text-transform:uppercase;color:var(--akzent)}
+.hz-rubrik::before{content:'';width:26px;height:1px;background:currentColor;opacity:.7}
+.hz-titel{margin-top:clamp(10px,1vw,14px);font:500 clamp(1.6rem,2.2vw,2.3rem)/1.12 var(--serif);color:var(--tinte)}
+.hz-wann{margin-top:8px;font-family:var(--caps);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe-tief)}
+.hz-text{margin-top:clamp(12px,1.2vw,16px);font:500 clamp(1.08rem,1.25vw,1.24rem)/1.55 var(--serif);color:rgba(26,29,40,.86);max-width:46ch}
+/* Titelgeschichte: Bild gross links, Text rechts mit Initiale */
+.hz-titelg{margin-top:clamp(50px,5vw,84px);padding-bottom:clamp(50px,5vw,84px);border-bottom:1px solid rgba(152,115,60,.35)}
+.hz-m--gross{display:grid;grid-template-columns:1.35fr 1fr;align-items:center;gap:clamp(30px,4.6vw,84px)}
+.hz-m--gross .k3 .kachel__b{aspect-ratio:4/3.1}
+.hz-m--gross .hz-titel{font-size:clamp(2.2rem,3.6vw,3.8rem);line-height:1.04}
+.hz-text--initial{font-size:clamp(1.18rem,1.45vw,1.42rem)}
+.hz-text--initial::first-letter{float:left;margin:.06em .12em 0 0;font:500 3.6em/.82 var(--caps);color:var(--akzent)}
+/* zwei Geschichten mit Goldlinie dazwischen */
+.hz-zwei{display:grid;grid-template-columns:1fr 1px 1fr;gap:clamp(28px,3.6vw,60px);padding:clamp(50px,5vw,84px) 0;border-bottom:1px solid rgba(152,115,60,.35)}
+.hz-strich{display:block;width:1px;background:linear-gradient(transparent,rgba(152,115,60,.5) 12%,rgba(152,115,60,.5) 88%,transparent)}
+.hz-zwei .hz-m__t,.hz-drei .hz-m__t{margin-top:clamp(20px,2vw,28px)}
+/* drei Meldungen */
+.hz-drei{padding-top:clamp(40px,4vw,64px)}
+.hz-drei__kopf{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:clamp(30px,3vw,46px);font-family:var(--caps);font-weight:600;font-size:clamp(.72rem,.84vw,.86rem);letter-spacing:.32em;text-transform:uppercase;color:var(--akzent)}
+.hz-drei__kopf i{width:clamp(40px,5vw,90px);height:1px;background:rgba(152,115,60,.5)}
+.hz-drei__reihe{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:clamp(20px,2.6vw,44px)}
+.hz-drei .k3 .kachel__b{aspect-ratio:1/1}
+.hz-drei .hz-titel{font-size:clamp(1.4rem,1.8vw,1.85rem)}
+.hz-drei .hz-text{font-size:clamp(1rem,1.1vw,1.1rem)}
+@media (max-width:860px){
+  .hz-m--gross,.hz-zwei,.hz-drei__reihe{grid-template-columns:minmax(0,1fr)}
+  .hz-strich{width:auto;height:1px;background:rgba(152,115,60,.35)}
+  .hz-kopf__zeile span:last-child{display:none}.hz-kopf__zeile{justify-content:center}
+}
+
+/* ===== Anlässe als Titelseite «La Gazette du Rivage» (Robert 11.10.2026: Hauszeitung wie eine grosse Tageszeitung) ===== */
+.gzt{padding-top:clamp(100px,9vw,160px);padding-bottom:clamp(100px,9vw,160px)}
+.gz-blatt{max-width:1320px;margin:0 auto}
+.gz-kopf{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(20px,3vw,48px);padding-bottom:clamp(18px,1.8vw,26px)}
+.gz-ohr{justify-self:start;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 18px;border:1px solid rgba(152,115,60,.45);box-shadow:inset 0 0 0 3px var(--papier),inset 0 0 0 4px rgba(152,115,60,.25);font-family:var(--caps);text-transform:uppercase;color:var(--taupe-tief)}
+.gz-ohr--r{justify-self:end}
+.gz-ohr b{font-weight:600;font-size:.82rem;letter-spacing:.24em;color:var(--akzent)}
+.gz-ohr span{font-size:.66rem;letter-spacing:.2em}
+.gz-name{text-align:center}
+.gz-name__vor{font:italic 500 clamp(1rem,1.2vw,1.2rem)/1 var(--serif);color:var(--taupe-tief)}
+.gz-name__titel{margin-top:clamp(6px,.8vw,12px);font:500 clamp(3.2rem,8.2vw,8.8rem)/.92 var(--serif);letter-spacing:-.012em;color:var(--tinte);white-space:nowrap}
+.gz-name__titel em{font-style:italic;color:var(--akzent)}
+.gz-datum{display:flex;justify-content:space-between;gap:18px;padding:12px 4px;border-top:3px double rgba(26,29,40,.7);border-bottom:1px solid rgba(26,29,40,.55);font-family:var(--caps);font-size:clamp(.62rem,.72vw,.74rem);letter-spacing:.22em;text-transform:uppercase;color:var(--tinte)}
+.gz-front{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(0,1fr);gap:0;margin-top:clamp(34px,3.4vw,54px);padding-bottom:clamp(40px,4vw,64px);border-bottom:1px solid rgba(26,29,40,.45)}
+.gz-auf{padding-right:clamp(26px,3vw,52px);border-right:1px solid rgba(26,29,40,.3)}
+.gz-seite{padding-left:clamp(26px,3vw,52px);display:flex;flex-direction:column;gap:clamp(26px,2.6vw,38px)}
+.gz-dach{font-family:var(--caps);font-weight:600;font-size:clamp(.62rem,.7vw,.72rem);letter-spacing:.24em;text-transform:uppercase;color:var(--akzent)}
+.gz-schlag{margin-top:8px;font:500 clamp(1.45rem,1.9vw,1.95rem)/1.12 var(--serif);color:var(--tinte)}
+.gz-schlag--gross{margin-top:12px;font-size:clamp(2.6rem,4.8vw,5rem);line-height:1;letter-spacing:-.01em}
+.gz-vorspann{margin-top:clamp(14px,1.4vw,20px);max-width:52ch;font:italic 500 clamp(1.2rem,1.55vw,1.55rem)/1.4 var(--serif);color:rgba(26,29,40,.8)}
+.gz-bild{margin:clamp(24px,2.4vw,34px) 0 0}
+.gz-bild .k3 .kachel__b{aspect-ratio:16/10}
+.gz-seite .gz-bild,.gz-bericht .gz-bild{margin:0 0 14px}
+.gz-seite .gz-bild .k3 .kachel__b{aspect-ratio:3/2}
+.gz-legende{margin-top:10px;padding-top:8px;border-top:1px solid rgba(152,115,60,.3);font:italic 500 .98rem/1.4 var(--serif);color:var(--taupe-tief)}
+.gz-spalten{margin-top:clamp(22px,2.2vw,30px);columns:2;column-gap:clamp(24px,2.6vw,44px);column-rule:1px solid rgba(26,29,40,.18);font:500 clamp(1.08rem,1.2vw,1.2rem)/1.6 var(--serif);color:rgba(26,29,40,.88);text-align:justify;hyphens:auto}
+.gz-spalten p+p{margin-top:.8em}
+.gz-spalten--eng{columns:1}
+.gz-initial::first-letter{float:left;margin:.08em .1em 0 0;font:500 3.4em/.8 var(--caps);color:var(--akzent)}
+.gz-rubrik{display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:3px double rgba(26,29,40,.6);font-family:var(--caps);font-weight:600;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tinte)}
+.gz-kurz{padding-bottom:clamp(20px,2vw,28px);border-bottom:1px solid rgba(26,29,40,.18)}
+.gz-kurz:last-child{border-bottom:0;padding-bottom:0}
+.gz-kurz>p:last-child{margin-top:8px;font:500 1.04rem/1.5 var(--serif);color:rgba(26,29,40,.84)}
+.gz-kurz .gz-legende{display:none}
+.gz-unten{display:grid;grid-template-columns:1fr 1fr;padding-top:clamp(40px,4vw,64px)}
+.gz-bericht{padding-right:clamp(26px,3vw,52px)}
+.gz-bericht+.gz-bericht{padding:0 0 0 clamp(26px,3vw,52px);border-left:1px solid rgba(26,29,40,.3)}
+.gz-bericht .gz-schlag{font-size:clamp(1.8rem,2.6vw,2.7rem);line-height:1.06}
+.gz-bericht .gz-legende{display:none}
+.hz-kopf,.hz-titelg,.hz-zwei,.hz-drei{display:none}
+@media (max-width:1000px){.gz-kopf{grid-template-columns:minmax(0,1fr)}.gz-ohr{display:none}.gz-name__titel{white-space:normal}}
+@media (max-width:860px){
+  .gz-front,.gz-unten{grid-template-columns:minmax(0,1fr)}
+  .gz-auf{padding-right:0;border-right:0;padding-bottom:36px;border-bottom:1px solid rgba(26,29,40,.3)}
+  .gz-seite{padding-left:0;padding-top:30px}
+  .gz-bericht,.gz-bericht+.gz-bericht{padding:0 0 30px;border-left:0}
+  .gz-bericht+.gz-bericht{padding-top:30px;border-top:1px solid rgba(26,29,40,.3)}
+  .gz-spalten{columns:1}
+  .gz-datum{flex-direction:column;align-items:center;gap:4px;text-align:center}
+}
+/* Gazette: Termine-Kasten füllt die Spalte unter dem Aufmacher, führt zum Veranstaltungs-Guide */
+.gz-termine{margin-top:clamp(34px,3.4vw,50px)}
+.gz-termine ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,2.6vw,44px)}
+.gz-termine li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(26,29,40,.18)}
+.gz-termine b{grid-row:1/3;font:500 clamp(2.4rem,3.2vw,3.2rem)/.9 var(--serif);color:var(--akzent);min-width:1.4em}
+.gz-termine li span{display:none}
+.gz-termine em{font:500 clamp(1.15rem,1.35vw,1.35rem)/1.2 var(--serif);font-style:normal;color:var(--tinte)}
+.gz-termine small{grid-column:2;font-family:var(--caps);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-tief)}
+.gz-termine li b::after{content:attr(data-m)}
+.gz-mehr{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:clamp(20px,2vw,28px);padding:18px 22px;border-radius:999px;background:var(--nacht);color:#fcf7ee;font-family:var(--caps);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;transition:transform .5s var(--e2)}
+.gz-mehr i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:linear-gradient(180deg,#e9d39a,#b99558);color:var(--nacht)}
+.gz-mehr i svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+@media (hover:hover){.gz-mehr:hover{transform:translateY(-3px)}}
+@media (max-width:860px){.gz-termine ol{grid-template-columns:minmax(0,1fr)}}
+/* Package-Fenster (14.10.2026): «Jetzt buchen» an einem Package öffnet das Buchen-Fenster mit Foto, Name und Preis des Packages (Skript in f_angebote.py) */
+dialog.buchen.buchen--paket .buchen__t>h2,dialog.buchen.buchen--paket.buchen--anfrage .buchen__vorteil:not(.pk-hin){display:none}
+.pk-kopf[hidden],.pk-hin[hidden]{display:none}
+.pk-kopf .pk-art{display:flex;align-items:center;gap:12px;font-family:var(--caps);font-weight:600;font-size:.74rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.pk-kopf .pk-art span{padding-left:.32em}
+.pk-kopf .pk-art i{display:block;width:34px;height:1px;background:linear-gradient(90deg,transparent,currentColor)}
+.pk-kopf .pk-art i:last-child{background:linear-gradient(90deg,currentColor,transparent)}
+.pk-kopf h2{margin-top:12px}
+.pk-preis{margin-top:14px;font:500 clamp(1.7rem,2.4vw,2.2rem)/1.05 var(--serif);color:var(--gold)}
+.pk-preis small{display:block;margin-top:6px;font:400 .92rem/1.4 var(--sans);color:rgba(255,255,255,.72)}
+.pk-zeit{margin-top:10px;font-size:.92rem;line-height:1.5;color:rgba(255,255,255,.72)}
+.buchen__b .pk-foto{z-index:1}
+dialog.buchen--paket .buchen__b img:not(.pk-foto){visibility:hidden}   /* Package-Modus: nie kurz das Foto des Zimmer-Fensters (14.10.2026) */
+dialog.buchen:not(.buchen--paket) .buchen__b .pk-foto{display:none}
+.pk-hin a{white-space:nowrap}

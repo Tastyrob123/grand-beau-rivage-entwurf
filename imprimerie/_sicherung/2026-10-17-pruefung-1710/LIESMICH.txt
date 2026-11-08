@@ -1,0 +1,2 @@
+Sicherung vor Prüfung 1710 (17.10.2026): studio.css (+ overflow-anchor), index.html (studio.css?v=62 → 63).
+Grund: Firefox, Klick auf geneigte Karte ging verloren (Scroll-Anker-Schleife setzte .scrollt).

@@ -1,0 +1,581 @@
+/* La Maison · Empfang aller Werkzeuge des Grand Beau-Rivage (Robert 12.10.2026: «majestätisch, ein würdiger Empfang für eine Luxushotelkette»).
+   Aufbau wie ein Ankommen im Haus: Vorfahrt (das Haus von oben, Zeichen, Name, Gruss, Platte mit allen fünf Werkzeugen) · Goldband ·
+   je Werkzeug ein eigener Saal, jeder anders ausgelegt (Halle mit Tafel, Karten auf der Nacht, Fenster an der Aare, Drucksachen auf der Unterlage,
+   Tea Time mit Chat, Zeichen mit den Farben) · Fuss als Platte. Bausteine des Hauses: Knöpfe mit Tiefe, Glanzkante an den zwei Eck-Knöpfen,
+   Platte und Kuhle, Tapete Ton in Ton, Goldband, Fenster (sticky, ohne Skript), Bild-Vorhang, Hochschweben, Buchstaben-Rollen nur in der Leiste.
+   Bewegung nur über transform und opacity, ein Element je Blick. Vorher-Stand: ../_sicherung/maison-v1/ */
+@font-face{font-family:'Cormorant Garamond';font-weight:500;font-display:swap;src:url('../assets/fonts/cormorant-garamond-500-latin.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-weight:500;font-display:swap;src:url('../assets/fonts/cormorant-garamond-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF}
+@font-face{font-family:'Cinzel';font-weight:400 700;font-display:swap;src:url('../assets/fonts/Cinzel-latin.woff2') format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-display:swap;src:url('../assets/fonts/InstrumentSans-normal-400_600.woff2') format('woff2')}
+@font-face{font-family:'DM Mono';font-weight:400;font-display:swap;src:url('../assets/fonts/DMMono-normal-400.woff2') format('woff2')}
+:root{
+  --marine:#1b2033;--blau:#2c334d;--nacht:#141827;--tinte:#1a1d28;--papier:#f7f0e3;--creme:#efe4cf;--weiss:#fdf9f1;--sand:#e2d2b5;
+  --gold:#d2bf98;--goldhell:#f0e3c2;--taupe:#9f896f;--taupe-tief:#7d6a4f;--leise:rgba(26,29,40,.66);
+  --serif:'Cormorant Garamond',Georgia,serif;--caps:'Cinzel',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,Menlo,monospace;
+  --e1:cubic-bezier(.16,1,.3,1);--e2:cubic-bezier(.32,.72,0,1);
+  --rand:clamp(20px,4.6vw,76px);--max:1360px;
+  --platte:linear-gradient(180deg,#fdf9f1,#f7f0e3 55%,#f0e6d2);
+  --platte-s:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(159,137,111,.18),0 1.5px 0 rgba(120,100,70,.35),0 40px 60px -34px rgba(0,0,0,.75),0 14px 26px -16px rgba(0,0,0,.45);
+  --kuhle:linear-gradient(180deg,#e8ddc6,#efe6d3 40%,#f2eadb);
+  --kuhle-s:inset 0 3px 6px -1px rgba(26,29,40,.16),inset 0 1px 0 rgba(26,29,40,.08),inset 0 0 0 1px rgba(159,137,111,.14),0 1px 0 #fff;
+  --insel:radial-gradient(120% 160% at 50% -50%,rgba(150,166,214,.22),rgba(150,166,214,0) 60%),linear-gradient(180deg,#323a58 0%,#232a43 30%,#1b2033 66%,#141827 100%);
+  --insel-s:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(210,191,152,.42),0 26px 40px -20px rgba(0,0,0,.8),0 8px 14px -8px rgba(0,0,0,.5)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+html,body{margin:0;padding:0}
+body.ma{font-variant-numeric:lining-nums;background:var(--marine);color:var(--tinte);font:17px/1.62 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+.ma img{display:block;max-width:100%}
+.ma a{color:inherit}
+.ma svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+::selection{background:var(--sand);color:var(--tinte)}
+:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+
+/* ---------- Knöpfe mit Tiefe (Baustein des Hauses, wie Le Bureau) ---------- */
+.kn{--o:#3e4870;--m:#262d48;--u:#12162a;--t:#f7efdd;--licht:rgba(190,206,255,.34);--kante:rgba(0,0,0,.5);--tf:rgba(0,0,0,.55);
+  --ko:#f6e8c2;--ku:#b8975a;--kt:#1b2033;--klicht:rgba(255,250,232,.95);
+  position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:14px;height:54px;padding:0 7px 0 24px;border:0;border-radius:999px;text-decoration:none;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;white-space:nowrap;color:var(--t)!important;text-shadow:0 1px 1px rgba(0,0,0,.35);
+  background:linear-gradient(180deg,var(--o) 0%,var(--m) 46%,var(--u) 100%);
+  box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(210,191,152,.6),0 0 0 1px rgba(0,0,0,.25),0 18px 30px -14px var(--tf);
+  transition:transform .55s var(--e2)}
+.kn::after{content:'';position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(222,232,255,.3) 50%,transparent);transform:translateX(-180%) skewX(-18deg)}
+.kn i{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--ko),var(--ku));color:var(--kt);font-style:normal;
+  box-shadow:inset 0 1px 0 var(--klicht),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(210,191,152,.45),0 6px 12px -6px rgba(9,17,39,.55);transition:transform .6s var(--e2)}
+.kn i svg{width:15px;height:15px;stroke-width:1.8}
+@media (hover:hover){.kn:hover{transform:translateY(-2px)}.kn:hover::after{transform:translateX(360%) skewX(-18deg);transition:transform 1.1s var(--e1)}.kn:hover i{transform:translateX(2px) scale(1.06)}}
+.kn:active{transform:translateY(1px) scale(.985)}
+.kn--gold{--o:#f7e9c6;--m:#e3cd98;--u:#b99a5c;--t:#1b2033;--licht:rgba(255,252,240,.95);--kante:rgba(92,66,24,.5);--ko:#3e4870;--ku:#12162a;--kt:#f6e8c2;--klicht:rgba(190,206,255,.4);
+  text-shadow:0 1px 0 rgba(255,250,235,.5);box-shadow:inset 0 1px 0 var(--licht),inset 0 -3px 0 var(--kante),inset 0 0 0 1px rgba(255,240,205,.6),0 0 0 1px rgba(0,0,0,.35),0 18px 30px -14px rgba(0,0,0,.7)}
+.kn--gold::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.85) 50%,transparent)}
+.kn--klein{height:42px;padding:0 5px 0 17px;gap:10px;font-size:10.5px}.kn--klein i{width:32px;height:32px}
+@property --ga{syntax:"<angle>";initial-value:0deg;inherits:false}
+.glanz-kn::before{content:'';position:absolute;inset:0;z-index:-2;border-radius:inherit;padding:1.4px;pointer-events:none;
+  background:conic-gradient(from var(--ga),transparent 0 60%,rgba(210,191,152,.25) 70%,#fff3d2 80%,var(--gold) 86%,transparent 95%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ga 4.2s linear infinite}
+@keyframes ga{to{--ga:360deg}}
+
+/* ---------- Leiste oben: Insel in der Mitte, zwei Eck-Knöpfe mit Glanzkante ---------- */
+.m-oben{position:fixed;z-index:20;top:16px;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(14px,2vw,26px);pointer-events:none}
+.m-oben>*{pointer-events:auto}
+.m-insel{display:flex;align-items:center;gap:clamp(14px,1.8vw,28px);height:62px;padding:0 26px 0 9px;border-radius:999px;background:var(--insel);box-shadow:var(--insel-s);color:#f7efdd}
+.m-insel__marke{display:flex;align-items:center;gap:12px;padding-right:clamp(6px,1vw,14px);margin-right:2px;text-decoration:none;border-right:1px solid rgba(210,191,152,.28);height:40px}
+.m-insel__marke img{width:46px;height:46px;filter:drop-shadow(0 1px 0 rgba(0,0,0,.7)) drop-shadow(0 3px 8px rgba(0,0,0,.5))}
+.m-insel__marke span{font:500 15px/1 var(--caps);letter-spacing:.24em;text-transform:uppercase;color:var(--goldhell);padding-right:10px}
+.m-insel__p{font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;text-decoration:none;color:rgba(247,239,221,.86);transition:color .4s}
+.m-insel__p:hover,.m-insel__p.an{color:var(--goldhell)}
+.rl{display:inline-flex;overflow:hidden;height:1.25em;line-height:1.25em}
+.rl>b{display:inline-block;font-weight:400;white-space:pre;transition:transform .55s var(--e1);transition-delay:calc(var(--n)*16ms);text-shadow:0 1.25em 0 currentColor}
+@media (hover:hover){.m-insel__p:hover .rl>b{transform:translateY(-1.25em)}}
+.kn--hell{--o:#3e4870}
+.m-oben__ecke{flex:none}
+@media (max-width:1240px){.m-insel__p{display:none}.m-insel{padding-right:9px}.m-insel__marke{border:0;margin:0}}
+@media (max-width:640px){.m-oben__ecke:first-child{display:none}.m-oben{top:10px}.m-insel{height:54px}.m-insel__marke img{width:38px;height:38px}.m-insel__marke span{font-size:13px}}
+
+/* ---------- Auftritt (nur mit Skript; ohne Skript steht alles) ---------- */
+.js [data-r]{transform:translate3d(0,30px,0);transition:opacity 1.1s ease,transform 1.3s var(--e1);transition-delay:calc(var(--i,0)*90ms)}
+.js [data-r].da{opacity:1;transform:none}
+.js [data-r="schweb"]{transform:translate3d(0,70px,0) scale(.96);transition:opacity .9s ease,transform 1.05s var(--e1);transition-delay:calc(var(--i,0)*140ms)}
+.js [data-r="schweb"].da{transform:var(--lage,none)}
+.js [data-r="bild"]{opacity:1;transform:none}
+.m-vorhang{overflow:hidden}
+.m-vorhang img{transform:scale(1.13);transition:transform 1.9s var(--e1)}
+.m-vorhang.da img,html:not(.js) .m-vorhang img{transform:none}
+.js [data-r="blase"]{transform:translate3d(0,14px,0) scale(.98);transition-delay:calc(.35s + var(--i,0)*620ms)}
+.js [data-r="fach"]{transform:translate3d(0,40px,0);transition:opacity .8s ease,transform 1s var(--e1);transition-delay:calc(var(--i,0)*60ms)}
+
+/* ---------- Empfang ---------- */
+.m-empfang{position:relative;min-height:max(100svh,760px);overflow:hidden;isolation:isolate;background:var(--nacht);color:#fff;display:flex}
+.m-empfang__bild{position:absolute;inset:0;z-index:0}
+.m-empfang__bild img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+/* Hof hinter den Zeilen: weich, gross, das Foto bleibt sonst unverändert (Auftakt der Website) */
+.m-empfang__hof{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(50% 40% at 50% 38%,rgba(12,14,24,.55) 0%,rgba(12,14,24,.36) 45%,rgba(12,14,24,0) 100%),linear-gradient(180deg,rgba(12,14,24,.22) 0%,rgba(12,14,24,0) 20%,rgba(12,14,24,0) 70%,rgba(12,14,24,.35) 100%)}
+.m-empfang__vorhang{position:absolute;inset:0;z-index:2;background:var(--nacht);pointer-events:none;animation:vorhang 1.6s cubic-bezier(.4,0,.2,1) .1s forwards}
+@keyframes vorhang{to{opacity:0}}
+.m-empfang__in{min-height:max(100svh,760px);position:relative;z-index:3;width:100%;max-width:calc(1240px + 2*var(--rand));margin:0 auto;padding:clamp(118px,15vh,170px) var(--rand) clamp(30px,4vh,52px);display:flex;flex-direction:column;align-items:center;text-align:center}
+.m-empfang__zeichen{width:clamp(96px,10vw,148px);height:auto;filter:drop-shadow(0 2px 2px rgba(7,8,12,.6)) drop-shadow(0 10px 26px rgba(7,8,12,.55))}
+.js .m-empfang__zeichen{transform:translate3d(0,14px,0) scale(.96);transition:opacity 1.4s ease .5s,transform 1.8s var(--e1) .5s}
+.m-empfang__name{margin:clamp(18px,2vw,28px) 0 0;font-family:var(--caps);font-weight:400;font-size:clamp(1.6rem,4.8vw,4.4rem);letter-spacing:.2em;line-height:1.1;text-transform:uppercase;color:#fcf7ee;
+  text-shadow:0 1px 2px rgba(7,8,12,.6),0 6px 18px rgba(7,8,12,.5),0 14px 40px rgba(7,8,12,.4)}
+.m-empfang__name .w{display:inline-block;overflow:hidden;padding:.14em .02em .1em;margin:-.14em 0 -.1em;vertical-align:top}
+.m-empfang__name .w>b{display:inline-block;font-weight:inherit;white-space:pre}
+.js .m-empfang__name .w>b{transform:translate3d(0,110%,0);transition:transform 1.3s var(--e1);transition-delay:calc(.75s + var(--n)*42ms)}
+.js .m-empfang__name.da .w>b{transform:none}
+.m-empfang__ort{margin:clamp(12px,1.3vw,18px) 0 0;font-family:var(--caps);font-weight:600;font-size:clamp(.82rem,1.05vw,1.08rem);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+  text-shadow:0 0 .2em rgba(9,11,18,1),0 1px 2px rgba(9,11,18,1),0 2px 10px rgba(9,11,18,.9),0 4px 26px rgba(9,11,18,.7)}
+.m-empfang__gruss{margin:clamp(26px,3.4vh,44px) 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,4.4vw,4.4rem);line-height:1.06;letter-spacing:-.005em;color:#fff;
+  text-shadow:0 1px 2px rgba(7,8,12,.6),0 4px 22px rgba(7,8,12,.55)}
+.m-hell{color:var(--goldhell)}
+.m-empfang__datum{margin:12px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.86);text-shadow:0 1px 2px rgba(7,8,12,.9),0 3px 12px rgba(7,8,12,.7)}
+.js .m-empfang [data-r]:not(.m-empfang__zeichen){transition-delay:calc(1.25s + var(--i,0)*130ms)}
+
+/* Platte mit allen fünf Werkzeugen, wie die Buchungsleiste der Website: Papier, fünf Kuhlen */
+.m-platte{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;width:100%;margin:auto 0 0;padding:9px;border-radius:30px;text-align:left;color:var(--tinte);
+  background:var(--platte);box-shadow:var(--platte-s),0 50px 80px -30px rgba(7,8,12,.75)}
+.js .m-platte[data-r]{transform:translate3d(0,clamp(50px,6vw,90px),0);transition:opacity 1.2s ease 1.9s,transform 1.9s cubic-bezier(.2,.72,.2,1) 1.9s}
+.js .m-platte[data-r].da{transform:none}
+.m-empfang__in>.m-platte{margin-top:auto}
+.m-empfang__datum{margin-bottom:clamp(36px,6vh,80px)!important}
+.m-platte__k{position:relative;display:grid;align-content:start;gap:4px;min-height:118px;padding:16px 20px 15px;border-radius:22px;text-decoration:none;background:var(--kuhle);box-shadow:var(--kuhle-s);transition:transform .55s var(--e2),box-shadow .55s var(--e2)}
+.m-platte__w{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief)}
+.m-platte__k b{position:relative;width:fit-content;font:500 clamp(1.45rem,1.9vw,1.85rem)/1.05 var(--serif);color:var(--marine)}
+.m-platte__k b::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1px;background:var(--taupe);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--e1)}
+.m-platte__s{font-size:13px;line-height:1.4;color:var(--leise)}
+.m-platte__s b{font:inherit;color:var(--marine)}
+.m-platte__p{position:absolute;top:13px;right:13px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--marine);
+  background:linear-gradient(180deg,#f6e8c2,#b8975a);box-shadow:inset 0 1px 0 rgba(255,250,232,.95),inset 0 -2px 0 rgba(0,0,0,.3),0 0 0 1px rgba(150,125,64,.45),0 6px 12px -6px rgba(9,17,39,.55);transition:transform .6s var(--e2)}
+.m-platte__p svg{width:13px;height:13px;stroke-width:1.9}
+@media (hover:hover){
+  .m-platte__k:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(159,137,111,.3),0 14px 24px -14px rgba(26,29,40,.45);background:linear-gradient(180deg,#fdf9f1,#f6efe1)}
+  .m-platte__k:hover b::after{transform:none}
+  .m-platte__k:hover .m-platte__p{transform:translate(2px,-2px) scale(1.06)}
+}
+
+/* ---------- Goldband ---------- */
+.m-goldband{position:relative;z-index:3;overflow:hidden;color:var(--marine);
+  background:linear-gradient(180deg,#f4e9cf 0%,#e3d1aa 22%,#cfb98d 55%,#bba072 82%,#a88c5f 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(70,52,26,.55),0 10px 18px -10px rgba(9,10,16,.7)}
+.m-goldband::before,.m-goldband::after{content:'';position:absolute;left:0;right:0;height:1px;z-index:1;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(110,84,44,.45) 12%,rgba(110,84,44,.45) 88%,transparent)}
+.m-goldband::before{top:4px;box-shadow:0 1px 0 rgba(255,255,255,.45)}.m-goldband::after{bottom:4px;box-shadow:0 1px 0 rgba(255,255,255,.35)}
+.m-goldband__zug{display:flex;align-items:center;width:max-content;margin:0;padding:0;list-style:none;animation:goldlauf 60s linear infinite;animation-play-state:paused}
+.m-goldband.laeuft .m-goldband__zug{animation-play-state:running}
+.m-goldband li{flex:none;display:flex;align-items:center;height:44px;padding:0 30px;font-family:var(--caps);font-weight:500;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+.m-goldband .m-goldband__z{padding:0 4px}
+.m-goldband__z img{width:22px;height:22px;filter:brightness(.42) sepia(.4) drop-shadow(0 1px 0 rgba(255,255,255,.5))}
+@keyframes goldlauf{to{transform:translate3d(-50%,0,0)}}
+@media (hover:hover){.m-goldband:hover .m-goldband__zug{animation-play-state:paused}}
+
+/* ---------- Säle: gemeinsamer Kopf (Zeichen mittig, Überschrift gross auf einer Zeile, Satz mittig) ---------- */
+.m-saal{position:relative;padding:clamp(90px,10vw,150px) var(--rand) clamp(90px,10vw,150px)}
+.m-saal--papier{background:var(--papier) url('../assets/img/tapete-hell.webp?v=fcea1245') 50% 0/340px auto}
+.m-saal--creme{background:#f3ead8 url('../assets/img/tapete-hell.webp?v=fcea1245') 50% 0/340px auto}
+.m-saal--nacht{background:var(--marine) url('../assets/img/tapete-dunkel.webp?v=08c86b19') 50% 0/340px auto;color:#fff}
+.m-saal--livre{background:var(--nacht) url('../assets/img/tapete-dunkel.webp?v=08c86b19') 50% 0/340px auto;color:#fff}
+.m-kopf{max-width:860px;margin:0 auto clamp(46px,5vw,72px);text-align:center;display:flex;flex-direction:column;align-items:center}
+.m-kopf__z{width:58px;height:auto;margin-bottom:18px;filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)) drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+.m-titel{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,7.6vw,7rem);line-height:1;letter-spacing:-.01em;white-space:nowrap;color:var(--marine)}
+.m-saal--nacht .m-titel,.m-saal--livre .m-titel{color:#fdf9f1}
+.m-satz{margin:clamp(16px,1.8vw,24px) 0 0;max-width:46ch;font-size:clamp(17px,1.3vw,19.5px);line-height:1.6;color:var(--leise)}
+.m-saal--nacht .m-satz,.m-saal--livre .m-satz{color:rgba(247,239,221,.78)}
+.m-knoepfe{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:clamp(40px,4.4vw,64px)}
+.m-knoepfe--links{align-items:flex-start;margin-top:34px}
+.m-hinweis{margin:0;font-size:14px;color:var(--leise)}
+.m-hinweis--hell{color:rgba(240,227,194,.72)}
+[data-stand="livre"]{font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase}
+
+/* ---------- Le Bureau: Halle über die Breite, helle Tafel liegt darüber ---------- */
+.m-lage{position:relative;max-width:var(--max);margin:0 auto}
+.m-lage__bild{display:block;position:relative;aspect-ratio:16/8.4;border-radius:34px;overflow:hidden;background:var(--sand);transform:translateZ(0);
+  box-shadow:0 0 0 1px rgba(210,191,152,.2),0 50px 80px -40px rgba(0,0,0,.9)}
+.m-lage__bild img{width:100%;height:100%;object-fit:cover;object-position:50% 46%}
+.m-lage__tafel{position:absolute;right:clamp(18px,3vw,46px);bottom:clamp(-60px,-4vw,-30px);width:min(470px,46%);padding:12px;border-radius:30px;background:var(--platte);box-shadow:var(--platte-s);display:grid;gap:14px}
+.m-angaben{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.m-angabe{display:grid;gap:2px;padding:14px 16px 12px;border-radius:20px;background:var(--kuhle);box-shadow:var(--kuhle-s)}
+.m-angabe span{font-family:var(--mono);font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief)}
+.m-angabe b{font:500 2.5rem/1 var(--serif);color:var(--marine)}
+.m-lage__stand{margin:0 6px;font-size:14.5px;color:var(--leise)}
+.m-lage__stand b{font-weight:600;color:var(--marine)}
+.m-lage__tafel .kn{justify-content:space-between;margin:0 2px 2px}
+
+/* ---------- La Carte: die Karten des Hauses auf der Nacht, Zahlen frei ---------- */
+.m-karten{display:flex;justify-content:center;align-items:flex-start;gap:clamp(14px,2vw,30px);max-width:var(--max);margin:0 auto}
+.m-karte{--lage:none;flex:0 1 17%;display:flex;flex-direction:column;align-items:center;gap:16px;text-decoration:none;color:var(--taupe-tief)}
+.m-karte img{width:100%;height:auto;border-radius:4px;box-shadow:0 1px 1px rgba(26,29,40,.25),0 4px 8px -3px rgba(26,29,40,.3),0 40px 50px -26px rgba(26,29,40,.6)}
+.m-karte span{font-family:var(--caps);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.m-karte--schmal{flex-basis:11.6%}
+.m-karte:nth-child(2){--lage:translate3d(0,34px,0)}.m-karte:nth-child(4){--lage:translate3d(0,34px,0)}
+.m-karte--innen img{box-shadow:0 0 0 1px rgba(159,137,111,.25),0 4px 8px -3px rgba(26,29,40,.25),0 40px 50px -26px rgba(26,29,40,.55)}
+html:not(.js) .m-karte:nth-child(even){transform:translate3d(0,34px,0)}
+.m-zahlen{display:flex;justify-content:center;gap:clamp(40px,8vw,140px);margin:clamp(70px,7vw,110px) auto 0;text-align:center}
+.m-zahl{display:flex;flex-direction:column;align-items:center}
+.m-zahl b{font:500 clamp(3.6rem,6.4vw,6rem)/.95 var(--serif);color:var(--marine)}
+.m-zahl i{display:block;width:64px;height:1px;margin:16px 0 12px;background:linear-gradient(90deg,transparent,var(--taupe),transparent)}
+.m-zahl span{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-tief)}
+
+/* ---------- Fenster: das Bild steht, die Seite zieht darüber (sticky in einer Hülle, kein Skript) ---------- */
+.m-fenster{position:relative;height:min(78vh,820px);overflow:clip;background:var(--nacht)}
+.m-fenster__huelle{position:absolute;left:0;right:0;top:-100vh;bottom:-100vh}
+.m-fenster__steht{position:sticky;top:0;height:100vh;overflow:hidden}
+.m-fenster__steht>img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.m-fenster__satz{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;color:#fff;
+  background:radial-gradient(40% 30% at 50% 50%,rgba(12,14,24,.42),rgba(12,14,24,0) 100%)}
+.m-fenster__satz img{width:72px;height:auto;filter:drop-shadow(0 2px 2px rgba(7,8,12,.6)) drop-shadow(0 8px 20px rgba(7,8,12,.5))}
+.m-fenster__satz p{margin:0;padding:0 var(--rand);font-family:var(--caps);font-size:clamp(1.05rem,2.3vw,2rem);letter-spacing:.24em;text-transform:uppercase;line-height:1.3;
+  text-shadow:0 1px 2px rgba(7,8,12,.8),0 4px 18px rgba(7,8,12,.6)}
+
+/* ---------- L’Imprimerie: Unterlage im Mittelton, Drucksachen frei darauf ---------- */
+.m-atelier{position:relative;max-width:1240px;margin:0 auto;aspect-ratio:16/8.2;border-radius:34px;
+  background:radial-gradient(120% 90% at 50% 0%,#b9a68a 0%,#a8937a 55%,#9a8670 100%);
+  box-shadow:inset 0 2px 6px rgba(60,44,22,.35),inset 0 0 0 1px rgba(90,70,40,.25),0 1px 0 rgba(255,255,255,.7)}
+.m-blatt{position:absolute;height:auto;border-radius:3px;box-shadow:0 1px 1px rgba(0,0,0,.18),0 3px 6px -2px rgba(30,20,10,.35),0 30px 40px -24px rgba(30,20,10,.6)}
+.m-blatt--a{left:5%;top:9%;width:22%;--lage:rotate(-2.2deg)}
+.m-blatt--b{left:31%;top:8%;width:37%;--lage:rotate(1.2deg)}
+.m-blatt--c{left:31.5%;top:52%;width:28%;--lage:rotate(-1.4deg)}
+.m-blatt--d{left:62%;top:62%;width:15%;--lage:rotate(2.6deg)}
+.m-blatt--e{left:73%;top:7%;width:21%;--lage:rotate(1.8deg)}
+html:not(.js) .m-blatt{transform:var(--lage)}
+
+/* ---------- La Réception: Tea Time gross, daneben das Gespräch ---------- */
+.m-rez{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(40px,5vw,90px);align-items:center;max-width:var(--max);margin:0 auto}
+.m-rez__bild{position:relative;aspect-ratio:4/4.6;border-radius:34px;overflow:hidden;transform:translateZ(0);box-shadow:0 2px 3px rgba(26,29,40,.12),0 50px 80px -40px rgba(26,29,40,.55)}
+.m-rez__bild img{width:100%;height:100%;object-fit:cover;object-position:46% 50%}
+.m-rez__text{display:flex;flex-direction:column;align-items:flex-start}
+.m-rez__text .m-titel{font-size:clamp(3.2rem,6vw,6rem)}
+.m-chat{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:34px;padding:12px;border-radius:30px;background:var(--platte);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(159,137,111,.2),0 1.5px 0 rgba(120,100,70,.3),0 30px 50px -30px rgba(26,29,40,.45)}
+.m-chat p{margin:0;max-width:88%;padding:13px 18px;font-size:15.5px;line-height:1.5}
+.m-chat__gast{align-self:flex-end;border-radius:20px 20px 6px 20px;color:#f7efdd;background:linear-gradient(180deg,#3e4870,#262d48 60%,#1b2033);box-shadow:inset 0 1px 0 rgba(190,206,255,.3),0 10px 18px -12px rgba(0,0,0,.6)}
+.m-chat__haus{align-self:flex-start;border-radius:20px 20px 20px 6px;color:var(--tinte);background:var(--kuhle);box-shadow:var(--kuhle-s)}
+.m-chat .m-chat__quelle{align-self:center;padding:2px 0 4px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe-tief)}
+
+/* ---------- Le Livre: das Zeichen gross, die Farben als Fächer ---------- */
+.m-livre__z{width:clamp(150px,15vw,230px);height:auto;margin-bottom:26px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.6)) drop-shadow(0 18px 40px rgba(0,0,0,.6))}
+.js .m-livre__z[data-r]{transform:translate3d(0,30px,0) scale(.9);transition:opacity 1.4s ease,transform 2s var(--e1)}
+.js .m-livre__z[data-r].da{transform:none}
+.m-faecher{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(6px,.9vw,12px);max-width:1180px;margin:0 auto;padding:0;list-style:none}
+.m-faecher li{display:flex;flex-direction:column;gap:6px}
+.m-faecher i{display:block;aspect-ratio:1/2.3;border-radius:16px;background:var(--c);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 1px rgba(255,255,255,.08),0 0 0 1px rgba(210,191,152,.22),0 22px 34px -18px rgba(0,0,0,.85)}
+.m-faecher b{margin-top:8px;font:500 1.15rem/1.1 var(--serif);color:#fdf9f1}
+.m-faecher span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(240,227,194,.62)}
+
+/* ---------- Fuss: Platte mit Siegel ---------- */
+.m-fuss{background:var(--nacht) url('../assets/img/tapete-dunkel.webp?v=08c86b19') 50% 0/340px auto;padding:0 var(--rand) clamp(40px,5vw,70px)}
+.m-fuss__platte{display:grid;grid-template-columns:auto 1.3fr 1fr 1fr;gap:clamp(20px,3vw,50px);align-items:center;max-width:var(--max);margin:0 auto;padding:clamp(24px,3vw,40px) clamp(24px,3.4vw,50px);border-radius:34px;background:var(--platte);box-shadow:var(--platte-s)}
+.m-fuss__siegel{width:84px;height:auto}
+.m-fuss__spalte{display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--leise)}
+.m-fuss__spalte p{margin:0}
+.m-fuss__name{font:500 2rem/1.05 var(--serif);color:var(--marine)!important}
+.m-fuss__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief)!important;margin-bottom:4px!important}
+.m-fuss__spalte a{color:var(--marine);text-decoration:none;box-shadow:inset 0 -1px 0 rgba(159,137,111,.5);width:fit-content;transition:box-shadow .4s}
+.m-fuss__spalte a:hover{box-shadow:inset 0 -1px 0 var(--marine)}
+
+/* ---------- Tablet und Handy ---------- */
+@media (max-width:1100px){
+  .m-platte{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .m-lage__tafel{position:relative;right:auto;bottom:auto;width:auto;margin:-60px 18px 0}
+  .m-karten{flex-wrap:wrap}.m-karte{flex-basis:28%}.m-karte--schmal{flex-basis:19%}.m-karte--innen{display:none}
+  .m-atelier{aspect-ratio:16/10}
+  .m-fuss__platte{grid-template-columns:auto 1fr 1fr}.m-fuss__platte>.m-fuss__spalte:last-child{grid-column:2/-1}
+}
+@media (max-width:900px){
+  .m-rez{grid-template-columns:1fr}.m-rez__bild{aspect-ratio:4/3}
+  .m-faecher{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:22px}
+}
+@media (max-width:700px){
+  html{scroll-padding-top:76px}
+  .m-empfang__in{min-height:0}
+  body.ma{font-variant-numeric:lining-nums;font-size:16px}
+  .m-empfang{min-height:auto}
+  .m-empfang__in{padding-top:104px}
+  .m-empfang__name{font-size:clamp(1.15rem,5.6vw,2.4rem);letter-spacing:.13em}
+  .m-empfang__gruss{font-size:clamp(2rem,9vw,2.6rem)}
+  .m-empfang__in>.m-platte{margin-top:34px}
+  .m-platte{grid-template-columns:1fr 1fr;padding:8px;gap:8px;border-radius:26px}
+  .m-platte__k{min-height:100px;padding:13px 14px 12px}.m-platte__k:last-child{grid-column:1/-1}
+  .m-platte__p{width:28px;height:28px;top:10px;right:10px}
+  .m-titel{font-size:clamp(2.7rem,13vw,3.6rem)}
+  .m-lage__bild{aspect-ratio:4/3.4;border-radius:26px}
+  .m-lage__tafel{margin:-40px 8px 0}
+  .m-angabe{padding:11px 12px 10px}.m-angabe b{font-size:2rem}
+  .m-karten{gap:14px 12px}.m-karte{flex-basis:44%}.m-karte--schmal{flex-basis:30%}.m-karte:nth-child(2),.m-karte:nth-child(4){--lage:none}
+  .m-zahlen{gap:22px;flex-wrap:wrap}.m-zahl b{font-size:3.2rem}
+  .m-fenster{height:62vh}
+  .m-atelier{aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:22px;align-items:center}
+  .m-blatt{position:static;width:100%!important}
+  .m-blatt--b,.m-blatt--c{grid-column:1/-1}
+  .m-rez__bild{border-radius:26px}
+  .m-faecher{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;row-gap:20px}.m-faecher i{border-radius:12px}.m-faecher b{font-size:1rem}.m-faecher span{font-size:8.5px;letter-spacing:.06em}
+  .m-fuss__platte{grid-template-columns:1fr;text-align:left}.m-fuss__platte>.m-fuss__spalte:last-child{grid-column:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .m-empfang__vorhang{display:none}
+  .js [data-r],.js .m-empfang__name .w>b,.m-vorhang img{opacity:1!important;transform:var(--lage,none)!important;transition:none!important}
+  .m-goldband__zug,.glanz-kn::before{animation:none}
+}
+.js .m-empfang__name[data-r]{opacity:1;transform:none}
+/* Ziffern in der Titelschrift aufrecht (der font-Kurzbefehl setzt sie sonst auf Mediävalziffern zurück) */
+.m-angabe b,.m-zahl b,.m-platte__s,.m-empfang__gruss,.m-titel,.m-faecher b,.m-fuss__name{font-variant-numeric:lining-nums}
+.m-insel__marke span{white-space:nowrap}
+.m-hinweis{text-align:center}
+.m-rez__stand{margin:18px 2px 0;font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief)}
+.m-rez__stand b{font-weight:400;color:var(--marine)}
+.m-knoepfe--links{flex-direction:row;align-items:center;gap:22px}
+.m-link{font-size:15px;color:var(--marine);text-decoration:none;box-shadow:inset 0 -1px 0 rgba(159,137,111,.6);transition:box-shadow .4s}
+.m-link:hover{box-shadow:inset 0 -1px 0 var(--marine)}
+
+/* Schriftzug und Zeichen oben in Gold wie Le Livre / L’Imprimerie (Robert 12.10.2026) */
+.m-insel__z{display:block;width:40px;height:40px;background:#CDAA5C;-webkit-mask:url(../assets/logo/emblem.svg) center/contain no-repeat;mask:url(../assets/logo/emblem.svg) center/contain no-repeat}
+.m-insel__marke span{font-weight:400;background:linear-gradient(180deg,#fbf0cf 0%,#ead39c 34%,#c9a764 52%,#9c7b43 62%,#dcc189 80%,#f3e3b6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
+@media (max-width:640px){.m-insel__z{width:34px;height:34px}}
+
+/* ---------- Empfang «Fünf Fenster» (Entwurf 18, Robert 12.10.2026): fünf hohe Bildstreifen, je Werkzeug ein Raum des Hauses.
+   Gruss tiefer, Zeichen grösser, Schrift mit kräftigem Schatten und dunklem Hof dahinter, damit sie auf jedem Bild lesbar bleibt. ---------- */
+.m-f5{display:block;min-height:max(100svh,720px);background:var(--marine) url('../assets/img/tapete-dunkel.webp?v=08c86b19') 50% 0/340px auto}
+.m-f5__reihe{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.m-f5__k+.m-f5__k{border-left:3px solid var(--gold)}
+.m-f5__k{position:relative;overflow:hidden;text-decoration:none;color:#fff!important;background:var(--nacht);animation:m5schweb 1s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.1s + var(--i)*90ms)}
+.m-f5__k img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--e1)}
+.m-f5__k::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,14,24,.9),rgba(12,14,24,.1) 42%,rgba(12,14,24,.22) 60%,rgba(12,14,24,.62) 100%)}
+.m-f5__t{position:absolute;z-index:1;left:clamp(16px,1.8vw,26px);right:clamp(16px,1.8vw,26px);bottom:clamp(28px,4.4vh,44px);animation:m5auf .9s var(--e1) both;animation-delay:calc(.4s + var(--i)*90ms)}
+.m-f5__w{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.m-f5__t b{display:block;margin:8px 0 6px;font:500 clamp(1.6rem,2.2vw,2.2rem)/1 var(--serif)}
+.m-f5__t small{display:block;font-size:13px;color:rgba(255,255,255,.76)}.m-f5__t small b{display:inline;font:inherit;margin:0;color:#fff}
+.m-f5__p{margin-top:18px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--marine);background:linear-gradient(180deg,#f6e8c2,#b8975a);
+  box-shadow:inset 0 1px 0 rgba(255,250,232,.95),inset 0 -2px 0 rgba(0,0,0,.3),0 0 0 1px rgba(150,125,64,.45),0 6px 12px -6px rgba(9,17,39,.55);transition:transform .6s var(--e2)}
+.m-f5__p svg{width:13px;height:13px;stroke-width:1.9}
+@media (hover:hover){.m-f5__k:hover img{transform:scale(1.06)}.m-f5__k:hover .m-f5__p{transform:translate(2px,-2px) scale(1.06)}}
+.m-f5__oben{position:absolute;z-index:5;left:0;right:0;top:0;padding:clamp(170px,25vh,250px) var(--rand) 140px;text-align:center;pointer-events:none;
+  background:radial-gradient(64% 52% at 50% 52%,rgba(9,11,18,.74) 0%,rgba(9,11,18,.5) 46%,rgba(9,11,18,.18) 78%,rgba(9,11,18,0) 100%)}
+.m-f5__zeichen{width:clamp(130px,11vw,170px);height:auto;margin:0 auto 22px;filter:drop-shadow(0 2px 2px rgba(7,8,12,.8)) drop-shadow(0 10px 30px rgba(7,8,12,.75));animation:m5auf 1.4s var(--e1) both .2s}
+.m-f5__gruss{margin:0;font:500 clamp(2.4rem,4.2vw,4.4rem)/1.06 var(--serif);color:#fff;font-variant-numeric:lining-nums;
+  text-shadow:0 0 .12em rgba(7,8,12,.9),0 1px 2px rgba(7,8,12,.95),0 3px 12px rgba(7,8,12,.85),0 8px 34px rgba(7,8,12,.7);animation:m5auf 1.3s var(--e1) both .35s}
+.m-f5__datum{margin:14px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#fff;
+  text-shadow:0 0 .3em rgba(7,8,12,1),0 1px 2px rgba(7,8,12,1),0 3px 14px rgba(7,8,12,.85);animation:m5auf 1.3s var(--e1) both .5s}
+@keyframes m5schweb{from{transform:translate3d(0,110px,0)}}
+@keyframes m5auf{from{transform:translate3d(0,22px,0)}}
+@media (max-width:800px){
+  .m-f5{background:var(--marine) url('../assets/img/tapete-dunkel.webp?v=08c86b19') 50% 0/340px auto;min-height:0}
+  .m-f5__oben{position:relative;padding:110px var(--rand) 34px;background:none}
+  .m-f5__zeichen{width:110px}
+  .m-f5__reihe{position:relative;grid-template-columns:1fr}.m-f5__k+.m-f5__k{border-left:0;border-top:3px solid var(--gold)}
+  .m-f5__k{height:150px}.m-f5__k::after{background:linear-gradient(90deg,rgba(12,14,24,.85),rgba(12,14,24,.2) 70%)}
+  .m-f5__t{bottom:auto;top:50%;transform:translateY(-50%);animation:none;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:center}
+  .m-f5__t>*{grid-column:1}.m-f5__p{grid-column:2;grid-row:1/4;margin:0}
+}
+@media (prefers-reduced-motion:reduce){.m-f5__k,.m-f5__t,.m-f5__zeichen,.m-f5__gruss,.m-f5__datum{animation:none}}
+
+/* ---------- Säle als Entree (Robert 12.10.2026): je Werkzeug eine Bühne mit den echten Bildschirmen, Stücken des Hauses und einer Tafel,
+   was man damit machen kann. Bühne in Prozent gesetzt (Seitenverhältnis fest), am Handy alles untereinander. ---------- */
+.m-entree .m-kopf{margin-bottom:clamp(40px,4.4vw,64px)}
+.m-buehne{position:relative;max-width:var(--max);margin:0 auto;aspect-ratio:16/10}
+.m-buehne>*{position:absolute;margin:0}
+/* Bildschirm: Fenster mit schmaler Leiste, echter Bildschirm darin */
+.m-schirm{z-index:1;border-radius:16px;overflow:hidden;background:#0f1322;transform:translateZ(0);
+  box-shadow:0 0 0 1px rgba(210,191,152,.38),0 1px 0 1px rgba(0,0,0,.35),0 60px 90px -44px rgba(0,0,0,.85),0 22px 40px -22px rgba(0,0,0,.55)}
+.m-schirm__leiste{display:flex;align-items:center;justify-content:center;height:28px;background:linear-gradient(180deg,#2a3150,#1b2033);box-shadow:inset 0 -1px 0 rgba(210,191,152,.25)}
+.m-schirm__leiste span{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,227,194,.7);white-space:nowrap}
+.m-schirm img{display:block;width:100%;height:auto}
+.m-saal--creme .m-schirm,.m-saal--papier .m-schirm{box-shadow:0 0 0 1px rgba(159,137,111,.45),0 2px 3px rgba(26,29,40,.15),0 60px 90px -44px rgba(26,29,40,.6),0 22px 40px -22px rgba(26,29,40,.35)}
+/* Tafel: Papier-Platte, je Zeile ein Goldknauf mit Strich-Zeichen */
+.m-tafel{z-index:4;display:grid;gap:2px;padding:10px 12px;border-radius:26px;background:var(--platte);box-shadow:var(--platte-s),0 50px 70px -30px rgba(7,8,12,.6);color:var(--tinte)}
+.m-tafel__z{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:center;padding:12px 8px}
+.m-tafel__z+.m-tafel__z{box-shadow:inset 0 1px 0 rgba(159,137,111,.28)}
+.m-tafel__z i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--marine);background:linear-gradient(180deg,#f6e8c2,#b8975a);
+  box-shadow:inset 0 1px 0 rgba(255,250,232,.95),inset 0 -2px 0 rgba(0,0,0,.28),0 0 0 1px rgba(150,125,64,.45),0 6px 12px -6px rgba(9,17,39,.5)}
+.m-tafel__z svg{width:19px;height:19px;stroke-width:1.5}
+.m-tafel__z p{margin:0;font-size:14px;line-height:1.5;color:var(--leise)}
+.m-tafel__z b{display:block;font:500 1.32rem/1.15 var(--serif);color:var(--marine)}
+.m-tafel--nacht{background:var(--insel);box-shadow:var(--insel-s);color:#f7efdd}
+.m-tafel--nacht .m-tafel__z p{color:rgba(247,239,221,.7)}.m-tafel--nacht .m-tafel__z b{color:var(--goldhell)}
+.m-tafel--nacht .m-tafel__z+.m-tafel__z{box-shadow:inset 0 1px 0 rgba(210,191,152,.22)}
+.m-tafel .m-rez__stand{margin:6px 10px 6px 62px}
+/* Stücke des Hauses (Karten, Drucksachen) frei auf der Bühne */
+.m-stueck img,.m-blatt2{display:block;width:100%;height:auto;border-radius:3px;box-shadow:0 1px 1px rgba(26,29,40,.25),0 4px 8px -3px rgba(26,29,40,.3),0 40px 50px -26px rgba(26,29,40,.65)}
+.m-saal--nacht .m-blatt2{box-shadow:0 1px 1px rgba(0,0,0,.3),0 4px 10px -3px rgba(0,0,0,.45),0 44px 60px -26px rgba(0,0,0,.85)}
+/* Handy */
+.m-telefon{z-index:3;padding:8px;border-radius:42px;background:linear-gradient(160deg,#3a4160,#141827 40%,#0b0d16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 0 0 1px rgba(210,191,152,.45),0 60px 80px -36px rgba(26,29,40,.75),0 20px 34px -18px rgba(26,29,40,.5)}
+.m-telefon img{display:block;width:100%;height:auto;border-radius:34px}
+
+/* Le Bureau */
+.m-buehne--bureau{aspect-ratio:16/10.3}
+.m-buehne--bureau .m-schirm--haupt{left:0;top:0;width:70%}
+.m-buehne--bureau .m-schirm--neben{right:0;top:27%;width:45%;z-index:2}
+.m-buehne--bureau .m-tafel--a{left:2%;bottom:-3%;width:min(450px,33%)}
+.m-buehne--bureau .m-tafel--stand{right:3%;bottom:-3%;width:min(440px,34%);gap:14px;padding:12px}
+.m-tafel--stand .kn{justify-content:space-between;margin:0 2px 2px}
+/* La Carte */
+.m-buehne--carte{aspect-ratio:16/8.7}
+.m-buehne--carte .m-schirm--haupt{right:0;top:0;width:66%}
+.m-stueck{z-index:2;display:block}
+.m-stueck--a{left:1%;top:7%;width:16.5%;--lage:rotate(-4deg)}
+.m-stueck--b{left:14%;top:14%;width:16.5%;--lage:rotate(2.5deg)}
+.m-stueck--c{left:27.5%;top:22%;width:11%;--lage:rotate(-2deg);z-index:3}
+.m-buehne--carte .m-tafel--c{right:2%;bottom:-12%;width:min(450px,34%)}
+.m-entree#carte .m-zahlen{margin-top:clamp(130px,12vw,180px)}
+/* L’Imprimerie */
+.m-buehne--impr{aspect-ratio:16/9}
+.m-buehne--impr .m-schirm--haupt{left:14%;top:0;width:72%}
+.m-blatt2{position:absolute;z-index:2}
+.m-blatt2--a{left:0;top:3%;width:18.5%;--lage:rotate(-5deg)}
+.m-blatt2--b{right:0;top:5%;width:24%;--lage:rotate(4deg)}
+.m-blatt2--c{right:2%;bottom:3%;width:30%;--lage:rotate(-2.5deg)}
+.m-buehne--impr .m-tafel--d{left:1%;bottom:-6%;width:min(450px,33%)}
+/* La Réception */
+.m-buehne--rez{aspect-ratio:16/8.6}
+.m-buehne--rez .m-schirm--haupt{left:0;top:0;width:66%}
+.m-telefon--a{right:17.5%;top:9%;width:17%;--lage:rotate(-5deg)}
+.m-telefon--b{right:1%;top:4%;width:18.5%;--lage:rotate(3deg);z-index:4}
+.m-buehne--rez .m-tafel--e{left:2%;bottom:-10%;width:min(470px,36%)}
+/* Le Livre */
+.m-buehne--livre{aspect-ratio:16/8.2;margin-bottom:clamp(130px,12vw,190px)}
+.m-buehne--livre .m-schirm--haupt{left:19%;top:0;width:62%;z-index:2}
+.m-buehne--livre .m-schirm--links{left:0;top:14%;width:40%}
+.m-buehne--livre .m-schirm--rechts{right:0;top:14%;width:40%}
+.m-buehne--livre .m-tafel--f{left:50%;bottom:-10%;width:min(1120px,84%);margin-left:max(-560px,-42%);grid-template-columns:repeat(3,1fr);gap:0}
+.m-tafel--f .m-tafel__z+.m-tafel__z{box-shadow:inset 1px 0 0 rgba(159,137,111,.28)}
+.m-tafel--f .m-tafel__z{padding:10px 14px}
+
+@media (max-width:1180px){
+  .m-tafel__z{grid-template-columns:34px 1fr;gap:10px;padding:9px 6px}.m-tafel__z i{width:34px;height:34px}.m-tafel__z svg{width:16px;height:16px}
+  .m-tafel__z b{font-size:1.12rem}.m-tafel__z p{font-size:12.5px}
+  .m-tafel .m-angabe b{font-size:1.9rem}
+}
+@media (max-width:900px){
+  .m-buehne,.m-buehne--livre{aspect-ratio:auto;display:grid;gap:18px;margin-bottom:0}
+  .m-buehne>*{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:auto!important;margin:0!important}
+  .m-schirm--neben,.m-schirm--links,.m-schirm--rechts,.m-stueck--b,.m-stueck--c,.m-blatt2--b,.m-blatt2--c,.m-telefon--a{display:none!important}
+  .m-stueck--a,.m-blatt2--a,.m-blatt2--c{width:56%!important;justify-self:center;margin-top:-90px!important}
+  .m-telefon--b{width:62%!important;justify-self:center;margin-top:-120px!important}
+  .m-buehne--livre .m-tafel--f{grid-template-columns:1fr}.m-tafel--f .m-tafel__z+.m-tafel__z{box-shadow:inset 0 1px 0 rgba(159,137,111,.28)}
+  .m-entree .m-faecher{margin-top:40px}
+}
+/* Zeichen über den Säle-Überschriften deutlich grösser (Robert 12.10.2026) */
+.m-entree .m-kopf__z{width:clamp(104px,9vw,136px);margin-bottom:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35)) drop-shadow(0 12px 26px rgba(0,0,0,.35))}
+.m-saal--creme.m-entree .m-kopf__z,.m-saal--papier.m-entree .m-kopf__z{filter:drop-shadow(0 1px 1px rgba(90,70,30,.3)) drop-shadow(0 10px 22px rgba(90,70,30,.25))}
+
+/* ---------- Durchgang 12.10.2026 04:37 (Robert): Tafeln edler und übersichtlicher, Fenster-Satz wie auf der Website, kein dunkler Rand beim Scrollen, keine Leere links unten ---------- */
+/* Tafel: Platte mit eingelassenem Rahmen, Kopfzeile in der Titelschrift, grössere Zeilen, Namen aus dem Werkzeug hervorgehoben */
+.m-tafel{padding:16px 16px 12px;border-radius:30px;gap:0}
+.m-tafel::before{content:'';position:absolute;inset:7px;border-radius:24px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(159,137,111,.32)}
+.m-tafel--nacht::before{box-shadow:inset 0 0 0 1px rgba(210,191,152,.26)}
+.m-tafel__kopf{display:flex;align-items:center;gap:14px;margin:6px 14px 4px;font:500 11px/1 var(--caps);letter-spacing:.3em;text-transform:uppercase;color:var(--taupe-tief)}
+.m-tafel__kopf::before,.m-tafel__kopf::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(159,137,111,0),rgba(159,137,111,.55))}
+.m-tafel__kopf::after{background:linear-gradient(90deg,rgba(159,137,111,.55),rgba(159,137,111,0))}
+.m-tafel--nacht .m-tafel__kopf{color:var(--gold)}
+.m-tafel__z{grid-template-columns:48px 1fr;gap:18px;align-items:start;padding:18px 16px}
+.m-tafel__z+.m-tafel__z{box-shadow:none;background:linear-gradient(90deg,rgba(159,137,111,0),rgba(159,137,111,.38) 18%,rgba(159,137,111,.38) 82%,rgba(159,137,111,0)) 0 0/100% 1px no-repeat}
+.m-tafel--nacht .m-tafel__z+.m-tafel__z{box-shadow:none;background:linear-gradient(90deg,rgba(210,191,152,0),rgba(210,191,152,.3) 18%,rgba(210,191,152,.3) 82%,rgba(210,191,152,0)) 0 0/100% 1px no-repeat}
+.m-tafel__z i{width:46px;height:46px;margin-top:2px;box-shadow:inset 0 1px 0 rgba(255,250,232,.95),inset 0 -2px 0 rgba(0,0,0,.28),0 0 0 1px rgba(150,125,64,.45),0 0 0 5px #f7f0e3,0 0 0 6px rgba(184,151,90,.45),0 10px 18px -8px rgba(9,17,39,.5)}
+.m-tafel--nacht .m-tafel__z i{box-shadow:inset 0 1px 0 rgba(255,250,232,.95),inset 0 -2px 0 rgba(0,0,0,.28),0 0 0 1px rgba(150,125,64,.45),0 0 0 5px #222a44,0 0 0 6px rgba(210,191,152,.4),0 10px 18px -8px rgba(0,0,0,.6)}
+.m-tafel__z svg{width:20px;height:20px}
+.m-tafel__z b{margin-bottom:5px;font-size:1.5rem;line-height:1.1}
+.m-tafel__z p{font-size:14.5px;line-height:1.58}
+.m-ui{font-weight:600;color:var(--marine);white-space:nowrap}
+.m-ui::before{content:'«'}.m-ui::after{content:'»'}
+.m-tafel--nacht .m-ui{color:var(--goldhell)}
+.m-tafel .m-rez__stand{margin:4px 16px 8px 82px}
+/* Tafeln etwas breiter für die grössere Schrift */
+.m-buehne--bureau .m-tafel--a{width:min(480px,35%)}
+.m-buehne--carte .m-tafel--c{width:min(480px,36%);bottom:-16%}
+.m-buehne--impr .m-tafel--d{width:min(480px,35%);bottom:-10%}
+.m-buehne--rez .m-tafel--e{width:min(500px,38%);bottom:-16%}
+.m-buehne--livre .m-tafel--f{bottom:-16%}
+.m-buehne--livre .m-tafel--f .m-tafel__kopf{grid-column:1/-1}
+.m-tafel--f .m-tafel__z+.m-tafel__z{background:linear-gradient(180deg,rgba(159,137,111,0),rgba(159,137,111,.38) 20%,rgba(159,137,111,.38) 80%,rgba(159,137,111,0)) 0 0/1px 100% no-repeat}
+.m-buehne--livre{margin-bottom:clamp(170px,15vw,230px)}
+/* La Carte: Zahlen und Knopf links unten unter den Karten, dort war Leere */
+.m-stand-c{position:absolute;left:1%;bottom:-14%;width:min(560px,44%);display:flex;flex-direction:column;align-items:flex-start;gap:26px}
+.m-stand-c .m-zahlen{margin:0;justify-content:flex-start;gap:clamp(30px,4vw,64px);text-align:left}
+.m-stand-c .m-zahl{align-items:flex-start}
+.m-stand-c .m-zahl b{font-size:clamp(3rem,4.8vw,4.8rem)}
+.m-stand-c .m-zahl i{width:100%;background:linear-gradient(90deg,var(--taupe),rgba(159,137,111,0))}
+.m-buehne--carte{margin-bottom:clamp(80px,7vw,110px)}
+/* Fenster-Satz wie auf der Website: gross, zwei Zeilen aus dem Schlitz, zweite in Gold, Schatten dicht an der Schrift */
+.m-fenster__satz{background:none;gap:0}
+.m-f-d2{margin:0;padding:0 var(--rand);font:500 clamp(2.2rem,5.4vw,5.8rem)/1.02 var(--serif);color:#fff;text-align:center}
+.m-f-d2 .z{display:block;padding:.3em 0 .65em;margin:-.3em 0 -.65em;clip-path:inset(0 -.6em)}
+.m-f-d2 .z>span{display:inline-block;transform:translateY(165%);transition:transform 1.25s var(--e1);
+  text-shadow:0 .02em .04em rgba(3,8,20,.9),0 .05em .14em rgba(3,8,20,.8),0 .1em .4em rgba(3,8,20,.7),0 .2em 1em rgba(3,8,20,.55),0 0 1.6em rgba(3,8,20,.45)}
+.m-f-d2 .z:nth-child(2)>span{transition-delay:.09s}
+.m-f-d2 em{font-style:normal;color:var(--gold)}
+.js .m-f-d2[data-r]{opacity:1;transform:none}
+.m-f-d2.da .z>span,html:not(.js) .m-f-d2 .z>span{transform:none}
+.m-f-d2.da .z{animation:mfFrei 0s 1.6s both}
+@keyframes mfFrei{to{clip-path:none}}
+/* Fenster ohne Beschneiden (wie _gbr.css, Safari 11.10.2026): Bild und Satz liegen unter allem, die deckenden Nachbarn schneiden sie ab.
+   Vorher beschnitt der Abschnitt selbst, Safari zog den Ausschnitt beim Scrollen einen Takt nach: dunkler Rand an der Naht. */
+@supports (overflow:clip){
+  .m-fenster{overflow:visible;background:transparent}
+  .m-fenster::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--nacht)}
+  .m-fenster__steht>img,.m-fenster__satz{position:relative;z-index:-1}
+  .m-fenster__satz{position:absolute}
+  .m-saal,.m-goldband,.m-fuss{position:relative;z-index:1}
+}
+@media (max-width:900px){
+  .m-stand-c{position:relative;left:auto;bottom:auto;width:auto;align-items:center}
+  .m-stand-c .m-zahlen{justify-content:center}.m-stand-c .m-zahl{align-items:center}
+  .m-buehne--carte,.m-buehne--livre{margin-bottom:0}
+  .m-buehne--livre .m-tafel--f .m-tafel__kopf{grid-column:auto}
+}
+/* Abstände nach den höheren Tafeln: Bühnen bekommen Luft nach unten, La Réception trägt ihren Knopf rechts unter den Handys */
+.m-buehne--bureau{margin-bottom:clamp(70px,7vw,110px)}
+.m-buehne--bureau .m-tafel--a{bottom:-12%}
+.m-buehne--impr{margin-bottom:clamp(80px,8vw,120px)}
+.m-buehne--rez{margin-bottom:clamp(110px,10vw,160px)}
+.m-stand-r{position:absolute;right:3%;bottom:-12%;display:flex;flex-direction:column;align-items:center;gap:16px;width:37%}
+@media (max-width:900px){.m-buehne--bureau,.m-buehne--impr,.m-buehne--rez{margin-bottom:0}.m-stand-r{position:relative;right:auto;bottom:auto;width:auto}}
+
+/* ---------- Die Besuche (12.10.2026): sechs Werte der Zählung, frei auf Creme wie die Zahlen bei La Carte. Nichts bewegt sich ausser dem Auftritt. ---------- */
+.m-besuche .m-zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(48px,5.4vw,84px) clamp(24px,4vw,64px);max-width:1180px;margin:0 auto}
+.m-besuche .m-zahl b{font-size:clamp(3.2rem,5.4vw,5.2rem);white-space:nowrap}
+.m-besuche .m-zahl i{margin:20px 0 14px}
+.m-besuche .m-zahl span{max-width:26ch;line-height:1.55}
+.m-besuche .m-zahl small{margin-top:10px;max-width:30ch;font-size:14.5px;line-height:1.5;color:var(--leise)}
+.m-besuche .m-hinweis{max-width:60ch;line-height:1.6}
+.m-besuche__stand{font-size:15.5px;color:var(--marine)}
+.m-fuss--luft{padding-top:clamp(40px,5vw,70px)}
+@media (max-width:900px){.m-besuche .m-zahlen{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 20px}.m-besuche .m-zahl b{font-size:3.2rem}}
+@media (max-width:520px){.m-besuche .m-zahlen{gap:40px 14px}.m-besuche .m-zahl b{font-size:2.6rem}.m-besuche .m-zahl i{margin:16px 0 12px}.m-besuche .m-zahl span{font-size:10px;letter-spacing:.14em}.m-besuche .m-zahl small{font-size:13px}}
+
+/* Handy (12.10.2026, Robert: La Maison bei 390 px zu breit): Kopfleiste passt in die Breite, Tafeln laufen nicht über die Bühne hinaus */
+@media (max-width:480px){
+  .m-oben{gap:8px;padding:0 10px}
+  .m-oben .m-oben__ecke{padding-left:14px;font-size:9px;letter-spacing:.12em}
+  .m-insel__marke span{font-size:12px;letter-spacing:.2em}
+}
+@media (max-width:900px){.m-tafel,.m-tafel__z,.m-tafel__z>*{min-width:0}.m-tafel__z p,.m-tafel__z b{overflow-wrap:anywhere}}
+
+/* Le Registre (13.10.2026): der Bildschirm des Werkzeugs steht mittig über den sechs Werten */
+.m-schirm--registre{position:relative;width:min(1080px,92%);margin:0 auto clamp(60px,6vw,96px)}
+.m-besuche .m-knoepfe .kn{margin-bottom:6px}
+/* Sechs Werkzeuge in der Insel: unter 1360 px stossen sie an «Website ansehen», dann bleibt nur die Marke */
+@media (max-width:1360px){.m-insel__p{display:none}.m-insel{padding-right:9px}.m-insel__marke{border:0;margin:0}}
+
+/* Platte (Robert 14.10.2026): jeder Abschnitt schiebt sich mit runden Ecken oben über den vorigen, Goldkante und Schatten wie beim Übergang
+   Seitenkopf → Inhalt der Website (_gbr.css, «Platte»). Zuerst nur an der Stelle des entfernten Fensters, dann auf Roberts Wort «bei allen Abschnitten»:
+   jeder Saal nach einem Saal und der Fuss. Le Bureau liegt unter dem Goldband und bleibt gerade. Nichts bewegt sich. */
+.m-saal+.m-saal,.m-fuss{--saal-rund:clamp(26px,3.6vw,56px);position:relative;z-index:2;margin-top:calc(-1*var(--saal-rund));border-radius:var(--saal-rund) var(--saal-rund) 0 0;
+  box-shadow:inset 0 1px 0 rgba(214,186,128,.85),inset 0 2px 0 rgba(255,255,255,.18),0 -22px 60px -14px rgba(3,8,22,.6)}
+.m-saal--creme+.m-saal,.m-saal--papier+.m-saal{box-shadow:inset 0 1px 0 rgba(214,186,128,.85),inset 0 2px 0 rgba(255,255,255,.18),0 -22px 60px -14px rgba(60,44,20,.38)}
+.m-saal+.m-saal--creme,.m-saal+.m-saal--papier{box-shadow:inset 0 1px 0 rgba(214,186,128,.85),inset 0 2px 0 rgba(255,255,255,.55),0 -22px 60px -14px rgba(3,8,22,.6)}
+
+/* ---------- Cover: Le Registre als Zahlenzeile unter dem Gruss (Fassung 02 aus entwuerfe-cover, Robert 14.10.2026 abends) ---------- */
+.m-f5__zeile{pointer-events:auto;display:inline-flex;align-items:baseline;gap:10px;margin:26px auto 0;padding:12px 22px 12px 26px;border-radius:999px;
+  background:rgba(12,14,24,.62);box-shadow:inset 0 0 0 1px rgba(210,191,152,.45),0 20px 30px -20px rgba(0,0,0,.9);
+  font-family:var(--serif);font-weight:500;color:#fff;animation:m5auf 1.3s var(--e1) both .6s}
+.m-f5__zeile span{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-right:4px}
+.m-f5__zeile b{font-size:1.7rem;line-height:1;color:var(--gold)}
+.m-f5__zeile small{font-size:.95rem;color:rgba(255,255,255,.82)}
+.m-f5__zeile i{width:1px;height:18px;background:rgba(210,191,152,.5);margin:0 6px;align-self:center}
+.m-f5__zeile a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+.m-f5__zeile a svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.6}
+@media (max-width:800px){.m-f5__zeile{flex-wrap:wrap;justify-content:center;margin-top:18px;padding:10px 16px;row-gap:6px}.m-f5__zeile a{width:100%;justify-content:center;margin-top:4px}}
+@media (prefers-reduced-motion:reduce){.m-f5__zeile{animation:none}}
+
+/* ---------- Hereinfliegen statt Auftauchen, in allen Abschnitten (Robert 15.10.2026: «reingeflogen von unten und von der Seite, nicht aus dem Nichts») ----------
+   Nur transform und opacity, einmal je Element, Staffel über --i. Am Ende steht jedes Stück in seiner Lage (--lage). */
+.js [data-r]{--von:translate3d(0,110px,0);transform:var(--von) scale(.97);opacity:1;
+  transition:opacity .8s ease,transform 1.5s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0)*120ms)}
+.js [data-r].da{opacity:1;transform:var(--lage,none)}
+.js [data-r="schweb"]{--von:translate3d(0,140px,0);transform:var(--von) scale(.94)}
+/* von links */
+.js .m-schirm--haupt[data-r],.js .m-schirm--links[data-r],.js .m-telefon--a[data-r],.js .m-blatt2--a[data-r],.js .m-stueck--a[data-r],
+.js .m-tafel--a[data-r],.js .m-tafel--c[data-r],.js .m-tafel--e[data-r]{--von:translate3d(-180px,60px,0)}
+/* von rechts */
+.js .m-schirm--rechts[data-r],.js .m-schirm--neben[data-r],.js .m-schirm--registre[data-r],.js .m-telefon--b[data-r],.js .m-blatt2--b[data-r],.js .m-blatt2--c[data-r],
+.js .m-stueck--c[data-r],.js .m-tafel--d[data-r],.js .m-tafel--f[data-r],.js .m-tafel--stand[data-r],.js .m-stand-r[data-r],.js .m-stand-c[data-r],.js .m-zahlen[data-r]{--von:translate3d(180px,60px,0)}
+/* Kopf der Abschnitte: Zeichen, Satz und Knöpfe steigen ruhig von unten */
+.js .m-kopf__z[data-r],.js .m-satz[data-r],.js .m-knoepfe[data-r]{--von:translate3d(0,50px,0)}
+/* Seitwärts fliegende Stücke dürfen den Rand nicht aufschieben */
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion:reduce){.js [data-r]{opacity:1!important;transform:var(--lage,none)!important;transition:none!important}}
+
+/* Auftakt (Robert 16.10.2026: «direkt richtig flüssig hochgehen, die Bilder nacheinander von links nach rechts»): die fünf Tafeln fahren erst los,
+   wenn ihre Fotos dekodiert sind (maison.js setzt .bereit, spätestens nach 1,4 s), dann in einem Zug mit leichter Feder, links beginnend */
+.js .m-f5:not(.bereit) .m-f5__k,.js .m-f5:not(.bereit) .m-f5__t{animation-play-state:paused}
+.m-f5__k{animation:m5schweb 1.6s cubic-bezier(.28,1.18,.42,1) both!important;animation-delay:calc(var(--i)*120ms)!important}
+.m-f5__t{animation-delay:calc(.35s + var(--i)*120ms)!important}
+@keyframes m5schweb{from{transform:translate3d(0,140px,0)}}

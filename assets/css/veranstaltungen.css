@@ -1,0 +1,246 @@
+/* Veranstaltungen «Was ist los in Interlaken» (Robert 11.10.2026). Inhalt inhalt/n_veranstaltungen.py. Baut auf feiern-heroes/feiern-kopf (Kopf mit Leiste),
+   karriere.css (helles Formular) und den Bausteinen der Startseite (k3, kopfzeile, raum, prunk) auf. Bewegung nur transform/opacity. */
+.ve-titel{font-size:clamp(2.6rem,6.4vw,7rem)!important;line-height:1}
+.ve-kopf .d1{font-size:clamp(3rem,7vw,7.4rem)}
+.ve-leiste{grid-template-columns:1fr 1fr 1.2fr auto!important}
+.ve-leiste .hwahl-knopf{font:500 1.12rem/1.3 var(--serif)!important;color:var(--tinte)!important}
+/* Im Haus */
+.ve-haus,.ve-hoch,.ve-kal,.ve-con{padding-top:clamp(90px,8vw,140px);padding-bottom:clamp(90px,8vw,140px)}
+.ve-intro{display:grid;grid-template-columns:1.1fr 1fr;align-items:end;gap:clamp(30px,5vw,90px);margin-bottom:clamp(50px,5vw,80px)}
+.ve-intro .raum--nur{justify-content:flex-start;margin:0 0 clamp(18px,1.8vw,26px)}
+.ve-intro .ve-titel{text-align:left}
+.ve-intro .lauf{max-width:54ch;padding-bottom:.6em}
+.ve-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,32px)}
+.ve-feste{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(60px,6vw,96px)}
+.ve-fest{position:relative;isolation:isolate;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:clamp(16px,1.6vw,24px);align-items:center;padding:clamp(20px,2vw,28px) clamp(22px,2.2vw,32px);border-radius:var(--r-xl);
+  background:var(--platte-d);box-shadow:var(--platte-d-s);color:#fff;transition:transform .6s var(--e2)}
+.ve-fest::before{content:'';position:absolute;inset:9px;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(210,191,152,.35);pointer-events:none;z-index:-1}
+.ve-fest b{grid-row:1/3;font:500 clamp(3.4rem,4.6vw,4.8rem)/.9 var(--serif);color:var(--gold)}
+.ve-fest span{font-family:var(--caps);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(232,220,194,.8);align-self:end}
+.ve-fest i{display:none}
+.ve-fest em{font:500 clamp(1.3rem,1.6vw,1.6rem)/1.15 var(--serif);color:#fcf7ee;font-style:normal;align-self:start;grid-column:2}
+.ve-fest small{grid-column:2;font-size:.86rem;color:rgba(255,255,255,.7)}
+.ve-fest{grid-template-rows:auto auto auto}
+.ve-fest b{grid-row:1/4}
+@media (hover:hover){.ve-fest:hover{transform:translateY(-4px)}}
+.ve-art{display:flex;align-items:center;gap:14px;font-family:var(--caps);font-weight:600;font-size:clamp(.72rem,.84vw,.86rem);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.ve-art i{width:clamp(30px,3vw,48px);height:1px;background:rgba(210,191,152,.6)}
+.kn[data-merk].an{--o:#fdf9f1;--m:#f1e6d1;--u:#dccaa6;--t:#1b2033}
+/* Kalender als Programmheft */
+.ve-filter{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:clamp(30px,3vw,46px)}
+.ve-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.ve-chip{padding:10px 18px 9px;border-radius:999px;font-family:var(--caps);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-tief);box-shadow:inset 0 0 0 1px rgba(152,115,60,.35);transition:background .3s,color .3s}
+.ve-chip[aria-pressed=true]{background:var(--nacht);color:#fcf7ee;box-shadow:none}
+.ve-chip:hover{color:var(--tinte)}
+.ve-zeit{font:500 1.15rem/1.4 var(--serif);color:var(--tinte);text-align:center}
+.ve-zeit b{font-weight:500;color:var(--akzent)}
+.ve-zeit button{font:inherit;color:var(--akzent);box-shadow:inset 0 -1px 0 currentColor}
+.ve-tee{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:6px 18px;max-width:1000px;margin:0 auto clamp(30px,3vw,46px);padding:16px 24px;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);text-align:center}
+.ve-tee b{font-family:var(--caps);font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--akzent)}
+.ve-tee span{font:500 1.15rem/1.3 var(--serif);color:var(--tinte)}
+.ve-tee em{flex-basis:100%;font:italic 500 1rem/1.4 var(--serif);color:rgba(26,29,40,.7)}
+.ve-leer{max-width:56ch;margin:30px auto 0;text-align:center;font:italic 500 1.2rem/1.5 var(--serif);color:var(--taupe-tief)}
+.ve-kal .quelle{max-width:1100px;margin:clamp(30px,3vw,46px) auto 0}
+/* Concierge */
+.ve-dienste{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,32px)}
+.ve-dienst{position:relative;isolation:isolate;padding:clamp(28px,2.8vw,42px) clamp(22px,2.4vw,36px);border-radius:var(--r-xl);background:var(--platte-d);box-shadow:var(--platte-d-s);text-align:center}
+.ve-dienst::before{content:'';position:absolute;inset:9px;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(210,191,152,.3);pointer-events:none;z-index:-1}
+.ve-dienst__nr{font:500 2.6rem/1 var(--serif);color:var(--gold)}
+.ve-dienst h3{margin-top:12px;font:500 clamp(1.4rem,1.8vw,1.8rem)/1.15 var(--serif);color:#fcf7ee}
+.ve-dienst p{margin-top:10px;font-size:1rem;line-height:1.6;color:rgba(255,255,255,.78)}
+.ve-bw{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,4vw,70px);align-items:start;margin-top:clamp(60px,6vw,96px)}
+.ve-wl{padding:clamp(26px,2.6vw,40px);border-radius:var(--r-xl);box-shadow:inset 0 0 0 1px rgba(210,191,152,.4)}
+.ve-wl__kopf{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid rgba(210,191,152,.35)}
+.ve-wl__kopf span{font:500 clamp(1.8rem,2.4vw,2.4rem)/1 var(--serif);color:#fcf7ee}
+.ve-wl__kopf b{font:500 2rem/1 var(--serif);color:var(--gold)}
+.ve-wl__liste{list-style:none;margin:0;padding:0}
+.ve-wl__liste li{display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:16px 0;border-bottom:1px solid rgba(210,191,152,.2)}
+.ve-wl__liste li>div{grid-column:1/-1;display:flex;flex-direction:column;gap:2px;padding-right:30px}
+.ve-wl__liste b{font:500 1.25rem/1.2 var(--serif);color:#fcf7ee}
+.ve-wl__liste span{font-size:.86rem;color:rgba(255,255,255,.65)}
+.ve-wl__liste label{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;color:rgba(255,255,255,.85);cursor:pointer}
+.ve-wl__liste input{accent-color:#d2bf98;width:16px;height:16px}
+.ve-wl__liste li{position:relative}
+.ve-wl__liste [data-weg]{position:absolute;right:0;top:14px;width:26px;height:26px;border-radius:50%;color:var(--gold);box-shadow:inset 0 0 0 1px rgba(210,191,152,.4);font-size:1rem;line-height:1}
+.ve-wl__leer{padding-top:16px;font:italic 500 1.1rem/1.5 var(--serif);color:rgba(232,220,194,.75)}
+/* Einträge mit kleinem Bild und Beispielliste (Robert 12.10.2026: «so eine Beispielliste machen, dass es nicht so leer aussieht»).
+   Jeder Eintrag: links das Bild des Termins aus dem Kalender, rechts Name und Datum, darunter die zwei Wünsche; Häkchen im Stil des Hauses.
+   Die Beispielliste (.ve-wl__liste--bsp, vier echte Termine) steht nur, solange nichts vorgemerkt ist; oben rechts steht dann «Beispiel» statt der Zahl. */
+.ve-wl__liste li{grid-template-columns:clamp(68px,5.6vw,88px) minmax(0,1fr);gap:10px clamp(14px,1.5vw,22px);align-items:center;padding:clamp(14px,1.4vw,18px) 0}
+.ve-wl__b{grid-column:1;grid-row:1/3;margin:0;aspect-ratio:1;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(210,191,152,.45),0 16px 20px -14px rgba(0,0,0,.7)}
+.ve-wl__b img{display:block;width:100%;height:100%;object-fit:cover}
+.ve-wl__liste li>div{grid-column:2;align-self:end;padding-inline-end:34px;padding-right:0}
+.ve-wl__opt{grid-column:2;align-self:start;display:flex;flex-wrap:wrap;gap:8px 22px;margin:0}
+.ve-wl__liste input{-webkit-appearance:none;appearance:none;flex:none;margin:0;width:17px;height:17px;border-radius:5px;background:transparent;box-shadow:inset 0 0 0 1px rgba(210,191,152,.75);cursor:pointer}
+.ve-wl__liste input:checked{background:#d2bf98 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M4.2 8.9l2.9 2.9 5.7-6.3' fill='none' stroke='%23141a2e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 50%/100% no-repeat;box-shadow:none}
+.ve-wl__liste input:focus-visible{outline:2px solid #f0e3c2;outline-offset:2px}
+.ve-wl__liste--bsp{pointer-events:none}
+.ve-wl__liste--bsp li>div{padding-inline-end:0}
+.ve-wl__marke{font:500 11px/1 var(--mono);font-style:normal;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.ve-wl__kopf b[hidden],.ve-wl__marke[hidden],.ve-wl__liste[hidden]{display:none}
+@media (max-width:480px){.ve-wl__liste li{grid-template-columns:60px minmax(0,1fr)}.ve-wl__opt{gap:8px 16px}}
+@media (max-width:1000px){.ve-leiste{grid-template-columns:1fr 1fr!important}}
+@media (max-width:860px){
+  .ve-intro,.ve-bw{grid-template-columns:minmax(0,1fr)}
+  .ve-reihe{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ve-feste,.ve-dienste{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ===== Höhepunkte als Galerie mit Bühne (Robert 11.10.2026 abends) ===== */
+.vgal{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(30px,4.4vw,80px);align-items:stretch;margin-top:clamp(50px,5vw,80px)}
+.vgal__buehne{position:relative;isolation:isolate;aspect-ratio:5/4;border-radius:var(--r-xl);overflow:hidden;background:#0c0e16;box-shadow:inset 0 0 0 1px rgba(230,210,162,.3),0 50px 70px -40px #000}
+.vgal__buehne::after{content:'';position:absolute;inset:12px;z-index:3;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(230,210,162,.4);pointer-events:none}
+.vgal__bild{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s ease}
+.vgal__bild img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 2.4s var(--e1)}
+.vgal__bild.an{opacity:1;z-index:1}.vgal__bild.an img{transform:none}
+.vgal__leg{position:absolute;left:24px;bottom:22px;z-index:4;margin:0;display:grid}
+.vgal__leg span{grid-area:1/1;padding:9px 16px 7px;border-radius:999px;background:var(--nacht);font-family:var(--caps);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#fcf7ee;opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .8s var(--e1)}
+.vgal__leg span.an{opacity:1;transform:none;transition-delay:.35s}
+.vgal__pfeile{position:absolute;right:24px;bottom:22px;z-index:4;display:flex;gap:10px}
+.vgal__pf{display:grid;place-items:center;width:52px;height:52px;border:0;border-radius:50%;cursor:pointer;color:var(--tinte);background:linear-gradient(180deg,#fcf7ee,#f2e8d5 50%,#e2d2b5);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(130,108,53,.36),0 14px 20px -10px rgba(0,0,0,.7);transition:transform .5s var(--e1)}
+.vgal__pf svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5}
+@media (hover:hover){.vgal__pf:hover{transform:translateY(-2px)}}
+.vgal__seite{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(30px,3vw,46px)}
+.vgal__texte{display:grid}
+.vgal__text{grid-area:1/1;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .7s var(--e1);pointer-events:none}
+.vgal__text.an{opacity:1;transform:none;transition-delay:.25s,.25s;pointer-events:auto}
+.vgal__n{margin-top:clamp(14px,1.4vw,20px);font:500 clamp(2.3rem,3.6vw,3.9rem)/1.02 var(--serif);color:#fcf7ee;text-wrap:balance}
+.vgal__wann{margin-top:clamp(14px,1.4vw,20px);font:500 clamp(1.25rem,1.6vw,1.6rem)/1.2 var(--serif);color:var(--gold)}
+.vgal__ort{margin-top:6px;font-family:var(--caps);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.vgal__satz{margin-top:clamp(14px,1.4vw,20px);max-width:34ch;font:500 clamp(1.1rem,1.3vw,1.3rem)/1.5 var(--serif);color:rgba(255,255,255,.88)}
+.vgal__text .kn-reihe{margin-top:clamp(20px,2vw,28px)}
+.vgal__wahl{display:grid;border-top:1px solid rgba(230,210,162,.25)}
+.vgal__w{position:relative;display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);align-items:baseline;gap:16px;padding:16px 0 15px;border:0;border-bottom:1px solid rgba(230,210,162,.25);background:none;text-align:left;cursor:pointer;color:rgba(252,247,238,.55);transition:color .4s ease}
+.vgal__wd{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.vgal__wn{font:500 clamp(1.15rem,1.4vw,1.4rem)/1.2 var(--serif)}
+.vgal__w.an,.vgal__w:hover{color:#fcf7ee}.vgal__w.an .vgal__wd{color:var(--gold)}
+.vgal__lauf{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%}
+.vgal__w.an .vgal__lauf{transform:scaleX(1);transition:transform .6s var(--e1)}
+.vgal--lauf .vgal__w.an .vgal__lauf{transform:scaleX(0);animation:vglauf 7s linear forwards}
+@keyframes vglauf{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* ===== Kalender als Kalenderblatt ===== */
+.vbl{margin-top:clamp(20px,2vw,30px)}
+.vbl__blatt{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;max-width:980px;margin:0 auto}
+.vbl__titel{display:flex;flex-direction:column;align-items:center;margin:0;text-align:center}
+.vbl__mon{font:500 clamp(3.6rem,8.4vw,8.6rem)/.95 var(--serif);letter-spacing:-.01em;color:var(--tinte)}
+.vbl__jahr{margin-top:6px;font-family:var(--caps);font-size:.86rem;letter-spacing:.42em;padding-left:.42em;color:var(--akzent)}
+.vbl__zahl{margin-top:10px;font:italic 500 1.12rem/1.2 var(--serif);color:var(--taupe-tief);min-height:1.2em}
+.vbl__titel.vbl--neu>*{animation:vkmon .8s var(--e1) both}.vbl__titel.vbl--neu .vbl__jahr{animation-delay:.06s}.vbl__titel.vbl--neu .vbl__zahl{animation-delay:.12s}
+@keyframes vkmon{from{opacity:0;transform:translateY(.35em)}}
+.vbl__pf{display:grid;place-items:center;width:64px;height:64px;border:0;border-radius:50%;cursor:pointer;color:var(--tinte);background:var(--platte-h);box-shadow:var(--platte-h-s);transition:transform .5s var(--e1),opacity .3s}
+.vbl__pf svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5}
+.vbl__pf:disabled{opacity:.3;cursor:default}
+@media (hover:hover){.vbl__pf:not(:disabled):hover{transform:translateY(-2px)}}
+.vbl__monate{display:flex;justify-content:center;gap:clamp(4px,1vw,14px);max-width:1100px;margin:clamp(26px,2.6vw,40px) auto clamp(40px,4vw,64px);padding:0 4px 2px;border-bottom:1px solid var(--linie)}
+.vbl__m{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:58px;padding:10px 8px 14px;border:0;background:none;cursor:pointer;color:var(--taupe-tief);transition:color .3s}
+.vbl__m span{font-family:var(--caps);font-size:.74rem;letter-spacing:.2em;padding-left:.2em;text-transform:uppercase}
+.vbl__m b{font:500 1.25rem/1 var(--serif);color:var(--tinte)}
+.vbl__m::after{content:'';position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:var(--akzent);transform:scaleX(0);transition:transform .6s var(--e1)}
+.vbl__m[aria-pressed=true]{color:var(--tinte)}.vbl__m[aria-pressed=true]::after{transform:none}
+.vbl__m:disabled{opacity:.32;cursor:default}
+@media (hover:hover){.vbl__m:not(:disabled):hover{color:var(--tinte)}}
+.vbl__karten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.2vw,34px);max-width:1440px;margin:0 auto;padding:0;list-style:none}
+.ve-z{--kf:#fbf5ea;position:relative;display:flex;flex-direction:column;border-radius:var(--r-xl);overflow:hidden;background:linear-gradient(180deg,#fbf5ea,#f4ecdc 70%,#efe5d1);box-shadow:var(--platte-h-s)}
+.ve-z[hidden]{display:none}
+.vbl__karten.vbl--neu .ve-z{animation:vkein .9s var(--e1) both;animation-delay:calc(var(--i,0) * 80ms)}
+@keyframes vkein{from{opacity:0;transform:translateY(26px)}}
+.ve-z__b{aspect-ratio:4/3;border-radius:0;box-shadow:none}
+.ve-z__b img{position:absolute;inset:0}
+.ve-z__d{position:absolute;top:16px;left:16px;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;width:78px;height:78px;margin:0;border-radius:50%;
+  background:#fbf5ea;box-shadow:inset 0 0 0 1px rgba(152,115,60,.45),inset 0 0 0 5px #fbf5ea,inset 0 0 0 6px rgba(152,115,60,.22),0 12px 20px -10px rgba(0,0,0,.55)}
+.ve-z__d b{font:500 2.1rem/1 var(--serif);color:var(--tinte)}
+.ve-z__d span{margin-top:2px;font-family:var(--caps);font-size:.6rem;letter-spacing:.2em;padding-left:.2em;text-transform:uppercase;color:var(--akzent)}
+.ve-z__d--lauf b{font-size:1.25rem;font-style:italic}.ve-z__d--lauf span:first-child{margin:0 0 2px;color:var(--taupe-tief)}
+.ve-z__t{display:flex;flex-direction:column;flex:1;padding:clamp(20px,2vw,28px) clamp(20px,2vw,28px) clamp(18px,1.8vw,24px)}
+.ve-z__kopf{display:flex;gap:10px;align-items:center;margin:0}
+.ve-z__art{font-family:var(--caps);font-weight:600;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--akzent)}
+.ve-z__haus{padding:3px 10px 2px;border-radius:999px;background:var(--nacht);font-family:var(--caps);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.ve-z h3{margin:10px 0 0;font:500 clamp(1.5rem,1.9vw,1.95rem)/1.1 var(--serif);color:var(--tinte);text-wrap:balance}
+.ve-z__wann{margin:8px 0 0;font-size:.88rem;line-height:1.45;color:var(--taupe-tief)}
+.ve-z__satz{margin:10px 0 0;font:500 1.08rem/1.5 var(--serif);color:rgba(26,29,40,.82)}
+.ve-z__unten{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:20px}
+.ve-z__mehr{font-family:var(--caps);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--akzent);box-shadow:inset 0 -1px 0 rgba(152,115,60,.5)}
+.ve-z__merk{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:11px 14px 11px 18px;border:0;border-radius:999px;background:none;cursor:pointer;font-family:var(--caps);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinte);box-shadow:inset 0 0 0 1px rgba(152,115,60,.45);transition:background .35s,color .35s;white-space:nowrap}
+.ve-z__merk i{position:relative;width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(152,115,60,.6)}
+.ve-z__merk i::after{content:'';position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;rotate:45deg;background:var(--gold);transform:scale(0);transition:transform .4s var(--e1)}
+.ve-z__merk-b{display:none}
+.ve-z__merk[aria-pressed=true]{background:var(--nacht);color:#fcf7ee;box-shadow:none}
+.ve-z__merk[aria-pressed=true] i::after{transform:none}
+.ve-z__merk[aria-pressed=true] .ve-z__merk-a{display:none}.ve-z__merk[aria-pressed=true] .ve-z__merk-b{display:inline}
+.vbl--leer .vbl__blatt,.vbl--leer .vbl__monate{display:none}
+.ve-kal .ve-tee{margin-top:clamp(50px,5vw,80px)}
+@media (max-width:1100px){.vbl__karten{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vbl__monate{justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin-left:calc(var(--rand) * -1);margin-right:calc(var(--rand) * -1);padding:0 var(--rand) 2px}
+  .vbl__monate::-webkit-scrollbar{display:none}}
+@media (max-width:860px){.vgal{grid-template-columns:minmax(0,1fr)}.vgal__buehne{aspect-ratio:4/3}}
+@media (max-width:700px){.vbl__karten{grid-template-columns:minmax(0,1fr)}.vbl__pf{width:50px;height:50px}.vbl__blatt{gap:8px}
+  .vgal__pf{width:46px;height:46px}.vgal__pfeile{right:16px;bottom:16px}.vgal__leg{left:16px;bottom:18px}.vgal__leg span{font-size:.62rem;padding:7px 12px 6px}.vgal__w{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media (prefers-reduced-motion:reduce){.vgal__bild,.vgal__bild img,.vgal__text,.vgal__leg span{transition:none}.vbl__karten.vbl--neu .ve-z,.vbl__titel.vbl--neu>*{animation:none}}
+/* Nachtrag: Bühne nimmt die Spaltenbreite (sonst zieht das Seitenverhältnis sie über die Spalte hinaus), Karten mittig auch bei zwei Terminen */
+.vgal{align-items:center}.vgal__buehne{width:100%;align-self:center}
+.vgal__w{grid-template-columns:minmax(0,12.5em) minmax(0,1fr)}
+.vbl__karten{display:flex;flex-wrap:wrap;justify-content:center}
+.vbl__karten>.ve-z{flex:0 1 calc((100% - 2 * clamp(18px,2.2vw,34px)) / 3);min-width:0}
+@media (max-width:1100px){.vbl__karten>.ve-z{flex-basis:calc((100% - clamp(18px,2.2vw,34px)) / 2)}}
+@media (max-width:700px){.vbl__karten>.ve-z{flex-basis:100%}.vgal__w{grid-template-columns:minmax(0,1fr)}}
+.vbl__mon{text-transform:capitalize}
+/* Monatsname: Platz für die Unterlängen (p, J, g), Jahr klar darunter (Robert 11.10.2026) */
+.vbl__mon{line-height:1.22}.vbl__jahr{margin-top:clamp(12px,1.4vw,22px)}.vbl__zahl{margin-top:14px}
+/* Bühne der Höhepunkte als Gefüge wie bei den Zimmern: drei Fotos je Termin, die Sätze blenden ineinander (Robert 11.10.2026 abends) */
+.vgal__links{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,22px);min-width:0}
+.vgal__buehne{display:grid;aspect-ratio:auto;border-radius:0;overflow:visible;background:none;box-shadow:none}
+.vgal__buehne::after{content:none}
+.vgal__set{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s linear .8s}
+.vgal__set.an{opacity:1;visibility:visible;transition:opacity .8s ease,visibility 0s}
+.vgal__b{cursor:default}
+.vgal__set .vgal__b{opacity:0;transform:translateY(24px) scale(.97);transform-origin:50% 100%;transition:opacity .9s var(--e2),transform 1.3s var(--e3)}
+.vgal__set.an .vgal__b{opacity:1;transform:none;transition-delay:calc(var(--n) * 120ms + .1s)}
+.vgal__pfeile{position:static;align-self:flex-end;display:flex;gap:10px}
+@media (prefers-reduced-motion:reduce){.vgal__set,.vgal__set .vgal__b{transition:none}}
+/* Die drei Fotos eines Termins blenden nur ein, gestaffelt, ohne Verschieben (ruhiger) */
+.vgal__set .vgal__b{transform:none;transition:opacity .9s var(--e2)}
+/* Art-Wahl edler (Robert 11.10.2026 abends): eine eingelassene Leiste (Kuhle) statt loser Pillen, die Arten stehen frei darin,
+   getrennt von feinen Goldstrichen; die gewählte Art liegt als dunkle Platte mit Goldfaden obenauf. Wechsel nur über opacity. */
+.ve-chips{position:relative;display:inline-flex;flex-wrap:nowrap;gap:0;padding:6px;border-radius:999px;background:var(--kuhle-h);box-shadow:var(--kuhle-h-s)}
+.ve-chip{position:relative;isolation:isolate;padding:14px 22px 13px;border:0;border-radius:999px;background:none;box-shadow:none;cursor:pointer;
+  font-family:var(--caps);font-weight:500;font-size:.74rem;letter-spacing:.24em;padding-left:calc(22px + .24em);text-transform:uppercase;color:var(--taupe-tief);white-space:nowrap;transition:color .45s ease}
+.ve-chip+.ve-chip::after{content:'';position:absolute;left:0;top:30%;bottom:30%;width:1px;background:rgba(152,115,60,.28);transition:opacity .45s ease}
+.ve-chip::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;opacity:0;transition:opacity .45s ease;
+  background:var(--platte-d);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(230,210,162,.5),inset 0 0 0 4px #1d2236,inset 0 0 0 5px rgba(230,210,162,.22),0 10px 18px -10px rgba(10,12,20,.7)}
+.ve-chip[aria-pressed=true]{color:var(--gold);background:none;box-shadow:none}
+.ve-chip[aria-pressed=true]::before{opacity:1}
+.ve-chip[aria-pressed=true]::after,.ve-chip[aria-pressed=true]+.ve-chip::after{opacity:0}
+@media (hover:hover){.ve-chip:not([aria-pressed=true]):hover{color:var(--tinte)}}
+.ve-chip:focus-visible{outline:2px solid var(--taupe);outline-offset:3px}
+@media (max-width:1100px){.ve-chips{max-width:100%;overflow-x:auto;scrollbar-width:none}.ve-chips::-webkit-scrollbar{display:none}}
+/* Leiste oben: Kalender und Auswahl im Stil des Hauses wie die Buchungsleiste (Robert 11.10.2026: «alles, was wir bauen, im Stil des Hauses») */
+.fh-leiste .lw-nativ{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;opacity:0;pointer-events:none;overflow:hidden;clip-path:inset(50%)}
+.fh-leiste .lw{display:block;width:100%;min-width:0;padding:0 22px 0 0;border:0;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23826C35' stroke-width='1.4'/%3E%3C/svg%3E") right 0 center/14px no-repeat;
+  text-align:left;cursor:pointer;font:500 1.12rem/1.3 var(--serif);color:var(--tinte);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:transform .6s var(--e1)}
+.fh-leiste .lw--leer{color:rgba(26,29,40,.48);font-style:italic}
+.fh-leiste .lw:focus-visible{outline:0;box-shadow:0 2px 0 var(--akzent)}
+@media (hover:hover){.fh-leiste label:hover .lw,.fh-leiste .lw[aria-expanded="true"]{transform:translate3d(4px,0,0)}}
+.lw-wahl--wort{padding:12px 22px 12px 18px}.lw-wahl--wort span{font-size:1.28rem}
+/* Festtage als Billette (Robert 11.10.2026 abends): Gold wie die Karte der Karriere-Seite, Perforation mit zwei Kerben, Abschnitt mit dem Tag */
+.ve-ticket{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) 0 clamp(92px,8vw,118px);align-items:stretch;min-height:clamp(150px,12vw,176px);border-radius:22px;color:#1b1608;
+  background:linear-gradient(115deg,#f6e7bd 0%,#dcc07e 26%,#c9a560 46%,#e8d39b 68%,#b99558 100%);
+  box-shadow:inset 0 1px 0 rgba(255,250,230,.8),inset 0 -2px 0 rgba(120,88,36,.45),0 2px 0 #6e5225,0 34px 46px -30px rgba(20,22,31,.7);transition:transform .7s var(--e1)}
+.ve-ticket::before{content:'';position:absolute;inset:8px;border-radius:15px;box-shadow:inset 0 0 0 1px rgba(91,66,25,.38);pointer-events:none;z-index:2}
+@media (hover:hover){.ve-ticket:hover{transform:translateY(-4px)}}
+.ve-ticket:focus-visible{outline:2px solid var(--taupe);outline-offset:4px}
+.vt__haupt{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:clamp(22px,2vw,30px) clamp(22px,2.2vw,34px)}
+.vt__k{font-family:var(--caps);font-weight:600;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:#5a4317}
+.vt__n{font:500 clamp(1.5rem,2vw,2rem)/1.08 var(--serif);font-style:normal;color:#14110a;text-wrap:balance}
+.vt__s{font-family:var(--sans);font-size:.9rem;color:rgba(27,22,8,.72)}
+.vt__riss{position:relative;border-left:2px dashed rgba(74,55,18,.42);margin:20px 0}
+.vt__riss::before,.vt__riss::after{content:'';position:absolute;left:-15px;width:28px;height:28px;border-radius:50%;background:var(--papier);box-shadow:inset 0 2px 4px rgba(60,44,14,.35)}
+.vt__riss::before{top:-35px}.vt__riss::after{bottom:-35px}
+.vt__stub{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.vt__stub b{font:500 clamp(3rem,4vw,4.2rem)/.9 var(--serif);color:#14110a}
+.vt__stub span{font-family:var(--caps);font-weight:600;font-size:.66rem;letter-spacing:.26em;padding-left:.26em;text-transform:uppercase;color:#5a4317}
+@media (max-width:1100px){.ve-chips{display:flex;flex-wrap:wrap;justify-content:center;overflow:visible;border-radius:28px;gap:2px}.ve-chip+.ve-chip::after{display:none}.ve-chip{padding:12px 16px 11px calc(16px + .24em)}}
+.lw-gaeste:has(.lw-wahl--wort){grid-template-columns:repeat(2,minmax(0,1fr));min-width:min(420px,calc(100vw - 32px))}.lw-wahl--wort{padding:10px 16px}.lw-wahl--wort span{font-size:1.2rem}
+@media (max-width:860px){.ve-feste{row-gap:30px}}
+/* Kerben an der Abrisslinie entfernt (Robert 11.10.2026: «sieht doof aus», Goldfaden lief hindurch) — nur die gestrichelte Linie bleibt */
+.vt__riss::before,.vt__riss::after{content:none}

@@ -1,0 +1,192 @@
+/* L’Imprimerie (vorher Media Printing Studio) · Katalog des Hauses (Robert 12.10.2026: «jede Abteilung braucht Flyer und Vorlagen, dazu Events in der Stadt mit
+   einem grossen Vorlagenkatalog, Newsletter und E-Mail-Vorlagen, dazu Bauarbeiten, Reinigung, Stromausfall, Defekte»).
+   Jede Vorlage ist sofort fertig gesetzt (Vorlage + Ton + Format + Inhalt), öffnet ohne KI und ohne Kosten.
+   Quellen: Abteilungen = Karriereseite des Hauses («Vor und hinter den Kulissen»); Zeiten, Preise, Gerichte = Website des Hauses (gast_wissen);
+   Veranstaltungen in Interlaken = interlaken.swiss/planen/events/top-events (abgerufen 12.10.2026), Lauberhorn = jungfrauregion.swiss,
+   Magic Park = interlaken.swiss. Was nicht belegt ist, steht in [eckigen Klammern] und wird vor dem Druck ersetzt. */
+(function () {
+  const TEL = '+41 33 826 70 07', ADR = 'Höheweg 211 · 3800 Interlaken';
+  const v = (n, wo, format, vorlage, ton, inhalt, rueck) => ({ n, wo, format, vorlage, ton, inhalt, rueck });
+
+  const SPEISEN = [
+    { name: 'Käsefondue', detail: 'Käse Hausmischung, kleine Kartoffeln, Essiggurken, Perlzwiebeln, Ruchbrot', preis: 'CHF 30' },
+    { name: '«La Petite Suisse» Fondue', detail: 'Käse Hausmischung, Steinpilze, Birne, Äpfel', preis: 'CHF 34' },
+    { name: 'Oberländer Rösti', detail: 'Raclettekäse, Speck, Schweizer Freilandeier', preis: 'CHF 27' },
+    { name: 'Älplermagronen', detail: 'Kartoffel, Vollrahm, Gruyère, Zwiebeln, Apfelmus', preis: 'CHF 25' },
+    { name: 'Kalbsgeschnetzeltes', detail: 'Morchel, Rösti, buntes Gemüse', preis: 'CHF 46' }];
+  const COCKTAILS = [
+    { name: 'The Negroni', detail: 'Gin, roter Wermut, Campari, Orangenblüten-Bitter. Im Fass gelagert.', preis: 'CHF 17' },
+    { name: 'Pear Martini', detail: 'Birnenwodka, Vieille Poire, Holunderblüte, Zitrone', preis: 'CHF 20' },
+    { name: 'El Diablo', detail: 'Tequila, Mezcal, Chilli, Ginger Beer', preis: 'CHF 18' },
+    { name: 'Captain’s Curse', detail: 'Feigenrum, Pfirsich, Limette, Ingwer', preis: 'CHF 19' },
+    { name: 'The All – Pine Sage', detail: 'Alpinist Gin, Pinienhonig, Salbei, Eiweiss', preis: 'CHF 19' }];
+  const MASSAGEN = [
+    { name: 'Die schlaffördernde Relaxmassage', detail: 'Für eine tiefe Entspannung von Körper und Geist.', preis: '60 Min. · CHF 160' },
+    { name: 'Energie- und Vitalitätsmassage', detail: 'Schweizer Pflanzenextrakte und ätherische Öle.', preis: '60 Min. · CHF 160' },
+    { name: 'Drain Pro', detail: 'Sanfte Drainage mit Schwerpunkt auf Bauch und Beinen.', preis: '50 Min. · CHF 150' },
+    { name: 'Stress Relief', detail: 'Rücken-, Nacken- und Schultermassage.', preis: '30 Min. · CHF 90' }];
+  const WINTER = [
+    { wann: '1. November 2026 – 3. Januar 2027', was: 'Ausstellung mit Housi Knecht', wo: 'Im Garten und im Foyer' },
+    { wann: '1. November 2026 – 3. Januar 2027 · 15.00 – 20.00 Uhr', was: 'Winterchalet im Garten', wo: 'Glühwein, Prosecco und Chääsbrätel' },
+    { wann: '1. Dezember 2026 – 3. Januar 2027 · 18.00 – 20.00 Uhr', was: 'Die Fassade im festlichen Licht', wo: 'Am Höheweg' },
+    { wann: '31. Dezember 2026 · ab 18.00 Uhr', was: 'Silvester im Grand Beau-Rivage', wo: 'Galadinner mit Champagner-Aperitif' }];
+
+  /* ---------- Abteilungen (Karriereseite des Hauses, dazu Verkauf, Team und Haustechnik) ---------- */
+  const ABTEILUNGEN = [
+    { k: 'empfang', t: 'Empfang & Concierge', satz: 'In der Halle mit den Säulen. Alles, was Gäste bei der Ankunft, während des Aufenthalts und bei der Abreise in die Hand bekommen.', foto: 'halle-2', vorlagen: [
+      v('Willkommensbrief', 'auf dem Zimmer', 'a4h', 'aushang', 'hell', { ueber: 'Grand Beau-Rivage · Interlaken', titel: 'Willkommen im Haus', text: 'Schön, dass Sie bei uns sind.\n\nDie Tea Time erwartet Sie täglich von 15.00 bis 17.00 Uhr, die Bar «Le Vieux Rivage» täglich von 17.00 bis 24.00 Uhr.\n\nFür alle Wünsche ist die Rezeption jederzeit für Sie da.', aktion: 'Rezeption · ' + TEL }),
+      v('Zeiten im Haus', 'Halle und Lift', 'a4h', 'aushang', 'creme', { ueber: 'Grand Beau-Rivage', titel: 'Zeiten im Haus', text: 'Frühstück\n[Zeiten]\n\nTea Time\ntäglich 15.00 – 17.00 Uhr\n\nBar «Le Vieux Rivage»\ntäglich 17.00 – 24.00 Uhr\n\nLa Vallée SPA\ntäglich 7.30 – 21.00 Uhr', aktion: 'Rezeption · ' + TEL }),
+      v('Ausflugstipps des Concierge', 'Rezeption und Zimmer', 'dlh', 'programm', 'dunkel', { ueber: 'Der Concierge empfiehlt', titel: 'Die Jungfrauregion', termine: [
+        { wann: 'In wenigen Gehminuten', was: 'Harder Kulm', wo: 'Der Hausberg Interlakens auf 1’322 Metern' },
+        { wann: 'Das ganze Jahr', was: 'Jungfraujoch', wo: 'Top of Europe, 3’454 Meter' },
+        { wann: 'Mit dem Schiff', was: 'Thunersee und Brienzersee', wo: 'Zwischen den beiden Seen' }] }),
+      v('WLAN-Karte', 'Zimmer und Rezeption', 'a6q', 'deckel', 'hell', { ueber: 'Grand Beau-Rivage', titel: 'WLAN', unter: 'Netz [Name]', text: 'Passwort [Passwort]' }),
+      v('Hülle für die Zimmerkarte', 'beim Check-in', 'a6h', 'deckel', 'dunkel', { ueber: 'Willkommen', titel: 'Zimmer [Nr.]', unter: 'Grand Beau-Rivage · Interlaken', text: 'Rezeption · ' + TEL }),
+      v('Heute im Haus', 'Aufsteller in der Halle', 'a4h', 'programm', 'creme', { ueber: 'Heute im Grand Beau-Rivage', titel: '[Wochentag, Datum]', termine: [
+        { wann: '15.00 – 17.00 Uhr', was: 'Tea Time mit Aussicht', wo: 'Bar, Bar-Terrasse und Terrasse' },
+        { wann: '17.00 – 24.00 Uhr', was: 'Bar «Le Vieux Rivage»', wo: 'Cocktails am Abend' },
+        { wann: '[Zeit]', was: '[Programmpunkt]', wo: '[Ort]' }] }),
+      v('Ansichtskarte zum Mitnehmen', 'Rezeption', 'a6q', 'ansicht', 'dunkel', { bild: 'haus-aare', titel: 'Interlaken', unter: 'Grand Beau-Rivage · an der Aare' }, { vorlage: 'kartengruss', inhalt: { titel: 'Interlaken · seit 1874', text: 'Herzliche Grüsse aus Interlaken.' } }),
+      v('Abreise und Check-out', 'auf dem Zimmer', 'a5h', 'aushang', 'hell', { ueber: 'Bis bald', titel: 'Ihre Abreise', text: 'Check-out bis [Uhrzeit]\n\nGepäck bewahren wir gerne für Sie auf.\n\nWir freuen uns auf Ihren nächsten Besuch.', aktion: 'Rezeption · ' + TEL }),
+    ] },
+    { k: 'housekeeping', t: 'Housekeeping', satz: 'Liebe zum Detail. Türhänger, Karten und Hinweise für das Zimmer, vom Abend bis zum Morgen.', foto: 'z-queen-2', vorlagen: [
+      v('Türhänger «Bitte nicht stören»', 'Zimmertür', 'tuer', 'deckel', 'dunkel', { ueber: 'Grand Beau-Rivage', titel: 'Bitte nicht stören', unter: 'Do not disturb', text: 'Merci' }),
+      v('Türhänger «Bitte reinigen»', 'Zimmertür', 'tuer', 'deckel', 'hell', { ueber: 'Grand Beau-Rivage', titel: 'Bitte Zimmer reinigen', unter: 'Please make up my room', text: 'Merci' }),
+      v('Karte zum Abend', 'auf dem Kissen', 'a6q', 'deckel', 'creme', { ueber: 'Grand Beau-Rivage', titel: 'Gute Nacht', unter: 'Wir wünschen Ihnen erholsame Träume' }),
+      v('Handtücher und Umwelt', 'im Bad', 'a6h', 'aushang', 'creme', { ueber: 'Ihr Beitrag', titel: 'Handtücher', text: 'Handtücher auf dem Boden tauschen wir gerne aus.\n\nAufgehängte Handtücher verwenden Sie ein weiteres Mal.', aktion: 'Danke, dass Sie mithelfen' }),
+      v('Wäscheservice', 'im Schrank', 'a5h', 'karte', 'hell', { ueber: 'Housekeeping', titel: 'Wäscheservice', text: 'Bis [Uhrzeit] abgegeben, am [Tag] zurück.', liste: [
+        { name: 'Hemd, Bluse', detail: 'gewaschen und gebügelt', preis: 'CHF [Preis]' }, { name: 'Hose, Rock', detail: 'gewaschen und gebügelt', preis: 'CHF [Preis]' }, { name: 'Anzug', detail: 'gereinigt', preis: 'CHF [Preis]' }] }),
+      v('Willkommensgruss auf dem Zimmer', 'Zimmer', 'q148', 'deckel', 'dunkel', { ueber: 'Grand Beau-Rivage', titel: 'Willkommen', unter: 'Wir wünschen Ihnen einen wunderbaren Aufenthalt', text: '[Name des Gastes]' }),
+    ] },
+    { k: 'restaurants', t: 'Restaurants', satz: '«L’Ambiance» und «La Petite Suisse». Karten, Tischaufsteller und Aushänge für Mittag und Abend.', foto: 'rest-ambiance-6', vorlagen: [
+      v('Speisekarte La Petite Suisse', 'am Tisch', 'a4h', 'karte', 'hell', { ueber: 'Restaurant «La Petite Suisse»', titel: 'Am Kamin', text: 'November bis April. Schweizer Küche, regional und ehrlich.', liste: SPEISEN }, { vorlage: 'deckel', inhalt: { ueber: 'Restaurant «La Petite Suisse»', titel: 'Speisekarte', unter: 'November bis April · am Kamin' } }),
+      v('Tischaufsteller Käsefondue', 'am Tisch und in der Halle', 'a6h', 'geteilt', 'dunkel', { bild: 'fondue', ueber: 'Restaurant «La Petite Suisse»', titel: 'Am Kamin', text: 'Käsefondue, Rösti und Raclette, November bis April.', aktion: 'Tisch reservieren · ' + TEL }),
+      v('Menü des Tages', 'am Eingang', 'dlh', 'karte', 'creme', { ueber: 'Restaurant «L’Ambiance»', titel: 'Menü des Tages', text: '[Datum]', liste: [{ name: '[Vorspeise]', detail: '', preis: '' }, { name: '[Hauptgang]', detail: '', preis: '' }, { name: '[Dessert]', detail: '', preis: 'CHF [Preis]' }] }),
+      v('Reserviert', 'auf dem Tisch', 'a6q', 'deckel', 'dunkel', { ueber: 'Grand Beau-Rivage', titel: 'Reserviert', unter: '[Name] · [Uhrzeit]' }),
+      v('Plakat Restaurant am Kamin', 'Halle und Lift', 'a3h', 'fenster', 'dunkel', { bild: 'rest-suisse-2', ueber: 'Restaurant «La Petite Suisse»', titel: 'Am Kamin', unter: 'November bis April', text: 'Schweizer Küche von der Apéro-Platte bis zum Käsefondue.' }),
+      v('Allergene', 'am Eingang', 'a4h', 'aushang', 'hell', { ueber: 'Gut zu wissen', titel: 'Allergene', text: 'Über Zutaten, die Allergien oder Unverträglichkeiten auslösen können, informieren wir Sie gerne persönlich.', aktion: 'Fragen Sie unser Service-Team' }),
+    ] },
+    { k: 'bar', t: 'Bar «Le Vieux Rivage»', satz: 'Täglich 17.00 bis 24.00 Uhr, am Nachmittag die Tea Time. Karten, Tischaufsteller und Beiträge.', foto: 'bar', vorlagen: [
+      v('Barkarte Signature Cocktails', 'am Tisch', 'dlh', 'karte', 'dunkel', { ueber: 'Bar «Le Vieux Rivage»', titel: 'Signature Cocktails', text: 'Täglich 17.00 – 24.00 Uhr', liste: COCKTAILS }, { vorlage: 'deckel', inhalt: { ueber: 'Bar «Le Vieux Rivage»', titel: 'Barkarte', unter: 'Täglich 17.00 – 24.00 Uhr' } }),
+      v('Tischaufsteller Tea Time', 'Bar und Halle', 'a6h', 'buehne', 'dunkel', { bild: 'bar-teatime', ueber: 'Bar «Le Vieux Rivage»', titel: 'Tea Time', text: 'Zwei herzhafte und drei süsse Canapés.', aktion: 'Täglich 15.00 – 17.00 Uhr' }),
+      v('Cocktail des Monats', 'Instagram', 'insta', 'geteilt', 'dunkel', { bild: 'g-manhattan', ueber: 'Bar «Le Vieux Rivage»', titel: 'Cocktail des Monats', text: '[Name des Cocktails]', aktion: 'Täglich 17.00 – 24.00 Uhr' }),
+      v('Plakat Bar', 'Halle und Lift', 'a3h', 'buehne', 'dunkel', { bild: 'service-bar', ueber: 'Bar «Le Vieux Rivage»', titel: 'Am Abend', text: 'Cocktails, Weine und Gespräche bis Mitternacht.', aktion: 'Täglich 17.00 – 24.00 Uhr' }),
+    ] },
+    { k: 'terrasse', t: 'Terrasse «La Belle Rivière»', satz: 'Lounge & Bar direkt an der Aare, Mai bis September.', foto: 'terrasse-neu', vorlagen: [
+      v('Plakat Sommer an der Aare', 'Halle', 'a3h', 'fenster', 'creme', { bild: 'terrasse-neu', ueber: 'Terrasse, Lounge & Bar', titel: 'La Belle Rivière', unter: 'Mai bis September', text: 'Direkt an der Aare, mit Blick auf die Berge.' }),
+      v('Getränkekarte der Terrasse', 'am Tisch', 'dlh', 'karte', 'creme', { ueber: 'Terrasse «La Belle Rivière»', titel: 'An der Aare', text: 'Mai bis September', liste: [{ name: '[Getränk]', detail: '[Beschreibung]', preis: 'CHF [Preis]' }, { name: '[Getränk]', detail: '[Beschreibung]', preis: 'CHF [Preis]' }, { name: '[Getränk]', detail: '[Beschreibung]', preis: 'CHF [Preis]' }] }),
+      v('Tischaufsteller Terrasse', 'auf der Terrasse', 'a6h', 'buehne', 'creme', { bild: 'terrasse-lounge', ueber: 'La Belle Rivière', titel: 'Apéro an der Aare', text: 'Tea Time am Nachmittag, Drinks am Abend.', aktion: 'Mai bis September' }),
+    ] },
+    { k: 'spa', t: 'La Vallée SPA', satz: 'Beauty Center und Schwimmbad. Behandlungen, Zeiten, Gutscheine und Pauschalen.', foto: 'spa-pool', vorlagen: [
+      v('Massage-Rituale', 'Spa und Zimmer', 'a5h', 'karte', 'hell', { ueber: 'La Vallée SPA', titel: 'Massage-Rituale', text: 'Nehmen Sie sich einen Moment Zeit für sich selbst.', liste: MASSAGEN }, { vorlage: 'deckel', inhalt: { ueber: 'La Vallée SPA', titel: 'Zeit für sich', unter: 'Schwimmbad · Sauna · Dampfbad', text: 'Täglich 7.30 – 21.00 Uhr' } }),
+      v('Zeiten im Spa', 'Eingang Spa', 'a4h', 'aushang', 'creme', { ueber: 'La Vallée SPA', titel: 'Zeiten im Spa', text: 'Schwimmbad, Sauna und Dampfbad\ntäglich 7.30 – 21.00 Uhr\n\nBeauty & Rituale\ntäglich 9.00 – 19.00 Uhr', aktion: 'Termine an der Rezeption' }),
+      v('Spa-Gutschein', 'Verkauf', 'dlq', 'gutschein', 'dunkel', { titel: 'Gutschein', unter: 'Zeit für sich im La Vallée SPA', wert: 'CHF […]', text: 'Für eine Massage, eine Behandlung oder einen Tag im Spa.' }),
+      v('Pauschale Spa & Genuss', 'Rezeption und Zimmer', 'a5h', 'fenster', 'dunkel', { bild: 'spa-ruhe', ueber: 'Pauschale ab zwei Nächten', titel: 'Spa & Genuss', unter: 'La Vallée SPA', text: 'Zwei Nächte mit Frühstück und 3-Gang-Dinner, eine 60-minütige Relax-Massage pro Person, Wellnessbereich inklusive.' }),
+      v('Ruhe im Spa', 'Ruheraum', 'a5h', 'deckel', 'creme', { ueber: 'La Vallée SPA', titel: 'Hier ist es still', unter: 'Bitte stellen Sie Ihr Telefon auf lautlos', text: 'Danke' }),
+    ] },
+    { k: 'bankett', t: 'Bankett & Events', satz: 'Im Ballsaal «La Belle Epoque». Einladungen, Menükarten, Programme, Tischkarten und Wegweiser.', foto: 'saal', vorlagen: [
+      v('Einladung zum Fest', 'Gäste des Anlasses', 'q148', 'einladung', 'dunkel', { ueber: '[Anlass]', titel: '[Titel der Einladung]', wann: '[Datum] · ab [Uhrzeit]', wo: 'Grand Beau-Rivage, Interlaken', text: '[Ein Satz zum Abend]', aktion: 'Um Antwort wird gebeten bis [Datum]' }),
+      v('Menükarte des Abends', 'auf dem Tisch', 'dlh', 'karte', 'hell', { ueber: '[Anlass]', titel: 'Menü', text: '[Datum]', liste: [{ name: '[Erster Gang]', detail: '', preis: '' }, { name: '[Zweiter Gang]', detail: '', preis: '' }, { name: '[Hauptgang]', detail: '', preis: '' }, { name: '[Dessert]', detail: '', preis: '' }] }),
+      v('Ablauf des Tages', 'für die Gäste', 'a5h', 'programm', 'creme', { ueber: '[Anlass]', titel: 'Der Ablauf', termine: [{ wann: '[Uhrzeit]', was: '[Programmpunkt]', wo: '[Ort]' }, { wann: '[Uhrzeit]', was: '[Programmpunkt]', wo: 'Ballsaal «La Belle Epoque»' }, { wann: '[Uhrzeit]', was: '[Programmpunkt]', wo: '[Ort]' }] }),
+      v('Tischkarte', 'auf dem Tisch', 'a6q', 'deckel', 'hell', { ueber: '[Anlass]', titel: 'Tisch [Nr.]' }),
+      v('Wegweiser zum Saal', 'Halle', 'a3h', 'aushang', 'dunkel', { ueber: 'Herzlich willkommen', titel: '[Name des Anlasses]', text: 'Ballsaal «La Belle Epoque»\n[Richtung]', aktion: 'Grand Beau-Rivage' }),
+      v('Willkommen zur Tagung', 'vor dem Raum', 'a4h', 'deckel', 'dunkel', { ueber: 'Herzlich willkommen', titel: '[Firma]', unter: '[Name der Tagung]', text: '[Raum] · [Datum]' }),
+    ] },
+    { k: 'kueche', t: 'Küche', satz: 'Vom Frühstück bis zum Galadinner. Karten für den Morgen, Hinweise und Aushänge für das Team.', foto: 'food-teller-2', vorlagen: [
+      v('Frühstückskarte', 'am Tisch', 'a5h', 'karte', 'creme', { ueber: 'Grand Beau-Rivage', titel: 'Frühstück', text: '[Zeiten]', liste: [{ name: '[Gericht]', detail: '[Beschreibung]', preis: '' }, { name: '[Gericht]', detail: '[Beschreibung]', preis: '' }, { name: '[Gericht]', detail: '[Beschreibung]', preis: '' }] }),
+      v('Gericht im Bild', 'Instagram', 'insta', 'geteilt', 'dunkel', { bild: 'g-kalbsgeschnetzeltes', ueber: 'Aus unserer Küche', titel: 'Kalbsgeschnetzeltes', text: 'Morchel, Rösti, buntes Gemüse.', aktion: 'Restaurant «La Petite Suisse»' }),
+      v('Hinweis für das Team', 'Küche, intern', 'a4h', 'aushang', 'hell', { ueber: 'Für das Team', titel: '[Thema]', text: '[Hinweis]', aktion: 'Küchenchef' }),
+    ] },
+    { k: 'verkauf', t: 'Verkauf & Reservation', satz: 'Pauschalen, Gutscheine und Zimmer. Für Anfragen, Messen und den Versand an Gäste.', foto: 'z-royal-2', vorlagen: [
+      v('Gutschein für das Haus', 'Verkauf', 'dlq', 'gutschein', 'dunkel', { titel: 'Gutschein', unter: 'Einen Moment schenken.', wert: 'CHF […]', text: 'Für einen Aufenthalt, das Spa, die Tea Time oder einen Abend in unseren Restaurants.' }),
+      v('Zimmer und Suiten', 'Anfragen und Messen', 'a5h', 'fenster', 'creme', { bild: 'z-royal-2', ueber: 'Zimmer und Suiten', titel: 'Über der Aare', unter: 'Vom Einzelzimmer bis zur Royal Suite', text: 'Viele Zimmer 2026 neu renoviert, mit Klimaanlage und Bergmotiv über dem Bett.' }),
+      v('Pauschale als Beitrag', 'Instagram', 'insta', 'buehne', 'dunkel', { bild: 'spa-pool', ueber: 'Pauschale', titel: 'Spa & Genuss', text: 'Zwei Nächte, Frühstück, Dinner und eine Relax-Massage.', aktion: 'Ab zwei Nächten' }),
+    ] },
+    { k: 'team', t: 'Personal & Team', satz: 'Stellen ausschreiben und das Team informieren, mit den Benefits des Hauses.', foto: 'team', vorlagen: [
+      v('Stelle zu vergeben', 'im Haus und in Interlaken', 'a4h', 'fenster', 'dunkel', { bild: 'team', ueber: 'Willkommen im Team', titel: '[Stelle]', unter: 'Grand Beau-Rivage · Interlaken', text: 'Wir freuen uns, Sie kennenzulernen.' }),
+      v('Stellenanzeige', 'Instagram', 'insta', 'geteilt', 'dunkel', { bild: 'team-2', ueber: 'Wir suchen', titel: '[Stelle]', text: 'Vor und hinter den Kulissen.', aktion: 'Jetzt bewerben' }),
+      v('Benefits für Mitarbeitende', 'Messen und Bewerbung', 'dlh', 'programm', 'creme', { ueber: 'Ihre Benefits', titel: 'Willkommen im Team', termine: [
+        { wann: '50 %', was: 'In Restaurants und Bars', wo: 'Rabatt auf Speisen und Getränke' }, { wann: '50 %', was: 'Beauty & Wohlbefinden', wo: 'Rabatt auf Beauty-Behandlungen' },
+        { wann: 'Täglich', was: 'Eine frische Mahlzeit', wo: 'An jedem Arbeitstag' }, { wann: 'Gratis', was: 'Parkplätze am Hotel', wo: 'Je nach Verfügbarkeit' }] }),
+      v('Aushang für das Team', 'Personalbereich', 'a4h', 'aushang', 'creme', { ueber: 'Für das Team', titel: '[Thema]', text: '[Mitteilung]', aktion: '[Absender]' }),
+    ] },
+  ];
+
+  /* ---------- Hinweise im Haus: sofort aushängen ---------- */
+  const H = (n, titel, text, ton = 'hell', format = 'a4h', ueber = 'Hinweis') => v(n, 'sofort aushängen', format, 'aushang', ton, { ueber, titel, text, aktion: 'Danke für Ihr Verständnis · Rezeption ' + TEL });
+  const HINWEISE = [
+    H('Bauarbeiten', 'Wir renovieren', 'Vom [Datum] bis [Datum] arbeiten wir im [Bereich].\nIn dieser Zeit kann es zwischen [Uhrzeit] und [Uhrzeit] lauter werden.'),
+    H('Hier wird gereinigt', 'Hier wird gerade gereinigt', 'Bitte nehmen Sie einen Moment Geduld.\nIn wenigen Minuten ist alles wieder für Sie bereit.', 'creme', 'a5h'),
+    H('Vorsicht nasser Boden', 'Vorsicht, nasser Boden', 'Bitte gehen Sie hier langsam.', 'creme', 'a5h', 'Achtung'),
+    H('Stromausfall', 'Kurzer Stromunterbruch', 'Am [Datum] zwischen [Uhrzeit] und [Uhrzeit] ist der Strom im Haus kurz unterbrochen.\nDie Lifte stehen in dieser Zeit still.'),
+    H('Wasser abgestellt', 'Wasser abgestellt', 'Am [Datum] zwischen [Uhrzeit] und [Uhrzeit] ist das Wasser in [Bereich] abgestellt.'),
+    H('Lift ausser Betrieb', 'Lift ausser Betrieb', 'Dieser Lift wird gerade gewartet.\nBitte benutzen Sie [anderer Lift / die Treppe].', 'dunkel', 'a4h', 'Entschuldigung'),
+    H('Defekt', 'Ausser Betrieb', '[Gerät] ist im Moment defekt.\nWir kümmern uns darum.', 'creme', 'a5h'),
+    H('Schwimmbad geschlossen', 'Schwimmbad geschlossen', 'Am [Datum] bleibt das Schwimmbad im La Vallée SPA wegen [Grund] geschlossen.\nSauna und Dampfbad sind [offen / geschlossen].', 'creme', 'a4h', 'La Vallée SPA'),
+    H('Geänderte Zeiten', 'Geänderte Öffnungszeiten', '[Bereich] ist am [Datum] von [Uhrzeit] bis [Uhrzeit] für Sie geöffnet.'),
+    H('Geschlossene Gesellschaft', 'Geschlossene Gesellschaft', '[Raum] ist heute ab [Uhrzeit] für einen privaten Anlass reserviert.\nWir freuen uns, Sie in [anderer Raum] zu begrüssen.', 'dunkel'),
+    H('Probealarm', 'Probealarm', 'Am [Datum] um [Uhrzeit] testen wir die Alarmanlage.\nSie müssen nichts tun.'),
+    H('Parkplatz gesperrt', 'Parkplatz gesperrt', 'Vom [Datum] bis [Datum] ist der Parkplatz [Bereich] gesperrt.\nBitte wenden Sie sich an die Rezeption.'),
+  ];
+
+  /* ---------- Anlässe im Haus und Veranstaltungen in der Region ---------- */
+  const E = (k, t, z, von, bis, wo, ort, satz, fotos, art) => ({ k, t, z, von, bis, wo, ort, satz, fotos, art });
+  const ANLAESSE = [
+    E('winterchalet', 'Winterchalet im Garten', '1. November 2026 – 3. Januar 2027', '2026-11-01', '2027-01-03', 'haus', 'Im Garten', 'Glühwein, Prosecco und Chääsbrätel, täglich 15.00 – 20.00 Uhr.', ['haus-winter', 'food-winter', 'haus-park']),
+    E('petite', 'La Petite Suisse öffnet', 'ab 1. November', '2026-11-01', '2026-11-30', 'haus', 'Am Kamin', 'Schweizer Küche von der Apéro-Platte bis zum Käsefondue, November bis April.', ['rest-suisse-2', 'fondue', 'g-kasefondue']),
+    E('weihnachtsmarkt', 'Weihnachtsmärkte', 'November – Dezember 2026', '2026-11-15', '2026-12-24', 'stadt', 'In der Region', 'Die Weihnachtsmärkte in Interlaken und am See.', ['food-winter', 'haus-winter', 'decke']),
+    E('fassade', 'Die Fassade im festlichen Licht', '1. Dezember 2026 – 3. Januar 2027', '2026-12-01', '2027-01-03', 'haus', 'Am Höheweg', 'Jeden Abend 18.00 – 20.00 Uhr.', ['haus-winter', 'fassade-nah', 'haus-front']),
+    E('magicpark', 'Top of Europe Magic Park', '18. Dezember 2026 – 28. Februar 2027', '2026-12-18', '2027-02-28', 'stadt', 'Im Kursaal-Garten', 'Der Winterpark im Kursaal-Garten von Interlaken.', ['haus-winter', 'aus-sphinx', 'food-winter']),
+    E('weihnachten', 'Weihnachten', '24. Dezember 2026', '2026-12-24', '2026-12-24', 'haus', 'Im Grand Beau-Rivage', 'Weihnachtliches 4-Gang-Galadinner mit Champagner-Aperitif, am Nachmittag Glühwein und Waffeln in der Wohnhalle.', ['food-winter', 'decke', 'halle-2']),
+    E('silvester', 'Silvester', '31. Dezember 2026', '2026-12-31', '2026-12-31', 'haus', 'Im Grand Beau-Rivage', 'Galadinner mit Champagner-Aperitif, ab 18.00 Uhr.', ['ev-silvester', 'saal-3', 'ev-love']),
+    E('touch', 'Touch the Mountains', '1. Januar 2027', '2027-01-01', '2027-01-01', 'stadt', 'Interlaken', 'Das Neujahrsfest in Interlaken.', ['ev-silvester', 'haus-winter', 'aus-gleitschirm-himmel']),
+    E('potschete', 'Harder Potschete', '2. Januar 2027', '2027-01-02', '2027-01-02', 'stadt', 'Interlaken', 'Der traditionelle Brauch am Berchtoldstag in Interlaken.', ['aus-harder-kulm-haus', 'haus-winter', 'hist-stich']),
+    E('lauberhorn', 'Lauberhornrennen', '15. – 17. Januar 2027', '2027-01-15', '2027-01-17', 'region', 'Wengen', 'Die 97. Internationalen Lauberhornrennen: Super-G, Abfahrt und Slalom.', ['aus-sphinx', 'haus-winter', 'aus-lauterbrunnen-fruehling']),
+    E('valentin', 'Valentinstag', '14. Februar 2027', '2027-02-14', '2027-02-14', 'haus', 'Im Grand Beau-Rivage', 'Ein Abend zu zweit.', ['ev-love', 'bar-glas', 'z-jsfc']),
+    E('classics', 'Interlaken Classics', '25. März – 19. April 2027', '2027-03-25', '2027-04-19', 'stadt', 'Interlaken', 'Das Musikfestival in Interlaken.', ['saal-3', 'salon', 'halle-2']),
+    E('ostern', 'Ostern', '28. März 2027', '2027-03-28', '2027-03-28', 'haus', 'Im Grand Beau-Rivage', 'Ostern an der Aare.', ['aus-lauterbrunnen-fruehling', 'bar-teatime-2', 'haus-fluss-berge']),
+    E('ambiance', 'L’Ambiance öffnet', 'ab Mai', '2027-05-01', '2027-05-31', 'haus', 'An der Aare', 'Das Restaurant mit den Säulen und den hohen Fenstern zur Aare, Mai bis Oktober.', ['rest-ambiance-6', 'rest-ambiance-3', 'food-teller-2']),
+    E('terrasse', 'Die Terrasse öffnet', 'ab Mai', '2027-05-01', '2027-05-31', 'haus', 'An der Aare', 'Terrasse, Lounge & Bar «La Belle Rivière», Mai bis September.', ['terrasse-neu', 'terrasse-lounge', 'aare-wasser']),
+    E('muttertag', 'Muttertag', '9. Mai 2027', '2027-05-09', '2027-05-09', 'haus', 'Im Grand Beau-Rivage', 'Ein Nachmittag für die Mutter.', ['bar-teatime-2', 'spa-beauty-2', 'b-gesicht-haende']),
+    E('greenfield', 'Greenfield Festival', '10. – 12. Juni 2027', '2027-06-10', '2027-06-12', 'stadt', 'Interlaken', 'Das Rockfestival in Interlaken.', ['aus-gleitschirm-himmel', 'haus-sommer-berge', 'reg-paragliding']),
+    E('trucker', 'Trucker & Country-Festival', '25. – 27. Juni 2027', '2027-06-25', '2027-06-27', 'stadt', 'Interlaken', 'Das Internationale Trucker & Country-Festival in Interlaken.', ['haus-sommer-berge', 'ankunft-oldtimer', 'aus-gleitschirm-himmel']),
+    E('tell', 'Tell Freilichtspiele', '24. Juli – 4. September 2027', '2027-07-24', '2027-09-04', 'stadt', 'Interlaken', 'Wilhelm Tell auf der Naturbühne in Interlaken.', ['haus-park', 'hist-stich', 'aus-lauterbrunnen-fruehling']),
+    E('august', 'Der 1. August', '1. August 2027', '2027-08-01', '2027-08-01', 'stadt', 'Interlaken', 'Alphorn, Fahnen und Feuerwerk, wenige Schritte vom Haus.', ['ev-august', 'haus-fluss-berge', 'haus-sommer-berge']),
+    E('marathon', 'Jungfrau-Marathon', '10. – 11. September 2027', '2027-09-10', '2027-09-11', 'stadt', 'Interlaken', 'Der Start ist auf dem Höheweg, das Ziel auf dem Eigergletscher.', ['aus-sphinx', 'haus-fluss-berge', 'aus-gleitschirm-himmel']),
+  ];
+  /* Acht Motive je Anlass: Plakat, Flyer, Aushang, Tischaufsteller, Einladung, Instagram, Story, E-Mail-Kopf */
+  function motive(a) {
+    const [f1, f2, f3] = a.fotos, ueber = a.wo === 'haus' ? a.ort : a.ort + ' · ' + a.z;
+    const haus = a.wo === 'haus';
+    const aktion = haus ? 'Grand Beau-Rivage · ' + TEL : 'Grand Beau-Rivage · ' + ADR;
+    return [
+      v('Plakat mit Foto', 'Halle und Lift', 'a3h', 'buehne', 'dunkel', { bild: f1, ueber, titel: a.t, text: a.satz, aktion: haus ? a.z : aktion }),
+      v('Plakat im Fenster', 'Halle', 'a3h', 'fenster', 'creme', { bild: f2, ueber: haus ? 'Grand Beau-Rivage' : a.ort, titel: a.t, unter: a.z, text: a.satz }),
+      v('Flyer', 'Rezeption und Zimmer', 'a5h', 'geteilt', 'hell', { bild: f3 || f1, ueber, titel: a.t, text: a.satz, aktion }),
+      v('Aushang', 'Lift und Halle', 'a4h', 'aushang', haus ? 'dunkel' : 'creme', { ueber: a.z, titel: a.t, text: a.satz, aktion }),
+      v('Tischaufsteller', 'Bar und Restaurant', 'a6h', 'deckel', 'dunkel', { ueber: a.ort, titel: a.t, unter: a.z, text: haus ? 'Wir freuen uns auf Sie' : 'Grand Beau-Rivage' }),
+      v(haus ? 'Einladung' : 'Grusskarte', haus ? 'Stammgäste' : 'auf dem Zimmer', 'q148', haus ? 'einladung' : 'deckel', 'creme', haus
+        ? { ueber: 'Grand Beau-Rivage', titel: a.t, wann: a.z, wo: 'Grand Beau-Rivage, Interlaken', text: a.satz, aktion: 'Reservation · ' + TEL }
+        : { ueber: a.ort + ' · ' + a.z, titel: a.t, unter: a.satz, text: 'Grand Beau-Rivage' }),
+      v('Instagram-Beitrag', 'Social Media', 'insta', 'buehne', 'dunkel', { bild: f2, ueber: a.z, titel: a.t, text: a.satz, aktion: 'Grand Beau-Rivage' }),
+      v('Story', 'Instagram und WhatsApp', 'story', 'fenster', 'dunkel', { bild: f1, ueber: a.ort, titel: a.t, unter: a.z, text: a.satz }),
+      v('E-Mail-Kopfbild', 'Newsletter', 'mailkopf', 'ansicht', 'dunkel', { bild: f1, titel: a.t, unter: a.z }),
+    ];
+  }
+
+  /* ---------- Newsletter und E-Mail ---------- */
+  const NEWSLETTER = [
+    v('Newsletter Winter im Haus', 'an alle Gäste', 'mail', 'programm', 'dunkel', { ueber: 'Grand Beau-Rivage · Newsletter', titel: 'Der Winter 2026', termine: WINTER }),
+    v('Newsletter Spa', 'an Spa-Gäste', 'mail', 'karte', 'hell', { ueber: 'La Vallée SPA · Newsletter', titel: 'Zeit für sich', text: 'Neue Rituale für den Winter.', liste: MASSAGEN }),
+    v('Angebot des Monats', 'an Stammgäste', 'mail', 'fenster', 'creme', { bild: 'spa-ruhe', ueber: 'Angebot des Monats', titel: 'Spa & Genuss', unter: 'Ab zwei Nächten', text: 'Zwei Nächte mit Frühstück und 3-Gang-Dinner, eine 60-minütige Relax-Massage pro Person, Wellnessbereich inklusive.' }),
+    v('Einladung per E-Mail', 'an ausgewählte Gäste', 'mail', 'einladung', 'dunkel', { ueber: 'Silvester im Grand Beau-Rivage', titel: 'Das alte Jahr verabschieden', wann: '31. Dezember 2026 · ab 18.00 Uhr', wo: 'Grand Beau-Rivage, Interlaken', text: 'Galadinner mit Champagner-Aperitif.', aktion: 'Um Antwort wird gebeten bis [Datum]' }),
+    v('Kopfbild Winter', 'über jeder E-Mail', 'mailkopf', 'ansicht', 'dunkel', { bild: 'haus-winter', titel: 'Interlaken', unter: 'Grand Beau-Rivage · im Winter' }),
+    v('Kopfbild Sommer', 'über jeder E-Mail', 'mailkopf', 'ansicht', 'dunkel', { bild: 'haus-sommer-berge', titel: 'Interlaken', unter: 'Grand Beau-Rivage · an der Aare' }),
+    v('Kopfbild Spa', 'Spa-Mails', 'mailkopf', 'ansicht', 'dunkel', { bild: 'spa-pool', titel: 'La Vallée SPA', unter: 'Grand Beau-Rivage' }),
+    v('Vor der Anreise', 'Bestätigungsmail', 'mail', 'aushang', 'hell', { ueber: 'Ihr Aufenthalt', titel: 'Wir freuen uns auf Sie', text: 'Anreise am [Datum]\nCheck-in ab [Uhrzeit]\n\nTea Time täglich 15.00 – 17.00 Uhr\nBar «Le Vieux Rivage» täglich 17.00 – 24.00 Uhr\n\nFür Wünsche vor der Anreise sind wir gerne da.', aktion: 'Rezeption · ' + TEL }),
+    v('Nach dem Aufenthalt', 'Dankesmail', 'mail', 'deckel', 'creme', { ueber: 'Grand Beau-Rivage', titel: 'Danke für Ihren Besuch', unter: 'Bis bald in Interlaken', text: 'Wir freuen uns auf Ihren nächsten Aufenthalt.' }),
+    v('Story Tea Time', 'Instagram', 'story', 'buehne', 'dunkel', { bild: 'bar-teatime-2', ueber: 'Bar «Le Vieux Rivage»', titel: 'Tea Time', text: 'Zwei herzhafte und drei süsse Canapés.', aktion: 'Täglich 15.00 – 17.00 Uhr' }),
+  ];
+
+  window.DSKATALOG = { ABTEILUNGEN, HINWEISE, ANLAESSE, motive, NEWSLETTER };
+})();

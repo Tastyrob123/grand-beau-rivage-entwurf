@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de-CH">
+<head><!--demo-weiche--><script src="/_demo/karte.js"></script><script src="/_demo/shim.js"></script>
+<meta charset="utf-8">
+<title>Karte · Druck</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../_werkbank/satz/satz.css">
+<style>@page{margin:0}#mess{position:absolute;left:-30000px;top:0}</style>
+</head>
+<body>
+<div id="mess" aria-hidden="true"></div>
+<main id="seiten"></main>
+<script src="karte.js"></script>
+<script>
+/* Druckseite einer Karte: ?z=<ziel>&q=stand|entwurf|probe. Setzt alle Seiten mit karte.js; window.KARTE_FERTIG sagt dem Bau und dem PDF-Druck,
+   dass die Seiten stehen. Mit q=probe kommen die Daten aus sessionStorage (Vorschau eines ungespeicherten Standes). */
+(async function () {
+  try {
+    var q = new URLSearchParams(location.search), z = q.get('z'), art = q.get('q') || 'stand';
+    if (!z) { document.body.textContent = 'Druckseite von La Carte: wird nur von der PDF-Funktion mit ?z=<Karte> aufgerufen.'; window.KARTE_FERTIG = true; return; }   // 14.10.2026: ohne Parameter keine Anfrage nach null.json
+    var d = await (await fetch('../_karten/' + art + '/' + encodeURIComponent(z) + '.json?t=' + Date.now(), { cache: 'no-store' })).json();
+    var zeichen = await (await fetch('../_karten/zeichen.svg', { cache: 'no-store' })).text();
+    var f = d.format || [210, 297], st = document.createElement('style');
+    st.textContent = '@page{size:' + f[0] + 'mm ' + f[1] + 'mm;margin:0}' + (d.css || ''); document.head.appendChild(st);
+    if (d.sprache) { document.documentElement.lang = d.sprache; if (d.sprache === 'ar') document.documentElement.dir = 'rtl'; }   // Sprachfassungen (_werkbank/karten_sprachen.py)
+    document.title = d.name + ' · Grand Beau-Rivage';
+    await KARTE.vorbereiten(d, zeichen, document.getElementById('mess'));
+    var r = KARTE.setze(d, zeichen, document.getElementById('mess'), false);
+    document.getElementById('seiten').innerHTML = r.seiten.join('');
+    await document.fonts.ready;
+    window.KARTE_FERTIG = r;
+  } catch (e) { window.KARTE_FEHLER = String(e && e.stack || e); }
+})();
+</script>
+</body>
+</html>

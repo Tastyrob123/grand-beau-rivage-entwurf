@@ -1,0 +1,312 @@
+/* Grand Beau-Rivage Interlaken, Gäste-Funktionen II (Tasty Studios, 11.10.2026): Zimmer-Finder, Preiskalender, Gästekarte, Pass-Berater,
+   Abreisetag mit Abfahrten, Zimmermappe, Sprachen (zh/ko/ar). Oberfläche des Hauses: Platten mit Kuhlen, Sandgold, Cormorant/Cinzel.
+   Bewegung nur über transform und opacity. Inhalt und Zahlen kommen aus funktionen.py und serve.py, hier steht nur die Gestalt. */
+
+/* ---------- Gemeinsames ---------- */
+.gf-kopf{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:end;gap:clamp(24px,4vw,80px);margin-bottom:clamp(40px,4.4vw,70px)}
+.gf-kopf .raum--nur{justify-content:flex-start;margin:0 0 clamp(16px,1.6vw,24px)}
+.gf-kopf .d2{text-align:left}
+.gf-kopf .lauf{padding-bottom:.4em}
+/* Zimmer-Finder ohne Zeichen über der Überschrift, Abschnitt dafür höher (Robert 12.10.2026) */
+#finder.fl{padding-top:calc(var(--abschnitt)*.76)}
+@media (max-width:860px){.gf-kopf{grid-template-columns:1fr}}
+.gf-quelle{margin-top:clamp(22px,2.4vw,34px);font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;line-height:1.7;color:var(--taupe-tief);max-width:70ch}
+.dunkel .gf-quelle{color:rgba(232,220,194,.62)}
+.gf-quelle a{box-shadow:inset 0 -1px 0 currentColor}
+/* Frage-Zeile: Nummer in Gold, Frage in Serif */
+.gf-frage{display:flex;align-items:baseline;gap:14px;margin:clamp(30px,3vw,46px) 0 clamp(14px,1.4vw,20px)}
+.gf-frage:first-child{margin-top:0}
+.gf-frage b{font-family:var(--caps);font-weight:500;font-size:.78rem;letter-spacing:.3em;color:var(--akzent)}
+.gf-frage span{font:500 clamp(1.3rem,1.7vw,1.7rem)/1.2 var(--serif)}
+.dunkel .gf-frage b{color:var(--gold)}
+
+/* ---------- Leiste mit Auswahllisten im Stil des Hauses (wie die Anfrage-Leiste bei Feiern & Tagen), darunter 3D-Kacheln wie auf der Startseite ---------- */
+.zf-leiste{display:grid;grid-template-columns:1.1fr 1fr 1fr auto;align-items:center;gap:0;width:min(1180px,100%);margin:0 auto;padding:12px 12px 12px 40px;border-radius:999px;
+  background:var(--platte-h);box-shadow:var(--platte-h-s);color:var(--tinte);text-align:left}
+.zf-leiste label{display:flex;flex-direction:column;gap:6px;min-width:0;padding:8px 26px;border-left:1px solid var(--linie)}
+.zf-leiste label:first-child{border-left:0;padding-left:0}
+.zf-leiste span{font-family:var(--caps);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--akzent)}
+.zf-leiste :is(select,input){font:500 clamp(1.3rem,1.5vw,1.55rem)/1.3 var(--serif);color:var(--tinte);background:none;border:0;padding:0;outline:0;width:100%;-webkit-appearance:none;appearance:none}
+.zf-leiste .hwahl-knopf{font:500 clamp(1.3rem,1.5vw,1.55rem)/1.3 var(--serif)!important;color:var(--tinte)!important}
+.zf-leiste .hwahl-knopf svg{width:20px;height:20px;opacity:.9}
+.zf-leiste .kn{white-space:nowrap;justify-self:end}
+.pb__leiste{grid-template-columns:1fr 1.4fr;width:min(720px,100%);margin-top:clamp(30px,3.4vw,52px)}
+@media (max-width:900px){.zf-leiste{grid-template-columns:1fr 1fr;border-radius:28px;padding:14px 18px;gap:8px 0}.zf-leiste label{padding:8px 14px}.zf-leiste label:nth-child(odd){border-left:0;padding-left:0}.zf-leiste .kn{grid-column:1/-1;justify-self:center;margin-top:8px}.pb__leiste{grid-template-columns:1fr}.pb__leiste label{border-left:0;padding-left:0}}
+.zf__aus{margin-top:clamp(40px,4.4vw,70px)}
+.zf__zeile{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(22px,2.4vw,34px)}
+.zf__zeile .mono{color:var(--akzent)}
+.zf__zeile em{font:italic 500 1.05rem var(--serif);color:rgba(20,26,46,.65)}
+.zf-reihe.k3reihe{margin-top:0}
+.zf-reihe .kachel__b img{transition:transform .9s var(--e2)}
+.zf-reihe .kachel:hover .kachel__b img{transform:scale(1.03)}
+.zf-reihe .kachel__n{margin-top:clamp(24px,2.4vw,34px)}
+.zf-reihe .kachel__n small{font-size:clamp(.8rem,.9vw,.92rem);letter-spacing:.14em;color:var(--taupe-tief);line-height:1.7}
+.zf-reihe .kachel__n small span+span::before{width:6px;height:6px;margin:0 .8em}
+.zf-k .kachel__b{transition:box-shadow .5s var(--e2)}
+.zf-k.zf-k--ziel .kachel__b{box-shadow:0 0 0 1px var(--akzent),0 0 0 7px var(--papier),0 0 0 8px var(--akzent),0 36px 48px -28px rgba(20,26,46,.6)}
+.zf-minis{margin-top:clamp(26px,2.8vw,40px)}
+/* Miniaturen immer mittig (Robert 11.10.2026), gleiche Breite wie im Vergleich: ein Zehntel der Zeile je Bild */
+.zf-minis .vk__gr{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(8px,.9vw,14px)}
+.zf-minis .vk__gk{flex:0 0 calc((100% - 9*clamp(8px,.9vw,14px))/10);width:auto}
+@media (max-width:860px){.zf-minis .vk__gk{flex-basis:calc((100% - 4*clamp(8px,.9vw,14px))/5)}}
+.zf__leer{padding:clamp(30px,4vw,60px) 0;text-align:center;font:italic 500 clamp(1.15rem,1.4vw,1.4rem)/1.45 var(--serif);color:rgba(20,26,46,.7)}
+.zf__mehr{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:8px 22px;margin-top:clamp(26px,2.8vw,40px)}
+.zf__mehr .mono{color:var(--akzent);margin-right:6px}
+.zf__mehr a{font:500 1.08rem var(--serif);color:var(--tinte);box-shadow:inset 0 -1px 0 rgba(150,125,64,.5);transition:color .3s,box-shadow .3s}
+.zf__mehr a:hover{color:var(--akzent);box-shadow:inset 0 -1px 0 var(--akzent)}
+@media (max-width:860px){.zf-reihe.k3reihe{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.zf-reihe.k3reihe{grid-template-columns:1fr}}
+
+/* ---------- Gästekarte (region.html) ---------- */
+.gka{padding-top:clamp(80px,8vw,140px);padding-bottom:clamp(80px,8vw,140px)}
+.gka__in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,5vw,96px);align-items:center}
+@media (max-width:1000px){.gka__in{grid-template-columns:1fr}}
+.gka__karte{perspective:1200px}
+.gka-k{position:relative;aspect-ratio:1.586;max-width:520px;margin:0 auto;padding:clamp(20px,2.4vw,32px);border-radius:20px;color:var(--tinte);
+  background:linear-gradient(135deg,#fcf7ee 0%,#f1e6d1 48%,#e6d5b6 100%);box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(130,108,53,.3),0 40px 60px -34px rgba(26,29,40,.7),0 14px 24px -16px rgba(26,29,40,.4);
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s var(--e2)}
+.gka-k::before{content:'';position:absolute;inset:10px;border-radius:12px;border:1px solid rgba(130,108,53,.5);pointer-events:none}
+.gka-k::after{content:'';position:absolute;inset:14px;border-radius:9px;border:1px solid rgba(130,108,53,.22);pointer-events:none}
+.gka-k__zeile{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.gka-k__zeile svg{width:clamp(38px,4vw,52px);height:auto;color:var(--akzent)}
+.gka-k__zeile .mono{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe-tief)}
+.gka-k__name{position:absolute;left:clamp(20px,2.4vw,32px);bottom:clamp(20px,2.4vw,32px);right:clamp(20px,2.4vw,32px)}
+.gka-k__name b{display:block;font-family:var(--caps);font-weight:500;font-size:clamp(1.1rem,1.5vw,1.55rem);letter-spacing:.14em;text-transform:uppercase;color:var(--marine)}
+.gka-k__name span{display:block;margin-top:6px;font:italic 500 clamp(.95rem,1.1vw,1.1rem) var(--serif);color:rgba(26,29,40,.7)}
+.gka-k__streifen{position:absolute;left:0;right:0;top:46%;height:clamp(26px,3vw,38px);background:linear-gradient(90deg,rgba(130,108,53,0),rgba(130,108,53,.12) 20%,rgba(130,108,53,.12) 80%,rgba(130,108,53,0))}
+.gka-k__ort{position:absolute;right:clamp(20px,2.4vw,32px);top:47.5%;font-family:var(--caps);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--akzent)}
+.gka__liste{list-style:none;margin:clamp(22px,2.4vw,34px) 0 0;padding:0;display:grid;gap:8px}
+.gka__liste{gap:0}
+.gka-z{display:grid;grid-template-columns:clamp(84px,8vw,110px) 1fr;gap:clamp(14px,1.6vw,24px);align-items:center;padding:clamp(14px,1.5vw,20px) 0;border-top:1px solid rgba(150,125,64,.3)}
+.gka-z:last-child{border-bottom:1px solid rgba(150,125,64,.3)}
+.gka-z b{font:500 clamp(1.5rem,2.1vw,2.2rem)/1 var(--serif);color:var(--akzent);white-space:nowrap}
+.gka-z b small{font-size:55%;letter-spacing:.04em}
+.gka-z span{font:500 clamp(1.02rem,1.15vw,1.18rem)/1.3 var(--serif);color:var(--tinte)}
+.gka-z em{display:block;margin-top:3px;font-family:var(--caps);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-tief);font-style:normal}
+.gka__bedingung{margin-top:clamp(20px,2.2vw,30px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;font-size:.94rem;line-height:1.6;color:rgba(26,29,40,.8)}
+@media (max-width:560px){.gka__bedingung{grid-template-columns:1fr}}
+.gka__bedingung p{position:relative;padding-left:18px}
+.gka__bedingung p::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;rotate:45deg;border:1px solid var(--akzent)}
+
+/* ---------- Pass-Berater (region.html): Ausflüge als 3D-Kacheln der Startseite, gewählt = doppelter Goldrahmen ums Foto ---------- */
+.pb{padding-top:clamp(80px,8vw,140px);padding-bottom:clamp(80px,8vw,140px)}
+.pb__ziele.k3reihe{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0}
+@media (max-width:1000px){.pb__ziele.k3reihe{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pb .k3[data-ziel]{cursor:pointer}
+.pb .k3[data-ziel] .kachel__b{transition:box-shadow .5s var(--e2),transform .6s var(--e2)}
+.pb .k3[data-ziel]:hover .kachel__b{transform:translateY(-4px)}
+.pb .k3[data-ziel] .kachel__n b{color:#fcf7ee;transition:color .4s}
+.pb .k3[data-ziel] .kachel__n small{color:rgba(232,220,194,.7)}
+.pb .k3[data-ziel][aria-pressed="true"] .kachel__b{box-shadow:0 0 0 1px var(--gold),0 0 0 7px var(--nacht),0 0 0 8px var(--gold),0 36px 48px -28px rgba(0,0,0,.8)}
+.pb .k3[data-ziel][aria-pressed="true"] .kachel__n b{color:var(--gold)}
+.pb .k3[data-ziel]:not([aria-pressed="true"]) .kachel__b{opacity:.78}
+.pb .k3[data-ziel]:focus-visible{outline:0}
+.pb .k3[data-ziel]:focus-visible .kachel__b{box-shadow:0 0 0 2px var(--gold)}
+.pb__erg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(36px,4vw,60px)}
+@media (max-width:1000px){.pb__erg{grid-template-columns:1fr}}
+.pb-s{display:flex;flex-direction:column;padding:clamp(22px,2.4vw,34px);border-radius:var(--r-xl);background:linear-gradient(180deg,#fcf7ee,#f4ecdc 60%,#ebe0cb);box-shadow:var(--platte-h-s);color:var(--tinte);position:relative}
+.pb-s--best{background:linear-gradient(180deg,#f7e8c3,#e6d2a2 70%,#d6be88)}
+.pb-s__art{font-family:var(--caps);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--akzent)}
+.pb-s__name{margin-top:6px;font:500 clamp(1.5rem,1.9vw,2rem)/1.1 var(--serif)}
+.pb-s__preis{margin-top:clamp(16px,1.8vw,24px);display:flex;align-items:baseline;gap:6px;font:500 clamp(2.4rem,3.4vw,3.6rem)/1 var(--serif);color:var(--marine)}
+.pb-s__preis small{font-family:var(--caps);font-size:.72rem;letter-spacing:.14em;color:var(--taupe-tief)}
+.pb-s__preis em{font:italic 500 1rem var(--serif);color:rgba(26,29,40,.6)}
+.pb-s__unter{margin-top:6px;font-size:.88rem;line-height:1.5;color:rgba(26,29,40,.7)}
+.pb-s__liste{list-style:none;margin:clamp(16px,1.8vw,24px) 0 0;padding:0;display:grid;gap:7px;flex:1}
+.pb-s__liste li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-top:1px solid rgba(130,108,53,.25);font-size:.95rem;line-height:1.4}
+.pb-s__liste li span{color:var(--tinte)}
+.pb-s__liste li b{font:500 1.05rem var(--serif);white-space:nowrap}
+.pb-s__liste li i{font:italic 500 .9rem var(--serif);color:rgba(26,29,40,.6);white-space:nowrap}
+.pb-s__liste li.frei b{color:#2d6a3e}
+.pb-s__liste li.halb b{color:var(--akzent)}
+.pb-s__fuss{margin-top:clamp(16px,1.8vw,22px);padding-top:12px;border-top:1px solid rgba(130,108,53,.3);font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;line-height:1.6;color:var(--taupe-tief)}
+.pb-s__stempel{position:absolute;top:18px;right:18px;padding:6px 12px 5px;border-radius:999px;background:var(--marine);color:var(--gold);font-family:var(--caps);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase}
+.pb__leer{margin-top:clamp(28px,3vw,44px);text-align:center;font:italic 500 clamp(1.1rem,1.3vw,1.3rem) var(--serif);color:rgba(232,220,194,.75)}
+
+/* ---------- Abreisetag (abreise.html): Abfahrten ---------- */
+.ab-zuege{padding-top:clamp(70px,7vw,120px);padding-bottom:clamp(70px,7vw,120px)}
+.ab__tafel{max-width:1100px;margin:0 auto}
+.ab__bf{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:clamp(18px,2vw,26px)}
+.ab__bf .tab{min-height:46px;padding:0 24px;border-radius:999px;border:1px solid rgba(230,210,162,.35);background:rgba(255,255,255,.04);color:#fcf7ee;font:500 .78rem var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
+.ab__bf .tab[aria-pressed="true"]{background:linear-gradient(180deg,#f3e3b8,#d9c38f);color:var(--marine);border-color:transparent}
+.ab__liste{list-style:none;margin:0;padding:0;border-top:1px solid rgba(230,210,162,.3)}
+.ab-z{display:grid;grid-template-columns:clamp(80px,8vw,110px) minmax(0,1fr) auto auto;align-items:center;gap:clamp(12px,2vw,30px);padding:clamp(16px,1.7vw,24px) 6px;border-bottom:1px solid rgba(230,210,162,.3);color:#fcf7ee;text-align:left;width:100%;transition:background .3s,transform .5s var(--e2)}
+.ab-z:hover{transform:translateX(4px)}
+.ab-z__zeit{font:500 clamp(1.5rem,2vw,2.1rem)/1 var(--serif);color:#fcf7ee;font-variant-numeric:tabular-nums}
+.ab-z__zeit small{display:block;margin-top:4px;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:#e0a05a}
+.ab-z__ziel b{display:block;font:500 clamp(1.1rem,1.3vw,1.35rem)/1.15 var(--serif)}
+.ab-z__ziel small{display:block;margin-top:4px;font-family:var(--caps);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,220,194,.68)}
+.ab-z__gleis{display:flex;flex-direction:column;align-items:center;min-width:54px;padding:8px 10px 6px;border-radius:10px;background:rgba(17,20,31,.7);box-shadow:inset 0 0 0 1px rgba(230,210,162,.3)}
+.ab-z__gleis small{font-family:var(--caps);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.ab-z__gleis b{font:500 1.3rem/1 var(--serif);color:#fcf7ee}
+.ab-z__nehmen{font-family:var(--caps);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.ab-z.ab-z--gewaehlt{background:rgba(230,210,162,.1)}
+.ab-z.ab-z--gewaehlt .ab-z__zeit{color:var(--gold)}
+.ab__stand{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:rgba(232,220,194,.6)}
+.ab__stand a{box-shadow:inset 0 -1px 0 currentColor}
+.ab__leer{padding:clamp(24px,3vw,40px);text-align:center;font:italic 500 1.15rem var(--serif);color:rgba(232,220,194,.75)}
+@media (max-width:640px){.ab-z{grid-template-columns:70px minmax(0,1fr) auto}.ab-z__nehmen{display:none}}
+/* Abreise: Formular wie «Vor Ihrer Anreise», dazu die Zeile für den gewählten Zug */
+.ab__zug[hidden]{display:none}
+.ab__zug{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:var(--r-m);background:rgba(230,210,162,.1);box-shadow:inset 0 0 0 1px rgba(230,210,162,.3)}
+.ab__zug b{font:500 1.2rem var(--serif);color:#fcf7ee}
+.ab__zug span{font-size:.9rem;color:rgba(252,247,238,.75)}
+.ab__zug button{margin-left:auto;font-family:var(--caps);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);box-shadow:inset 0 -1px 0 currentColor}
+
+/* ---------- Zimmermappe (mappe.html) ---------- */
+body.mappe{display:flex;flex-direction:column;min-height:100svh;background:var(--nacht) url(../img/tapete-dunkel.webp?v=08c86b19) 50% 0/340px auto;color:#fcf7ee}
+.mp__kopf{display:flex;align-items:center;gap:14px;padding:max(16px,env(safe-area-inset-top)) 18px 14px;border-bottom:1px solid rgba(230,210,162,.22)}
+.mp__kopf svg{width:40px;height:auto;color:var(--gold);flex:none}
+.mp__kopf span{display:block;font-family:var(--caps);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.mp__kopf b{display:block;margin-top:3px;font:500 1.15rem/1.15 var(--serif);color:#fcf7ee}
+.mp__kopf a.mp__tel{margin-left:auto;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;color:var(--gold);box-shadow:inset 0 0 0 1px rgba(230,210,162,.4)}
+.mp__kopf a.mp__tel svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.3;color:inherit}
+.mp__kacheln{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;padding:10px 18px 4px}
+@media (min-width:760px){.mp__kacheln{grid-template-columns:repeat(4,minmax(0,1fr));max-width:1100px;margin:0 auto;width:100%}}
+.mp-k{display:flex;flex-direction:column;gap:3px;padding:12px 4px 12px;border-top:1px solid rgba(230,210,162,.28);color:#fcf7ee;text-align:left}
+.mp-k small{font-family:var(--caps);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.mp-k b{font:500 1.05rem/1.2 var(--serif)}
+.mp-k em{font:italic 500 .84rem var(--serif);color:rgba(232,220,194,.7)}
+.mp__chat{flex:1;min-height:0;display:flex;flex-direction:column;padding:10px 14px max(14px,env(safe-area-inset-bottom))}
+@media (min-width:760px){.mp__chat{max-width:1100px;margin:0 auto;width:100%}}
+.mp__chat .gast--seite{position:relative;inset:auto;width:100%;height:min(70svh,760px);min-height:460px;flex:1;opacity:1;transform:none;pointer-events:auto;visibility:visible;border-radius:22px}
+.mp__fuss{padding:10px 18px 16px;text-align:center;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:rgba(232,220,194,.6)}
+.mp__fuss a{box-shadow:inset 0 -1px 0 currentColor}
+/* Karte zum Ausdrucken (mappe-karte.html): A6 quer, Vorder- und Rückseite */
+body.mpk{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:40px 20px;background:#2a2f3f;color:var(--tinte)}
+.mpk-karte{position:relative;width:min(148mm,100%);aspect-ratio:148/105;border-radius:6mm;padding:9mm;overflow:hidden;color:var(--tinte);background:linear-gradient(135deg,#fcf7ee 0%,#f3e9d6 50%,#e9dabc 100%);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.mpk-karte::before{content:'';position:absolute;inset:4mm;border-radius:3.5mm;border:.35mm solid rgba(130,108,53,.55);pointer-events:none}
+.mpk-karte::after{content:'';position:absolute;inset:5.2mm;border-radius:3mm;border:.2mm solid rgba(130,108,53,.25);pointer-events:none}
+.mpk-karte--d{background:linear-gradient(135deg,#2a3048,#181c2d 60%,#11141f);color:#fcf7ee}
+.mpk-karte--d::before{border-color:rgba(230,210,162,.6)}.mpk-karte--d::after{border-color:rgba(230,210,162,.25)}
+.mpk__in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8mm;align-items:center;height:100%}
+.mpk__em{width:12mm;height:auto;color:var(--akzent)}
+.mpk-karte--d .mpk__em{color:var(--gold)}
+.mpk__haus{margin-top:3mm;font-family:var(--caps);font-size:3mm;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe-tief)}
+.mpk-karte--d .mpk__haus{color:var(--gold)}
+.mpk__titel{margin-top:4mm;font:500 9.5mm/1 var(--serif)}
+.mpk__titel em{font-style:italic}
+.mpk__satz{margin-top:3.5mm;font:italic 500 3.9mm/1.4 var(--serif);color:rgba(26,29,40,.72);max-width:34ch}
+.mpk-karte--d .mpk__satz{color:rgba(252,247,238,.78)}
+.mpk__qr{display:flex;flex-direction:column;align-items:center;gap:2.5mm;padding:4mm;border-radius:4mm;background:#fff;box-shadow:inset 0 0 0 .3mm rgba(130,108,53,.3)}
+.mpk__qr svg{width:38mm;height:38mm;display:block}
+.mpk__qr small{font-family:var(--caps);font-size:2.3mm;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe-tief)}
+.mpk__sprachen{position:absolute;left:9mm;right:9mm;bottom:7mm;display:flex;flex-wrap:wrap;gap:1.5mm 5mm;font-size:3mm;line-height:1.3;color:rgba(26,29,40,.7)}
+.mpk-karte--d .mpk__sprachen{color:rgba(252,247,238,.72)}
+.mpk__sprachen span{white-space:nowrap}
+.mpk__zeilen{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3mm 8mm;margin-top:5mm}
+.mpk__zeilen div{padding:2.6mm 0;border-top:.2mm solid rgba(230,210,162,.3)}
+.mpk__zeilen small{display:block;font-family:var(--caps);font-size:2.3mm;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.mpk__zeilen b{display:block;margin-top:1mm;font:500 4.6mm/1.15 var(--serif)}
+.mpk__druck{display:flex;gap:12px}
+@media print{body.mpk{background:none;padding:0;gap:0}.mpk__druck{display:none}.mpk-karte{box-shadow:none;break-after:page;border-radius:0}}
+/* Karte am Handy (14.10.2026): Die Karte ist in Millimetern gesetzt (A6 quer). Auf schmalen Bildschirmen wurde nur der Rahmen schmaler, der Inhalt
+   nicht: Texte lagen übereinander, die Knöpfe ragten aus dem Bild (390 px breit: 29 px Überlauf). Die Karte behält jetzt ihr Mass und wird als
+   Ganzes verkleinert (transform, nicht zoom: Safari hält unter zoom eine Mindestschrift von 9 px, die kleinen Zeilen liefen dann ineinander);
+   der Wert je Stufe ist (kleinste Breite der Stufe − 40 px Rand) / 559 px, der Aussenabstand nimmt den frei gewordenen Platz zurück. Der Druck bleibt unverändert. */
+@media screen and (max-width:619px){
+  body.mpk{padding:28px 20px;gap:22px}
+  .mpk-karte{--s:.93;width:148mm;flex:none;transform:scale(var(--s));margin:calc(105mm*(var(--s) - 1)/2) calc(148mm*(var(--s) - 1)/2)}
+  .mpk__druck{flex-wrap:wrap;justify-content:center;max-width:100%}
+}
+@media screen and (max-width:559px){.mpk-karte{--s:.858}}
+@media screen and (max-width:519px){.mpk-karte{--s:.787}}
+@media screen and (max-width:479px){.mpk-karte{--s:.715}}
+@media screen and (max-width:439px){.mpk-karte{--s:.66}}
+@media screen and (max-width:409px){.mpk-karte{--s:.617}}
+@media screen and (max-width:384px){.mpk-karte{--s:.59}}
+@media screen and (max-width:369px){.mpk-karte{--s:.563}}
+@media screen and (max-width:354px){.mpk-karte{--s:.527}}
+@media screen and (max-width:334px){.mpk-karte{--s:.49}}
+/* Safari rechnete die Höhe des Karteninhalts (100 %) samt Innenabstand: der Inhalt sass 34 px tiefer als in Chrome und Firefox, der Satz lief 11 px in die
+   Sprachenzeile, auch am Rechner und im Druck. Der Inhalt hängt jetzt fest am Innenabstand, in allen Browsern gleich (14.10.2026). */
+.mpk-karte>.mpk__in{position:absolute;inset:9mm;height:auto}
+
+/* ---------- Sprachen: sechs im Schalter, auf dem Handy aufklappbar ---------- */
+.sprache{gap:5px;padding:0 14px}
+.sprache a{padding:6px 3px}
+.sprache i{opacity:.28}
+.sprache .sp-mehr{display:none}
+@media (max-width:860px){
+  .sprache{flex-wrap:wrap;max-width:calc(100vw - 28px)}
+  .sprache:not(.sp-offen) a:not([aria-current="true"]),.sprache:not(.sp-offen) i{display:none}
+  .sprache .sp-mehr{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;color:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px rgba(230,210,162,.4)}
+  .sprache .sp-mehr svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.4;transition:transform .4s var(--e2)}
+  .sprache.sp-offen .sp-mehr svg{transform:rotate(180deg)}
+  .sprache.sp-offen{height:auto;padding:8px 14px;border-radius:18px}
+}
+/* Schriften je Sprache: Serif/Caps/Sans mit der passenden Schrift, Sperrung und Versalien nur für lateinische Schrift */
+html[lang="zh"]{--serif:'Noto Serif SC','Songti SC','PingFang SC',serif;--caps:'Noto Serif SC','Songti SC',serif;--sans:'Noto Sans SC','PingFang SC','Instrument Sans',sans-serif}
+html[lang="ko"]{--serif:'Noto Serif KR','Apple SD Gothic Neo',serif;--caps:'Noto Serif KR','Apple SD Gothic Neo',serif;--sans:'Noto Sans KR','Apple SD Gothic Neo','Instrument Sans',sans-serif}
+html[lang="ar"]{--serif:'Amiri','Noto Naskh Arabic','Geeza Pro',serif;--caps:'Noto Kufi Arabic','Amiri','Geeza Pro',sans-serif;--sans:'Noto Sans Arabic','Geeza Pro','Instrument Sans',sans-serif}
+html[lang="zh"] *,html[lang="ko"] *,html[lang="ar"] *{letter-spacing:0!important;text-transform:none!important}
+html[lang="zh"] .d1,html[lang="ko"] .d1,html[lang="ar"] .d1{line-height:1.15}
+html[lang="zh"] .d2,html[lang="ko"] .d2,html[lang="ar"] .d2,html[lang="zh"] .d3,html[lang="ko"] .d3,html[lang="ar"] .d3{line-height:1.2}
+html[lang="zh"] em,html[lang="ko"] em{font-style:normal}
+html[lang="ar"] em{font-style:normal}
+html[lang="ar"] .lauf,html[lang="ar"] p{line-height:1.9}
+html[lang="ar"] .mono,html[lang="ar"] .koord dt,html[lang="ar"] .kachel__n small{font-family:var(--sans)}
+/* Arabisch: die Schalter (Am Fluss / Am Kamin, Mittag / Abend) waren in Amiri zu klein und zu blass; Sans, grösser, kräftiger (12.10.2026) */
+html[lang="ar"] .tabs.tabs--schalter .tab{font-family:var(--sans);font-size:clamp(1.12rem,1.3vw,1.3rem);font-weight:500;color:rgba(252,247,238,.94)}
+html[lang="ar"] .tabs.tabs--schalter .tab[aria-pressed="true"]{color:var(--tinte)}
+/* Von rechts nach links steht der erste Schalter rechts: die helle Fläche beginnt rechts und wandert nach links (sonst lag sie unter dem falschen Wort) */
+[dir="rtl"] .tabs.tabs--schalter::before{left:auto;right:5px}
+[dir="rtl"] .tabs.tabs--schalter:has(.tab:nth-child(2)[aria-pressed="true"])::before{transform:translateX(-100%)}
+html[lang="zh"] .mono,html[lang="ko"] .mono{font-family:var(--sans)}
+/* Von rechts nach links: Spiegelung der Richtungen, Zahlen und Zeiten bleiben lateinisch */
+[dir="rtl"] .kn svg,[dir="rtl"] .pfeil svg,[dir="rtl"] .kachel__n i svg,[dir="rtl"] .fv__a svg{transform:scaleX(-1)}
+[dir="rtl"] .kn:hover svg{transform:scaleX(-1) translate(-2px,-2px)}
+[dir="rtl"] .nav__links,[dir="rtl"] .kn-reihe,[dir="rtl"] .koord{direction:rtl}
+[dir="rtl"] .sprache{left:auto;right:clamp(14px,2vw,32px)}
+[dir="rtl"] .eckknopf--links{left:auto;right:clamp(14px,2vw,32px)}
+[dir="rtl"] .eckknopf:not(.eckknopf--links){right:auto;left:clamp(14px,2vw,32px)}
+[dir="rtl"] .gast-knopf,[dir="rtl"] .gast{right:auto;left:max(16px,calc(var(--rand)*.5))}
+/* Kalender der Leisten (seit 12.10.2026 auch arabisch): voriger Monat rechts, nächster links, Pfeile gespiegelt */
+[dir="rtl"] .lw-pfeil{left:auto;right:20px}[dir="rtl"] .lw-pfeil--vor{right:auto;left:20px}
+[dir="rtl"] .lw-pfeil svg{transform:scaleX(-1)}[dir="rtl"] .lw-pfeil--vor svg{transform:none}
+[dir="rtl"] input[type="date"],[dir="rtl"] input[type="time"],[dir="rtl"] input[type="tel"],[dir="rtl"] .ab-z__zeit,[dir="rtl"] .pk-t__p b,[dir="rtl"] .pb-s__preis,[dir="rtl"] .gka-z b{direction:ltr;unicode-bidi:isolate}
+[dir="rtl"] .gf-kopf .d2,[dir="rtl"] .gf-kopf .raum--nur{text-align:right;justify-content:flex-end}
+/* Von rechts nach links: der Name des Hauses (Buchstabe für Buchstabe im Auftakt) bleibt lateinisch von links */
+[dir="rtl"] .z--b,[dir="rtl"] .hero__titel,[dir="rtl"] .wortmarke,[dir="rtl"] .nav__logo,[dir="rtl"] .goldband{direction:ltr;unicode-bidi:isolate}
+/* Kleinzeile der Finder-Kacheln: Rauten zwischen den Angaben, wie auf der Startseite */
+.zf-reihe .kachel__n small span+span::before{content:'';display:inline-block;width:6px;height:6px;margin:0 .8em;border:1px solid currentColor;transform:rotate(45deg);vertical-align:middle;opacity:.7}
+/* Handy: die drei Auswahlfelder untereinander, je volle Breite, nichts abgeschnitten (11.10.2026) */
+@media (max-width:640px){
+  .zf-leiste{grid-template-columns:1fr;border-radius:26px;padding:10px 20px 18px}
+  .zf-leiste label{padding:14px 0;border-left:0!important;border-top:1px solid var(--linie)}
+  .zf-leiste label:first-child{border-top:0}
+  .zf-leiste span{font-size:.72rem;letter-spacing:.16em}
+  .zf-leiste .kn{grid-column:auto;justify-self:stretch;justify-content:space-between;margin-top:10px}
+  .pb__leiste label{padding:14px 0}
+}
+
+/* Kein Rahmen um die Zielkachel mehr (Robert 11.10.2026); das Antippen tauscht weiter in die letzte Kachel */
+.zf-k.zf-k--ziel .kachel__b{box-shadow:0 0 0 1px rgba(130,108,53,.08),0 36px 48px -28px rgba(26,29,40,.6),0 12px 20px -12px rgba(26,29,40,.32)}
+.zf-k .kachel__b{position:relative}
+
+/* Zeile unter dem Zimmernamen immer zweizeilig hoch: der Block springt beim Wechsel nicht (Robert 11.10.2026) */
+.zf-k .kachel__n small{align-content:flex-start;min-height:calc(2lh + 4px + 18px)}
+@media (max-width:860px){.zf__zeile{min-height:58px;align-items:flex-start}}   /* Trefferzeile am Handy immer zweizeilig hoch */
+.zf-minis .vk__gr{align-content:flex-start;align-items:flex-start}   /* Miniaturen dehnen sich nicht mit der reservierten Höhe */
+
+/* Zimmer-Finder, Auftritt der Bilder, ans Scrollen gekoppelt (Robert 13.10.2026: «ein bisschen pulsierend reingeschwebt», danach: «muss noch flüssiger und
+   direkt beim Scrollen reinschweben»). Kein Auslöser, kein Skript: jede Kachel steigt, während sie ins Bild kommt, aus der Tiefe an ihren Platz, schiesst
+   ein paar Pixel über und setzt sich; scrollt man zurück, sinkt sie wieder. Die drei Kacheln einer Reihe enden nacheinander, die Miniaturen folgen in drei
+   Gruppen. Deckend, nur transform; der Browser rechnet es selbst mit dem Scrollen. Ohne animation-timeline (ältere Browser) stehen die Bilder einfach da. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    /* Robert 14.10.2026 abends: «noch smoother, eleganter, sanfter»: längerer Weg (bis fast zur Mitte des Bildschirms), kein Überschiessen,
+       die Kurve steckt in den Schlüsselbildern (Timeline ist linear): schnell heraus aus der Tiefe, dann lang und weich ausrollen. */
+    .zf__aus .zf-reihe .zf-k.kachel[data-r]{transition:none;transform-origin:50% 100%;animation:zfHoch linear both;animation-timeline:view(block);animation-range:entry 0% cover 44%}
+    .zf__aus .zf-reihe .zf-k.kachel[data-r]:nth-child(3n+2){animation-range:entry 5% cover 49%}
+    .zf__aus .zf-reihe .zf-k.kachel[data-r]:nth-child(3n){animation-range:entry 10% cover 54%}
+    .zf__aus .zf-minis [data-zf-m]{transform-origin:50% 100%;animation:zfHochKlein linear both;animation-timeline:view(block);animation-range:entry 0% cover 40%}
+    .zf__aus .zf-minis [data-zf-m]:nth-child(3n+2){animation-range:entry 0% cover 46%}
+    .zf__aus .zf-minis [data-zf-m]:nth-child(3n){animation-range:entry 0% cover 52%}
+    @keyframes zfHoch{0%{transform:translate3d(0,clamp(90px,10vw,160px),0) scale(.94)}22%{transform:translate3d(0,clamp(44px,5vw,78px),0) scale(.966)}48%{transform:translate3d(0,clamp(16px,1.9vw,30px),0) scale(.987)}74%{transform:translate3d(0,4px,0) scale(.997)}100%{transform:none}}
+    @keyframes zfHochKlein{0%{transform:translate3d(0,clamp(36px,4vw,60px),0) scale(.93)}30%{transform:translate3d(0,clamp(15px,1.7vw,26px),0) scale(.968)}65%{transform:translate3d(0,4px,0) scale(.993)}100%{transform:none}}   /* Miniaturen nur einmal herauf, ohne Überschiessen (Robert 13.10.2026: «nur einmal reinschweben, nicht hoch runter hoch») */
+  }
+}
+@media (max-width:860px){@supports (animation-timeline: view()){@media (prefers-reduced-motion:no-preference){
+  .zf__aus .zf-reihe .zf-k.kachel[data-r],.zf__aus .zf-reihe .zf-k.kachel[data-r]:nth-child(3n+2),.zf__aus .zf-reihe .zf-k.kachel[data-r]:nth-child(3n){animation-range:entry 0% cover 46%}   /* untereinander: jede Kachel für sich */
+}}}

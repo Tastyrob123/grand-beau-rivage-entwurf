@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de-CH">
+<head><!--demo-weiche--><script src="/_demo/karte.js"></script><script src="/_demo/shim.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Rahmen R03/R04 (Prüfung 1710, 17.10.2026): Fehler mitschreiben, bevor irgendetwas anderes läuft (wie Le Bureau, Meldung an dessen Protokoll), und die Startfehler-Tür mit «Prüfung öffnen». Netzfehler nie melden, höchstens 20 je Seite, eigener Fehlschlag nie erneut (Safari-Schleife 15.10.). */
+(function(){var zahl=0;function merk(t){t=String(t);if(++zahl>20||/Load failed|access control|abort|NetworkError|Failed to fetch/i.test(t))return;
+try{var a=JSON.parse(localStorage.getItem('carte-fehler')||'[]');a.push({zeit:new Date().toISOString(),text:t.slice(0,600)});localStorage.setItem('carte-fehler',JSON.stringify(a.slice(-30)))}catch(e){}
+try{fetch('../studio/api/fehler',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:'La Carte · '+t.slice(0,580)}),keepalive:true}).catch(function(){})}catch(e){}}
+window.addEventListener('error',function(e){if(!e.message&&e.target&&e.target!==window)return;merk((e.message||'Fehler')+' · '+(e.filename||'').split('/').pop()+':'+(e.lineno||''))});
+window.addEventListener('unhandledrejection',function(e){merk('Versprechen: '+((e.reason&&e.reason.message)||e.reason))});window.werkzeugMerk=merk;
+window.werkzeugTuer=function(grund){if(document.getElementById('wz-tuer'))return;var d=document.createElement('div');d.id='wz-tuer';d.setAttribute('role','alert');
+d.style.cssText='position:fixed;inset:0;z-index:2147483000;visibility:visible;display:grid;place-items:center;padding:24px;background:rgba(17,20,31,.94);color:#f7f0e3;font-family:system-ui,sans-serif;text-align:center';
+d.innerHTML='<div style="max-width:520px"><p style="font-size:1.5rem;margin:0 0 10px">La Carte startet nicht.</p><p id="wz-tuer-t" style="margin:0 0 22px;color:rgba(247,240,227,.75)"></p>'+
+'<a href="../studio/pruefung.html" style="display:inline-block;margin:0 6px;padding:12px 20px;border-radius:999px;background:#f0e3c2;color:#1b2033;text-decoration:none">Prüfung öffnen</a>'+
+'<button type="button" onclick="location.reload()" style="margin:0 6px;padding:12px 20px;border-radius:999px;border:1px solid rgba(240,227,194,.5);background:none;color:#f0e3c2;font:inherit;cursor:pointer">Neu laden</button></div>';
+d.querySelector('#wz-tuer-t').textContent=String(grund||'Das Werkzeug hat nicht geladen.').replace(/^[A-ZÄÖÜ]+ · /,'');(document.body||document.documentElement).appendChild(d);merk('Startfehler: '+grund)};
+})();</script>
+<title>La Carte · Grand Beau-Rivage</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1b2033">
+<link rel="icon" href="../assets/logo/favicon.svg">
+<link rel="preload" href="../assets/fonts/cormorant-garamond-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/InstrumentSans-normal-400_600.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../studio/auftakt.js?v=3"></script>
+<link rel="stylesheet" href="../_werkbank/satz/satz.css?v=2">
+<link rel="stylesheet" href="mc.css?v=13">
+<link rel="stylesheet" href="mc-bureau.css?v=4">
+<link rel="stylesheet" href="mc-hell.css?v=3">
+<link rel="stylesheet" href="../studio/schweben.css?v=5">
+<link rel="stylesheet" href="mc-anordnen.css?v=6">
+<script src="/besuch.js?v=3c4c57a56e" defer></script><script src="/verweil.js?v=5881fd455d" defer></script></head>
+<body class="mc">
+<header class="oben" id="oben"></header>
+<aside class="rand" id="rand"></aside>
+<main class="haupt">
+  <header class="kopf" id="kopf"></header>
+  <div class="arbeit" id="arbeit">
+    <section class="liste" id="liste" aria-label="Einträge der Karte"></section>
+    <section class="vorschau" aria-label="Vorschau der Karte">
+      <div class="vorschau__k"><div class="ansicht" role="group" aria-label="Vorschau"><button type="button" data-ansicht="karte" aria-pressed="true">Karte</button><button type="button" data-ansicht="website" aria-pressed="false">Website</button></div><span class="mono" id="v-zahl">Vorschau</span><div class="vorschau__z"><button type="button" class="rund" data-zoom="-1" aria-label="Kleiner">−</button><button type="button" class="rund" data-zoom="1" aria-label="Grösser">+</button></div></div>
+      <div class="seiten" id="seiten"></div>
+      <div class="web" id="web" hidden><div class="web__rahmen"><iframe id="web-f" title="Website-Seite mit dem Entwurf" loading="lazy"></iframe></div></div>
+    </section>
+  </div>
+</main>
+<footer class="leiste" id="leiste" aria-live="polite"></footer>
+<div class="fenster" id="fenster" hidden></div>
+<div class="meldung" id="meldung" aria-live="polite"></div>
+<div id="mess" aria-hidden="true"></div>
+<script src="karte.js?v=3"></script>
+<script src="mittag.js?v=5"></script>
+<script src="mc.js?v=22"></script>
+<script src="anordnen.js?v=8"></script>
+<script src="../studio/schweben.js?v=3" data-wurzel=".haupt" data-blaetter="#kopf .kopf__in, .vorschau__k" data-kacheln="#kopf .kopf__kn > *"></script>
+<script src="../assets/js/zur-werkbank.js?v=11" defer data-zw data-neben="#rand" data-luft="40" data-ueber="#leiste"></script>
+<script>/* Foto der Bühne je Karte (Robert 15.10.2026: Heroes edel, wie Le Bureau des Carlton) */
+(function(){var F={ambiance:'rest-ambiance-2','petite-suisse':'fondue','vieux-rivage':'bar-theke',wein:'food-glaeser',mittag:'food-teller'};
+function setz(){var k=document.getElementById('kopf');if(!k)return;var h=(location.hash||'').slice(1).split(/[/?]/)[0];k.style.setProperty('--kb',"url('../assets/img/"+(F[h]||'food-teller')+"-m.webp')")}
+addEventListener('hashchange',setz);setz();})();</script>
+<script src="../assets/js/rundgang.js?v=19" defer data-werkzeug="carte"></script>
+</body>
+</html>

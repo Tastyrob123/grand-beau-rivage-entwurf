@@ -1,0 +1,238 @@
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;src:url('../fonts/CormorantGaramond-Medium.ttf') format('truetype')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;src:url('../fonts/CormorantGaramond-Medium.ttf') format('truetype')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;src:url('../fonts/CormorantGaramond-SemiBold.ttf') format('truetype')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;src:url('../fonts/CormorantGaramond-Bold.ttf') format('truetype')}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400;src:url('../fonts/Cinzel-Regular.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:italic;font-weight:400;src:url('../fonts/InstrumentSans-Italic.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400;src:url('../fonts/InstrumentSans-Regular.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:500;src:url('../fonts/InstrumentSans-Medium.ttf') format('truetype')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;src:url('../fonts/InstrumentSans-SemiBold.ttf') format('truetype')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;src:url('../fonts/DMMono-Regular.ttf') format('truetype')}
+:root{--titel:'Cormorant Garamond',Georgia,'Times New Roman',serif;--tg:500;--muster:url("../../assets/img/tapete-dunkel.webp");--musterb:36mm}
+/* Satz der Unterlagen. Masse in mm, Schrift in pt über --s (wird je Seite angepasst, damit nichts überläuft).
+   Farben sind die Bezugsfarben der Vorlage und werden beim Schreiben auf das Haus umgerechnet. Keine weichen Schatten. */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#8b8475;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.blatt{--s:1;position:relative;overflow:hidden;margin:8mm auto;background:#fcf7ee;color:#14161d;display:flex;flex-direction:column;font-family:'Instrument Sans',Arial,sans-serif;font-size:calc(9.4pt*var(--s));line-height:1.42;page-break-after:always;break-after:page}
+/* :where() wiegt nichts, sonst löscht diese Zeile die Abstände von .rubrik, .ut, .ab, .zw und .ul */
+:where(.blatt) :where(h1,h2,h3,h4,p,ul){margin:0;padding:0}
+.uband{flex:none;display:flex;align-items:center;gap:7mm;padding:9mm 15mm 8mm;background:#1b2033 var(--muster) 50% 0/var(--musterb) auto;color:#f7f0e3;border-bottom:.7mm solid #9c8451}
+.uband--klein{padding:6mm 15mm 5mm}
+.uband__z{flex:none;width:17mm;color:#d2bf98;display:block}
+.uband__z svg,.udeck__z svg,.uz svg,.uw svg{display:block;width:100%;height:auto}
+.uband h1{font-family:var(--titel);font-weight:var(--tg);font-size:25pt;line-height:1.08;letter-spacing:0}
+.uband--klein h1{font-size:19pt}
+.uband p{font-family:'DM Mono',Menlo,monospace;font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:#d2bf98;margin-top:1.6mm}
+.inhalt{flex:1;min-height:0;padding:9mm 15mm 5mm;display:flex;flex-direction:column}
+.ufuss2{flex:none;margin:0 15mm;padding:3.2mm 0 6.5mm;border-top:.25mm solid #9c8451;font-family:'DM Mono',Menlo,monospace;font-size:6.2pt;letter-spacing:.17em;text-transform:uppercase;text-align:center;color:rgba(20,22,29,.74)}
+.spalten{flex:1;min-height:0;display:grid;gap:0 11mm}
+.spalten--2{grid-template-columns:1fr 1fr}.spalten--3{grid-template-columns:1fr 1fr 1fr}.spalten--1{grid-template-columns:1fr}
+.sp{min-width:0;min-height:0}
+.spalten--2 .sp+.sp,.spalten--3 .sp+.sp{border-left:.25mm solid rgba(156,132,81,.5);padding-left:11mm;margin-left:-5.5mm}
+/* Rubrik: Titelschrift, gut doppelt so gross wie der Lesetext, kurze Linie darunter */
+.rubrik{display:flex;align-items:flex-end;justify-content:space-between;gap:4mm;font-family:var(--titel);font-weight:var(--tg);font-size:calc(19pt*var(--s));line-height:1.1;color:#1b2033;margin:calc(5.4mm*var(--s)) 0 calc(2.4mm*var(--s));padding-bottom:calc(2.9mm*var(--s));position:relative}
+.rubrik::after{content:'';position:absolute;left:0;bottom:0;width:14mm;height:.5mm;background:#9c8451}
+.sp>.rubrik:first-child,.inhalt>.rubrik:first-child{margin-top:0}
+.rubrik small{font-family:'Instrument Sans',Arial,sans-serif;font-weight:400;font-size:calc(8.6pt*var(--s));color:rgba(20,22,29,.72);margin-left:2.4mm}
+.rk{display:flex;gap:0;flex:none}
+.rk b{flex:none;width:calc(12.5mm*var(--s));min-width:0;text-align:right;font-family:var(--titel);font-weight:400;font-size:calc(7.6pt*var(--s));letter-spacing:.02em;color:#81704d;white-space:nowrap}
+.rk b:empty::before{content:'\00a0'}
+.re .rk b em{font-family:'Instrument Sans',Arial,sans-serif;font-style:normal;font-weight:400;font-size:calc(8pt*var(--s));color:rgba(20,22,29,.72)}
+.zw{font-family:'DM Mono',Menlo,monospace;font-weight:400;font-size:calc(6.8pt*var(--s));letter-spacing:.22em;text-transform:uppercase;color:#81704d;margin:calc(3.2mm*var(--s)) 0 calc(1.2mm*var(--s))}
+.po{display:flex;justify-content:space-between;align-items:baseline;gap:4mm;padding:calc(1.5mm*var(--s)) 0;break-inside:avoid}
+.po__t{min-width:0}
+.po h4{font-family:'Instrument Sans',Arial,sans-serif;font-weight:600;font-size:calc(10pt*var(--s));line-height:1.28;color:#14161d}
+.po h4 small{font-weight:400;font-size:calc(8.2pt*var(--s));color:rgba(20,22,29,.72)}
+.po p{font-size:calc(8.6pt*var(--s));line-height:1.36;color:rgba(20,22,29,.86)}
+.po p.fr{font-style:italic;color:rgba(20,22,29,.62);font-size:calc(8pt*var(--s))}
+.po__p{flex:none;text-align:right;display:flex;flex-direction:column;gap:.4mm}
+.pz{display:flex;justify-content:flex-end;align-items:baseline;gap:2.4mm;white-space:nowrap}
+.pz b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(11pt*var(--s));color:#1b2033;min-width:calc(11mm*var(--s));text-align:right}
+.pz em{font-style:normal;font-size:calc(8pt*var(--s));color:rgba(20,22,29,.72)}
+.re{display:flex;justify-content:space-between;align-items:baseline;gap:3mm;padding:calc(.72mm*var(--s)) 0}
+.re__n{font-weight:600;font-size:calc(9.4pt*var(--s));min-width:0}
+.re__n small{font-weight:400;font-size:calc(8.2pt*var(--s));color:rgba(20,22,29,.72)}
+.re .rk b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(9.6pt*var(--s));letter-spacing:0;text-transform:none;color:#1b2033}
+.ab{font-size:calc(9.4pt*var(--s));line-height:1.5;margin-bottom:calc(2.4mm*var(--s))}
+.ab.gross{font-family:var(--titel);font-weight:var(--tg);font-size:calc(13pt*var(--s));line-height:1.3;color:#1b2033}
+.ab.fr{font-style:italic;color:rgba(20,22,29,.66);font-size:calc(8.8pt*var(--s))}
+.ab.mitte,.ut.mitte{text-align:center}
+.ab.klein{font-size:calc(8pt*var(--s));color:rgba(20,22,29,.76)}
+.ut{font-family:var(--titel);font-weight:var(--tg);font-size:calc(19pt*var(--s));line-height:1.12;color:#1b2033;margin:calc(5mm*var(--s)) 0 calc(2.4mm*var(--s))}
+.ut.klein{font-size:calc(14pt*var(--s))}
+.ukasten{border:.3mm solid #9c8451;border-radius:3mm;padding:calc(4mm*var(--s)) calc(5mm*var(--s));margin:calc(3mm*var(--s)) 0;break-inside:avoid}
+.ukasten h3{font-family:var(--titel);font-weight:var(--tg);font-size:calc(13pt*var(--s));color:#1b2033;margin-bottom:calc(1.6mm*var(--s))}
+.ukasten.dunkel{background:#1b2033;border-color:#1b2033;color:#f7f0e3}
+.ukasten.dunkel h3{color:#d2bf98}.ukasten.dunkel .ab{color:#f7f0e3}
+.ul{list-style:none}
+.ul li{position:relative;padding-left:5mm;font-size:calc(9.2pt*var(--s));line-height:1.45;margin-bottom:calc(1.2mm*var(--s))}
+/* Strich als Kante statt Fläche: eine Fläche von .35mm rundet je nach Lage auf 1 oder 2 Bildpunkte, die Striche wurden ungleich dick */
+.ul li::before{content:'';position:absolute;left:0;top:.62em;width:2.6mm;height:0;border-top:.35mm solid #9c8451}
+.ulin{display:block;width:14mm;height:.5mm;background:#9c8451;margin:calc(3mm*var(--s)) 0}
+.mitte .ulin,.ulin.mitte{margin-left:auto;margin-right:auto}
+.ubild{display:block;width:100%;object-fit:cover;border-radius:2.4mm}
+.udeck{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#1b2033 var(--muster) 50% 0/var(--musterb) auto;color:#f7f0e3;margin:-9mm -15mm -5mm;padding:14mm}
+.udeck__z{width:34mm;color:#d2bf98;margin-bottom:9mm}
+.udeck h1{font-family:var(--titel);font-weight:var(--tg);font-size:44pt;line-height:1.06}
+.udeck i{display:block;width:20mm;height:.6mm;background:#d2bf98;margin:7mm 0}
+.udeck p{font-size:10.5pt;line-height:1.5;max-width:120mm}
+.udeck__u{font-family:'DM Mono',Menlo,monospace;font-size:8pt!important;letter-spacing:.22em;text-transform:uppercase;color:#d2bf98;margin-bottom:5mm}
+.uz{display:block;width:26mm;color:#9c8451}.uz.mitte,.uw.mitte{margin-left:auto;margin-right:auto}
+.uw{display:block;width:70mm;color:#1b2033}
+@page{margin:0}
+@media print{html,body{background:#ffffff}.blatt{margin:0}}
+/* aus dem Original gelesene Karten (satz_auto.py): Zeilen unter dem Gericht, Übersetzungen kursiv und heller */
+.po p.fr{font-style:italic;color:rgba(20,22,29,.6);font-size:calc(7.9pt*var(--s))}
+.po--frei p{font-size:calc(9pt*var(--s))}
+.po__p--reihe{flex-direction:row;gap:calc(3mm*var(--s))}
+.oder{font-family:'DM Mono',Menlo,monospace;font-size:calc(6.2pt*var(--s));letter-spacing:.2em;text-transform:uppercase;color:#81704d;margin:calc(.6mm*var(--s)) 0!important}
+.po p.mp{display:flex;justify-content:space-between;gap:3mm;align-items:baseline}
+.po p.mp b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(10pt*var(--s));color:#1b2033;white-space:nowrap;margin-left:2.4mm}
+.po:has(p.mp) .po__t{flex:1}
+.tmreihe{display:grid;gap:0 6mm;margin-bottom:calc(5mm*var(--s))}
+.tmsp{min-width:0;border-top:.5mm solid #9c8451;padding-top:calc(2mm*var(--s))}
+.tmsp h4.tag{font-family:var(--titel);font-weight:var(--tg);font-size:calc(12.5pt*var(--s));line-height:1.15;color:#1b2033;margin-bottom:calc(1.6mm*var(--s))}
+.tmsp p{margin:0}
+.tmsp p.gang{font-weight:600;font-size:calc(9pt*var(--s));line-height:1.3;margin-top:calc(.5mm*var(--s))}
+.tmsp p.fr{font-style:italic;font-size:calc(7.2pt*var(--s));line-height:1.3;color:rgba(20,22,29,.62)}
+.tmsp p.stern{font-size:calc(6pt*var(--s));letter-spacing:.3em;color:#9c8451;margin:calc(.8mm*var(--s)) 0}
+.uleiste{flex:none;display:flex;align-items:center;justify-content:center;gap:4mm;padding:8mm 15mm 0;color:#9c8451}
+.uleiste span{display:block;width:11mm}.uleiste span svg{display:block;width:100%;height:auto}
+.uleiste b{font-family:'DM Mono',Menlo,monospace;font-weight:400;font-size:6.6pt;letter-spacing:.24em;text-transform:uppercase}
+.uleiste+.inhalt{padding-top:6mm}
+.po p.halb{font-weight:600;color:#14161d}
+.po p.stern,.inhalt>p.stern,.sp>p.stern{font-size:calc(6pt*var(--s));letter-spacing:.3em;color:#9c8451;margin:calc(.6mm*var(--s)) 0}
+/* Aussenseite einer gefalzten Karte: eine Spalte ist der Deckel in der dunklen Farbe des Hauses */
+.karte .inhalt{padding:10mm 12mm 8mm}
+.karte--aussen .inhalt{padding:0}
+.karte--aussen .spalten{gap:0}
+.karte--aussen .sp{padding:10mm 9mm 8mm 12mm}
+.karte--aussen .sp:last-child{padding:0}
+.karte--aussen .sp+.sp{border-left:0;margin-left:0}
+.karte--aussen .sp+.sp:not(:last-child){padding-left:6mm}
+.deckel{height:100%;background:#1b2033 var(--muster) 50% 0/var(--musterb) auto;color:#f7f0e3;padding:17mm 11mm 12mm;display:flex;flex-direction:column;align-items:center;text-align:center}
+.deckel .uz{width:30mm;color:#d2bf98}
+.deckel h1{font-family:var(--titel);font-weight:var(--tg);font-size:34pt;line-height:1.08;margin-top:9mm}
+.deckel>i{display:block;width:16mm;height:.5mm;background:#d2bf98;margin:8mm 0;flex:none}
+.deckel__z{font-family:var(--titel);font-weight:var(--tg);font-size:14pt;line-height:1.36;color:#d2bf98;max-width:78mm}
+.deckel__q{font-family:'DM Mono',Menlo,monospace;font-size:6.6pt;letter-spacing:.22em;text-transform:uppercase;margin-top:4mm!important}
+.deckel__a{font-size:8.4pt;line-height:1.6;margin-top:auto!important;padding-top:8mm;opacity:.9}
+.gutschein{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 4mm}
+.gutschein .uz{width:22mm;margin-bottom:8mm}
+.gutschein .ab{font-size:calc(11pt*var(--s));line-height:1.7}
+.gutschein .unten{margin-top:14mm!important;opacity:.7}
+.menupreis{text-align:right;margin:-11mm 0 5mm!important}
+.menupreis b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(15pt*var(--s));color:#1b2033}
+.rubrik .rp{font-size:calc(13pt*var(--s));white-space:nowrap}
+.po p.mp span{flex:1}
+.po p.mp b{min-width:calc(15mm*var(--s));text-align:right}
+.gutschein .ab{font-size:calc(9.4pt*var(--s))}
+.pz--k{flex-direction:column;align-items:flex-end;gap:0}
+.pz--k em,.po__p .pz>em:only-child{font-family:'DM Mono',Menlo,monospace;font-size:calc(5.6pt*var(--s));letter-spacing:.14em;text-transform:uppercase;color:#81704d}
+.uraster{margin-top:calc(2mm*var(--s))}
+.uraster .rz{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:0 6mm;padding:calc(1.5mm*var(--s)) 0;border-bottom:.2mm solid rgba(156,132,81,.4);font-size:calc(9.4pt*var(--s))}
+.uraster .rz.kopf{font-family:'DM Mono',Menlo,monospace;font-size:calc(6.4pt*var(--s));letter-spacing:.2em;text-transform:uppercase;color:#81704d;border-bottom:.4mm solid #9c8451}
+.uraster .rz span.fr{font-style:italic;color:rgba(20,22,29,.66)}
+.mitte .po,.po.mitte{justify-content:center;text-align:center}
+.mittig .po{flex-direction:column;align-items:center;text-align:center}
+.mittig .po__p{flex-direction:row}
+.mittig .rubrik{justify-content:center}.mittig .rubrik::after{left:50%;margin-left:-7mm}
+.mittig p.stern{text-align:center}
+
+/* Umbrüche: keine einzelnen Wörter auf der letzten Zeile, Titel ausgeglichen */
+.blatt p,.blatt h4,.blatt li{text-wrap:pretty}
+.blatt h1,.blatt h2,.blatt h3,.po h4,.po p{text-wrap:balance}
+
+.rubrik{font-family:var(--titel);font-weight:500}
+.rubrik small{font-family:'Instrument Sans',Arial,sans-serif;font-style:italic;font-weight:400;letter-spacing:0;text-transform:none}
+.po h4{font-family:var(--titel);font-weight:600;font-size:calc(11pt*var(--s));line-height:1.22}
+.po p{font-size:calc(8.9pt*var(--s))}
+.po p.fr{font-style:italic;opacity:.72}
+.uleiste b{font-family:'Cinzel',Georgia,serif;letter-spacing:.2em;font-size:7pt}
+.udeck h1{font-family:'Cinzel',Georgia,serif;font-weight:400;font-size:30pt;letter-spacing:.06em}
+.udeck__u{letter-spacing:.26em}
+.ab.fuss{font-family:'DM Mono',Menlo,monospace;font-size:6pt;letter-spacing:.14em;text-transform:uppercase;text-align:center;color:rgba(26,29,40,.7);margin-top:auto;padding-top:4mm}
+.schmal .inhalt{padding:7mm 11mm 8mm}
+.schmal .po h4{font-size:calc(10.2pt*var(--s))}
+.schmal .po p{font-size:calc(8.2pt*var(--s))}
+.wein .po h4{font-weight:500}
+.wein .po p.fr{font-size:calc(8.2pt*var(--s))}
+/* Innenseiten seit 11.10.2026 abends (Robert: nicht das Original kopieren, neu gestalten, keine halbleeren Seiten; dann: Schrift grösser
+   und besser lesbar, mehr Luft zwischen Titel und englischer Zeile, Weinkarte übersichtlicher — «luxuriös und edel»).
+   Bausteine werden gemessen (satz_mess.js) und ausgeglichen auf so viele Seiten verteilt, wie sie füllen (satz_daten.packe).
+   Rubrik mittig in der Titelschrift mit englischer Zweitzeile und kurzer Goldlinie, Gerichte als Zeilen (Name links, Preis rechts,
+   Zutaten, Übersetzung kursiv), feine Goldlinien dazwischen; Tafeln der Bar mit Spaltenköpfen rechts. */
+.fluss{flex:1 0 auto;display:flex;flex-direction:column;justify-content:space-between}
+.fluss>.rest{display:block;flex:none}
+.fluss>.rubrik{flex-direction:column;align-items:center;justify-content:center;gap:0;text-align:center;margin:calc(8mm*var(--s)) 0 calc(3mm*var(--s));padding-bottom:calc(4.2mm*var(--s));font-size:calc(26pt*var(--s));line-height:1.08}
+.fluss>.rubrik:first-child{margin-top:0}
+.fluss>.rubrik::after{left:50%;margin-left:-7mm}
+.fluss>.rubrik small{display:block;margin:calc(3.2mm*var(--s)) 0 0;font-size:calc(11pt*var(--s));letter-spacing:.02em;color:rgba(26,29,40,.72)}
+.fluss>.rubrik:has(.rk){flex-direction:row;align-items:flex-end;justify-content:space-between;text-align:left}
+.fluss>.rubrik:has(.rk)::after{left:0;margin-left:0}
+.fluss>.rubrik:has(.rk) small{display:inline;margin:0 0 0 2.4mm}
+.fluss>.rubrik .rp{font-size:calc(14pt*var(--s))}
+.fluss>.po{align-items:baseline;gap:8mm;padding:calc(3.4mm*var(--s)) 0;border-bottom:.2mm solid rgba(176,147,79,.32)}
+.fluss>.po:last-child,.fluss>.po:has(+.rubrik),.fluss>.po:has(+.zw){border-bottom:0}
+.fluss>.po h4{font-size:calc(15.5pt*var(--s));line-height:1.2}
+.fluss>.po h4 small{font-size:calc(9.8pt*var(--s))}
+.fluss>.po p{font-size:calc(11pt*var(--s));line-height:1.45;margin-top:calc(.9mm*var(--s));color:rgba(26,29,40,.92)}
+.fluss>.po p.fr{font-size:calc(10pt*var(--s));color:rgba(26,29,40,.66);opacity:1}
+.fluss>.po .pz b{font-size:calc(14.5pt*var(--s));color:#826C35;min-width:0}
+.fluss>.po .po__p--reihe .pz b{min-width:calc(12mm*var(--s))}
+.fluss>.po.po--frei{flex-direction:column;align-items:center;text-align:center;border:0;padding:calc(7mm*var(--s)) 6mm}
+.fluss>.po.po--frei p{font-size:calc(11.5pt*var(--s));line-height:1.65;margin:0}
+.fluss>.po.po--frei p.fr{margin-top:calc(5mm*var(--s))}
+.fluss>.po.po--frei p.fr+p.fr{margin-top:0}
+/* Weine der Barkarte (frei gesetzte Zeilen mit Glas- und Flaschenpreis): gesetzt wie jedes Gericht (Robert 12.10.2026: «mit den kleinen
+   Beschreibungen darunter nicht in einem Format»): Name links in der Titelschrift, Preise rechts unter den Spaltenköpfen, Herkunft und
+   Rebsorte direkt darunter, feine Goldlinie zwischen zwei Weinen. */
+.fluss>.po.po--frei:has(p.mp){align-items:stretch;text-align:start;padding:0;border:0}
+.fluss>.po.po--frei:has(p.mp) p.mp{font-family:var(--titel);font-weight:600;font-size:calc(15.5pt*var(--s));line-height:1.2;color:#14161d;margin:0;padding-top:calc(3.4mm*var(--s))}
+.fluss>.po.po--frei:has(p.mp) p.mp~p.mp{margin-top:calc(3.4mm*var(--s));border-top:.2mm solid rgba(176,147,79,.32)}
+.fluss>.po.po--frei:has(p.mp) p.mp b{flex:none;width:calc(12.5mm*var(--s));min-width:0;margin-left:0;text-align:right;font-weight:var(--tg);font-size:calc(14.5pt*var(--s));color:#826C35}
+.fluss>.po.po--frei:has(p.mp) p.fr,.fluss>.po.po--frei:has(p.mp) p.fr+p.fr{font-size:calc(10pt*var(--s));line-height:1.45;margin-top:calc(.9mm*var(--s));color:rgba(26,29,40,.66)}
+.fluss>.po.po--frei:has(p.mp) p:last-child{padding-bottom:calc(3.4mm*var(--s))}
+/* Tafeln (Spirituosen, Kaffee, Softdrinks): Spaltenkopf rechts in Mono-Versalien, jede Zeile Name links, Preis rechts */
+.fluss>.tkopf{font-family:'DM Mono',Menlo,monospace;font-size:calc(7.4pt*var(--s));letter-spacing:.18em;text-transform:uppercase;text-align:right;color:#826C35;margin:calc(1.8mm*var(--s)) 0 calc(.6mm*var(--s))}
+.fluss>.tz{display:flex;justify-content:space-between;align-items:baseline;gap:4mm;padding:calc(1.6mm*var(--s)) 0;border-bottom:.2mm solid rgba(176,147,79,.22);font-size:calc(10.8pt*var(--s))}
+.fluss>.tz:last-child,.fluss>.tz:has(+.rubrik),.fluss>.tz:has(+.zw){border-bottom:0}
+.fluss>.tz b{font-family:var(--titel);font-weight:var(--tg);font-size:calc(13pt*var(--s));color:#826C35;white-space:nowrap}
+.fluss>.tnote{font-size:calc(9.8pt*var(--s));line-height:1.45;color:rgba(26,29,40,.78);margin:calc(3mm*var(--s)) 0 0}
+.fluss>.tnote.fr{font-style:italic;color:rgba(26,29,40,.6);margin-top:calc(.5mm*var(--s))}
+/* Weinkarte: Farbe als Rubrik, Land in der Titelschrift mit Goldlinie, Region in Mono-Versalien */
+.fluss>.zw{font-size:calc(8pt*var(--s));letter-spacing:.22em;margin:calc(5mm*var(--s)) 0 calc(1.2mm*var(--s))}
+.fluss>.zw--land{font-family:var(--titel);font-weight:500;font-size:calc(18pt*var(--s));letter-spacing:0;text-transform:none;color:#1a1d28;margin:calc(7mm*var(--s)) 0 calc(2mm*var(--s));padding-bottom:calc(1.6mm*var(--s));border-bottom:.3mm solid rgba(176,147,79,.55)}
+.fluss>.rubrik+.zw--land{margin-top:calc(1.5mm*var(--s))}
+.fluss>.zw--land+.zw{margin-top:calc(2.5mm*var(--s))}
+.schmal .fluss>.po{gap:5mm;padding:calc(2.8mm*var(--s)) 0}
+.schmal .fluss>.po h4{font-size:calc(13.8pt*var(--s))}
+.schmal .fluss>.po p{font-size:calc(10pt*var(--s))}
+.schmal .fluss>.po p.fr{font-size:calc(9.2pt*var(--s))}
+.schmal .fluss>.rubrik{font-size:calc(22pt*var(--s))}
+.schmal .fluss>.tz{padding:calc(1.3mm*var(--s)) 0;font-size:calc(10pt*var(--s))}
+.wein .fluss>.po{padding:calc(3mm*var(--s)) 0}
+.wein .fluss>.po h4{font-size:calc(14pt*var(--s))}
+.wein .fluss>.po p{font-size:calc(10pt*var(--s))}
+/* La Carte · Gestalten (16.10.2026, Robert: Schriftart, Schriftgrösse, Textart ändern, «kleine Striche» bearbeiten). Die Werte stehen als
+   lage am Element in den Kartendaten, karte.js schreibt sie als Variablen und Merkmale (data-g…) an das Element; gilt in Vorschau, Druck und PDF.
+   Linien unter Rubriken und zwischen Einträgen werden dabei zu echten Elementen (.lin) und ersetzen Strich bzw. Rand an derselben Stelle. */
+[data-gf],[data-gf] *{font-family:var(--gf)!important}
+[data-gc],[data-gc] *{color:var(--gc)!important}
+[data-ga=kursiv],[data-ga=kursiv] *{font-style:italic!important}
+[data-ga=versal],[data-ga=versal] *{text-transform:uppercase!important;letter-spacing:.14em!important}
+[data-ga=medium],[data-ga=medium] *{font-weight:500!important}
+[data-ga=normal],[data-ga=normal] *{font-style:normal!important;text-transform:none!important;font-weight:400!important}
+[data-gal],[data-gal] *{text-align:var(--gal)!important}
+.rubrik[data-gal],.po--frei[data-gal],.udeck>[data-gal]{align-items:var(--gai)!important;justify-content:var(--gai)}
+[data-gz],[data-gz] *{line-height:var(--gz)!important}
+.mit-lin{position:relative}
+.rubrik.mit-lin::after{display:none}
+.rubrik>.lin{position:absolute;left:0;bottom:0;width:var(--lb,14mm);height:.5mm;background:#9c8451}
+.mittig .rubrik>.lin,.fluss>.rubrik>.lin{left:50%;margin-left:calc(var(--lb,14mm)/-2)}
+.fluss>.rubrik:has(.rk)>.lin{left:0;margin-left:0}
+.fluss>.po.mit-lin,.fluss>.tz.mit-lin,.fluss>.zw--land.mit-lin{border-bottom-color:transparent}
+.lin--u{position:absolute;left:0;bottom:-.2mm;width:var(--lb,100%);height:.2mm;background:rgba(176,147,79,.32)}
+.fluss>.tz>.lin--u{background:rgba(176,147,79,.22)}
+.fluss>.zw--land>.lin--u{bottom:-.3mm;height:.3mm;background:rgba(176,147,79,.55)}
+.lin--u:not(.fluss>.po>.lin--u):not(.fluss>.tz>.lin--u):not(.fluss>.zw--land>.lin--u),.fluss>.po:last-child>.lin--u,.fluss>.po:has(+.rubrik)>.lin--u,.fluss>.po:has(+.zw)>.lin--u,.fluss>.tz:last-child>.lin--u,.fluss>.tz:has(+.rubrik)>.lin--u,.fluss>.tz:has(+.zw)>.lin--u,.fluss>.po.po--frei>.lin--u{display:none}

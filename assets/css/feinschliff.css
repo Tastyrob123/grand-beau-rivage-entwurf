@@ -1,0 +1,8 @@
+/* Feinschliff für alle Seiten, nach den übrigen Stilen geladen (Robert 11.10.2026). */
+/* Zeichen auf der Goldlinie zwischen Abschnitten: der Kreis ist wieder da (Robert 11.10.2026 abends: «Mach doch wieder diesen Kreis drum,
+   um dieses Logo überall, sieht sonst doof aus mit den Linien»). Die Regeln «ohne Kreis» von 18:20 sind entfernt, es gilt wieder das
+   eingeprägte Medaillon aus _gbr.css (Block «Zeichen zwischen den Abschnitten eingeprägt»). Vorher-Stand: _qa/sicherung/feinschliff-vor-kreis-*.css */
+/* Kreis kleiner (Robert 11.10.2026 abends: «bitte kleiner den Kreis drumherum»): 84 → 62 px, Zeichen bleibt gut lesbar (46 px), der Kreis sitzt enger */
+.gz-trenner span{width:62px;height:62px;margin:-31px 0 0 -31px}
+.gz-trenner svg{width:46px}
+@media (max-width:860px){.gz-trenner span{width:52px;height:52px;margin:-26px 0 0 -26px}.gz-trenner svg{width:38px}}

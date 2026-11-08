@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="de">
+<head><!--demo-weiche--><script src="/_demo/karte.js"></script><script src="/_demo/shim.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>L’Imprimerie · Grand Beau-Rivage</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b2033'/%3E%3Ctext x='16' y='22' font-family='Georgia' font-size='16' fill='%23d2bf98' text-anchor='middle'%3EBR%3C/text%3E%3C/svg%3E">
+<script>if(!/[?&](demo|hilfe)/.test(location.search))document.documentElement.classList.add('start-gleich')</script>
+<script>/* Rückfall, falls das Studio nicht startet: die Startseite zeigt sich spätestens nach 5 s (start.js setzt «bereit» sonst selbst, sobald die Fotos da sind) */
+addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=document.getElementById('start');if(s)s.classList.add('bereit')},5000)});</script>
+<link rel="stylesheet" href="lib/auswahl.css?v=35">
+<link rel="stylesheet" href="studio.css?v=62">
+<link rel="stylesheet" href="ms-bureau.css?v=6">
+<script>/* Hauseigene Stilschicht (Robert 15./16.10.2026: GBR hell mit Bühne und Schweben wie die übrigen Werkzeuge des Hauses). Ein Haus ohne Eintrag bleibt beim Kern. */
+(function(){var HAUS_STIL={gbr:1},h=new URLSearchParams(location.search).get('haus')||'gbr';if(!HAUS_STIL[h])return;var b='haeuser/'+h+'/';
+document.write('<link rel="stylesheet" href="'+b+'hell.css?v=8"><link rel="stylesheet" href="'+b+'feder.css?v=1">'
+ +'<script src="'+b+'buehne.js?v=3" defer><\/script>'
+ +'<script src="'+b+'feder.js?v=2" defer><\/script>');})();</script>
+</head>
+<body>
+<header class="kopf">
+  <button class="kopf__marke" id="kopfMarke" type="button" aria-label="Zur Übersicht"><span class="kopf__zeichen" id="kopfZeichen"></span><span><b>L’Imprimerie</b><small>Drucksachen · <span id="kopfName">Grand Beau-Rivage</span></small></span></button>
+  <div class="kopf__mitte"><input class="kopf__name" id="docName" aria-label="Name der Drucksache" spellcheck="false"><span class="kopf__gespeichert" id="gespeichert">Gespeichert</span></div>
+  <div class="kopf__werk">
+    <button class="rund" id="btnZurueck" data-tip="Rückgängig" aria-label="Rückgängig (⌘Z)"><svg viewBox="0 0 24 24"><path d="M9 7 4 12l5 5M4 12h11a5 5 0 0 1 0 10h-3"/></svg></button>
+    <button class="rund" id="btnVor" data-tip="Wiederholen" aria-label="Wiederholen (⇧⌘Z)"><svg viewBox="0 0 24 24"><path d="m15 7 5 5-5 5M20 12H9a5 5 0 0 0 0 10h3"/></svg></button>
+    <button class="rund" id="btnVerwerfen" data-tip="Verwerfen" aria-label="Entwurf verwerfen"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4.5h4V7M7 7l1 13h8l1-13M10.5 11v5.5M13.5 11v5.5"/></svg></button>
+    <span class="kopf__trenn"></span>
+    <button class="kn kn--klein kn--ohne neu" id="btnNeu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Übersicht</span></button>
+    <button class="rund" data-livre="1" data-tip="Le Livre" aria-label="Le Livre im Studio öffnen"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg></button>
+    <button class="rund hilfe" id="btnHilfe" data-tip="Hilfe" aria-label="Hilfe"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6M12 17.2v.1"/></svg></button>
+    <button class="kn kn--klein kn--ohne pruef" id="btnPruefen"><span class="pruef__zahl" id="pruefZahl">0</span><span class="pruef__t">Druckprüfung</span></button>
+    <div class="ausgabe">
+      <button class="kn" id="btnSpeichern"><span class="nb">Druckfertig speichern</span><span class="nk">Speichern</span><i><svg viewBox="0 0 24 24"><path d="M12 5v12m-5-5 5 5 5-5"/></svg></i></button>
+      <div class="menue" id="menueSpeichern" hidden>
+        <button data-aus="pdf"><i><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 13h5M10 16.5h5"/></svg></i><span><b>PDF für die Druckerei</b><small>Endformat mit 3 mm Beschnitt, Schriften eingebettet, Fotos bis 300 dpi</small></span></button>
+        <button data-aus="marken"><i><svg viewBox="0 0 24 24"><path d="M3 7h3M7 3v3M21 7h-3M17 3v3M3 17h3M7 21v-3M21 17h-3M17 21v-3"/><rect x="8" y="8" width="8" height="8"/></svg></i><span><b>PDF mit Schnittmarken</b><small>Für die Hausdruckerei oder den Copyshop</small></span></button>
+        <button data-aus="png"><i><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="m4 16 5-5 4 4 2.5-2.5L20 17"/><circle cx="15.5" cy="9.5" r="1.4"/></svg></i><span><b>Bild dieser Seite</b><small>PNG, zum Verschicken oder für Instagram</small></span></button>
+        <button data-aus="zip" hidden><i><svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="13" height="13" rx="2"/><path d="M7.5 3.5h11a2 2 0 0 1 2 2v11"/><path d="m4 17 4-4 3 3 2-2 3.5 3.5"/></svg></i><span><b>Alle Bilder des Karussells</b><small>Nummerierte PNGs 1080 × 1350 in einer ZIP-Datei, mit Bildtext</small></span></button>
+        <button data-aus="json"><i><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg></i><span><b>Arbeitsdatei sichern</b><small>Zum späteren Weiterbearbeiten, auch auf einem anderen Rechner</small></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="studio">
+  <aside class="links">
+    <nav class="reiter" role="tablist"><span class="reiter__gleiter" aria-hidden="true"></span>
+      <button class="an" data-tab="entwerfen">Entwerfen</button>
+      <button data-tab="vorlagen">Vorlagen</button>
+      <button data-tab="fotos">Fotos</button>
+      <button data-tab="ablage">Ablage</button>
+    </nav>
+
+    <section class="tab an" data-tab="entwerfen">
+      <h2>Was soll entstehen?</h2>
+      <p class="leise">Sagen Sie es in einem Satz. Das Studio kennt Farben, Schriften, Zeichen, Tapete, Fotos und die Angaben des Hauses und legt fünf Entwürfe im Stil des Grand Beau-Rivage an. Sie wählen einen davon.</p>
+      <textarea id="auftrag" rows="5" placeholder="Zum Beispiel: Ein A5-Flyer für die Tea Time im Advent, vorne ein Foto, hinten die Adresse."></textarea>
+      <div class="zeile2">
+        <label>Format<select id="auftragFormat"></select></label>
+      </div>
+      <label class="haken"><input type="checkbox" id="auftragBasis"> Auf der offenen Drucksache aufbauen</label>
+      <button class="kn knopf--voll glanz-kn" id="btnEntwerfen"><span>Fünf Entwürfe anlegen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+      <div class="status" id="entwurfStatus" hidden></div>
+      <div class="hinweise" id="entwurfHinweise" hidden></div>
+      <h3>Zum Beispiel</h3>
+      <div class="ideen" id="ideen"></div>
+      <details class="dna">
+        <summary>Was das Studio über das Haus weiss</summary>
+        <div id="dna"></div>
+      </details>
+    </section>
+
+    <section class="tab" data-tab="vorlagen">
+      <h2>Mit einer Vorlage beginnen</h2>
+      <div class="zeile2">
+        <label>Format<select id="vorlageFormat"></select></label>
+        <label>Grund<select id="vorlageTon"><option value="dunkel">Marine mit Tapete</option><option value="hell">Papier</option><option value="creme">Creme mit Tapete</option></select></label>
+      </div>
+      <div class="vorlagen" id="vorlagen"></div>
+    </section>
+
+    <section class="tab" data-tab="fotos">
+      <h2>Fotos</h2>
+      <label class="hochladen" id="hochladen"><input type="file" id="fotoDatei" accept="image/*,.heic,.heif" multiple hidden>
+        <span class="hochladen__ic"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
+        <span><b>Eigene Fotos hochladen</b><small>Klicken oder Fotos hierher ziehen. Sie bleiben in diesem Browser gespeichert.</small></span></label>
+      <input type="search" id="fotoSuche" placeholder="Suchen: Aare, Fondue, Winter, Suite …">
+      <div class="filter" id="fotoFilter"></div>
+      <div class="segment segment--klein" id="fotoLage"><button data-lage="alle" class="an">Alle Formen</button><button data-lage="quer">Quer</button><button data-lage="hoch">Hoch</button></div>
+      <p class="leise" id="fotoInfo"></p>
+      <div class="fotos" id="fotos"></div>
+    </section>
+
+    <section class="tab" data-tab="ablage">
+      <h2>Ihre Drucksachen</h2>
+      <div class="zeile2">
+        <button class="leicht" id="btnNeuLeer">Leeres Blatt</button>
+        <label class="leicht">Arbeitsdatei öffnen<input type="file" id="dateiLaden" accept=".json,application/json" hidden></label>
+      </div>
+      <div class="ablage" id="ablage"></div>
+    </section>
+  </aside>
+
+  <section class="mitte">
+    <div class="werkzeug" id="werkzeug">
+      <div class="insel">
+        <button data-neu="titel" title="Titel hinzufügen"><svg viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5M12 5v14M9.5 19h5"/></svg><span>Titel</span></button>
+        <button data-neu="text" title="Text hinzufügen"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 11.5h16M4 16h11"/></svg><span>Text</span></button>
+        <button data-neu="zeile" title="Zeile in Versalien"><svg viewBox="0 0 24 24"><path d="M3 12h3M8 12h3M13 12h3M18 12h3"/></svg><span>Zeile</span></button>
+        <i class="insel__trenn"></i>
+        <button data-neu="bild" title="Foto hinzufügen"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="m4 16 5-5 4 4 2.5-2.5L20 17"/><circle cx="15.5" cy="9.5" r="1.4"/></svg><span>Foto</span></button>
+        <button data-neu="zeichen" title="Zeichen des Hauses"><span class="insel__zeichen" id="inselZeichen"></span><span>Zeichen</span></button>
+        <i class="insel__trenn"></i>
+        <button data-neu="linie" title="Linie"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span>Linie</span></button>
+        <button data-neu="flaeche" title="Fläche"><svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="12" rx="1.5" fill="currentColor" fill-opacity=".25"/></svg><span>Fläche</span></button>
+        <button data-neu="rahmen" title="Rahmen"><svg viewBox="0 0 24 24"><rect x="4.5" y="5.5" width="15" height="13" rx="2"/><rect x="7" y="8" width="10" height="8" rx="1"/></svg><span>Rahmen</span></button>
+        <i class="insel__trenn"></i>
+        <button data-livre="1" title="Le Livre: Fotos, Logo, Zeichen, Tapete, Farben"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg><span>Le Livre</span></button>
+      </div>
+      <div class="seitenwahl" id="seitenwahl"></div>
+    </div>
+    <div class="flaeche" id="flaeche">
+      <div class="wirt" id="wirt"></div>
+    </div>
+    <div class="fussleiste"><div class="insel insel--klein">
+      <span id="formatInfo"></span>
+      <i class="insel__trenn"></i>
+      <label class="schalter"><input type="checkbox" id="zeigeHilfen" checked><b></b><span>Schnittkante</span></label>
+      <i class="insel__trenn"></i>
+      <button class="rund rund--klein" id="zoomAus" aria-label="Kleiner"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button><span id="zoomWert">100 %</span><button class="rund rund--klein" id="zoomEin" aria-label="Grösser"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+    </div></div>
+  </section>
+
+  <aside class="rechts" id="rechts"></aside>
+</main>
+
+<div class="dialog" id="dialog" hidden><div class="dialog__karte" id="dialogKarte"></div></div>
+<div class="start ms" id="start" hidden>
+  <aside class="ms-leiste">
+    <div class="ms-marke"><span class="ms-zeichen" id="kapitelZeichen"></span><div><b>Grand Beau-Rivage</b><small>L’Imprimerie</small></div></div>
+    <span class="ms-haar"></span>
+    <button class="kn ms-kn-gold glanz-kn" data-akt="neu"><span>Neu erstellen</span><i><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button>
+    <nav class="ms-nav ms-nav--haupt" id="msNav"><span class="ms-gleiter" aria-hidden="true"></span>
+      <button data-ansicht="start"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Übersicht</span></button>
+      <button data-ansicht="events"><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></svg><span>Anlässe & Events</span><em id="evZahl"></em></button>
+      <button data-ansicht="abteilungen"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01"/></svg><span>Abteilungen</span><em id="abZahl"></em></button>
+      <button data-ansicht="hinweise"><svg viewBox="0 0 24 24"><path d="M12 3 2.5 20h19zM12 10v4.5M12 17.5v.1"/></svg><span>Hinweise im Haus</span><em id="hiZahl"></em></button>
+      <button data-ansicht="newsletter"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg><span>Newsletter & E-Mail</span><em id="nlZahl"></em></button>
+      <span class="ms-trenn"></span>
+      <button data-ansicht="meine"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5"/></svg><span>Meine Medien</span><em id="meineZahl">0</em></button>
+      <button data-ansicht="freigegeben"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="m9.5 10 1.8 1.8 3.4-3.6M8.5 15 7 21l5-2.5 5 2.5-1.5-6"/></svg><span>Freigegeben</span><em id="fgZahl">0</em></button>
+      <button data-ansicht="neu"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg><span>Arten und Vorlagen</span><em>12</em></button>
+      <button data-ansicht="fotos"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 16l5-5 4 4 2.5-2.5L20 17M15.5 8.2a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6"/></svg><span>Fotos des Hauses</span><em id="fotoZahl"></em></button>
+      <button data-ansicht="livre"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg><span>Le Livre</span></button>
+      <button data-ansicht="marke"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.5-.8 1.5-1.6 0-1.3-1-1.6-1-2.6 0-.8.7-1.3 1.5-1.3H16a5 5 0 0 0 5-5c0-4-4-7.5-9-7.5zM7.5 11.5h.01M10 7.5h.01M15 7.5h.01"/></svg><span>Marke des Hauses</span></button>
+    </nav>
+    <div class="ms-fuss"><button id="startHilfe"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6M12 17.2v.1"/></svg><span>Hilfe und Führung</span></button><small>Alles bleibt in diesem Browser gespeichert</small></div>
+  </aside>
+  <header class="ms-kopf">
+    <span class="ms-kopf-zeichen" id="msKopfZeichen"></span><span class="ms-kopf-name"><b>L’Imprimerie</b><small>Grand Beau-Rivage</small></span>
+    <label class="ms-suche"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input type="search" id="startSuche" placeholder="Suchen …" aria-label="Suchen"><kbd>⌘ K</kbd></label>
+    <span class="ms-frei"></span>
+    <button class="kn kn--klein kn--ohne start__zu" id="startZu" hidden><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg><span>Zurück zur Drucksache</span></button>
+    <button class="rund ms-rund" data-ansicht="livre" data-tip="Le Livre" aria-label="Le Livre"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg></button>
+    <button class="kn kn--klein ms-kn-neu" data-akt="neu"><span>Neu</span><i><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button>
+  </header>
+  <div class="start__in ms-haupt">
+    <section class="start__wahl" id="startWahl">
+      <div id="msStart">
+        <div class="ms-gruss">
+          <h1 id="msGruss">Guten Abend</h1>
+          <p id="msSatz">Was soll heute entstehen?</p>
+          <div class="ms-feld">
+            <span class="ms-feld__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+            <textarea id="startFrei" rows="1" placeholder="Zum Beispiel: Plakat für das Winterchalet im Garten" aria-label="Beschreiben, was entstehen soll"></textarea>
+            <button class="kn knopf--voll glanz-kn" data-st="frei"><span>Fünf Entwürfe</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+          </div>
+          <button class="ms-lnk ms-lnk--alle" data-ansicht="neu" id="msAlle" hidden><span></span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <div class="ms-zeile"><h2>Anlässe der nächsten Wochen</h2><button class="ms-lnk" data-ansicht="events"><span>Alle Anlässe & Events</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        <div class="ms-wochen" id="startWochen"></div>
+        <div class="ms-zeile"><h2>Abteilungen des Hauses</h2><button class="ms-lnk" data-ansicht="abteilungen"><span>Alle Abteilungen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        <div class="ms-wochen ms-wochen--abt" id="startAbteilungen"></div>
+        <div class="ms-zeile"><h2>Zuletzt bearbeitet</h2><button class="ms-lnk" data-ansicht="meine"><span>Alle Medien</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        <div class="ms-raster" id="startZuletzt"></div>
+      </div>
+      <div id="msEvents" hidden>
+        <div class="ms-titel"><h1>Anlässe & Events</h1><span class="ms-leise">Was im Haus, in Interlaken und in der Region ansteht. Zu jedem Anlass neun fertige Motive.</span></div>
+        <div class="ms-chips"><button data-efilter="alle" class="an">Alle</button><button data-efilter="haus">Im Haus</button><button data-efilter="stadt">Interlaken und Region</button></div>
+        <div id="evListe"></div>
+        <div class="vb__alle" id="evAlle"></div>
+      </div>
+      <div id="msAbteilungen" hidden>
+        <div class="ms-titel"><h1>Abteilungen</h1><span class="ms-leise">Vor und hinter den Kulissen: was jede Abteilung des Hauses an Drucksachen und Vorlagen braucht.</span></div>
+        <div class="ms-wochen" id="abListe"></div>
+        <div class="vb__alle" id="abAlle"></div>
+      </div>
+      <div id="msHinweise" hidden>
+        <div class="ms-titel"><h1>Hinweise im Haus</h1><span class="ms-leise">Bauarbeiten, Reinigung, Stromunterbruch, Defekte: fertig im Stil des Hauses, Daten eintragen und aushängen.</span></div>
+        <div class="ms-raster" id="hiRaster"></div>
+        <div class="vb__alle" id="hiAlle"></div>
+      </div>
+      <div id="msNewsletter" hidden>
+        <div class="ms-titel"><h1>Newsletter & E-Mail</h1><span class="ms-leise">Echte E-Mails im Stil des Hauses zum Versenden mit Mailchimp, Brevo oder dem eigenen Programm, dazu Kopfbilder und Stories als Bild.</span></div>
+        <div class="ms-zeile"><h2>Versendbare E-Mails</h2><a class="ms-lnk" href="mail.html"><span>Newsletter-Baukasten öffnen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+        <div class="ms-wochen ms-wochen--abt">
+          <a class="wo" href="mail.html?vorlage=winter" style="--i:0"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/gbr/mini/haus-winter.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Newsletter Winter im Haus</b><small>An alle Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=spa" style="--i:1"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/gbr/mini/spa-pool.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Newsletter Spa</b><small>An Spa-Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=angebot" style="--i:2"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/gbr/mini/spa-ruhe.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Angebot des Monats</b><small>An Stammgäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=einladung" style="--i:3"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/gbr/mini/ev-silvester.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Einladung Silvester</b><small>An ausgewählte Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=anreise" style="--i:4"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/gbr/mini/halle-2.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Vor der Anreise</b><small>Bestätigungsmail · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=dank" style="--i:5"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/gbr/mini/haus-aare.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Nach dem Aufenthalt</b><small>Dankesmail · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+        </div>
+        <div class="ms-zeile"><h2>Als Bild</h2><span class="ms-leise">Kopfbilder, Stories und Mails als Bild in voller Schärfe</span></div>
+        <div class="ms-raster" id="nlRaster"></div>
+      </div>
+      <div id="msDetail" hidden></div>
+      <div id="msFotos" hidden>
+        <div class="ms-titel"><h1>Fotos des Hauses</h1><span class="ms-leise" id="fotoSatz"></span></div>
+        <div class="ms-chips" id="fotoGruppen"></div>
+        <div class="ms-fotos" id="fotoRaster"></div>
+      </div>
+      <div id="msMarke" hidden></div>
+      <div id="msLivre" hidden></div>
+      <div id="msFreigegeben" hidden>
+        <div class="ms-titel"><h1>Sofort verwendbar</h1><span class="ms-leise">Diese Drucksachen sind freigegeben: Jede genannte Abteilung darf sie ohne Rückfrage drucken und aushängen, auch wenn gerade niemand zur Hand ist. Daten in [Klammern] vorher ersetzen.</span></div>
+        <div id="fgListe"></div>
+      </div>
+      <div id="msMeine" hidden>
+        <div class="ms-titel"><h1>Meine Medien</h1><span class="ms-leise" id="meineSatz"></span></div>
+        <div class="ms-raster" id="bibliothek"></div>
+      </div>
+      <div id="msNeu" class="ms-buehne" hidden>
+        <h1>Was möchten Sie erstellen?</h1>
+        <p class="start__satz">Beschreiben Sie in einem Satz, was entstehen soll, und das Studio legt fünf Entwürfe an. Oder wählen Sie unten eine Art.</p>
+        <div class="start__direkt">
+          <span class="start__direkt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+          <textarea id="startDirekt" rows="1" placeholder="Zum Beispiel: ein Plakat für das Winterchalet im Garten" aria-label="Beschreiben, was entstehen soll"></textarea>
+          <button class="kn knopf--voll glanz-kn" data-st="direkt"><span>Fünf Entwürfe</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+        </div>
+        <p class="start__fehler" id="startDirektFehler" hidden>Der Entwurf hat gerade nicht geklappt. Bitte noch einmal versuchen oder unten eine Art wählen.</p>
+        <div class="start__filter"><div class="start__gruppen" id="startGruppen"></div></div>
+        <div class="atelier" id="arten"></div>
+      </div>
+      <p class="start__nichts" id="startNichts" hidden>Nichts gefunden.</p>
+    </section>
+    <section class="start__weg ms-buehne" id="startWeg" hidden></section>
+  </div>
+</div>
+<div class="meldung" id="meldung" hidden></div>
+<div class="lader" id="lader" hidden><div class="lader__in"><span class="lader__zeichen" id="laderZeichen"></span><b id="laderText">Das Studio entwirft</b><small id="laderZeile">Format, Aufbau, Fotos und Texte im Stil des Hauses</small><span class="lader__band"><i></i></span></div></div>
+
+<script src="lib/pdf-lib.min.js"></script>
+<script src="lib/fontkit.umd.min.js"></script>
+<script src="lib/auswahl.js?v=35"></script>
+<script src="satz.js?v=42"></script>
+<script src="eigene.js?v=35"></script>
+<script src="vorlagen.js?v=36"></script>
+<script src="druck.js?v=39"></script>
+<script src="studio.js?v=45"></script>
+<script src="instagram.js?v=36"></script>
+<script src="lelivre.js?v=1"></script>
+<script src="katalog.js?v=35"></script>
+<script src="siegel.js?v=1"></script>
+<script src="start.js?v=59"></script>
+<script src="fuehrung.js?v=35"></script>
+<script src="lib/zur-werkbank.js?v=11" defer data-fremd data-neben=".ms-leiste,.links" data-ueber=".fussleiste .insel" data-schrift="haeuser/gbr/schriften/DMMono-Regular.ttf"></script>   <!-- «Zur Werkbank» unten links, nur nach einem Besuch aus der Werkbank; Quelle: Grand Beau-Rivage/website/assets/js/zur-werkbank.js (zur_werkbank.py legt sie hierher) -->
+</body>
+</html>

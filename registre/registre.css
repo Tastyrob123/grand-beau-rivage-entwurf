@@ -1,0 +1,196 @@
+/* Le Registre · Grand Beau-Rivage. Liegt über ../studio/studio.css (Le Bureau): Raum, Kopf, Rand, Leiste, Knöpfe und Platten kommen von dort.
+   Hier nur das Eigene: grosse Zahlen, Säulen je Tag, Ranglisten mit Balken, Besuche als Karten, der Weg eines Besuchs.
+   Bewegung nur über transform und opacity; Breiten und Höhen stehen fest, gewachsen wird mit scale. */
+.rg *{font-variant-numeric:lining-nums}
+.rg button.kn{font-family:var(--mono);font-size:11px;letter-spacing:.14em}.rg button.kn--klein{font-size:10px}
+.rg .leiste .kn{height:46px;font-size:11px;letter-spacing:.14em}
+.rg h2.zw{max-width:1180px}
+.rg .filter{margin:-10px 0 26px}
+.rg-filter2{margin-top:-12px!important}
+@keyframes rg-hoch{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes rg-breit{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rg-auf{from{transform:translateY(14px)}to{transform:none}}
+
+/* Hinweis auf Beispielwerte: steht über jeder Ansicht, solange das Beispiel läuft */
+.rg-bsp{max-width:1180px;margin:-8px auto 22px;padding:13px 20px;border-radius:16px;font-size:13.5px;color:#f7efdd;text-align:center;
+  background:linear-gradient(180deg,rgba(210,191,152,.2),rgba(210,191,152,.1));box-shadow:inset 0 0 0 1px rgba(210,191,152,.5)}
+.rg-bsp b{font:500 17px var(--serif);color:var(--goldhell);margin-right:6px}
+.rg-bsp .link{color:var(--goldhell);text-decoration-color:rgba(240,227,194,.5);margin-left:8px}
+.rg-bsp .link:hover{color:#fff}
+.rg-wenig{margin:26px 0 0;text-align:center;font-size:13.5px;color:rgba(247,240,227,.7)}
+.rg-wenig .link,.rg-mehr .link{color:var(--goldhell);text-decoration-color:rgba(240,227,194,.5)}
+
+/* Leer */
+.rg-leer{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:760px;margin:34px auto 0;padding:40px 30px 34px;text-align:center}
+.rg-leer img{width:54px;height:auto;margin-bottom:6px}
+.rg-leer b{font:500 28px/1.15 var(--serif);color:var(--navy)}
+.rg-leer p{margin:0 0 14px;max-width:52ch;font-size:14.5px;color:var(--leise)}
+.rg-nichts{margin:6px 0 0;font-size:13.5px;color:var(--leise)}
+
+.rg-reihe>*{animation:rg-auf .8s var(--e1) both}.rg-reihe>*:nth-child(2){animation-delay:.05s}.rg-reihe>*:nth-child(3){animation-delay:.1s}.rg-reihe>*:nth-child(4){animation-delay:.15s}.rg-reihe>*:nth-child(5){animation-delay:.2s}.rg-reihe>*:nth-child(6){animation-delay:.25s}
+
+/* Vier grosse Zahlen */
+.rg-zahlen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:1180px;margin:0 auto 18px;padding:8px}
+.rg-zahlen>div{padding:22px 20px 20px;text-align:center}
+.rg-zahlen>div+div{box-shadow:-1px 0 0 rgba(159,137,111,.3)}
+.rg-zahlen b{display:block;font:500 clamp(34px,3.3vw,52px)/1 var(--serif);color:var(--navy);white-space:nowrap}
+.rg-zahlen span{display:block;margin-top:9px;font:9.5px var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief)}
+.rg-zahlen small{display:block;margin-top:5px;font-size:12.5px;color:var(--leise)}
+
+/* Säulen: Besuche je Tag und nach Uhrzeit. Jede Säule hat ihre feste Höhe und wächst mit scaleY aus dem Boden. */
+.rg-tage{max-width:1180px;margin:0 auto 18px;padding:24px 28px 20px}
+.rg-tage header,.rg-block header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:18px}
+.rg-tage h3,.rg-block h3{margin:0;font:500 25px/1.15 var(--serif);color:var(--navy)}
+.rg-tage header p{margin:0;font:9.5px var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--taupe-tief)}
+.rg-saeulen{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:clamp(2px,.4vw,6px);height:230px;padding:14px 14px 30px;border-radius:18px;background:var(--kuhle);box-shadow:var(--kuhle-s)}
+.rg-saeulen--uhr{height:190px}
+.rg-s{position:relative;display:flex;align-items:flex-end;justify-content:center;min-width:0}
+.rg-s i{display:block;width:100%;max-width:34px;border-radius:5px 5px 2px 2px;transform-origin:50% 100%;
+  background:linear-gradient(180deg,#d9c493 0,#b7a27a 3px,#3b4466 3px,#262d48 55%,#1b2033);box-shadow:inset 0 0 0 1px rgba(17,20,31,.25);
+  animation:rg-hoch .9s var(--e1) both;animation-delay:calc(var(--i) * 18ms)}
+.rg-s span{position:absolute;top:calc(100% + 9px);left:50%;transform:translateX(-50%);white-space:nowrap;font:9px var(--mono);letter-spacing:.1em;color:var(--taupe-tief)}
+.rg-s::after{content:attr(data-t);position:absolute;z-index:3;bottom:calc(100% + 8px);left:50%;transform:translate(-50%,6px);padding:7px 11px;border-radius:10px;white-space:nowrap;pointer-events:none;
+  font:12px var(--sans);color:#f7efdd;background:linear-gradient(180deg,#2a3150,#1b2033);box-shadow:0 0 0 1px rgba(210,191,152,.45),0 10px 18px -8px rgba(17,20,31,.7);opacity:0;transition:opacity .25s,transform .35s var(--e1)}
+.rg-s:hover::after{opacity:1;transform:translate(-50%,0)}
+.rg-s:hover i{background:linear-gradient(180deg,#f6e8c2 0,#c9ab6c 3px,#4b5680 3px,#2c334d 60%,#1b2033)}
+.rg-s:nth-child(-n+3)::after{left:0;transform:translate(0,6px)}.rg-s:nth-child(-n+3):hover::after{transform:none}
+.rg-s:nth-last-child(-n+3)::after{left:auto;right:0;transform:translate(0,6px)}.rg-s:nth-last-child(-n+3):hover::after{transform:none}
+
+/* Zwei Blöcke nebeneinander, Ranglisten mit Balken */
+.rg-zwei{max-width:1180px;margin:0 auto 18px;align-items:start}
+.rg-stapel{display:flex;flex-direction:column;gap:18px;min-width:0}
+.rg-block{padding:24px 28px 22px;min-width:0}
+.rg-block--breit{max-width:1180px;margin:0 auto 18px}
+.rg-block header .link{white-space:nowrap}
+.rg-rang{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.rg-rang li{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 46px 40px;align-items:center;gap:14px;animation:rg-auf .7s var(--e1) both;animation-delay:calc(var(--i) * 35ms)}
+.rg-rang__n{font:500 18.5px/1.2 var(--serif);color:var(--navy);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rg-rang__n small{display:block;margin-top:2px;font:12px var(--sans);color:var(--leise);overflow:hidden;text-overflow:ellipsis}
+.rg-rang__b{display:block;height:12px;border-radius:999px;background:var(--kuhle);box-shadow:var(--kuhle-s);overflow:hidden}
+.rg-rang__b i{display:block;height:100%;border-radius:999px;transform-origin:0 50%;background:linear-gradient(180deg,#4b5680,#262d48 60%,#1b2033);box-shadow:inset 0 1px 0 rgba(190,206,255,.3);
+  animation:rg-breit 1s var(--e1) both;animation-delay:calc(var(--i) * 35ms + 120ms)}
+.rg-rang li:first-child .rg-rang__b i{background:linear-gradient(180deg,#f6e8c2,#c9ab6c 55%,#a88b4f);box-shadow:inset 0 1px 0 rgba(255,252,240,.8)}
+.rg-rang b{text-align:right;font:500 20px/1 var(--serif);color:var(--navy)}
+.rg-rang em{text-align:right;font:10px var(--mono);font-style:normal;letter-spacing:.06em;color:var(--taupe-tief)}
+
+/* Besuch als Karte: Land in einer Kuhle, Ort gross, rechts was daraus wurde */
+.rg-liste{display:flex;flex-direction:column;gap:8px;min-width:0}
+.rg-liste--start{max-width:1180px;margin:0 auto}
+.rg-mehr{margin:20px 0 0;text-align:center}
+.rg .kn--hellrand{color:#f7efdd}
+.rg-tag{margin:14px 6px 2px;font:9.5px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(240,227,194,.72)}
+.rg-tag:first-child{margin-top:0}
+.rg-a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;width:100%;padding:12px 18px 12px 12px;border:0;border-radius:20px;text-align:left;cursor:pointer;
+  background:var(--platte);box-shadow:var(--platte-s);transition:transform .5s var(--e2)}
+.rg-a:hover{transform:translateY(-2px)}
+.rg-a__l{display:grid;place-items:center;width:58px;height:46px;border-radius:14px;background:var(--kuhle);box-shadow:var(--kuhle-s);font:11px var(--mono);letter-spacing:.17em;color:var(--taupe-tief)}
+.rg-a__n{min-width:0}
+.rg-a__n b{display:block;font:500 21px/1.15 var(--serif);color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rg-a__n small{display:block;margin-top:3px;font-size:12.5px;color:var(--leise);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rg-a__z{text-align:right;font:10px var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--taupe-tief)}
+.rg-a__z small{display:block;margin-top:4px;font:12px var(--sans);letter-spacing:0;text-transform:none;color:var(--leise)}
+.rg-a.gold .rg-a__l{color:var(--navy);background:linear-gradient(180deg,#f7e9c6,#e3cd98 46%,#b99a5c);box-shadow:inset 0 1px 0 rgba(255,252,240,.95),inset 0 -2px 0 rgba(92,66,24,.4),0 0 0 1px rgba(150,125,64,.4)}
+.rg-a.gold .rg-a__z{color:var(--navy)}
+.rg-a.aktiv{box-shadow:var(--platte-s),0 0 0 2px var(--messing)}
+.rg-weitere{align-self:center;margin-top:10px;color:var(--goldhell)!important;text-decoration-color:rgba(240,227,194,.5)!important}
+
+/* Besuche: Liste links, der gewählte Besuch rechts */
+.rg-eingang{display:grid;grid-template-columns:minmax(300px,400px) minmax(0,1fr);gap:22px;align-items:start;max-width:1380px;margin:0 auto}
+.rg-eingang .rg-a{grid-template-columns:auto minmax(0,1fr);padding-right:14px}
+.rg-eingang .rg-a__z{display:none}
+.rg-detail{position:sticky;top:calc(var(--kopf) + 24px);min-width:0}
+/* Rechte Hälfte immer gefüllt (Robert 15.10.2026: «rechts immer so ein leerer Raum unter der Kachel»): die Karte reicht vom Kopf bis über die Leiste, der Weg füllt den Rest und läuft bei langen Besuchen in der Karte weiter */
+@media (min-width:1181px){
+  .rg-detail .rg-d{display:flex;flex-direction:column;box-sizing:border-box;height:calc(100vh - var(--kopf) - 24px - var(--leiste) - 34px);min-height:520px}
+  .rg-detail .rg-d>*{flex:none}
+  .rg-detail .rg-weg{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(159,137,111,.45) transparent;padding-right:4px}
+  .rg-detail .rg-hinweis{margin-top:auto;padding-top:14px;border-top:1px solid rgba(159,137,111,.2)}
+}
+.rg-d{padding:26px clamp(20px,2.4vw,34px) 24px}
+.rg-d__kopf{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
+.rg-d h2{margin:6px 0 0;font:500 clamp(30px,2.6vw,40px)/1.05 var(--serif);color:var(--navy)}
+.rg-siegel{flex:none;padding:10px 16px;border-radius:999px;font:10px var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--navy);
+  background:linear-gradient(180deg,#f7e9c6,#e3cd98 46%,#b99a5c);box-shadow:inset 0 1px 0 rgba(255,252,240,.95),inset 0 -2px 0 rgba(92,66,24,.4),0 0 0 1px rgba(150,125,64,.4),0 8px 14px -8px rgba(26,29,40,.5)}
+.rg-angaben{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.rg-angaben>div{padding:12px 15px 11px;border-radius:16px;background:var(--kuhle);box-shadow:var(--kuhle-s);min-width:0}
+.rg-angaben span{display:block;font:9.5px var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief)}
+.rg-angaben b{display:block;margin-top:4px;font:500 19px/1.2 var(--serif);color:var(--navy);overflow-wrap:anywhere}
+.rg-wegtitel{margin:24px 2px 12px;font:500 23px/1.15 var(--serif);color:var(--navy)}
+.rg-weg{list-style:none;margin:0;padding:0}
+.rg-weg li{position:relative;display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:12px 2px 12px 22px;border-top:1px solid rgba(159,137,111,.2);animation:rg-auf .6s var(--e1) both;animation-delay:calc(var(--i) * 40ms)}
+.rg-weg li::before{content:'';position:absolute;left:3px;top:19px;width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg,#f6e8c2,#b99a5c);box-shadow:0 0 0 1px rgba(150,125,64,.5)}
+.rg-weg li::after{content:'';position:absolute;left:6.5px;top:31px;bottom:-15px;width:1px;background:rgba(159,137,111,.4)}
+.rg-weg li:last-child::after{display:none}
+.rg-weg time{font:10.5px var(--mono);letter-spacing:.1em;color:var(--taupe-tief)}
+.rg-weg b{font:500 20px/1.2 var(--serif);color:var(--navy)}
+.rg-weg small{margin-left:8px;font-size:12px;color:var(--leise)}
+.rg-weg p{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.rg-weg em{font:10.5px var(--mono);font-style:normal;letter-spacing:.08em;color:var(--taupe-tief);white-space:nowrap}
+.rg-e{padding:5px 11px;border-radius:999px;font:9.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--taupe-tief);background:var(--kuhle);box-shadow:var(--kuhle-s)}
+.rg-e.gold{color:var(--navy);background:linear-gradient(180deg,#f7e9c6,#e3cd98 46%,#c9ab6c);box-shadow:inset 0 1px 0 rgba(255,252,240,.95),0 0 0 1px rgba(150,125,64,.4)}
+.rg-hinweis{margin:16px 2px 0;font-size:12.5px;color:var(--leise)}
+
+/* Seiten als Tafel */
+.rg-tafel{max-width:1180px;margin:0 auto;padding:10px 28px 16px}
+.rg-zeile{display:grid;grid-template-columns:minmax(0,1.5fr) 70px minmax(0,1fr) 130px 110px;gap:16px;align-items:center;padding:13px 0;border-top:1px solid rgba(159,137,111,.2);font-size:14px;color:var(--tinte);animation:rg-auf .6s var(--e1) both;animation-delay:calc(var(--i) * 25ms)}
+.rg-zeile--kopf{border-top:0;padding:14px 0 10px;font:9.5px var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--taupe-tief);animation:none}
+.rg-zeile>span:nth-child(2),.rg-zeile>span:nth-child(4),.rg-zeile>span:nth-child(5){text-align:right}
+.rg-zeile__n b{display:block;font:500 20px/1.2 var(--serif);color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rg-zeile__z{font:500 21px/1 var(--serif);color:var(--navy)}
+.rg-zeile .rg-rang__b i{animation-delay:calc(var(--i) * 25ms + 120ms)}
+.rg-fuss{max-width:1180px;margin:16px auto 0;font-size:12.5px;color:rgba(247,240,227,.62)}
+
+/* Zur Buchung: sechs Werte */
+.rg-werte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:1180px;margin:0 auto}
+.rg-w{padding:22px 24px 20px}
+.rg-w .mono{display:block;font-size:9.5px}
+.rg-w b{display:block;margin:12px 0 8px;font:500 clamp(40px,3.6vw,56px)/1 var(--serif);color:var(--navy)}
+.rg-w p{margin:0;font-size:13px;color:var(--leise)}
+
+/* Leiste: Schalter «Dieses Gerät nicht mitzählen» */
+.rg .rg-geraet{color:#f7efdd}
+.rg .rg-geraet.an{color:var(--goldhell)}
+
+@media (max-width:1180px){.rg-eingang{grid-template-columns:1fr}.rg-detail{position:static;order:-1}.rg-zeile{grid-template-columns:minmax(0,1.5fr) 60px minmax(0,.8fr) 110px 90px}}
+@media (max-width:900px){.rg-zwei{grid-template-columns:1fr}.rg-werte{grid-template-columns:1fr 1fr}.rg-zahlen{grid-template-columns:1fr 1fr}.rg-zahlen>div:nth-child(3){box-shadow:none}.rg-zahlen>div:nth-child(n+3){border-top:1px solid rgba(159,137,111,.3)}}
+@media (max-width:760px){
+  .rg-angaben{grid-template-columns:1fr 1fr}.rg-werte{grid-template-columns:1fr}
+  .rg-a{grid-template-columns:auto minmax(0,1fr)}.rg-a__z{display:none}
+  .rg-tage,.rg-block{padding:20px 18px 18px}.rg-tafel{padding:6px 16px 12px}
+  .rg-saeulen{height:180px;padding:12px 8px 28px}.rg-s span{font-size:8px}
+  .rg-rang li{grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr) 40px}.rg-rang em{display:none}
+  .rg-zeile{grid-template-columns:minmax(0,1fr) 50px 86px}.rg-zeile>span:nth-child(3),.rg-zeile>span:nth-child(5){display:none}
+  .rg-weg li{grid-template-columns:46px minmax(0,1fr)}.rg-weg em{grid-column:2}
+  .rg .leiste .rg-geraet{display:none}
+  .rg-d__kopf{flex-direction:column}
+}
+/* ---------- Schweben, Pulsieren, Zoom (Gefühl der Carlton-Seiten, Feder-Kurve) ----------
+   Jedes Blatt trägt data-r (setzt registre.js). Wo der Browser Scroll-Zeitachsen kann, wird das Blatt am Scrollen aus der Tiefe hochgeführt (rg-zug, Weg folgt dem Rad,
+   gebunden an den Einzug entry 0% bis 100%, nichts bleibt am Seitenende hängen); im Bild (.rg-da) federt es zusätzlich nach der Uhr in seine Grösse (rg-puls).
+   Grosse Zahlen zoomen herein, Balken und Säulen wachsen erst bei .rg-da. Sonst: dieselbe Feder als Übergang. Nur translate, scale, opacity. */
+:root{--feder:cubic-bezier(.28,1.42,.42,1);--feder-leise:cubic-bezier(.3,1.26,.4,1)}
+@keyframes rg-zug{from{translate:0 var(--weg,100px)}}
+@keyframes rg-puls{from{scale:var(--kl,.93)}}
+@keyframes rg-zoom{from{scale:1.18}}
+[data-r]{--weg:clamp(60px,7vw,110px)}
+h2.zw[data-r],.rg-mehr[data-r]{--weg:clamp(30px,3.2vw,48px);--kl:.97}
+/* Schweben nach der Uhr, nicht am Scrollen (Robert 16.10.2026: «darf nicht an den Scroll geknüpft sein, muss luxuriös reingeschwebt kommen»):
+   sobald ein Blatt am unteren Rand auftaucht, fährt es in 1,5 s mit leichter Feder an seinen Platz; immer deckend */
+@keyframes rg-feder{from{translate:0 clamp(80px,9vw,140px);scale:.93}}   /* Rezeptur der Carlton-Landingpage, 16.10.2026 */
+[data-r]:not(.rg-da){translate:0 clamp(80px,9vw,140px);scale:.93}
+[data-r].rg-da{animation:rg-feder 2.7s cubic-bezier(.28,1.42,.42,1) backwards;animation-delay:calc(var(--i,0) * 100ms)}
+/* Zahlen: Zoom aus der Vergrösserung; schmale Box, damit nichts seitlich überläuft */
+.rg-zahlen b,.rg-w b{width:fit-content}
+.rg-zahlen b{margin-inline:auto;transform-origin:50% 70%}
+.rg-w b{justify-self:start;transform-origin:0 70%}
+.rg-zahlen.rg-da b,.rg-w.rg-da b{animation:rg-zoom 1.7s var(--feder-leise) backwards;animation-delay:calc(var(--i,0) * 90ms + 120ms)}
+/* Balken und Säulen wachsen erst, wenn ihr Blatt im Bild ist */
+[data-r]:not(.rg-los) :is(.rg-s i,.rg-rang__b i,.rg-rang li){animation-play-state:paused}
+/* Besuchs-Kacheln: viele gleiche Zeilen, nur sanft einblenden (kein Weg, keine Feder) */
+.rg-a[data-r],.rg-a[data-r].rg-da{animation:none;translate:none;--weg:0px}
+.rg-a[data-r]{scale:.985;transition:opacity 1s var(--e1),scale 1.2s var(--e1),transform .5s var(--e2);transition-delay:calc(var(--i,0) * 30ms),calc(var(--i,0) * 30ms),0s}
+.rg-a[data-r].rg-da{opacity:1;scale:1}
+@media (prefers-reduced-motion:reduce){.rg-reihe>*,.rg-s i,.rg-rang__b i,.rg-rang li,.rg-weg li,.rg-zeile{animation:none}[data-r],[data-r] *{animation:none!important;transition:none!important;translate:none!important;scale:1!important;opacity:1!important}}
+/* Balken sichtbar wachsen lassen (Robert 16.10.2026: «nicht sicher, ob die Animation überhaupt noch da ist»): länger, mit leichter Feder, Staffel von links nach rechts */
+.rg-los .rg-s i{animation:rg-hoch 1.5s cubic-bezier(.3,1.26,.4,1) both;animation-delay:calc(var(--i) * 35ms + 150ms)}
+.rg-los .rg-rang__b i{animation-duration:1.4s;animation-delay:calc(var(--i,0) * 90ms + 200ms)}
