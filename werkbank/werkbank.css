@@ -2397,3 +2397,4 @@ html[lang^=zh] .fh-hin,html[lang^=ko] .fh-hin,html[lang^=ar] .fh-hin{font-family
 @media(min-width:1600px){.zv-text{grid-template-columns:1fr}main>.fl{padding-bottom:min(160px,9vw)}}
 @media(min-width:900px){.wahl{flex-wrap:wrap;overflow-x:visible}}
 @media(max-width:520px){.blattk span{display:block!important;white-space:normal!important}.blattk span b{display:block;margin-top:2px}}
+@media(max-width:520px){.blattk span{letter-spacing:.04em!important;padding:9px 8px!important;overflow-wrap:anywhere}}

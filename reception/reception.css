@@ -744,3 +744,4 @@ footer.leiste > button.kn{font-size:13px!important}
 /* Prüfung 20.11.2026, Runde 2 */
 .re-a__n,.re-a__n *,.re-a__k{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block;-webkit-line-clamp:unset}
 .re-a__n small{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2!important;overflow:hidden!important}
+.re-art>span{font-size:13px!important}

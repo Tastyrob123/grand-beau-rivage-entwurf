@@ -602,3 +602,10 @@ li > a.kn{font-size:13px!important}
 .kontrast__l b,.rang__l b,.gr__l b{line-height:1.12}
 @media(min-width:1600px){#farben{padding-top:min(150px,8vw)}}
 @media(max-width:520px){.ab{overflow-wrap:anywhere}}
+/* Prüfung 20.11.2026, Runde 3 */
+.prunk__z b{padding:.14em 0 .14em!important;margin:-.1em 0 -.07em}
+.mk__t{line-height:1.08}
+.mk__t .z{padding-top:.08em;padding-bottom:.12em}
+@media(max-width:520px){.mk__kap span{white-space:normal!important}}
+.gr__s{font-size:min(1.6rem,max(1.15rem,1.25vw))}
+@media(min-width:1600px){#bilder{padding-top:168px}}
