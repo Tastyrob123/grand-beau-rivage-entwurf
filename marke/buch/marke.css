@@ -590,3 +590,5 @@ div.prunk__z > small,
 div.schirm__k > span,
 ul.laden > li > span > small,
 li > a.kn{font-size:13px!important}
+/* Prüfung 20.11.2026 (Punkt 10): die Überschrift-Spalte läuft neben dem längeren Inhalt mit */
+@media(min-width:900px){.gr__k,.kontrast__k,.rang__k{position:sticky;top:96px;align-self:start}}
