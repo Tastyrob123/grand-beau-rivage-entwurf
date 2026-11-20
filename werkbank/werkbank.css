@@ -2380,3 +2380,8 @@ html[lang^=zh] .fh-hin,html[lang^=ko] .fh-hin,html[lang^=ar] .fh-hin{font-family
 /* Orte-Karte im Brief raus (Robert 22.10.2026): Fuss nur noch mit der Unterschrift, rechtsbündig */
 .bf-fuss{grid-template-columns:1fr!important}
 .bf-fuss .bf-name{justify-self:end}
+
+/* Prüfung 20.11.2026: keine gekürzten Etiketten, lange Knöpfe am Handy umbrechen (Pfeil bleibt im Knopf) */
+.bn small{white-space:normal;overflow:visible;text-overflow:clip}
+.fen__k span{white-space:normal;overflow-wrap:anywhere}
+@media(max-width:520px){.kn{white-space:normal;height:auto;min-height:48px;line-height:1.3;padding-top:8px;padding-bottom:8px;text-align:left}}

@@ -194,3 +194,7 @@ h2.zw[data-r],.rg-mehr[data-r]{--weg:clamp(30px,3.2vw,48px);--kl:.97}
 /* Balken sichtbar wachsen lassen (Robert 16.10.2026: «nicht sicher, ob die Animation überhaupt noch da ist»): länger, mit leichter Feder, Staffel von links nach rechts */
 .rg-los .rg-s i{animation:rg-hoch 1.5s cubic-bezier(.3,1.26,.4,1) both;animation-delay:calc(var(--i) * 35ms + 150ms)}
 .rg-los .rg-rang__b i{animation-duration:1.4s;animation-delay:calc(var(--i,0) * 90ms + 200ms)}
+
+/* Prüfung 20.11.2026: Namen in den Ranglisten brechen um statt abgeschnitten zu werden; Sprache und Gerät haben ungleich viele Zeilen und stehen deshalb untereinander */
+.rg-rang__n,.rg-rang__n small{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.rg-zwei--unter{display:grid;grid-template-columns:1fr;gap:18px}

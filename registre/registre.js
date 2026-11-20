@@ -340,7 +340,7 @@ function herkunft() {
       </div>
       <section class="rg-block platte"><header><h3>Orte</h3></header>${balken(d.orte.slice(0, 14), x => esc(x.k), x => esc(land(x.l)), ges)}</section>
     </div>
-    <div class="zwei rg-zwei">
+    <div class="rg-zwei rg-zwei--unter">
       <section class="rg-block platte"><header><h3>Sprache</h3></header>${balken(d.sprachen, x => esc(SPRACHE[x.k] || x.k), null, ges)}</section>
       <section class="rg-block platte"><header><h3>Gerät</h3></header>${balken(d.geraete, x => esc(GERAET[x.k] || x.k), null, ges)}</section>
     </div>
