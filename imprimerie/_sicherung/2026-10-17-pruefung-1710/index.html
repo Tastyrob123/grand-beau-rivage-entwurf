@@ -10,8 +10,8 @@
 <script>/* Rückfall, falls das Studio nicht startet: die Startseite zeigt sich spätestens nach 5 s (start.js setzt «bereit» sonst selbst, sobald die Fotos da sind) */
 addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=document.getElementById('start');if(s)s.classList.add('bereit')},5000)});</script>
 <link rel="stylesheet" href="lib/auswahl.css?v=35">
-<link rel="stylesheet" href="studio.css?v=62">
-<link rel="stylesheet" href="ms-bureau.css?v=6-p13">
+<link rel="stylesheet" href="studio.css?v=62-p14">
+<link rel="stylesheet" href="ms-bureau.css?v=6-p14">
 <script>/* Hauseigene Stilschicht (Robert 15./16.10.2026: GBR hell mit Bühne und Schweben wie die übrigen Werkzeuge des Hauses). Ein Haus ohne Eintrag bleibt beim Kern. */
 (function(){var HAUS_STIL={gbr:1},h=new URLSearchParams(location.search).get('haus')||'gbr';if(!HAUS_STIL[h])return;var b='haeuser/'+h+'/';
 document.write('<link rel="stylesheet" href="'+b+'hell.css?v=8-p13"><link rel="stylesheet" href="'+b+'feder.css?v=1">'

@@ -433,3 +433,8 @@ h2.zw::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(
   .meldung{left:12px;right:12px;bottom:150px}
 }
 @media (max-width:520px){.kopf__werk .kn--klein{height:34px;padding:0 3px;gap:0;font-size:0;letter-spacing:0}.kopf__werk .kn--klein i{width:28px;height:28px}}
+
+/* Prüfung 20.11.2026 (Punkte 4, 13, 21, 37): Zeilen umbrechen statt abschneiden, Zahlen in Tafeln, feste Spalten */
+.bereiche{grid-template-columns:1fr}
+@media(min-width:640px){.bereiche{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1100px){.bereiche{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}}

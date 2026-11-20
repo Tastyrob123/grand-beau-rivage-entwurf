@@ -197,3 +197,7 @@ div.sprachwahl > button,
 a > small,
 header.rz-leiste > button.kn.kn--klein,
 div.in > p.rz-studie{font-size:13px!important}
+
+/* Prüfung 20.11.2026 (Punkte 4, 13, 21, 37): Zeilen umbrechen statt abschneiden, Zahlen in Tafeln, feste Spalten */
+.rz-zahlen__in>*{padding:clamp(22px,2.4vw,34px) 14px;border-radius:20px;background:rgba(var(--lh),.05);border:1px solid rgba(var(--rz-linie),.28)}
+.rz-zahlen span{margin-top:16px}
