@@ -199,3 +199,24 @@ h2.zw[data-r],.rg-mehr[data-r]{--weg:clamp(30px,3.2vw,48px);--kl:.97}
 .rg-rang__n,.rg-rang__n small{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
 .rg-zwei--unter{display:grid;grid-template-columns:1fr;gap:18px}
 .rg-a__n b{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+
+/* Prüfung 20.11.2026 (Prüfpunkt 17): Schrift mindestens 13 px */
+button.kopf__marke > span > small,
+div.kopf__mitte > div.kopf__stand,
+div.kopf__werk > a.kn.kn--klein,
+nav.nav > p,
+button.nw > i,
+span.zier > span,
+div.wahl2.feder > button,
+div.rg-zahlen.platte > div > span,
+section.rg-tage.platte > header > p,
+div.rg-s > span,
+li > em,
+span.rg-rang__n > small,
+button.rg-a > span.rg-a__l,
+button.rg-a > span.rg-a__z,
+span.rg-a__z > small,
+p.rg-mehr > button.kn.kn--linie.kn--hellrand,
+div.leiste__t > span,
+footer.leiste > button.kn.kn--linie.rg-geraet,
+footer.leiste > button.kn.kn--linie{font-size:13px!important}

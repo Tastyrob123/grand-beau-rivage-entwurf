@@ -579,3 +579,24 @@ html,body{overflow-x:clip}
 .m-f5__k{animation:m5schweb 1.6s cubic-bezier(.28,1.18,.42,1) both!important;animation-delay:calc(var(--i)*120ms)!important}
 .m-f5__t{animation-delay:calc(.35s + var(--i)*120ms)!important}
 @keyframes m5schweb{from{transform:translate3d(0,140px,0)}}
+
+/* Prüfung 20.11.2026 (Prüfpunkt 17): Schrift mindestens 13 px */
+header.m-oben > a.kn.kn--klein.kn--hell.glanz-kn.m-oben__ecke,
+div.m-f5__oben > p.m-f5__datum,
+p.m-f5__zeile > span,
+p.m-f5__zeile > a,
+span.m-f5__t > span.m-f5__w,
+p.m-tafel__kopf > span,
+div.m-angabe > span,
+div.m-tafel.m-tafel--stand > a.kn,
+div.m-zahl > span,
+div.m-stand-c > a.kn,
+div.m-knoepfe > a.kn.kn--gold,
+div.m-tafel.m-tafel--e > p.m-rez__stand,
+p.m-rez__stand > b,
+div.m-stand-r > a.kn,
+li > span,
+section.m-saal.m-saal--livre.m-entree > div.m-knoepfe > p.m-hinweis.m-hinweis--hell,
+div.m-fuss__spalte > p.m-fuss__k,
+span.rl > b,
+a.m-insel__marke > span{font-size:13px!important}

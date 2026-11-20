@@ -113,3 +113,33 @@ a.ms-lnk{color:var(--taupe-tief)}
 #start .start__hinweise b{color:var(--navy)}
 #start .stueck--doc .doc__umbenennen{color:var(--navy);background:#fffdf8;box-shadow:0 0 0 1.5px var(--messing)}
 #start .doc__aktionen button{box-shadow:inset 0 1px 0 rgba(190,206,255,.3),inset 0 -2px 0 rgba(0,0,0,.45),0 10px 16px -10px rgba(26,29,40,.6)}
+
+/* Prüfung 20.11.2026 (Prüfpunkt 17): Schrift mindestens 13 px */
+span > small,
+small > span,
+div.kopf__mitte > span.kopf__gespeichert,
+button.kn.kn--klein.kn--ohne.neu > span,
+button.kn.kn--klein.kn--ohne.pruef.gut > span.pruef__zahl,
+button.kn.kn--klein.kn--ohne.pruef.gut > span.pruef__t,
+button.kn > span.nb,
+nav.reiter > button,
+div.zeile2 > label,
+button.kn.knopf--voll.glanz-kn > span,
+div.dna__farben > div,
+div.dna__schrift > small,
+div.insel > button > span,
+div.insel.insel--klein > span,
+label.schalter > span,
+button.kn.ms-kn-gold.glanz-kn > span,
+button > em,
+div.ms-fuss > small,
+span.ms-kopf-name > small,
+label.ms-suche > kbd,
+button.ms-lnk.ms-lnk--alle > span,
+button.ms-lnk > span,
+span.wo__k > span.wo__datum,
+div.hk__knoepfe > button.knopf.knopf--voll,
+button.hk__video > span,
+div.hk.hk--gross > button.hk__leise,
+button.kn > span.nk,
+button.kn.kn--klein.ms-kn-neu > span{font-size:13px!important}

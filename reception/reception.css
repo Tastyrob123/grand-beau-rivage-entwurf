@@ -719,3 +719,21 @@ html.probe-offen{overflow:hidden}
 .re-de__kopf{margin-bottom:4px}
 .re-de__betreff{font-size:23px}
 .re-de__text{font-size:18.5px}
+
+/* Prüfung 20.11.2026 (Prüfpunkt 17): Schrift mindestens 13 px */
+button.kopf__marke > span > small,
+div.kopf__mitte > div.kopf__stand,
+div.kopf__werk > button.kn.kn--klein,
+nav.nav > p,
+button.nw > i,
+span.zier > span,
+div.titel__kn > a.kn.kn--linie,
+div.lg.feder > span.mono,
+span.re-a__n > span.re-a__k,
+button.re-a > span.re-a__st,
+span.re-a__k > i.re-q__sp,
+button.re-a.re-q > span.re-a__st,
+span.re-a__st > small,
+div.leiste__t > span,
+footer.leiste > button.kn.kn--linie,
+footer.leiste > button.kn{font-size:13px!important}

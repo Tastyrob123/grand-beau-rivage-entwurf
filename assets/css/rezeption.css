@@ -191,3 +191,9 @@ html,body.rz{overflow-x:clip}
   .hg__h:last-child{margin-bottom:0}
 }
 @media (prefers-reduced-motion:reduce){.hg__box,.hg__dunkel,.rz-fragen::after{transition:none}}
+
+/* Prüfung 20.11.2026 (Prüfpunkt 17): Schrift mindestens 13 px */
+div.sprachwahl > button,
+a > small,
+header.rz-leiste > button.kn.kn--klein,
+div.in > p.rz-studie{font-size:13px!important}
