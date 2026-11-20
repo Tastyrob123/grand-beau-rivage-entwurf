@@ -198,3 +198,4 @@ h2.zw[data-r],.rg-mehr[data-r]{--weg:clamp(30px,3.2vw,48px);--kl:.97}
 /* Prüfung 20.11.2026: Namen in den Ranglisten brechen um statt abgeschnitten zu werden; Sprache und Gerät haben ungleich viele Zeilen und stehen deshalb untereinander */
 .rg-rang__n,.rg-rang__n small{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
 .rg-zwei--unter{display:grid;grid-template-columns:1fr;gap:18px}
+.rg-a__n b{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}

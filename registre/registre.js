@@ -271,7 +271,7 @@ function start() {
         ${d.je_tag.map((t, i) => `<div class="rg-s" style="--i:${Math.round(i * 30 / viele)}" data-t="${esc(tagWort(t.tag))}: ${mal(t.besuche, 'ein Besuch', 'Besuche')}"><i style="height:${t.besuche ? Math.max(2.5, 100 * t.besuche / max).toFixed(1) : 0}%"></i>${(viele - 1 - i) % schritt === 0 ? `<span>${esc(t.tag.slice(8) + '.' + t.tag.slice(5, 7) + '.')}</span>` : ''}</div>`).join('')}
       </div>
     </section>
-    <div class="zwei rg-zwei">
+    <div class="rg-zwei rg-zwei--unter">
       <section class="rg-block platte"><header><h3>Woher die Gäste kommen</h3><button class="link" type="button" data-gehe="herkunft">Alle Länder und Orte</button></header>
         ${balken(d.laender.slice(0, 6), x => esc(land(x.k) || 'Ort nicht bekannt'), null, u.besuche)}</section>
       <section class="rg-block platte"><header><h3>Am meisten angesehen</h3><button class="link" type="button" data-gehe="seiten">Alle Seiten</button></header>
