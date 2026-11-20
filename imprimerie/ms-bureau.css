@@ -147,3 +147,8 @@ button.kn.kn--klein.ms-kn-neu > span{font-size:13px!important}
 /* Prüfung 20.11.2026 (Punkte 4, 13, 21, 37): Zeilen umbrechen statt abschneiden, Zahlen in Tafeln, feste Spalten */
 .wo__datum{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
 .dna{padding-top:.12em;padding-bottom:.18em}
+
+/* Prüfung 20.11.2026, Runde 2 */
+.an:not(.blatt *):not(.papier *),.schild-frei,.beispiel-marke,.stueck__format,.dna__schrift{font-size:13px!important}
+.dna__schrift{line-height:1.4!important;padding-bottom:.25em}
+.dna{overflow:visible!important}

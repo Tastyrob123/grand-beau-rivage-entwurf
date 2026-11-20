@@ -592,3 +592,13 @@ ul.laden > li > span > small,
 li > a.kn{font-size:13px!important}
 /* Prüfung 20.11.2026 (Punkt 10): die Überschrift-Spalte läuft neben dem längeren Inhalt mit */
 @media(min-width:900px){.gr__k,.kontrast__k,.rang__k{position:sticky;top:96px;align-self:start}}
+
+/* Prüfung 20.11.2026 (Punkt 1): Bildschirmbild im Blender-Laptop statt im flachen Fenster */
+.schirm--geraet{background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;padding:0!important;overflow:visible!important;max-width:1100px;margin-left:auto;margin-right:auto}
+.schirm--geraet img{display:block;width:100%;height:auto}
+
+/* Prüfung 20.11.2026, Runde 2 */
+.ab b{padding-top:.08em;padding-bottom:.08em}
+.kontrast__l b,.rang__l b,.gr__l b{line-height:1.12}
+@media(min-width:1600px){#farben{padding-top:min(150px,8vw)}}
+@media(max-width:520px){.ab{overflow-wrap:anywhere}}

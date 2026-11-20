@@ -419,3 +419,7 @@ span.bk__n > small,
 div.leiste__t > span,
 footer.leiste > button.kn.sp.grau,
 footer.leiste > button.kn.kn--gold{font-size:13px!important}
+
+/* Prüfung 20.11.2026, Runde 2 */
+h2.zw{transform:none!important;translate:none!important}
+.rg-liste--start>.rg-a{transform:none!important;translate:none!important}

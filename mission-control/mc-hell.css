@@ -48,3 +48,7 @@ footer.leiste > button.kn{font-size:13px!important}
 
 /* Prüfung 20.11.2026 (Punkte 4, 13, 21, 37): Zeilen umbrechen statt abschneiden, Zahlen in Tafeln, feste Spalten */
 .r__t>span{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+
+/* Prüfung 20.11.2026, Runde 2 */
+.r__t{overflow-wrap:anywhere}
+.r__t>span{display:block}

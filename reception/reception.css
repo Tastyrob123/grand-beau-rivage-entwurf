@@ -740,3 +740,7 @@ footer.leiste > button.kn{font-size:13px!important}
 
 /* Prüfung 20.11.2026 (Punkte 4, 13, 21, 37): Zeilen umbrechen statt abschneiden, Zahlen in Tafeln, feste Spalten */
 .re-a__n small,.re-a__n{white-space:normal!important;overflow:hidden;text-overflow:clip!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+
+/* Prüfung 20.11.2026, Runde 2 */
+.re-a__n,.re-a__n *,.re-a__k{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block;-webkit-line-clamp:unset}
+.re-a__n small{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2!important;overflow:hidden!important}

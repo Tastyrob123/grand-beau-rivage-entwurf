@@ -438,3 +438,7 @@ h2.zw::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(
 .bereiche{grid-template-columns:1fr}
 @media(min-width:640px){.bereiche{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1100px){.bereiche{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}}
+
+/* Prüfung 20.11.2026, Runde 2 */
+@media(min-width:1100px) and (max-width:1599px){.bereiche{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px}}
+.bereiche b{overflow-wrap:anywhere}
